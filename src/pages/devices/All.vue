@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <h3>Bienvenue, veuillez choisir une actions grace au menu</h3>
+    <h1>Devices</h1>
   </q-page>
 </template>
 
@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'PageIndex'
+  name: 'PageAllDevices'
 }
 </script>
