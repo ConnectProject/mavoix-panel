@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh Lpr lff">
     <!-- Toolbar -->
-    <q-header elevated class="bg-black">
+    <q-header elevated>
       <q-toolbar>
         <q-btn flat dense round @click="leftDrawerOpen = !leftDrawerOpen" aria-label="Menu">
           <q-icon name="menu" />
