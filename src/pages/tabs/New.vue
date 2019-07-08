@@ -1,6 +1,6 @@
 <template>
-  <q-page class="flex flex-center">
-    <h1>New tabs</h1>
+  <q-page class="flex q-pa-xl">
+    <tab-edit-form />
   </q-page>
 </template>
 
@@ -8,7 +8,17 @@
 </style>
 
 <script>
+import TabEditForm from '~/components/TabEditForm'
+
 export default {
-  name: 'PageNewTab'
+  name: 'PageNewTab',
+  components: {
+    TabEditForm
+  },
+  methods: {
+    save () {
+
+    }
+  }
 }
 </script>

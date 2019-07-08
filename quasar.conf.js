@@ -6,7 +6,9 @@ module.exports = function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
-      'i18n'
+      'i18n',
+      'parse',
+      'internalComponents'
     ],
 
     css: [
@@ -44,7 +46,25 @@ module.exports = function (ctx) {
         'QList',
         'QItem',
         'QItemSection',
-        'QItemLabel'
+        'QItemLabel',
+        'QForm',
+        'QInput',
+        'QField',
+        'QCheckbox',
+        'QToggle',
+        'QColor',
+        'QPopupProxy',
+        'QCard',
+        'QCardActions',
+        'QSeparator',
+        'QCardSection',
+        'QImg',
+        'QTabs',
+        'QTab',
+        'QRouteTab',
+        'QFab',
+        'QPageSticky',
+        'QScrollArea'
       ],
 
       directives: [
