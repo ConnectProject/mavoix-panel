@@ -8,7 +8,8 @@ module.exports = function (ctx) {
     boot: [
       'i18n',
       'parse',
-      'internalComponents'
+      'internalComponents',
+      'models'
     ],
 
     css: [
@@ -64,7 +65,10 @@ module.exports = function (ctx) {
         'QRouteTab',
         'QFab',
         'QPageSticky',
-        'QScrollArea'
+        'QScrollArea',
+        'QSpinnerPuff',
+        'QDialog',
+        'QAvatar'
       ],
 
       directives: [

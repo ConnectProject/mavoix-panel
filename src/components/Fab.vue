@@ -4,7 +4,7 @@
       fab
       :icon="$props.icon || 'add'"
       :color="$props.color || 'accent'"
-      v-on:click="$props.onClick"
+      @click="$props.onClick"
     />
   </q-page-sticky>
 </template>

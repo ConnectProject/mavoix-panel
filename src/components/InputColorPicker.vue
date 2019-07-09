@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'ColorPicker',
+  name: 'InputColorPicker',
   data () {
     return {
       colorValue: '#E5E5E5'
