@@ -1,5 +1,10 @@
 export default {
   loading: true,
   error: null,
-  tab: null
+  tabModel: null,
+  history: [],
+  index: 0,
+  tab: {
+    name: ''
+  }
 }
