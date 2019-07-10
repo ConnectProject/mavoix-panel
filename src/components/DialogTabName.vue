@@ -10,7 +10,7 @@
       </q-card-section>
 
       <q-card-actions align="right" class="text-primary">
-        <q-btn flat label="Cancel" @click="onCancel" />
+        <q-btn flat label="Cancel" color="negative" @click="onCancel" />
         <q-btn flat label="Ajouter le tab" @click="onValidateInternal" />
       </q-card-actions>
     </q-card>

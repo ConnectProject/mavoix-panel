@@ -12,10 +12,10 @@ const routes = [
     path: '/',
     component: () => import('~/layouts/HomeLayout.vue'),
     children: [
-      { name: 'home', path: '', component: () => import('pages/Index.vue') },
+      { name: 'home', path: '/home', component: () => import('pages/Index.vue') },
 
       /* Tabs routes */
-      { name: 'tab', path: '/tabs/:slug', component: () => import('~/pages/Tab.vue') },
+      { name: 'tab', path: '/tab/editor/:slug', component: () => import('~/pages/Tab.vue') },
 
       /* Devices routes */
       { name: 'device', path: '/devices/:slug', component: () => import('~/pages/Device.vue') }

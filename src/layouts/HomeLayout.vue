@@ -17,10 +17,23 @@
     <q-drawer v-model="drawerOpen" :width="200" :breakpoint="500" show-if-abovebordered>
       <q-scroll-area class="fit">
         <q-list padding class="menu-list">
+          <!-- Home -->
+          <q-item
+            clickable
+            v-ripple
+            :to="{ name: 'home' }"
+          >
+            <q-item-section avatar>
+              <q-icon name="home" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Accueil</q-item-label>
+            </q-item-section>
+          </q-item>
           <!-- Tabs -->
           <q-item-label header>Tabs</q-item-label>
           <!-- If the query is loading -->
-          <list-item-loading v-if="tabsLoading" />
+          <list-item-loading v-if="$store.state.tabs.loading" />
           <div v-else>
             <!-- Render fetched tab buttons -->
             <q-item
@@ -39,7 +52,7 @@
             </q-item>
 
             <!-- Click to add a tab -->
-            <q-item clickable v-ripple @click="tabNameDialogOpen = true">
+            <q-item clickable v-ripple @click="$store.commit('tabs/openDialog')">
               <q-item-section avatar>
                 <q-icon name="add" />
               </q-item-section>
@@ -52,11 +65,11 @@
           <!-- Devices -->
           <q-item-label header>Devices</q-item-label>
           <!-- If the query is loading -->
-          <list-item-loading v-if="devicesLoading" />
+          <list-item-loading v-if="$store.state.devices.loading" />
           <!-- If the query has returned its result -->
           <div v-else>
             <!-- Click to add a device -->
-            <q-item clickable v-ripple @click="deviceInviteDialogOpen = true">
+            <q-item clickable v-ripple @click="$store.commit('devices/openDialog')">
               <q-item-section avatar>
                 <q-icon name="add" />
               </q-item-section>
@@ -74,83 +87,51 @@
     </q-page-container>
 
     <dialog-tab-name
-      :opened="tabNameDialogOpen"
-      :onCancel="() => tabNameDialogOpen = false"
+      :opened="$store.state.tabs.dialogOpen"
+      :onCancel="() => $store.commit('tabs/closeDialog')"
       :onValidate="createAndGoToTab"
     />
     <dialog-device-invitation
-      :opened="deviceInviteDialogOpen"
-      :onCancel="() => deviceInviteDialogOpen = false"
+      :opened="$store.state.devices.dialogOpen"
+      :onCancel="() => $store.commit('devices/closeDialog')"
     />
   </q-layout>
 </template>
 
 <script>
-import Parse from 'parse'
-
 import ListItemLoading from '~/components/ListItemLoading'
 import DialogDeviceInvitation from '~/components/DialogDeviceInvitation'
 import DialogTabName from '~/components/DialogTabName'
-
-import TabModel from '~/models/Tab'
-import DeviceModel from '~/models/Device'
 
 export default {
   name: 'HomeLayout',
   data () {
     return {
-      tabsLoading: true,
-      tabs: [],
-      tabNameDialogOpen: false,
-
-      devicesLoading: true,
-      devices: [],
-      deviceInviteDialogOpen: false,
-
       drawerOpen: this.$q.platform.is.desktop
     }
   },
+  computed: {
+    devices () {
+      return this.$store.getters['devices/devices']
+    },
+    tabs () {
+      return this.$store.getters['tabs/tabs']
+    }
+  },
   methods: {
-    fetchTabs () {
-      return new Parse.Query(TabModel)
-        .find()
-        .then(tabs => {
-          console.log(`Successfully fetched ${tabs.length} tabs.`)
-          this.tabs = tabs
-          this.tabsLoading = false
-        })
-        .catch(err => {
-          throw err
-        })
-    },
-    fetchDevices () {
-      return new Parse.Query(DeviceModel)
-        .find()
-        .then(devices => {
-          console.log(`Successfully fetched ${devices.length} devices.`)
-          this.devices = devices
-          this.devicesLoading = false
-        })
-        .catch(err => {
-          throw err
-        })
-    },
     createAndGoToTab (name) {
-      TabModel.Create(name)
-        .save()
-        .then((res) => {
-          this.tabs.push(res)
+      this.$store.dispatch('tabs/createTabCb', {
+        name,
+        callback: (tab) => {
           this.$router.push({
             name: 'tab',
             params: {
-              slug: res.get('slug')
+              slug: tab.get('slug')
             }
           })
-        })
-        .catch((err) => {
-          throw err
-        })
-      this.tabNameDialogOpen = false
+          this.$store.commit('tabs/closeDialog')
+        }
+      })
     },
     onLogout () {
       this.$router.push({
@@ -159,16 +140,8 @@ export default {
     }
   },
   mounted () {
-    this.fetchTabs()
-      .then(() => {
-        return new Promise(resolve => {
-          setTimeout(resolve, 2000)
-        })
-      })
-      .then(this.fetchDevices)
-      .catch((err) => {
-        throw err
-      })
+    this.$store.dispatch('tabs/loadTabs')
+    this.$store.dispatch('devices/loadDevices')
   },
   components: {
     ListItemLoading,

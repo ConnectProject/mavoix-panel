@@ -18,50 +18,27 @@
 </style>
 
 <script>
-import Parse from 'parse'
-
-import TabModel, { SLUG_KEY } from '~/models/Tab'
-
 export default {
-  name: 'Tab',
-  data () {
-    return {
-      loading: false,
-      tab: {}
+  name: 'TabEditor',
+  computed: {
+    tab () {
+      return this.$store.getters['tabEditor/tab']
+    },
+    loading () {
+      return this.$store.getters['tabEditor/loading']
     }
   },
   methods: {
     onSave () {
     },
     onDelete () {
-      this.tab
-        .destroy()
-        .then((res) => {
-          this.$router.push({
-            name: 'home'
-          })
-        })
-        .catch((err) => {
-          throw err
-        })
+      this.$store.dispatch('tabEditor/deleteTab')
+      this.$router.push({
+        name: 'home'
+      })
     },
     loadTab () {
-      new Parse.Query(TabModel)
-        .equalTo(SLUG_KEY, this.$route.params.slug)
-        .first()
-        .then((res) => {
-          if (!res) {
-            this.$router.push({
-              name: 'home'
-            })
-          } else {
-            this.tab = res
-            this.loading = false
-          }
-        })
-        .catch((err) => {
-          throw Error(`WTFFFFF ${err}`)
-        })
+      this.$store.dispatch('tabEditor/loadTabBySlug', this.$route.params.slug)
     }
   },
   mounted () {
