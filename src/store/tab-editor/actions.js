@@ -1,6 +1,8 @@
 import Parse from 'parse'
 
 import TabModel, { SLUG_KEY, NAME_KEY } from '~/models/Tab'
+import TabItemModel, { PARENT_KEY } from '~/models/TabItem'
+
 import slugify from '~/utils/slugify'
 
 export function loadBySlug (context, slug) {
@@ -10,6 +12,19 @@ export function loadBySlug (context, slug) {
     .then((tab) => {
       console.log(`Successfully loaded "${tab.get('name')}" tab.`)
       context.commit('setTab', tab)
+    })
+    .catch((err) => {
+      context.commit('setError', err)
+    })
+}
+
+export function loadItems (context) {
+  new Parse.Query(TabItemModel)
+    .equalTo(PARENT_KEY, context.tabModel.id)
+    .find()
+    .then((items) => {
+      console.log(`Successfully fetched ${items.length} tab items.`)
+      context.commit('setItems', items)
     })
     .catch((err) => {
       context.commit('setError', err)

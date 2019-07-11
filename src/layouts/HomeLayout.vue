@@ -30,6 +30,7 @@
               <q-item-label>Accueil</q-item-label>
             </q-item-section>
           </q-item>
+
           <!-- Tabs -->
           <q-item-label header>Tabs</q-item-label>
           <!-- If the query is loading -->

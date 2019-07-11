@@ -7,18 +7,31 @@
   <div v-if="loading"></div>
   <q-page v-else class="flex items-stretch q-pa-xl">
     <div class="column container">
-      <div class="col-2 row justify-center">
+      <div class="col-2 row justify-center items-end">
         <q-input
           :value="tab.name"
           @input="(v) => $store.commit('tabEditor/setName', v)"
-          class="self-end"
         />
-        <q-color no-header no-footer v-model="hex" inline class="my-picker" />
+        <q-input
+          :value="tab.hexColor"
+          @input="setHexColor"
+          filled
+        >
+          <template v-slot:append>
+            <q-icon name="colorize" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-color no-header no-footer :value="tab.hexColor" @input="setHexColor" inline class="my-picker" />
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+      </q-input>
       </div>
-      <div class="col-10">
-        <p></p>
+
+      <div class="images-zone col-8 relative-position rounded-borders q-pa-xs q-ph-md q-mh-xs shadow-3">
+        <q-btn class="absolute-bottom-right q-ma-md" fab icon="add" color="accent"/>
       </div>
     </div>
+
     <!-- Udo, Redo buttons -->
     <q-page-sticky position="top-right" :offset="[18, 18]">
       <q-btn class="q-mx-xs" fab icon="undo" color="accent" @click="onUndo" :disable="$store.getters['tabEditor/isUndoable']"/>
@@ -34,13 +47,11 @@
 </template>
 
 <script>
-import { NAME_KEY } from '~/models/Tab'
-
 export default {
   name: 'TabEditor',
   data () {
     return {
-      NAME_KEY
+      hex: ''
     }
   },
   computed: {
@@ -73,6 +84,9 @@ export default {
       this.$router.push({
         name: 'home'
       })
+    },
+    setHexColor (hexColor) {
+      this.$store.commit('tabEditor/setHexColor', hexColor)
     },
     onUndo () {
       this.$store.commit('tabEditor/undo')

@@ -1,12 +1,15 @@
 <template>
   <q-dialog v-model="opened" persistent>
-    <q-card>
-      <q-card-section class="row items-center">
+    <div v-if="loading"></div>
+    <q-card v-else>
+      <q-card-section class="row items-center justify-center">
         <h6 class="q-ml-sm text-subtitle2">Pour ajouter une device a votre compte vous pouvez scanner le qrcode suivant:</h6>
+        <qrcode-vue :value="token" />
       </q-card-section>
 
-      <q-card-section class="row items-center">
+      <q-card-section class="row items-center justify-center">
         <h5 class="q-ml-sm text-subtitle2">Ou alors entrer le code d'invitation suivant dans l'application:</h5>
+        <q-input rounded outlined disable class="fit" :input-style="{ textAlign: 'center' }" :value="token"/>
       </q-card-section>
 
       <q-card-actions align="right">
@@ -17,11 +20,27 @@
 </template>
 
 <script>
+import QrcodeVue from 'qrcode.vue'
+
 export default {
   name: 'DialogDeviceInvitation',
+  computed: {
+    loading () {
+      return this.$store.getters['deviceInvitation/loading']
+    },
+    token () {
+      return this.$store.getters['deviceInvitation/token']
+    }
+  },
+  mounted () {
+    this.$store.dispatch('deviceInvitation/create')
+  },
   props: {
     opened: Boolean,
     onCancel: Function
+  },
+  components: {
+    QrcodeVue
   }
 }
 </script>

@@ -1,16 +1,32 @@
 import { changeByKey } from './utils'
+import { NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
 
 export function setTab (state, tabModel) {
   state.tabModel = tabModel
   state.tab = {
-    name: tabModel.get('name')
+    name: tabModel.get(NAME_KEY),
+    hexColor: tabModel.get(HEX_COLOR_KEY),
+    items: []
   }
   state.loading = false
 }
 
+export function setItems (state, itemsModel) {
+  state.itemsModel = itemsModel
+  state.tab.items = itemsModel.map((el) => ({
+    name: el.get('name')
+  }))
+  state.tab.itemsLoading = false
+}
+
 export function setName (state, name) {
-  pushHistory(state, { key: 'name', from: state.tab.name, to: name })
+  pushHistory(state, { key: NAME_KEY, from: state.tab.name, to: name })
   state.tab.name = name
+}
+
+export function setHexColor (state, hexColor) {
+  pushHistory(state, { key: HEX_COLOR_KEY, from: state.tab.hexColor, to: hexColor })
+  state.tab.hexColor = hexColor
 }
 
 export function pushHistory (state, { key, from, to }) {

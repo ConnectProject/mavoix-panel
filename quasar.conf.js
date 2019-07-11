@@ -8,8 +8,7 @@ module.exports = function (ctx) {
     boot: [
       'i18n',
       'parse',
-      'internalComponents',
-      'models'
+      'internalComponents'
     ],
 
     css: [
