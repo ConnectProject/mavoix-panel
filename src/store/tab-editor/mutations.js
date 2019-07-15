@@ -1,56 +1,77 @@
 import { changeByKey } from './utils'
-import { NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
+import {
+  NAME_KEY as TAB_NAME_KEY,
+  HEX_COLOR_KEY as TAB_HEX_COLOR_KEY
+} from '~/models/Tab'
+
+import {
+  NAME_KEY as ITEM_NAME_KEY,
+  IMAGE_KEY as ITEM_IMAGE_KEY,
+  UNAVAILABLE_KEY as ITEM_UNAVAILABLE_KEY,
+  HIDDEN_KEY as ITEM_HIDDEN_KEY
+} from '~/models/TabItem'
 
 export function setTab (state, tabModel) {
-  state.tabModel = tabModel
+  state.models.tab = tabModel
   state.tab = {
-    name: tabModel.get(NAME_KEY),
-    hexColor: tabModel.get(HEX_COLOR_KEY),
+    name: tabModel.get(TAB_NAME_KEY),
+    hexColor: tabModel.get(TAB_HEX_COLOR_KEY),
     items: []
   }
   state.loading = false
 }
 
-export function setItems (state, itemsModel) {
-  state.itemsModel = itemsModel
-  state.tab.items = itemsModel.map((el) => ({
-    name: el.get('name')
+export function setItems (state, itemsModels) {
+  state.models.items = itemsModels
+  state.tab.items = itemsModels.map((el) => ({
+    name: el.get(ITEM_NAME_KEY),
+    image: el.get(ITEM_IMAGE_KEY),
+    unavailable: el.get(ITEM_UNAVAILABLE_KEY),
+    hidden: el.get(ITEM_HIDDEN_KEY)
   }))
-  state.tab.itemsLoading = false
+  state.itemsLoading = false
 }
 
 export function setName (state, name) {
-  pushHistory(state, { key: NAME_KEY, from: state.tab.name, to: name })
+  pushHistory(state, { key: TAB_NAME_KEY, from: state.tab.name, to: name })
   state.tab.name = name
 }
 
 export function setHexColor (state, hexColor) {
-  pushHistory(state, { key: HEX_COLOR_KEY, from: state.tab.hexColor, to: hexColor })
+  pushHistory(state, { key: TAB_HEX_COLOR_KEY, from: state.tab.hexColor, to: hexColor })
   state.tab.hexColor = hexColor
 }
 
+export function openNewItemDialog (state) {
+  state.newItemDialogOpened = true
+}
+
+export function closeNewItemDialog (state) {
+  state.newItemDialogOpened = false
+}
+
 export function pushHistory (state, { key, from, to }) {
-  state.history.splice(state.index, state.history.length - state.index, {
+  state.history.data.splice(state.index, state.history.length - state.index, {
     key,
     from,
     to
   })
-  state.index++
+  state.history.index++
 }
 
 export function undo (state) {
-  if (state.index === 0) return
-  const history = state.history[state.index - 1]
+  if (state.history.index === 0) return
+  const history = state.history.data[state.history.index - 1]
 
-  state.index--
+  state.history.index--
   changeByKey(state, history.key, history.from)
 }
 
 export function redo (state) {
-  if (state.index === state.history.length) return
-  const history = state.history[state.index]
+  if (state.history.index === state.history.data.length) return
+  const history = state.history.data[state.history.index]
 
-  state.index++
+  state.history.index++
   changeByKey(state, history.key, history.to)
 }
 

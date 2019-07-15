@@ -15,9 +15,10 @@ export default class TabModel extends Parse.Object {
   static New (name, hexColor) {
     const newTab = new TabModel()
 
-    newTab.set(NAME_KEY, name)
-    newTab.set(HEX_COLOR_KEY, hexColor)
-    newTab.set(SLUG_KEY, slugify(name))
+    newTab
+      .set(NAME_KEY, name)
+      .set(HEX_COLOR_KEY, hexColor)
+      .set(SLUG_KEY, slugify(name))
     return newTab
   }
 

@@ -1,6 +1,6 @@
 import Parse from 'parse'
 
-import TabModel, { SLUG_KEY, NAME_KEY } from '~/models/Tab'
+import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
 import TabItemModel, { PARENT_KEY } from '~/models/TabItem'
 
 import slugify from '~/utils/slugify'
@@ -20,7 +20,7 @@ export function loadBySlug (context, slug) {
 
 export function loadItems (context) {
   new Parse.Query(TabItemModel)
-    .equalTo(PARENT_KEY, context.tabModel.id)
+    .equalTo(PARENT_KEY, context.getters.tabModel.id)
     .find()
     .then((items) => {
       console.log(`Successfully fetched ${items.length} tab items.`)
@@ -37,6 +37,7 @@ export function saveCb (context, cb) {
 
   tabModel.set(NAME_KEY, tab.name)
   tabModel.set(SLUG_KEY, slugify(tab.name))
+  tabModel.set(HEX_COLOR_KEY, tab.hexColor)
 
   tabModel.save()
     .then((tabModel) => {

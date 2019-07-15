@@ -2,16 +2,20 @@ export function tab (state) {
   return state.tab
 }
 
+export function isDialogOpened (state) {
+  return state.newItemDialogOpened
+}
+
 export function isUndoable (state) {
-  return !state.index > 0
+  return !state.history.index > 0
 }
 
 export function isRedoable (state) {
-  return state.index === state.history.length
+  return state.history.index === state.history.data.length
 }
 
 export function tabModel (state) {
-  return state.tabModel
+  return state.models.tab
 }
 
 export function loading (state) {

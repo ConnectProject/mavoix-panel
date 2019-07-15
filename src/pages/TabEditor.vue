@@ -7,12 +7,15 @@
   <div v-if="loading"></div>
   <q-page v-else class="flex items-stretch q-pa-xl">
     <div class="column container">
-      <div class="col-2 row justify-center items-end">
+      <div class="col-2 row justify-center items-center">
         <q-input
+          class="q-ma-md"
           :value="tab.name"
-          @input="(v) => $store.commit('tabEditor/setName', v)"
+          @input="setName"
+          filled
         />
         <q-input
+          class="q-ma-md"
           :value="tab.hexColor"
           @input="setHexColor"
           filled
@@ -24,13 +27,15 @@
               </q-popup-proxy>
             </q-icon>
           </template>
-      </q-input>
+        </q-input>
+        <q-btn class="stretch q-ma-md" flat size="lg" @click="openNewItemDialog">Ajouter une image</q-btn>
       </div>
 
-      <div class="images-zone col-8 relative-position rounded-borders q-pa-xs q-ph-md q-mh-xs shadow-3">
-        <q-btn class="absolute-bottom-right q-ma-md" fab icon="add" color="accent"/>
+      <div class="images-zone col-8 rounded-borders q-pa-xs q-ph-md q-mh-xs shadow-3">
       </div>
     </div>
+
+    <dialog-tab-item />
 
     <!-- Udo, Redo buttons -->
     <q-page-sticky position="top-right" :offset="[18, 18]">
@@ -47,6 +52,8 @@
 </template>
 
 <script>
+import DialogTabItem from '~/components/DialogTabItem'
+
 export default {
   name: 'TabEditor',
   data () {
@@ -56,15 +63,23 @@ export default {
   },
   computed: {
     tab () {
-      const a = this.$store.getters['tabEditor/tab']
-      console.log(a)
-      return a
+      return this.$store.getters['tabEditor/tab']
     },
     loading () {
       return this.$store.getters['tabEditor/loading']
     }
   },
+  watch: {
+    loading (newValue, oldValue) {
+      if (newValue === false && this.tab != null) {
+        this.$store.dispatch('tabEditor/loadItems')
+      }
+    }
+  },
   methods: {
+    openNewItemDialog () {
+      this.$store.commit('tabEditor/openNewItemDialog')
+    },
     onSave () {
       this.$store.dispatch('tabEditor/saveCb', (tab) => {
         this.$router.push({
@@ -85,6 +100,9 @@ export default {
         name: 'home'
       })
     },
+    setName (name) {
+      this.$store.commit('tabEditor/setName', name)
+    },
     setHexColor (hexColor) {
       this.$store.commit('tabEditor/setHexColor', hexColor)
     },
@@ -93,13 +111,13 @@ export default {
     },
     onRedo () {
       this.$store.commit('tabEditor/redo')
-    },
-    loadTab () {
-      this.$store.dispatch('tabEditor/loadBySlug', this.$route.params.slug)
     }
   },
   mounted () {
-    this.loadTab()
+    this.$store.dispatch('tabEditor/loadBySlug', this.$route.params.slug)
+  },
+  components: {
+    DialogTabItem
   }
 }
 </script>

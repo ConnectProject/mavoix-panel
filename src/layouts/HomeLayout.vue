@@ -31,6 +31,19 @@
             </q-item-section>
           </q-item>
 
+          <q-item
+            clickable
+            v-ripple
+            @click="() => $store.commit('assets/openDialog')"
+          >
+            <q-item-section avatar>
+               <q-icon name="photo_library" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Assets</q-item-label>
+            </q-item-section>
+          </q-item>
+
           <!-- Tabs -->
           <q-item-label header>Tabs</q-item-label>
           <!-- If the query is loading -->
@@ -45,7 +58,7 @@
               :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
             >
               <q-item-section avatar>
-                <q-icon name="category" />
+                <q-icon name="category" :style="{ color: tab.get('hexColor') }"/>
               </q-item-section>
               <q-item-section>
                 <q-item-label>{{ tab.get('name') }}</q-item-label>
@@ -96,6 +109,7 @@
       :opened="$store.state.devices.dialogOpen"
       :onCancel="() => $store.commit('devices/closeDialog')"
     />
+    <dialog-assets-manager />
   </q-layout>
 </template>
 
@@ -103,6 +117,7 @@
 import ListItemLoading from '~/components/ListItemLoading'
 import DialogDeviceInvitation from '~/components/DialogDeviceInvitation'
 import DialogTabName from '~/components/DialogTabName'
+import DialogAssetsManager from '~/components/DialogAssetsManager'
 
 export default {
   name: 'HomeLayout',
@@ -147,7 +162,8 @@ export default {
   components: {
     ListItemLoading,
     DialogDeviceInvitation,
-    DialogTabName
+    DialogTabName,
+    DialogAssetsManager
   }
 }
 </script>

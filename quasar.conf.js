@@ -67,7 +67,10 @@ module.exports = function (ctx) {
         'QScrollArea',
         'QSpinnerPuff',
         'QDialog',
-        'QAvatar'
+        'QAvatar',
+        'QBar',
+        'QSpace',
+        'QTooltip'
       ],
 
       directives: [
