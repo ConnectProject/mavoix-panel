@@ -1,3 +1,6 @@
 export default {
-  dialogOpened: false
+  loading: true,
+  error: null,
+  dialogOpened: false,
+  assetsModels: null
 }

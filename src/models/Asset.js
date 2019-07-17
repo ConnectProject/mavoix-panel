@@ -1,16 +1,19 @@
 import Parse from 'parse'
 
-export const SOURCE_KEY = 'source'
+export const NAME_KEY = 'name'
+export const PARSE_FILE_KEY = 'parseFile'
 
 export default class AssetModel extends Parse.Object {
   constructor () {
     super('Asset')
   }
 
-  static New (source) {
+  static New (name, parseFile) {
     const newAssetModel = new AssetModel()
 
-    newAssetModel.set(SOURCE_KEY, source)
+    newAssetModel
+      .set(NAME_KEY, name)
+      .set(PARSE_FILE_KEY, parseFile)
     return newAssetModel
   }
 }

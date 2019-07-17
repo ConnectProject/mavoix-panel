@@ -34,7 +34,7 @@
           <q-item
             clickable
             v-ripple
-            @click="() => $store.commit('assets/openDialog')"
+            @click="() => $store.dispatch('assets/openAndLoad')"
           >
             <q-item-section avatar>
                <q-icon name="photo_library" />
