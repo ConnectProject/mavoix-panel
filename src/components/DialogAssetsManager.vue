@@ -32,7 +32,7 @@
           v-for="(asset, index) in assets"
           :key="index"
           class="col-2 q-ma-md asset-card">
-          <q-img :src="asset.get('parseFile')._url" basic>
+          <q-img :ratio="16 / 9" :src="asset.get('parseFile')._url" basic>
             <div class="absolute-bottom text-subtitle2 text-center">
               {{ asset.get('name') }}
             </div>

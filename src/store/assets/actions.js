@@ -40,7 +40,7 @@ export const uploadFile = ({ commit }, file) => {
       commit('setError', err)
     })
     .then((file) => {
-      AssetModel.New(file.name().split('from ')[1], file)
+      AssetModel.New(file.name().split('from ')[1] || file.name(), file)
         .save()
         .catch((err) => {
           commit('setError', err)
