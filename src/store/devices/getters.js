@@ -1,3 +1,1 @@
-export function devices (state) {
-  return state.devices
-}
+export const devices = ({ devices }) => devices

@@ -57,10 +57,15 @@
     <div class="image-upload-wrapper">
       <input type="file" ref="invisibleFileInput" @input="onInputFile" />
     </div>
+
+    <!-- Asset edit dialog -->
+    <asset-edit />
   </q-dialog>
 </template>
 
 <script>
+import AssetEdit from './DialogAssetEdit'
+
 export default {
   name: 'DialogAssetsManager',
   computed: {
@@ -91,6 +96,9 @@ export default {
     destroyAsset (asset) {
       this.$store.dispatch('assets/destroyAsset', asset)
     }
+  },
+  components: {
+    AssetEdit
   }
 }
 </script>

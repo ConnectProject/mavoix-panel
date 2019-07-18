@@ -1,21 +1,21 @@
-export function setDevices (state, devices) {
+export const setDevices = (state, devices) => {
   state.devices = devices
   state.loading = false
 }
 
-export function setError (state, err) {
+export const setError = (state, err) => {
   state.error = err
   state.loading = false
 }
 
-export function addDevice (state, device) {
+export const addDevice = (state, device) => {
   state.devices.push(device)
 }
 
-export function openDialog (state) {
+export const openDialog = (state) => {
   state.dialogOpen = true
 }
 
-export function closeDialog (state) {
+export const closeDialog = (state) => {
   state.dialogOpen = false
 }

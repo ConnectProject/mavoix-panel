@@ -1,5 +1,5 @@
-export const dialogOpened = (state) => state.dialogOpened
+export const dialogOpened = ({ dialogOpened }) => dialogOpened
 
-export const loading = (state) => state.loading
+export const loading = ({ loading }) => loading
 
-export const all = (state) => state.assetsModels
+export const all = ({ assetsModels }) => assetsModels

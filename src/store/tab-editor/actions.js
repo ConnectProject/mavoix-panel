@@ -5,59 +5,52 @@ import TabItemModel, { PARENT_KEY } from '~/models/TabItem'
 
 import slugify from '~/utils/slugify'
 
-export function loadBySlug (context, slug) {
+export const loadBySlug = ({ commit }, slug) => {
   new Parse.Query(TabModel)
     .equalTo(SLUG_KEY, slug)
     .first()
     .then((tab) => {
-      console.log(`Successfully loaded "${tab.get('name')}" tab.`)
-      context.commit('setTab', tab)
+      commit('setTab', tab)
     })
     .catch((err) => {
-      context.commit('setError', err)
+      commit('setError', err)
     })
 }
 
-export function loadItems (context) {
+export const loadItems = ({ commit, getters: { tabModel } }) => {
   new Parse.Query(TabItemModel)
-    .equalTo(PARENT_KEY, context.getters.tabModel.id)
+    .equalTo(PARENT_KEY, tabModel.id)
     .find()
     .then((items) => {
-      console.log(`Successfully fetched ${items.length} tab items.`)
-      context.commit('setItems', items)
+      commit('setItems', items)
     })
     .catch((err) => {
-      context.commit('setError', err)
+      commit('setError', err)
     })
 }
 
-export function saveCb (context, cb) {
-  const tabModel = context.getters.tabModel
-  const tab = context.getters.tab
-
+export const saveCb = ({ commit, getters: { tabModel, tab } }, callback) => {
   tabModel.set(NAME_KEY, tab.name)
   tabModel.set(SLUG_KEY, slugify(tab.name))
   tabModel.set(HEX_COLOR_KEY, tab.hexColor)
 
   tabModel.save()
     .then((tabModel) => {
-      context.commit('setTab', tabModel)
-      cb(tabModel)
+      commit('setTab', tabModel)
+      callback(tabModel)
     })
     .catch((err) => {
-      context.commit('setError', err)
+      commit('setError', err)
     })
 }
 
-export function deleteIt (context) {
-  const tab = context.getters.tabModel
-
-  context.commit('tabs/removeTabById', tab.id, { root: true })
-  tab.destroy()
+export const deleteIt = ({ commit, getters: { tabModel } }) => {
+  commit('tabs/removeTabById', tabModel.id, { root: true })
+  tabModel.destroy()
     .then(() => {
-      context.commit('clearState')
+      commit('clearState')
     })
     .catch((err) => {
-      context.commit('setError', err)
+      commit('setError', err)
     })
 }

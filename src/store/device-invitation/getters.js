@@ -1,9 +1,5 @@
 import { TOKEN_KEY } from '~/models/DeviceInvitation'
 
-export function token (state) {
-  return state.invitation.get(TOKEN_KEY)
-}
+export const token = ({ invitation }) => invitation.get(TOKEN_KEY)
 
-export function loading (state) {
-  return state.loading
-}
+export const loading = ({ loading }) => loading

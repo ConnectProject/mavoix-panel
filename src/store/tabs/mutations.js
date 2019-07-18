@@ -1,26 +1,25 @@
-export function setTabs (state, tabs) {
+export const setTabs = (state, tabs) => {
   state.tabs = tabs
   state.loading = false
 }
 
-export function setError (state, err) {
+export const setError = (state, err) => {
   state.error = err
   state.loading = false
 }
 
-export function addTab (state, tab) {
+export const addTab = (state, tab) => {
   state.tabs.push(tab)
 }
 
-export function removeTabById (state, id) {
-  console.log(id)
+export const removeTabById = (state, id) => {
   state.tabs = state.tabs.filter(el => el.id !== id)
 }
 
-export function openDialog (state) {
+export const openDialog = (state) => {
   state.dialogOpen = true
 }
 
-export function closeDialog (state) {
+export const closeDialog = (state) => {
   state.dialogOpen = false
 }

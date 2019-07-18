@@ -11,7 +11,7 @@ import {
   HIDDEN_KEY as ITEM_HIDDEN_KEY
 } from '~/models/TabItem'
 
-export function setTab (state, tabModel) {
+export const setTab = (state, tabModel) => {
   state.models.tab = tabModel
   state.tab = {
     name: tabModel.get(TAB_NAME_KEY),
@@ -21,7 +21,7 @@ export function setTab (state, tabModel) {
   state.loading = false
 }
 
-export function setItems (state, itemsModels) {
+export const setItems = (state, itemsModels) => {
   state.models.items = itemsModels
   state.tab.items = itemsModels.map((el) => ({
     name: el.get(ITEM_NAME_KEY),
@@ -32,25 +32,25 @@ export function setItems (state, itemsModels) {
   state.itemsLoading = false
 }
 
-export function setName (state, name) {
+export const setName = (state, name) => {
   pushHistory(state, { key: TAB_NAME_KEY, from: state.tab.name, to: name })
   state.tab.name = name
 }
 
-export function setHexColor (state, hexColor) {
+export const setHexColor = (state, hexColor) => {
   pushHistory(state, { key: TAB_HEX_COLOR_KEY, from: state.tab.hexColor, to: hexColor })
   state.tab.hexColor = hexColor
 }
 
-export function openNewItemDialog (state) {
+export const openNewItemDialog = (state) => {
   state.newItemDialogOpened = true
 }
 
-export function closeNewItemDialog (state) {
+export const closeNewItemDialog = (state) => {
   state.newItemDialogOpened = false
 }
 
-export function pushHistory (state, { key, from, to }) {
+export const pushHistory = (state, { key, from, to }) => {
   state.history.data.splice(state.index, state.history.length - state.index, {
     key,
     from,
@@ -59,7 +59,7 @@ export function pushHistory (state, { key, from, to }) {
   state.history.index++
 }
 
-export function undo (state) {
+export const undo = (state) => {
   if (state.history.index === 0) return
   const history = state.history.data[state.history.index - 1]
 
@@ -67,7 +67,7 @@ export function undo (state) {
   changeByKey(state, history.key, history.from)
 }
 
-export function redo (state) {
+export const redo = (state) => {
   if (state.history.index === state.history.data.length) return
   const history = state.history.data[state.history.index]
 
@@ -75,11 +75,11 @@ export function redo (state) {
   changeByKey(state, history.key, history.to)
 }
 
-export function clearState (state) {
+export const clearState = (state) => {
   Object.assign(state, import('./state'))
 }
 
-export function setError (state, err) {
+export const setError = (state, err) => {
   state.error = err
   state.loading = false
 }

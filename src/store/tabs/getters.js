@@ -1,3 +1,1 @@
-export function tabs (state) {
-  return state.tabs
-}
+export const tabs = ({ tabs }) => tabs

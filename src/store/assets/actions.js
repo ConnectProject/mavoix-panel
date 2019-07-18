@@ -7,15 +7,18 @@ export const openAndLoad = ({ commit, dispatch }) => {
   dispatch('loadAssets')
 }
 
-export const loadAssets = (context) => {
+export const loadAssets = ({ commit }) => {
   new Parse.Query(AssetModel)
     .find()
     .catch((err) => {
-      context.commit('setError', err)
+      commit('setError', err)
     })
     .then((assets) => {
-      context.commit('setAssets', assets)
+      commit('setAssets', assets)
     })
+}
+
+export const editAsset = ({ commit }, asset) => {
 }
 
 export const destroyAsset = ({ commit, state: { assetsModels } }, asset) => {
@@ -30,20 +33,20 @@ export const destroyAsset = ({ commit, state: { assetsModels } }, asset) => {
   }
 }
 
-export const uploadFile = (context, file) => {
+export const uploadFile = ({ commit }, file) => {
   new Parse.File(file.name, file)
     .save()
     .catch((err) => {
-      context.commit('setError', err)
+      commit('setError', err)
     })
     .then((file) => {
       AssetModel.New(file.name().split('from ')[1], file)
         .save()
         .catch((err) => {
-          context.commit('setError', err)
+          commit('setError', err)
         })
         .then((asset) => {
-          context.commit('addAsset', asset)
+          commit('addAsset', asset)
         })
     })
 }

@@ -1,23 +1,11 @@
-export function tab (state) {
-  return state.tab
-}
+export const tab = ({ tab }) => tab
 
-export function isDialogOpened (state) {
-  return state.newItemDialogOpened
-}
+export const isDialogOpened = ({ newItemDialogOpened }) => newItemDialogOpened
 
-export function isUndoable (state) {
-  return !state.history.index > 0
-}
+export const isUndoable = ({ history }) => history.index > 0
 
-export function isRedoable (state) {
-  return state.history.index === state.history.data.length
-}
+export const isRedoable = ({ history }) => history.index === history.data.length
 
-export function tabModel (state) {
-  return state.models.tab
-}
+export const tabModel = ({ models: { tab } }) => tab
 
-export function loading (state) {
-  return state.loading
-}
+export const loading = ({ loading }) => loading
