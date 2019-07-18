@@ -34,7 +34,12 @@
           <q-item
             clickable
             v-ripple
-            @click="() => $store.dispatch('assets/openAndLoad')"
+            @click="$router.push({
+              name: 'base',
+              params: {
+                assets: 'assets'
+              }
+            })"
           >
             <q-item-section avatar>
                <q-icon name="photo_library" />
@@ -134,6 +139,13 @@ export default {
       return this.$store.getters['tabs/tabs']
     }
   },
+  watch: {
+    '$route' (to, from) {
+      if (to.params.assets && to.params.assets === 'assets') {
+        this.$store.dispatch('assets/openAndLoad')
+      }
+    }
+  },
   methods: {
     createAndGoToTab (name) {
       this.$store.dispatch('tabs/createTabCb', {
@@ -158,6 +170,9 @@ export default {
   mounted () {
     this.$store.dispatch('tabs/loadTabs')
     this.$store.dispatch('devices/loadDevices')
+    if (this.$route.params.assets && this.$route.params.assets === 'assets') {
+      this.$store.dispatch('assets/openAndLoad')
+    }
   },
   components: {
     ListItemLoading,

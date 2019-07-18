@@ -18,6 +18,18 @@ export const loadAssets = (context) => {
     })
 }
 
+export const destroyAsset = ({ commit, state: { assetsModels } }, asset) => {
+  if (asset) {
+    asset.destroy()
+      .catch((err) => {
+        commit('setError', err)
+      })
+      .then(() => {
+        commit('removeAsset', asset)
+      })
+  }
+}
+
 export const uploadFile = (context, file) => {
   new Parse.File(file.name, file)
     .save()

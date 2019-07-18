@@ -32,7 +32,7 @@
       </div>
 
       <div class="images-zone col-8 rounded-borders q-pa-xs q-ph-md q-mh-xs shadow-3">
-      </div>
+     </div>
     </div>
 
     <dialog-tab-item />
@@ -46,7 +46,7 @@
     <!-- Delete, Save buttons -->
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <q-btn class="q-mx-xs" fab icon="delete" color="negative" @click="onDelete" />
-      <q-btn class="q-mx-xs" fab icon="save" color="accent" @click="onSave" />
+      <q-btn class="q-mx-xs" fab icon="save" color="primary" @click="onSave" />
     </q-page-sticky>
   </q-page>
 </template>

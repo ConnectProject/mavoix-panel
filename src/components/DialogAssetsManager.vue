@@ -2,7 +2,18 @@
 .image-upload-wrapper
   display hidden
 .asset-card
-  max-width 250px
+  cursor pointer
+  transition 0.2s
+  opacity 1
+.asset-card:hover
+  opacity 0.3
+.edit-icon-wrapper
+  opacity 0
+  transition 0.3s
+.edit-icon-wrapper:hover
+  opacity 1
+.edit-icon
+  font-size 3em
 </style>
 
 <template>
@@ -20,14 +31,15 @@
         <q-card
           v-for="(asset, index) in assets"
           :key="index"
-          class="col-2 q-ma-md">
-          <img :src="asset.get('parseFile')._url"/>
-          <q-card-section>
-            <p>{{ asset.get('name') }}</p>
-          </q-card-section>
-          <q-card-actions align="right">
-            <q-btn flat color="negative">Supprimer</q-btn>
-          </q-card-actions>
+          class="col-2 q-ma-md asset-card">
+          <q-img :src="asset.get('parseFile')._url" basic>
+            <div class="absolute-bottom text-subtitle2 text-center">
+              {{ asset.get('name') }}
+            </div>
+            <div class="absolute fit flex justify-center items-center text-center edit-icon-wrapper">
+              <q-icon name="edit" class="edit-icon" size="xl" />
+            </div>
+          </q-img>
         </q-card>
       </div>
 
@@ -64,6 +76,7 @@ export default {
   },
   methods: {
     onCancel () {
+      this.$router.back()
       this.$store.commit('assets/closeDialog')
     },
     onUploadFile () {
@@ -74,6 +87,9 @@ export default {
         const file = files[0]
         this.$store.dispatch('assets/uploadFile', file)
       }
+    },
+    destroyAsset (asset) {
+      this.$store.dispatch('assets/destroyAsset', asset)
     }
   }
 }
