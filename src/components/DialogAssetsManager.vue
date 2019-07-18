@@ -31,6 +31,7 @@
         <q-card
           v-for="(asset, index) in assets"
           :key="index"
+          @click="() => onEditAsset(asset)"
           class="col-2 q-ma-md asset-card">
           <q-img :ratio="16 / 9" :src="asset.get('parseFile')._url" basic>
             <div class="absolute-bottom text-subtitle2 text-center">
@@ -70,19 +71,19 @@ export default {
   name: 'DialogAssetsManager',
   computed: {
     opened () {
-      return this.$store.getters['assets/dialogOpened']
+      return this.$store.getters['assetsManager/opened']
     },
     loading () {
-      return this.$store.getters['assets/loading']
+      return this.$store.getters['assetsManager/loading']
     },
     assets () {
-      return this.$store.getters['assets/all']
+      return this.$store.getters['assetsManager/all']
     }
   },
   methods: {
     onCancel () {
       this.$router.back()
-      this.$store.commit('assets/closeDialog')
+      this.$store.commit('assetsManager/close')
     },
     onUploadFile () {
       this.$refs['invisibleFileInput'].click()
@@ -90,11 +91,11 @@ export default {
     onInputFile ({ target: { files } }) {
       if (files.length > 0) {
         const file = files[0]
-        this.$store.dispatch('assets/uploadFile', file)
+        this.$store.dispatch('assetsManager/uploadFile', file)
       }
     },
-    destroyAsset (asset) {
-      this.$store.dispatch('assets/destroyAsset', asset)
+    onEditAsset (asset) {
+      this.$store.commit('assetsManager/editAsset', asset)
     }
   },
   components: {

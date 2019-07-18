@@ -5,7 +5,7 @@ import devices from './devices'
 import deviceInvitation from './device-invitation'
 import tabEditor from './tab-editor'
 import tabs from './tabs'
-import assets from './assets'
+import assetsManager from './assets-manager'
 
 Vue.use(Vuex)
 
@@ -16,7 +16,7 @@ export default function (/* { ssrContext } */) {
       deviceInvitation,
       tabs,
       tabEditor,
-      assets
+      assetsManager
     },
 
     // enable strict mode (adds overhead!)

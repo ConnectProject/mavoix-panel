@@ -142,7 +142,7 @@ export default {
   watch: {
     '$route' (to, from) {
       if (to.params.assets && to.params.assets === 'assets') {
-        this.$store.dispatch('assets/openAndLoad')
+        this.$store.dispatch('assetsManager/openAndLoad')
       }
     }
   },
@@ -171,7 +171,7 @@ export default {
     this.$store.dispatch('tabs/loadTabs')
     this.$store.dispatch('devices/loadDevices')
     if (this.$route.params.assets && this.$route.params.assets === 'assets') {
-      this.$store.dispatch('assets/openAndLoad')
+      this.$store.dispatch('assetsManager/openAndLoad')
     }
   },
   components: {
