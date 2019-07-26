@@ -36,8 +36,17 @@ export const cancelEdit = (state) => {
   state.editing = false
 }
 
-export const open = (state) => {
+export const selectAsset = (state, asset) => {
+  if (state.selectCallback) {
+    state.selectCallback(asset)
+    state.opened = false
+  }
+}
+
+export const open = (state, { selectMode, selectCallback }) => {
   state.opened = true
+  state.selectMode = selectMode
+  state.selectCallback = selectCallback
 }
 
 export const close = (state) => {

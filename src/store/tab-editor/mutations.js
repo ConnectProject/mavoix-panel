@@ -1,44 +1,31 @@
 import { changeByKey } from './utils'
 import {
-  NAME_KEY as TAB_NAME_KEY,
-  HEX_COLOR_KEY as TAB_HEX_COLOR_KEY
+  NAME_KEY,
+  HEX_COLOR_KEY
 } from '~/models/Tab'
 
-import {
-  NAME_KEY as ITEM_NAME_KEY,
-  IMAGE_KEY as ITEM_IMAGE_KEY,
-  UNAVAILABLE_KEY as ITEM_UNAVAILABLE_KEY,
-  HIDDEN_KEY as ITEM_HIDDEN_KEY
-} from '~/models/TabItem'
-
 export const setTab = (state, tabModel) => {
-  state.models.tab = tabModel
+  state.tabModel = tabModel
   state.tab = {
-    name: tabModel.get(TAB_NAME_KEY),
-    hexColor: tabModel.get(TAB_HEX_COLOR_KEY),
+    name: tabModel.get(NAME_KEY),
+    hexColor: tabModel.get(HEX_COLOR_KEY),
     items: []
   }
   state.loading = false
 }
 
-export const setItems = (state, itemsModels) => {
-  state.models.items = itemsModels
-  state.tab.items = itemsModels.map((el) => ({
-    name: el.get(ITEM_NAME_KEY),
-    image: el.get(ITEM_IMAGE_KEY),
-    unavailable: el.get(ITEM_UNAVAILABLE_KEY),
-    hidden: el.get(ITEM_HIDDEN_KEY)
-  }))
-  state.itemsLoading = false
+export const addItem = (state, item) => {
+  console.log(item)
+  state.tab.items.push(item)
 }
 
 export const setName = (state, name) => {
-  pushHistory(state, { key: TAB_NAME_KEY, from: state.tab.name, to: name })
+  pushHistory(state, { key: NAME_KEY, from: state.tab.name, to: name })
   state.tab.name = name
 }
 
 export const setHexColor = (state, hexColor) => {
-  pushHistory(state, { key: TAB_HEX_COLOR_KEY, from: state.tab.hexColor, to: hexColor })
+  pushHistory(state, { key: HEX_COLOR_KEY, from: state.tab.hexColor, to: hexColor })
   state.tab.hexColor = hexColor
 }
 
@@ -46,8 +33,17 @@ export const openNewItemDialog = (state) => {
   state.newItemDialogOpened = true
 }
 
+export const setNewItemAsset = (state, assetModel) => {
+  state.newItemData.assetModel = assetModel
+}
+
+export const setNewItemName = (state, name) => {
+  state.newItemData.name = name
+}
+
 export const closeNewItemDialog = (state) => {
   state.newItemDialogOpened = false
+  state.newItemData = {}
 }
 
 export const pushHistory = (state, { key, from, to }) => {
@@ -76,10 +72,11 @@ export const redo = (state) => {
 }
 
 export const clearState = (state) => {
-  Object.assign(state, import('./state'))
+  Object.assign(state, {})
 }
 
 export const setError = (state, err) => {
   state.error = err
+  console.error(err)
   state.loading = false
 }

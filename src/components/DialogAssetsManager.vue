@@ -7,23 +7,23 @@
   opacity 1
 .asset-card:hover
   opacity 0.3
-.edit-icon-wrapper
+.action-icon-wrapper
   opacity 0
   transition 0.3s
-.edit-icon-wrapper:hover
+.action-icon-wrapper:hover
   opacity 1
-.edit-icon
+.action-icon
   font-size 3em
 </style>
 
 <template>
-  <q-dialog class="relative-position" :value="opened" maximized persistent>
+  <q-dialog v-if="opened" class="relative-position" :value="opened" maximized persistent>
     <q-card>
       <!-- Top bar -->
       <q-bar class="bg-accent">
         <q-space />
         <q-btn dense flat icon="close" color="white" @click="onCancel">
-          <q-tooltip content-class="bg-white text-primary">Close</q-tooltip>
+          <q-tooltip content-class="bg-white text-primary">{{ $t('generic.close') }}</q-tooltip>
         </q-btn>
       </q-bar>
 
@@ -31,14 +31,14 @@
         <q-card
           v-for="(asset, index) in assets"
           :key="index"
-          @click="() => onEditAsset(asset)"
+          @click="() => onActionAsset(asset)"
           class="col-2 q-ma-md asset-card">
           <q-img :ratio="16 / 9" :src="asset.get('parseFile')._url" basic>
             <div class="absolute-bottom text-subtitle2 text-center">
               {{ asset.get('name') }}
             </div>
-            <div class="absolute fit flex justify-center items-center text-center edit-icon-wrapper">
-              <q-icon name="edit" class="edit-icon" size="xl" />
+            <div class="absolute fit flex justify-center items-center text-center action-icon-wrapper">
+              <q-icon :name="selectMode ? 'done' : 'edit'" class="action-icon" size="xl" />
             </div>
           </q-img>
         </q-card>
@@ -46,6 +46,7 @@
 
       <!-- Add asset button -->
       <q-btn
+        v-if="!selectMode"
         fab
         icon="add"
         class="absolute-bottom-right q-ma-md"
@@ -55,12 +56,12 @@
     </q-card>
 
     <!-- Image upload invisible wrapper -->
-    <div class="image-upload-wrapper">
+    <div v-if="!selectMode" class="image-upload-wrapper">
       <input type="file" ref="invisibleFileInput" @input="onInputFile" />
     </div>
 
     <!-- Asset edit dialog -->
-    <asset-edit />
+    <asset-edit v-if="!selectMode"/>
   </q-dialog>
 </template>
 
@@ -78,11 +79,14 @@ export default {
     },
     assets () {
       return this.$store.getters['assetsManager/all']
+    },
+    selectMode () {
+      return this.$store.getters['assetsManager/selectMode']
     }
   },
   methods: {
     onCancel () {
-      this.$router.back()
+      if (!this.selectMode) this.$router.back()
       this.$store.commit('assetsManager/close')
     },
     onUploadFile () {
@@ -94,8 +98,12 @@ export default {
         this.$store.dispatch('assetsManager/uploadFile', file)
       }
     },
-    onEditAsset (asset) {
-      this.$store.commit('assetsManager/editAsset', asset)
+    onActionAsset (asset) {
+      if (this.selectMode) {
+        this.$store.commit('assetsManager/selectAsset', asset)
+      } else {
+        this.$store.commit('assetsManager/editAsset', asset)
+      }
     }
   },
   components: {

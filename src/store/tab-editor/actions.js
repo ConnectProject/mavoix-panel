@@ -1,28 +1,35 @@
 import Parse from 'parse'
 
-import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
-import TabItemModel, { PARENT_KEY } from '~/models/TabItem'
+import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY, ITEMS_KEY } from '~/models/Tab'
 
 import slugify from '~/utils/slugify'
 
-export const loadBySlug = ({ commit }, slug) => {
+export const loadBySlug = ({ commit, dispatch }, slug) => {
   new Parse.Query(TabModel)
     .equalTo(SLUG_KEY, slug)
     .first()
     .then((tab) => {
       commit('setTab', tab)
+      dispatch('fetchItems')
     })
     .catch((err) => {
       commit('setError', err)
     })
 }
 
-export const loadItems = ({ commit, getters: { tabModel } }) => {
-  new Parse.Query(TabItemModel)
-    .equalTo(PARENT_KEY, tabModel.id)
-    .find()
-    .then((items) => {
-      commit('setItems', items)
+export const fetchItems = ({ commit, getters: { tabModel } }) => {
+  tabModel.get(ITEMS_KEY)
+    .foreach((item) => {
+    })
+}
+
+export const saveNewItem = ({ commit, getters: { newItem, tabModel } }) => {
+  tabModel.addUnique(ITEMS_KEY, newItem)
+
+  tabModel.save()
+    .then((tabModel) => {
+      commit('setTab', tabModel)
+      commit('closeNewItemDialog')
     })
     .catch((err) => {
       commit('setError', err)

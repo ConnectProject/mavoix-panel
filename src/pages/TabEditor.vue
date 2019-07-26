@@ -9,12 +9,14 @@
     <div class="column container">
       <div class="col-2 row justify-center items-center">
         <q-input
+          :label="$t('tabEditor.tabNameLabel')"
           class="q-ma-md"
           :value="tab.name"
           @input="setName"
           filled
         />
         <q-input
+          :label="$t('tabEditor.tabColorLabel')"
           class="q-ma-md"
           :value="tab.hexColor"
           @input="setHexColor"
@@ -28,25 +30,44 @@
             </q-icon>
           </template>
         </q-input>
-        <q-btn class="stretch q-ma-md" flat size="lg" @click="openNewItemDialog">Ajouter une image</q-btn>
+        <q-btn class="stretch q-ma-md" flat size="lg" @click="openNewItemDialog">{{ $t('tabEditor.addItemLabel') }}</q-btn>
       </div>
 
-      <div class="images-zone col-8 rounded-borders q-pa-xs q-ph-md q-mh-xs shadow-3">
-     </div>
+      <div class="images-zone col-8 rounded-borders q-pa-xs q-ph-md q-mh-xs shadow-3 q-gutter-xs">
+        <q-card v-for="(item, index) in tab.items" :key="index">
+          <q-img />
+        </q-card>
+      </div>
     </div>
 
     <dialog-tab-item />
 
     <!-- Udo, Redo buttons -->
     <q-page-sticky position="top-right" :offset="[18, 18]">
-      <q-btn class="q-mx-xs" fab icon="undo" color="accent" @click="onUndo" :disable="$store.getters['tabEditor/isUndoable']"/>
-      <q-btn class="q-mx-xs" fab icon="redo" color="accent" @click="onRedo" :disable="$store.getters['tabEditor/isRedoable']"/>
+      <q-btn class="q-mx-xs" fab icon="undo" color="accent" @click="onUndo" :disable="$store.getters['tabEditor/isUndoable']">
+        <q-tooltip>
+          {{ $t('generic.undo') }}
+        </q-tooltip>
+      </q-btn>
+      <q-btn class="q-mx-xs" fab icon="redo" color="accent" @click="onRedo" :disable="$store.getters['tabEditor/isRedoable']">
+        <q-tooltip>
+          {{ $t('generic.redo') }}
+        </q-tooltip>
+      </q-btn>
     </q-page-sticky>
 
     <!-- Delete, Save buttons -->
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn class="q-mx-xs" fab icon="delete" color="negative" @click="onDelete" />
-      <q-btn class="q-mx-xs" fab icon="save" color="primary" @click="onSave" />
+      <q-btn class="q-mx-xs" fab icon="delete" color="negative" @click="onDelete">
+        <q-tooltip>
+          {{ $t('generic.delete') }}
+        </q-tooltip>
+      </q-btn>
+      <q-btn class="q-mx-xs" fab icon="save" color="primary" @click="onSave">
+        <q-tooltip>
+          {{ $t('generic.save') }}
+        </q-tooltip>
+      </q-btn>
     </q-page-sticky>
   </q-page>
 </template>
@@ -70,10 +91,8 @@ export default {
     }
   },
   watch: {
-    loading (newValue, oldValue) {
-      if (newValue === false && this.tab != null) {
-        this.$store.dispatch('tabEditor/loadItems')
-      }
+    '$route' (newValue, oldValue) {
+      this.load()
     }
   },
   methods: {
@@ -111,10 +130,13 @@ export default {
     },
     onRedo () {
       this.$store.commit('tabEditor/redo')
+    },
+    load () {
+      this.$store.dispatch('tabEditor/loadBySlug', this.$route.params.slug)
     }
   },
   mounted () {
-    this.$store.dispatch('tabEditor/loadBySlug', this.$route.params.slug)
+    this.load()
   },
   components: {
     DialogTabItem

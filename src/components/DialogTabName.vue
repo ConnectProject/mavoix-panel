@@ -2,7 +2,7 @@
   <q-dialog v-model="opened" persistent>
     <q-card style="min-width: 400px">
       <q-card-section>
-        <div class="text-h6">Rentrez le nom souhaité pour le tab</div>
+        <div class="text-h6">{{ $t('newTabDialog.heading') }}</div>
       </q-card-section>
 
       <q-card-section>
@@ -10,8 +10,8 @@
       </q-card-section>
 
       <q-card-actions align="right" class="text-primary">
-        <q-btn flat label="Cancel" color="negative" @click="onCancel" />
-        <q-btn flat label="Ajouter le tab" @click="onValidateInternal" />
+        <q-btn flat :label="$t('generic.cancel')" color="negative" @click="onCancel" />
+        <q-btn flat :label="$t('generic.save')" @click="onValidateInternal" />
       </q-card-actions>
     </q-card>
   </q-dialog>

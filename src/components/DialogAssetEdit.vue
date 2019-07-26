@@ -2,12 +2,12 @@
   <q-dialog :value="opened" persistent>
     <q-card>
       <q-card-section>
-        <q-input filled label="Nom de l'asset" :value="asset.name" @input="onInputName"/>
+        <q-input filled :label="$t('assetsManager.assetNameLabel')" :value="asset.name" @input="onInputName"/>
       </q-card-section>
       <q-card-actions>
-        <q-btn flat color="negative" @click="onDelete">Supprimer</q-btn>
-        <q-btn flat @click="onCancel">Annuler</q-btn>
-        <q-btn flat color="primary" @click="onSave">Sauvegarder</q-btn>
+        <q-btn flat color="negative" @click="onDelete">{{ $t('generic.delete') }}</q-btn>
+        <q-btn flat @click="onCancel">{{ $t('generic.cancel') }}</q-btn>
+        <q-btn flat color="primary" @click="onSave">{{ $t('generic.save') }}</q-btn>
       </q-card-actions>
     </q-card>
   </q-dialog>

@@ -27,7 +27,7 @@
               <q-icon name="home" />
             </q-item-section>
             <q-item-section>
-              <q-item-label>Accueil</q-item-label>
+              <q-item-label>{{ $t('navDrawer.home') }}</q-item-label>
             </q-item-section>
           </q-item>
 
@@ -45,12 +45,12 @@
                <q-icon name="photo_library" />
             </q-item-section>
             <q-item-section>
-              <q-item-label>Assets</q-item-label>
+              <q-item-label>{{ $t('navDrawer.assetsManager')}}</q-item-label>
             </q-item-section>
           </q-item>
 
           <!-- Tabs -->
-          <q-item-label header>Tabs</q-item-label>
+          <q-item-label header>{{ $t('navDrawer.tabs') }}</q-item-label>
           <!-- If the query is loading -->
           <list-item-loading v-if="$store.state.tabs.loading" />
           <div v-else>
@@ -76,13 +76,13 @@
                 <q-icon name="add" />
               </q-item-section>
               <q-item-section>
-                <q-item-label>Ajouter un tab</q-item-label>
+                <q-item-label>{{ $t('navDrawer.addTab') }}</q-item-label>
               </q-item-section>
             </q-item>
           </div>
 
           <!-- Devices -->
-          <q-item-label header>Devices</q-item-label>
+          <q-item-label header>{{ $t('navDrawer.devices') }}</q-item-label>
           <!-- If the query is loading -->
           <list-item-loading v-if="$store.state.devices.loading" />
           <!-- If the query has returned its result -->
@@ -93,7 +93,7 @@
                 <q-icon name="add" />
               </q-item-section>
               <q-item-section>
-                <q-item-label>Add un device</q-item-label>
+                <q-item-label>{{ $t('navDrawer.addDevice') }}</q-item-label>
               </q-item-section>
             </q-item>
           </div>
@@ -142,7 +142,9 @@ export default {
   watch: {
     '$route' (to, from) {
       if (to.params.assets && to.params.assets === 'assets') {
-        this.$store.dispatch('assetsManager/openAndLoad')
+        this.$store.dispatch('assetsManager/openAndLoad', {
+          selectMode: false
+        })
       }
     }
   },
@@ -171,7 +173,9 @@ export default {
     this.$store.dispatch('tabs/loadTabs')
     this.$store.dispatch('devices/loadDevices')
     if (this.$route.params.assets && this.$route.params.assets === 'assets') {
-      this.$store.dispatch('assetsManager/openAndLoad')
+      this.$store.dispatch('assetsManager/openAndLoad', {
+        selectMode: false
+      })
     }
   },
   components: {

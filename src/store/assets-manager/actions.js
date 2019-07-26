@@ -2,8 +2,8 @@ import Parse from 'parse'
 
 import AssetModel, { NAME_KEY } from '~/models/Asset'
 
-export const openAndLoad = ({ commit, dispatch }) => {
-  commit('open')
+export const openAndLoad = ({ commit, dispatch }, { selectMode = false, selectCallback }) => {
+  commit('open', { selectMode, selectCallback })
   dispatch('loadAssets')
 }
 

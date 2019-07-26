@@ -7,3 +7,5 @@ export const all = ({ assetsModels }) => assetsModels
 export const editingAsset = ({ editingAsset }) => editingAsset
 
 export const editing = ({ editing }) => editing
+
+export const selectMode = ({ selectMode }) => selectMode

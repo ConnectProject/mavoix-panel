@@ -1,21 +1,22 @@
 export default {
   loading: true,
-  itemsLoading: true,
   error: null,
 
   newItemDialogOpened: false,
+  newItemData: {
+    assetModel: null,
+    name: null
+  },
 
-  models: {
-    tab: null,
-    items: null
-  },
-  history: {
-    index: 0,
-    data: []
-  },
+  tabModel: null,
   tab: {
     name: '',
     hexColor: '',
     items: []
+  },
+
+  history: {
+    index: 0,
+    data: []
   }
 }
