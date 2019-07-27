@@ -1,6 +1,18 @@
 <style lang="stylus" scoped>
 .container
   width 100%
+.item-img
+  cursor pointer
+  transition .1s linear
+.item-img:hover
+  opacity 0.4
+.action-icon-wrapper
+  opacity 0
+  transition .2s linear
+.action-icon-wrapper:hover
+  opacity 1
+.action-icon
+  font-size 2em
 </style>
 
 <template>
@@ -30,12 +42,23 @@
             </q-icon>
           </template>
         </q-input>
-        <q-btn class="stretch q-ma-md" flat size="lg" @click="openNewItemDialog">{{ $t('tabEditor.addItemLabel') }}</q-btn>
+        <q-btn class="stretch q-ma-md" flat size="lg" @click="onAddItem">{{ $t('tabEditor.addItemLabel') }}</q-btn>
       </div>
 
-      <div class="images-zone col-8 rounded-borders q-pa-xs q-ph-md q-mh-xs shadow-3 q-gutter-xs">
-        <q-card v-for="(item, index) in tab.items" :key="index">
-          <q-img />
+      <div :style="{ backgroundColor: tab.hexColor }" class="col-8 scroll row items-start rounded-borders q-pa-xs q-ph-md q-mh-xs q-gutter-x-xl q-gutter-y-md">
+        <q-card class="col-2" v-for="(item, index) in tab.items" :key="index">
+          <q-img class="item-img" :src="item.asset.get('parseFile')._url">
+            <div class="absolute-bottom">
+              <div class="text-center text-subtitle2">{{ item.name }}</div>
+            </div>
+            <div @click="() => onEditItem(item)" class="absolute fit flex justify-center items-center text-center action-icon-wrapper">
+              <q-icon name="edit" class="action-icon" size="xl" />
+            </div>
+          </q-img>
+          <q-card-actions align="right">
+            <q-checkbox left-label :value="true" label="Disponible" />
+            <q-checkbox left-label :value="true" label="Visible" />
+          </q-card-actions>
         </q-card>
       </div>
     </div>
@@ -96,8 +119,17 @@ export default {
     }
   },
   methods: {
-    openNewItemDialog () {
-      this.$store.commit('tabEditor/openNewItemDialog')
+    onAddItem () {
+      this.$store.commit('tabEditor/openItemDialog', {})
+    },
+    onEditItem (item) {
+      this.$store.commit('tabEditor/openItemDialog', {
+        mode: 'edit',
+        data: {
+          name: item.name,
+          assetModel: item.asset
+        }
+      })
     },
     onSave () {
       this.$store.dispatch('tabEditor/saveCb', (tab) => {

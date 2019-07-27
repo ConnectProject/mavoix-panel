@@ -19,8 +19,9 @@ export default {
     tabNameLabel: 'Nom',
     tabColorLabel: 'Couleur',
     addItemLabel: 'Ajouter une image',
-    newItemDialog: {
-      heading: 'Ajout d\'une image',
+    itemDialog: {
+      headingNew: 'Ajout d\'une image',
+      headingEdit: 'Editer une image',
       nameLabel: 'Nom',
       selectAssetLabel: 'Sélectionner une image'
     }

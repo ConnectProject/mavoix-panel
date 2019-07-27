@@ -1,8 +1,10 @@
 export const tab = ({ tab }) => tab
 
-export const newItem = ({ newItemData }) => newItemData
+export const itemDialog = ({ itemDialogData }) => itemDialogData
 
-export const isDialogOpened = ({ newItemDialogOpened }) => newItemDialogOpened
+export const itemDialogOpened = ({ itemDialogOpened }) => itemDialogOpened
+
+export const itemDialogMode = ({ itemDialogMode }) => itemDialogMode
 
 export const isUndoable = ({ history }) => history.index > 0
 

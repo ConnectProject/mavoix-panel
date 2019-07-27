@@ -1,27 +1,30 @@
 <template>
   <q-dialog :value="opened" persistent>
-    <q-card>
-      <h6 class="q-my-md q-mt-xl text-center">{{ $t('tabEditor.newItemDialog.heading') }}</h6>
+    <q-card class="column items-center">
+      <h6 class="q-my-md q-mt-xl text-center">
+        {{ $t(`tabEditor.itemDialog.heading${mode === 'edit' ? 'Edit' : 'New'}`) }}
+      </h6>
       <q-card-section class="column items-start justify-start">
         <q-input
-          :label="$t('tabEditor.newItemDialog.nameLabel')"
+          :label="$t('tabEditor.itemDialog.nameLabel')"
           class="q-my-md"
           @input="setName"
-          :value="newItem.name"
+          :value="item.name"
           filled/>
 
         <q-btn
-          v-if="!newItem.assetModel"
-          :label="$t('tabEditor.newItemDialog.selectAssetLabel')"
+          v-if="!item.assetModel"
+          :label="$t('tabEditor.itemDialog.selectAssetLabel')"
           color="accent"
           @click="selectAsset"/>
         <q-img
           v-else
-          :src="newItem.assetModel.get('parseFile')._url"/>
+          :src="item.assetModel.get('parseFile')._url"/>
       </q-card-section>
       <q-card-actions align="right">
-        <q-btn flat label="Annuler" color="negative" @click="onCloseDialog"/>
-        <q-btn flat label="Sauvegarder" color="primary" @click="saveItem"/>
+        <q-btn v-if="mode === 'edit'" flat :label="$t('generic.delete')" color="negative"/>
+        <q-btn flat :label="$t('generic.cancel')" @click="onCloseDialog"/>
+        <q-btn flat :label="$t('generic.save')" color="primary" @click="saveItem"/>
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -32,15 +35,18 @@ export default {
   name: 'DialogTabName',
   computed: {
     opened () {
-      return this.$store.getters['tabEditor/isDialogOpened']
+      return this.$store.getters['tabEditor/itemDialogOpened']
     },
-    newItem () {
-      return this.$store.getters['tabEditor/newItem']
+    item () {
+      return this.$store.getters['tabEditor/itemDialog']
+    },
+    mode () {
+      return this.$store.getters['tabEditor/itemDialogMode']
     }
   },
   methods: {
     onCloseDialog () {
-      return this.$store.commit('tabEditor/closeNewItemDialog')
+      return this.$store.commit('tabEditor/closeItemDialog')
     },
     saveItem () {
       return this.$store.dispatch('tabEditor/saveNewItem')
@@ -49,12 +55,12 @@ export default {
       this.$store.dispatch('assetsManager/openAndLoad', {
         selectMode: true,
         selectCallback: (asset) => {
-          this.$store.commit('tabEditor/setNewItemAsset', asset)
+          this.$store.commit('tabEditor/setItemDialogAsset', asset)
         }
       })
     },
     setName (name) {
-      this.$store.commit('tabEditor/setNewItemName', name)
+      this.$store.commit('tabEditor/setItemDialogName', name)
     }
   }
 }

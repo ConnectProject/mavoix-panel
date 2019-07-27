@@ -19,17 +19,31 @@ export const loadBySlug = ({ commit, dispatch }, slug) => {
 
 export const fetchItems = ({ commit, getters: { tabModel } }) => {
   tabModel.get(ITEMS_KEY)
-    .foreach((item) => {
+    .forEach(({ assetModel, name }) => {
+      assetModel
+        .fetch()
+        .then((asset) => {
+          commit('addItem', {
+            name,
+            asset
+          })
+        })
+        .catch((err) => {
+          commit('setError', err)
+        })
     })
 }
 
-export const saveNewItem = ({ commit, getters: { newItem, tabModel } }) => {
-  tabModel.addUnique(ITEMS_KEY, newItem)
+export const saveNewItem = ({ commit, getters: { itemDialog, tabModel } }) => {
+  tabModel.addUnique(ITEMS_KEY, itemDialog)
 
   tabModel.save()
     .then((tabModel) => {
-      commit('setTab', tabModel)
-      commit('closeNewItemDialog')
+      commit('addItem', {
+        name: itemDialog.name,
+        asset: itemDialog.assetModel
+      })
+      commit('closeItemDialog')
     })
     .catch((err) => {
       commit('setError', err)

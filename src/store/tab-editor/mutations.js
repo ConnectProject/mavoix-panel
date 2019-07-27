@@ -15,7 +15,6 @@ export const setTab = (state, tabModel) => {
 }
 
 export const addItem = (state, item) => {
-  console.log(item)
   state.tab.items.push(item)
 }
 
@@ -29,21 +28,25 @@ export const setHexColor = (state, hexColor) => {
   state.tab.hexColor = hexColor
 }
 
-export const openNewItemDialog = (state) => {
-  state.newItemDialogOpened = true
+export const openItemDialog = (state, { mode = 'new', data }) => {
+  state.itemDialogOpened = true
+  state.itemDialogMode = mode
+  if (mode === 'edit') {
+    state.itemDialogData = data
+  }
 }
 
-export const setNewItemAsset = (state, assetModel) => {
-  state.newItemData.assetModel = assetModel
+export const setItemDialogAsset = (state, assetModel) => {
+  state.itemDialogData.assetModel = assetModel
 }
 
-export const setNewItemName = (state, name) => {
-  state.newItemData.name = name
+export const setItemDialogName = (state, name) => {
+  state.itemDialogData.name = name
 }
 
-export const closeNewItemDialog = (state) => {
-  state.newItemDialogOpened = false
-  state.newItemData = {}
+export const closeItemDialog = (state) => {
+  state.itemDialogOpened = false
+  state.itemDialogData = {}
 }
 
 export const pushHistory = (state, { key, from, to }) => {

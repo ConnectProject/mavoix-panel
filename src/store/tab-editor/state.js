@@ -2,8 +2,9 @@ export default {
   loading: true,
   error: null,
 
-  newItemDialogOpened: false,
-  newItemData: {
+  itemDialogOpened: false,
+  itemDialogMode: null,
+  itemDialogData: {
     assetModel: null,
     name: null
   },
