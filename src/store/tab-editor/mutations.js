@@ -1,9 +1,15 @@
 import { changeByKey, itemIndex } from './utils'
+import randomString from '~/utils/randomString'
 import {
   NAME_KEY,
   HEX_COLOR_KEY
 } from '~/models/Tab'
 
+/**
+ * Set the tab used by the Tab Editor
+ * @param {State} state namespaced state.
+ * @param {TabModel} tabModel the parse model of the tab.
+ */
 export const setTab = (state, tabModel) => {
   state.tabModel = tabModel
   state.tab = {
@@ -14,37 +20,66 @@ export const setTab = (state, tabModel) => {
   state.loading = false
 }
 
-export const addItem = (state, item) => {
-  state.tab.items.push(item)
-}
-
-export const updateItem = (state, item) => {
-  const i = itemIndex(state, item)
-
-  state.tab.items[i].name = item.name
-  state.tab.items[i].asset = item.asset
-}
-
+/**
+ * Set the name of the tab
+ * @param {State} state namespaced state.
+ * @param {String} name new value.
+ */
 export const setName = (state, name) => {
   pushHistory(state, { key: NAME_KEY, from: state.tab.name, to: name })
   state.tab.name = name
 }
 
+/**
+ * Set the color of the tab
+ * @param {State} state namespaced state.
+ * @param {String} hexColor new value.
+ */
 export const setHexColor = (state, hexColor) => {
   pushHistory(state, { key: HEX_COLOR_KEY, from: state.tab.hexColor, to: hexColor })
   state.tab.hexColor = hexColor
 }
 
-export const toggleAssetVisibility = (state, asset) => {
-  const i = itemIndex(state, asset)
-
-  state.tab.items[i].visible = !asset.visible
+/**
+ * Add an item to the tab
+ * @param {State} state namespaced state
+ * @param {Item} item the item to add
+ */
+export const addItem = (state, item) => {
+  state.tab.items.push(item)
 }
 
-export const toggleAssetAvailability = (state, asset) => {
-  const i = itemIndex(state, asset)
+export const createItem = (state, { name, asset }) => {
+  state.tab.items.push({
+    name,
+    asset,
+    visible: true,
+    available: true,
+    id: randomString(10)
+  })
+}
 
-  state.tab.items[i].available = !asset.available
+export const updateItem = (state, { id, data: { name, asset, visible, available } }) => {
+  const i = itemIndex(state, { id })
+
+  if (name) {
+    state.tab.items[i].name = name
+  }
+  if (asset) {
+    state.tab.items[i].asset = asset
+  }
+  if (visible != null) {
+    state.tab.items[i].visible = visible
+  }
+  if (available != null) {
+    state.tab.items[i].available = available
+  }
+}
+
+export const removeItem = (state, id) => {
+  const i = itemIndex(state, { id })
+
+  state.tab.items.splice(i, 1)
 }
 
 export const openItemDialog = (state, { mode = 'new', data }) => {

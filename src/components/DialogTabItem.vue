@@ -44,9 +44,9 @@
         </q-img>
       </q-card-section>
       <q-card-actions align="right">
-        <q-btn v-if="mode === 'edit'" flat :label="$t('generic.delete')" color="negative"/>
+        <q-btn v-if="mode === 'edit'" flat :label="$t('generic.delete')" color="negative" @click="onDelete"/>
         <q-btn flat :label="$t('generic.cancel')" @click="onCloseDialog"/>
-        <q-btn flat :label="$t('generic.save')" color="primary" @click="saveItem"/>
+        <q-btn flat :label="$t('generic.validate')" color="primary" @click="onValidate"/>
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -70,12 +70,28 @@ export default {
     onCloseDialog () {
       return this.$store.commit('tabEditor/closeItemDialog')
     },
-    saveItem () {
-      if (this.mode === 'edit') {
-        this.$store.dispatch('tabEditor/saveItem')
-      } else {
-        this.$store.dispatch('tabEditor/saveNewItem')
+    onValidate () {
+      const data = {
+        name: this.item.name,
+        asset: this.item.asset
       }
+
+      if (this.mode === 'edit') {
+        this.$store.commit('tabEditor/updateItem', {
+          id: this.item.id,
+          data
+        })
+      } else {
+        this.$store.commit('tabEditor/createItem')
+      }
+      this.close()
+    },
+    close () {
+      this.$store.commit('tabEditor/closeItemDialog')
+    },
+    onDelete () {
+      this.$store.commit('tabEditor/removeItem', this.item.id)
+      this.close()
     },
     selectAsset () {
       this.$store.dispatch('assetsManager/openAndLoad', {

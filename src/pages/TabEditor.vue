@@ -60,12 +60,12 @@
               left-label
               :label="$t('generic.available')"
               :value="item.available"
-              @input="() => $store.commit('tabEditor/toggleAssetAvailability', item)"/>
+              @input="() => $store.commit('tabEditor/updateItem', { id: item.id, data: { available: !item.available }})"/>
             <q-checkbox
               left-label
               :label="$t('generic.visible')"
               :value="item.visible"
-              @input="() => $store.commit('tabEditor/toggleAssetVisibility', item)"/>
+              @input="() => $store.commit('tabEditor/updateItem', { id: item.id, data: { visible: !item.visible }})"/>
           </q-card-actions>
         </q-card>
       </div>

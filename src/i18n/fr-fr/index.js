@@ -31,6 +31,7 @@ export default {
   },
   generic: {
     close: 'Fermer',
+    validate: 'Valider',
     delete: 'Supprimer',
     cancel: 'Annuler',
     save: 'Sauvegarder',

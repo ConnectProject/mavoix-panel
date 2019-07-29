@@ -5,6 +5,7 @@ export default {
   itemDialogOpened: false,
   itemDialogMode: null,
   itemDialogData: {
+    id: null,
     asset: null,
     name: null
   },
