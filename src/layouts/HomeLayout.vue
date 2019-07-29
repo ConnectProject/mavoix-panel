@@ -88,7 +88,7 @@
           <!-- If the query has returned its result -->
           <div v-else>
             <!-- Click to add a device -->
-            <q-item clickable v-ripple @click="$store.commit('devices/openDialog')">
+            <q-item clickable v-ripple @click="$store.commit('deviceInvitation/openDialog')">
               <q-item-section avatar>
                 <q-icon name="add" />
               </q-item-section>
@@ -105,14 +105,9 @@
       <router-view />
     </q-page-container>
 
-    <dialog-tab-name
-      :opened="$store.state.tabs.dialogOpen"
-      :onCancel="() => $store.commit('tabs/closeDialog')"
-      :onValidate="createAndGoToTab"
-    />
+    <dialog-tab-name />
     <dialog-device-invitation
       :opened="$store.state.devices.dialogOpen"
-      :onCancel="() => $store.commit('devices/closeDialog')"
     />
     <dialog-assets-manager />
   </q-layout>
@@ -150,18 +145,6 @@ export default {
   },
   methods: {
     createAndGoToTab (name) {
-      this.$store.dispatch('tabs/createTabCb', {
-        name,
-        callback: (tab) => {
-          this.$router.push({
-            name: 'tab',
-            params: {
-              slug: tab.get('slug')
-            }
-          })
-          this.$store.commit('tabs/closeDialog')
-        }
-      })
     },
     onLogout () {
       this.$router.push({
