@@ -34,6 +34,8 @@ export default {
     delete: 'Supprimer',
     cancel: 'Annuler',
     save: 'Sauvegarder',
+    available: 'Disponible',
+    visible: 'Visible',
     undo: 'Undo',
     redo: 'Redo'
   }

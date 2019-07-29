@@ -1,5 +1,7 @@
 export const tab = ({ tab }) => tab
 
+export const items = ({ tab: { items } }) => items
+
 export const itemDialog = ({ itemDialogData }) => itemDialogData
 
 export const itemDialogOpened = ({ itemDialogOpened }) => itemDialogOpened

@@ -12,3 +12,5 @@ export const changeByKey = (state, key, newValue) => {
       break
   }
 }
+
+export const itemIndex = (state, pItem) => state.tab.items.findIndex((item) => item.id === pItem.id)

@@ -56,8 +56,16 @@
             </div>
           </q-img>
           <q-card-actions align="right">
-            <q-checkbox left-label :value="true" label="Disponible" />
-            <q-checkbox left-label :value="true" label="Visible" />
+            <q-checkbox
+              left-label
+              :label="$t('generic.available')"
+              :value="item.available"
+              @input="() => $store.commit('tabEditor/toggleAssetAvailability', item)"/>
+            <q-checkbox
+              left-label
+              :label="$t('generic.visible')"
+              :value="item.visible"
+              @input="() => $store.commit('tabEditor/toggleAssetVisibility', item)"/>
           </q-card-actions>
         </q-card>
       </div>
@@ -86,7 +94,7 @@
           {{ $t('generic.delete') }}
         </q-tooltip>
       </q-btn>
-      <q-btn class="q-mx-xs" fab icon="save" color="primary" @click="onSave">
+      <q-btn class="q-mx-xs" fab icon="save" size="xl" color="primary" @click="onSave">
         <q-tooltip>
           {{ $t('generic.save') }}
         </q-tooltip>
@@ -109,6 +117,9 @@ export default {
     tab () {
       return this.$store.getters['tabEditor/tab']
     },
+    items () {
+      return this.$store.getters['tabEditor/items']
+    },
     loading () {
       return this.$store.getters['tabEditor/loading']
     }
@@ -125,10 +136,7 @@ export default {
     onEditItem (item) {
       this.$store.commit('tabEditor/openItemDialog', {
         mode: 'edit',
-        data: {
-          name: item.name,
-          assetModel: item.asset
-        }
+        data: Object.assign({}, item)
       })
     },
     onSave () {

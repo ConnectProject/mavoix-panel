@@ -1,4 +1,4 @@
-import { changeByKey } from './utils'
+import { changeByKey, itemIndex } from './utils'
 import {
   NAME_KEY,
   HEX_COLOR_KEY
@@ -18,6 +18,13 @@ export const addItem = (state, item) => {
   state.tab.items.push(item)
 }
 
+export const updateItem = (state, item) => {
+  const i = itemIndex(state, item)
+
+  state.tab.items[i].name = item.name
+  state.tab.items[i].asset = item.asset
+}
+
 export const setName = (state, name) => {
   pushHistory(state, { key: NAME_KEY, from: state.tab.name, to: name })
   state.tab.name = name
@@ -28,6 +35,18 @@ export const setHexColor = (state, hexColor) => {
   state.tab.hexColor = hexColor
 }
 
+export const toggleAssetVisibility = (state, asset) => {
+  const i = itemIndex(state, asset)
+
+  state.tab.items[i].visible = !asset.visible
+}
+
+export const toggleAssetAvailability = (state, asset) => {
+  const i = itemIndex(state, asset)
+
+  state.tab.items[i].available = !asset.available
+}
+
 export const openItemDialog = (state, { mode = 'new', data }) => {
   state.itemDialogOpened = true
   state.itemDialogMode = mode
@@ -36,8 +55,8 @@ export const openItemDialog = (state, { mode = 'new', data }) => {
   }
 }
 
-export const setItemDialogAsset = (state, assetModel) => {
-  state.itemDialogData.assetModel = assetModel
+export const setItemDialogAsset = (state, asset) => {
+  state.itemDialogData.asset = asset
 }
 
 export const setItemDialogName = (state, name) => {
