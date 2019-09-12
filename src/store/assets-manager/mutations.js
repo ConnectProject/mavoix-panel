@@ -1,5 +1,5 @@
 import { assetIndex } from './utils'
-import { NAME_KEY } from '~/models/Asset'
+import { NAME_KEY } from 'mavoix-core/models/Asset'
 
 export const setAssets = (state, assetsModels) => {
   state.assetsModels = assetsModels

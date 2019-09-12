@@ -1,4 +1,4 @@
-import DeviceInvitationModel from '~/models/DeviceInvitation'
+import DeviceInvitationModel from 'mavoix-core/models/DeviceInvitation'
 
 export const create = ({ commit }) => {
   DeviceInvitationModel.Create()

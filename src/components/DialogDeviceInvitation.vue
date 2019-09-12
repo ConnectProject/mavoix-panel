@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     onCancel () {
-      this.$store.commit('devices/closeDialog')
+      this.$store.commit('deviceInvitation/closeDialog')
     }
   },
   mounted () {

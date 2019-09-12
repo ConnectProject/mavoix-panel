@@ -106,9 +106,7 @@
     </q-page-container>
 
     <dialog-tab-name />
-    <dialog-device-invitation
-      :opened="$store.state.devices.dialogOpen"
-    />
+    <dialog-device-invitation />
     <dialog-assets-manager />
   </q-layout>
 </template>

@@ -1,6 +1,6 @@
 import Parse from 'parse'
 
-import AssetModel, { NAME_KEY } from '~/models/Asset'
+import AssetModel, { NAME_KEY } from 'mavoix-core/models/Asset'
 
 export const openAndLoad = ({ commit, dispatch }, { selectMode = false, selectCallback }) => {
   commit('open', { selectMode, selectCallback })

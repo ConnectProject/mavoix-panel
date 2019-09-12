@@ -1,8 +1,8 @@
 import Parse from 'parse'
 
-import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY, ITEMS_KEY } from '~/models/Tab'
+import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY, ITEMS_KEY } from 'mavoix-core/models/Tab'
 
-import slugify from '~/utils/slugify'
+import slugify from 'mavoix-core/utils//slugify'
 
 export const loadBySlug = ({ commit, dispatch }, slug) => {
   new Parse.Query(TabModel)

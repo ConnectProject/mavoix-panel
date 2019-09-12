@@ -1,12 +1,12 @@
 import Parse from 'parse'
 
-import TabModel from '~/models/Tab'
-import DeviceModel from '~/models/Device'
-import DeviceInvitation from '~/models/DeviceInvitation'
-import AssetModel from '~/models/Asset'
+import TabModel from 'mavoix-core/models/Tab'
+import DeviceModel from 'mavoix-core/models/Device'
+import DeviceInvitation from 'mavoix-core/models/DeviceInvitation'
+import AssetModel from 'mavoix-core/models/Asset'
 
 export default async ({ app, Vue }) => {
-  Parse.initialize('mavoix-api', 'djDi7D6j2m')
+  Parse.initialize('mavoix-api', 'javascriptKey')
   Parse.serverURL = 'http://localhost:8080'
 
   /* Models */

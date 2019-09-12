@@ -1,9 +1,9 @@
 import { changeByKey, itemIndex } from './utils'
-import randomString from '~/utils/randomString'
+import randomString from 'mavoix-core/utils//randomString'
 import {
   NAME_KEY,
   HEX_COLOR_KEY
-} from '~/models/Tab'
+} from 'mavoix-core/models/Tab'
 
 /**
  * Set the tab used by the Tab Editor
