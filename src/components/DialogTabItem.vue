@@ -36,7 +36,7 @@
         <q-img
           v-else
           class="asset-image"
-          :src="item.asset.get('parseFile')._url"
+          :src="item.asset.file._url"
           @click="selectAsset">
           <div class="absolute fit flex justify-center items-center text-center image-wrapper">
             <q-icon name="edit" class="action-icon" size="xl" />

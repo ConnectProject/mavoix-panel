@@ -13,6 +13,9 @@
   opacity 1
 .action-icon
   font-size 2em
+.items-container
+  margin-top 24px
+  border-style solid
 </style>
 
 <template>
@@ -45,7 +48,7 @@
         <q-btn class="stretch q-ma-md" flat size="lg" @click="onAddItem">{{ $t('tabEditor.addItemLabel') }}</q-btn>
       </div>
 
-      <div :style="{ backgroundColor: tab.hexColor }" class="col-8 scroll row items-start rounded-borders q-pa-xs q-ph-md q-mh-xs q-gutter-x-xl q-gutter-y-md">
+      <div :style="{ borderColor: tab.hexColor }" class="col-8 scroll row items-start rounded-borders q-pa-xs q-ph-md q-mh-xs q-gutter-x-xl q-gutter-y-md items-container">
         <q-card class="col-2" v-for="(item, index) in tab.items" :key="index">
           <q-img class="item-img" :src="item.asset.get('parseFile')._url">
             <div class="absolute-bottom">

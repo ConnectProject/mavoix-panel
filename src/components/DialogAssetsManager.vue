@@ -85,11 +85,6 @@ export default {
       return this.$store.getters['assetsManager/selectMode']
     }
   },
-  watch: {
-    assets (newValue) {
-      console.log(newValue)
-    }
-  },
   methods: {
     onCancel () {
       if (!this.selectMode) this.$router.back()
