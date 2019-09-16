@@ -23,6 +23,8 @@
   <q-page v-else class="flex items-stretch q-pa-xl">
     <div class="column container">
       <div class="col-2 row justify-center items-center">
+
+        <!-- Name input -->
         <q-input
           :label="$t('tabEditor.tabNameLabel')"
           class="q-ma-md"
@@ -30,6 +32,8 @@
           @input="setName"
           filled
         />
+
+        <!-- HexColor input -->
         <q-input
           :label="$t('tabEditor.tabColorLabel')"
           class="q-ma-md"
@@ -45,12 +49,14 @@
             </q-icon>
           </template>
         </q-input>
+
+        <!-- Add item button -->
         <q-btn class="stretch q-ma-md" flat size="lg" @click="onAddItem">{{ $t('tabEditor.addItemLabel') }}</q-btn>
       </div>
 
       <div :style="{ borderColor: tab.hexColor }" class="col-8 scroll row items-start rounded-borders q-pa-xs q-ph-md q-mh-xs q-gutter-x-xl q-gutter-y-md items-container">
-        <q-card class="col-2" v-for="(item, index) in tab.items" :key="index">
-          <q-img class="item-img" :src="item.asset.get('parseFile')._url">
+        <q-card class="col-2" v-for="(item, index) in items" :key="index">
+          <q-img class="item-img" :src="item.asset.file._url">
             <div class="absolute-bottom">
               <div class="text-center text-subtitle2">{{ item.name }}</div>
             </div>
@@ -63,12 +69,12 @@
               left-label
               :label="$t('generic.available')"
               :value="item.available"
-              @input="() => $store.commit('tabEditor/updateItem', { id: item.id, data: { available: !item.available }})"/>
+              @input="() => $store.commit('tabEditor/toggleItemAvailable', item)"/>
             <q-checkbox
               left-label
               :label="$t('generic.visible')"
-              :value="item.visible"
-              @input="() => $store.commit('tabEditor/updateItem', { id: item.id, data: { visible: !item.visible }})"/>
+              :value="!item.hidden"
+              @input="() => $store.commit('tabEditor/toggleItemHidden', item)"/>
           </q-card-actions>
         </q-card>
       </div>

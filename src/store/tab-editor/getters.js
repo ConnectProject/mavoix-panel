@@ -1,12 +1,12 @@
 export const tab = ({ tab }) => tab
 
-export const items = ({ tab: { items } }) => items
+export const items = ({ items }) => items
 
-export const itemDialog = ({ itemDialogData }) => itemDialogData
+export const itemDialog = ({ itemDialog: { data } }) => data
 
-export const itemDialogOpened = ({ itemDialogOpened }) => itemDialogOpened
+export const itemDialogOpened = ({ itemDialog: { opened } }) => opened
 
-export const itemDialogMode = ({ itemDialogMode }) => itemDialogMode
+export const itemDialogMode = ({ itemDialog: { mode } }) => mode
 
 export const isUndoable = ({ history }) => history.index > 0
 

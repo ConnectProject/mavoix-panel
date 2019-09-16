@@ -1,9 +1,5 @@
-import { changeByKey, itemIndex } from './utils'
-import randomString from 'mavoix-core/utils//randomString'
-import {
-  NAME_KEY,
-  HEX_COLOR_KEY
-} from '~/models/Tab'
+import { NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
+import { changeByKey, modelToTab, itemModelToItem, itemIndex } from './utils'
 
 /**
  * Set the tab used by the Tab Editor
@@ -11,12 +7,7 @@ import {
  * @param {TabModel} tabModel the parse model of the tab.
  */
 export const setTab = (state, tabModel) => {
-  state.tabModel = tabModel
-  state.tab = {
-    name: tabModel.get(NAME_KEY),
-    hexColor: tabModel.get(HEX_COLOR_KEY),
-    items: []
-  }
+  state.tab = modelToTab(tabModel)
   state.loading = false
 }
 
@@ -40,67 +31,61 @@ export const setHexColor = (state, hexColor) => {
   state.tab.hexColor = hexColor
 }
 
-/**
- * Add an item to the tab
- * @param {State} state namespaced state
- * @param {Item} item the item to add
- */
-export const addItem = (state, item) => {
-  state.tab.items.push(item)
-}
+export const setItems = (state, itemsModels) => {
+  state.items = []
 
-export const createItem = (state, { name, asset }) => {
-  state.tab.items.push({
-    name,
-    asset,
-    visible: true,
-    available: true,
-    id: randomString(10)
+  itemsModels.forEach((itemModel) => {
+    state.items.push(itemModelToItem(itemModel))
   })
 }
 
-export const updateItem = (state, { id, data: { name, asset, visible, available } }) => {
-  const i = itemIndex(state, { id })
+/**
+ * Add an item to the tab
+ * @param {State} state namespaced state
+ * @param {Item} item parse model to add
+ */
+export const addItem = (state) => {
+  const { name, asset } = state.itemDialog.data
 
-  if (name) {
-    state.tab.items[i].name = name
-  }
-  if (asset) {
-    state.tab.items[i].asset = asset
-  }
-  if (visible != null) {
-    state.tab.items[i].visible = visible
-  }
-  if (available != null) {
-    state.tab.items[i].available = available
-  }
+  state.items.push({
+    name,
+    asset,
+    available: true,
+    hidden: false
+  })
 }
 
-export const removeItem = (state, id) => {
-  const i = itemIndex(state, { id })
+export const toggleItemAvailable = (_, item) => {
+  item.available = !item.available
+}
 
-  state.tab.items.splice(i, 1)
+export const toggleItemHidden = (_, item) => {
+  item.hidden = !item.hidden
 }
 
 export const openItemDialog = (state, { mode = 'new', data }) => {
-  state.itemDialogOpened = true
-  state.itemDialogMode = mode
+  state.itemDialog.opened = true
+  state.itemDialog.mode = mode
   if (mode === 'edit') {
-    state.itemDialogData = data
+    state.itemDialog.data = data
   }
 }
 
+export const removeItemDialog = (state) => {
+  state.items.splice(itemIndex(state, state.itemDialog.data), 1)
+}
+
 export const setItemDialogAsset = (state, asset) => {
-  state.itemDialogData.asset = asset
+  state.itemDialog.data.asset = asset
 }
 
 export const setItemDialogName = (state, name) => {
-  state.itemDialogData.name = name
+  state.itemDialog.data.name = name
 }
 
 export const closeItemDialog = (state) => {
-  state.itemDialogOpened = false
-  state.itemDialogData = {}
+  state.itemDialog.opened = false
+  state.itemDialog.data = {}
 }
 
 export const pushHistory = (state, { key, from, to }) => {

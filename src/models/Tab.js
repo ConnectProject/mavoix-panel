@@ -6,7 +6,6 @@ import slugify from 'mavoix-core/utils/slugify'
 export const NAME_KEY = 'name'
 export const HEX_COLOR_KEY = 'hexColor'
 export const SLUG_KEY = 'slug'
-export const ITEMS_KEY = 'items'
 
 export default class TabModel extends Parse.Object {
   constructor () {
@@ -20,7 +19,6 @@ export default class TabModel extends Parse.Object {
       .set(NAME_KEY, name)
       .set(HEX_COLOR_KEY, hexColor)
       .set(SLUG_KEY, slugify(name))
-      .set(ITEMS_KEY, [])
     return newTab
   }
 

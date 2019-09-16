@@ -2,19 +2,20 @@ export default {
   loading: true,
   error: null,
 
-  itemDialogOpened: false,
-  itemDialogMode: null,
-  itemDialogData: {
-    id: null,
-    asset: null,
-    name: null
-  },
-
-  tabModel: null,
   tab: {
     name: '',
-    hexColor: '',
-    items: []
+    hexColor: ''
+  },
+
+  items: [],
+  itemDialog: {
+    opened: false,
+    mode: null,
+    data: {
+      id: null,
+      asset: null,
+      name: null
+    }
   },
 
   history: {

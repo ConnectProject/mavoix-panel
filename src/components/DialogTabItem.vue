@@ -16,8 +16,8 @@
 
 <template>
   <q-dialog :value="opened" persistent>
-    <q-card class="column items-center">
-      <h6 class="q-my-md q-mt-xl text-center">
+    <q-card class="column items-center q-pa-md">
+      <h6 class="q-mt-md q-mb-xs text-center">
         {{ $t(`tabEditor.itemDialog.heading${mode === 'edit' ? 'Edit' : 'New'}`) }}
       </h6>
       <q-card-section class="column items-start justify-start">
@@ -54,7 +54,7 @@
 
 <script>
 export default {
-  name: 'DialogTabName',
+  name: 'DialogTabItem',
   computed: {
     opened () {
       return this.$store.getters['tabEditor/itemDialogOpened']
@@ -82,7 +82,7 @@ export default {
           data
         })
       } else {
-        this.$store.commit('tabEditor/createItem')
+        this.$store.commit('tabEditor/addItem')
       }
       this.close()
     },
@@ -90,7 +90,7 @@ export default {
       this.$store.commit('tabEditor/closeItemDialog')
     },
     onDelete () {
-      this.$store.commit('tabEditor/removeItem', this.item.id)
+      this.$store.commit('tabEditor/removeItemDialog')
       this.close()
     },
     selectAsset () {

@@ -1,15 +1,16 @@
 import Parse from 'parse'
 
-import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY, ITEMS_KEY } from '~/models/Tab'
+import TabModel, { SLUG_KEY } from '~/models/Tab'
 
-import slugify from 'mavoix-core/utils//slugify'
+import { tabToModel } from './utils'
+import TabItemModel, { TAB_KEY as ITEM_TAB_KEY } from '~/models/TabItem'
 
 export const loadBySlug = ({ commit, dispatch }, slug) => {
   new Parse.Query(TabModel)
     .equalTo(SLUG_KEY, slug)
     .first()
-    .then((tab) => {
-      commit('setTab', tab)
+    .then((tabModel) => {
+      commit('setTab', tabModel)
       dispatch('fetchItems')
     })
     .catch((err) => {
@@ -17,41 +18,26 @@ export const loadBySlug = ({ commit, dispatch }, slug) => {
     })
 }
 
-export const fetchItems = ({ commit, getters: { tabModel } }) => {
-  tabModel.get(ITEMS_KEY)
-    .forEach(({ asset, id, name, available, visible }) => {
-      asset
-        .fetch()
-        .then((asset) => {
-          commit('addItem', {
-            id,
-            name,
-            asset,
-            available,
-            visible
-          })
-        })
+export const fetchItems = ({ commit, getters: { tab } }) => {
+  tabToModel(tab)
+    .catch((err) => {
+      commit('setError', err)
+      throw err
+    })
+    .then((tabModel) => {
+      new Parse.Query(TabItemModel)
+        .equalTo(ITEM_TAB_KEY, tabModel)
+        .find()
         .catch((err) => {
           commit('setError', err)
+        })
+        .then((itemsModel) => {
+          commit('setItems', itemsModel)
         })
     })
 }
 
 export const saveCb = ({ commit, dispatch, getters: { tabModel, tab } }, callback) => {
-  tabModel.set(NAME_KEY, tab.name)
-  tabModel.set(SLUG_KEY, slugify(tab.name))
-  tabModel.set(HEX_COLOR_KEY, tab.hexColor)
-  tabModel.set(ITEMS_KEY, tab.items)
-
-  tabModel.save()
-    .then((tabModel) => {
-      commit('setTab', tabModel)
-      dispatch('fetchItems')
-      callback(tabModel)
-    })
-    .catch((err) => {
-      commit('setError', err)
-    })
 }
 
 export const deleteIt = ({ commit, getters: { tabModel } }) => {
