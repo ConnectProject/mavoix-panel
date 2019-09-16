@@ -1,12 +1,16 @@
-import DeviceInvitationModel from 'mavoix-core/models/DeviceInvitation'
+import Parse from 'parse'
 
 export const create = ({ commit }) => {
-  DeviceInvitationModel.Create()
-    .save()
-    .then((invitation) => {
-      commit('setInvitation', invitation)
-    })
+  let newUser = new Parse.User()
+
+  newUser.set('username', 'test')
+  newUser.set('password', 'password')
+
+  newUser.signUp()
     .catch((err) => {
-      commit('setError', err)
+      throw err
+    })
+    .then((res) => {
+      console.log(res)
     })
 }

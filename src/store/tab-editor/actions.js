@@ -1,6 +1,6 @@
 import Parse from 'parse'
 
-import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY, ITEMS_KEY } from 'mavoix-core/models/Tab'
+import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY, ITEMS_KEY } from '~/models/Tab'
 
 import slugify from 'mavoix-core/utils//slugify'
 

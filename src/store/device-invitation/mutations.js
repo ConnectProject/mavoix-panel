@@ -1,5 +1,5 @@
-export const setInvitation = (state, invitation) => {
-  state.invitation = invitation
+export const setCode = (state, code) => {
+  state.code = code
   state.loading = false
 }
 
@@ -13,5 +13,4 @@ export const closeDialog = (state) => {
 
 export const setError = (state, err) => {
   state.error = err
-  state.loading = false
 }

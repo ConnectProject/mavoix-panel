@@ -3,7 +3,7 @@ import randomString from 'mavoix-core/utils//randomString'
 import {
   NAME_KEY,
   HEX_COLOR_KEY
-} from 'mavoix-core/models/Tab'
+} from '~/models/Tab'
 
 /**
  * Set the tab used by the Tab Editor

@@ -1,10 +1,13 @@
 export default {
+  opened: false,
   loading: true,
   error: null,
-  opened: false,
+
   selectMode: false,
   selectCallback: null,
-  assetsModels: null,
+
+  assets: [],
+
   editing: false,
   editingIndex: 0,
   editingAsset: {

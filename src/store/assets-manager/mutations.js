@@ -1,27 +1,32 @@
-import { assetIndex } from './utils'
-import { NAME_KEY } from 'mavoix-core/models/Asset'
+import { assetIndex, assetFromModel } from './utils'
 
 export const setAssets = (state, assetsModels) => {
-  state.assetsModels = assetsModels
+  state.assets = []
+
+  assetsModels.forEach(assetModel => {
+    state.assets.push(assetFromModel(assetModel))
+  })
+
   state.loading = false
 }
 
 export const addAsset = (state, assetModel) => {
-  state.assetsModels.unshift(assetModel)
+  state.assets.unshift(assetFromModel(assetModel))
 }
 
-export const removeAsset = (state, asset) => {
-  state.assetsModels.splice(assetIndex(state.assetsModels, asset), 1)
+export const removeEditingAsset = (state) => {
+  state.assets.splice(state.editingIndex, 1)
 }
 
-export const updateEditingAsset = (state, newAsset) => {
-  state.assetsModels[state.editingIndex] = newAsset
+export const updateEditingAsset = (state, assetModel) => {
+  const asset = assetFromModel(assetModel)
+  state.assets[state.editingIndex].name = asset.name
 }
 
 export const editAsset = (state, asset) => {
-  state.editingIndex = assetIndex(state.assetsModels, asset)
+  state.editingIndex = assetIndex(state.assets, asset)
   state.editingAsset = {
-    name: state.assetsModels[state.editingIndex].get(NAME_KEY)
+    name: state.assets[state.editingIndex].name
   }
   state.editing = true
 }
@@ -31,8 +36,6 @@ export const editingAssetSetName = (state, name) => {
 }
 
 export const cancelEdit = (state) => {
-  state.editingIndex = -1
-  state.editingAsset = {}
   state.editing = false
 }
 

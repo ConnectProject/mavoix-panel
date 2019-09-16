@@ -1,6 +1,6 @@
 export default {
+  dialogOpened: false,
   loading: true,
   error: null,
-  invitation: null,
-  dialogOpened: false
+  code: null
 }

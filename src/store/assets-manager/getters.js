@@ -2,7 +2,7 @@ export const opened = ({ opened }) => opened
 
 export const loading = ({ loading }) => loading
 
-export const all = ({ assetsModels }) => assetsModels
+export const all = ({ assets }) => assets
 
 export const editingAsset = ({ editingAsset }) => editingAsset
 

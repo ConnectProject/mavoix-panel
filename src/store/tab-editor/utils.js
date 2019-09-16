@@ -1,4 +1,4 @@
-import { NAME_KEY, HEX_COLOR_KEY } from 'mavoix-core/models/Tab'
+import { NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
 
 export const changeByKey = (state, key, newValue) => {
   switch (key) {

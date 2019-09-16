@@ -4,12 +4,12 @@
     <q-card v-else>
       <q-card-section class="row items-center justify-center">
         <h6 class="q-ml-sm text-subtitle2">Pour ajouter une device a votre compte vous pouvez scanner le qrcode suivant:</h6>
-        <qrcode-vue :value="invitation.get('token')" />
+        <qrcode-vue :value="code" />
       </q-card-section>
 
       <q-card-section class="row items-center justify-center">
         <h5 class="q-ml-sm text-subtitle2">Ou alors entrer le code d'invitation suivant dans l'application:</h5>
-        <q-input rounded outlined disable class="fit" :input-style="{ textAlign: 'center' }" :value="invitation.get('token')"/>
+        <q-input rounded outlined disable class="fit" :input-style="{ textAlign: 'center' }" :value="code"/>
       </q-card-section>
 
       <q-card-actions align="right">
@@ -28,20 +28,24 @@ export default {
     loading () {
       return this.$store.getters['deviceInvitation/loading']
     },
-    invitation () {
-      return this.$store.getters['deviceInvitation/invitation']
+    code () {
+      return this.$store.getters['deviceInvitation/code']
     },
     opened () {
       return this.$store.getters['deviceInvitation/dialogOpened']
+    }
+  },
+  watch: {
+    opened (newValue) {
+      if (newValue) {
+        this.$store.dispatch('deviceInvitation/create')
+      }
     }
   },
   methods: {
     onCancel () {
       this.$store.commit('deviceInvitation/closeDialog')
     }
-  },
-  mounted () {
-    this.$store.dispatch('deviceInvitation/create')
   },
   components: {
     QrcodeVue

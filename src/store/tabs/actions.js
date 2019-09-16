@@ -1,6 +1,6 @@
 import Parse from 'parse'
 
-import TabModel from 'mavoix-core/models/Tab'
+import TabModel from '~/models/Tab'
 
 export const loadTabs = ({ commit }) => {
   new Parse.Query(TabModel)

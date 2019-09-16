@@ -27,15 +27,16 @@
         </q-btn>
       </q-bar>
 
+      <!-- Assets -->
       <div class="row q-col-gutter-none" v-if="!loading">
         <q-card
           v-for="(asset, index) in assets"
           :key="index"
           @click="() => onActionAsset(asset)"
           class="col-2 q-ma-md asset-card">
-          <q-img :ratio="16 / 9" :src="asset.get('parseFile')._url" basic>
+          <q-img :ratio="16 / 9" :src="asset.file._url" basic>
             <div class="absolute-bottom text-subtitle2 text-center">
-              {{ asset.get('name') }}
+              {{ asset.name }}
             </div>
             <div class="absolute fit flex justify-center items-center text-center action-icon-wrapper">
               <q-icon :name="selectMode ? 'done' : 'edit'" class="action-icon" size="xl" />
@@ -82,6 +83,11 @@ export default {
     },
     selectMode () {
       return this.$store.getters['assetsManager/selectMode']
+    }
+  },
+  watch: {
+    assets (newValue) {
+      console.log(newValue)
     }
   },
   methods: {

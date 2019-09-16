@@ -1,6 +1,6 @@
 import Parse from 'parse'
 
-import DeviceModel from 'mavoix-core/models/Device'
+import DeviceModel from '~/models/Device'
 
 export const loadDevices = ({ commit }) => {
   new Parse.Query(DeviceModel)
