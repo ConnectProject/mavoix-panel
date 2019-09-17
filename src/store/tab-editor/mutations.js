@@ -50,6 +50,7 @@ export const addItem = (state) => {
   state.items.push({
     name,
     asset,
+    key: null,
     available: true,
     hidden: false
   })
@@ -62,12 +63,13 @@ export const addItem = (state) => {
 export const updateItem = (state) => {
   const { index, data } = state.itemDialog
   const { name, asset } = data
-  const { available, hidden } = state.items[index]
+  const { available, hidden, key } = state.items[index]
 
   const item = state.items[index]
   item.name = name
   item.asset = asset
   item.available = available
+  item.key = key
   item.hidden = hidden
 }
 

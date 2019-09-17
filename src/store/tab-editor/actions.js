@@ -4,7 +4,14 @@ import slugify from 'mavoix-core/utils/slugify'
 import { tabToModel } from './utils'
 
 import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
-import TabItemModel, { TAB_KEY as ITEM_TAB_KEY } from '~/models/TabItem'
+import TabItemModel, {
+  NAME_KEY as ITEM_NAME_KEY,
+  ASSET_KEY as ITEM_ASSET_KEY,
+  AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
+  HIDDEN_KEY as ITEM_HIDDEN_KEY,
+  TAB_KEY as ITEM_TAB_KEY,
+  KEY_KEY as ITEM_KEY_KEY
+} from '~/models/TabItem'
 
 export const loadBySlug = ({ commit, dispatch }, slug) => {
   new Parse.Query(TabModel)
@@ -37,7 +44,7 @@ export const fetchItems = ({ commit, getters: { tab } }) => {
     })
 }
 
-export const saveCb = ({ commit, dispatch, getters: { tab } }, callback) => {
+export const saveCb = ({ commit, dispatch, getters: { tab, items } }, callback) => {
   tabToModel(tab)
     .catch((err) => {
       commit('setError', err)
@@ -49,29 +56,58 @@ export const saveCb = ({ commit, dispatch, getters: { tab } }, callback) => {
 
       Promise.all([
         /* Save the tabmodel */
-        tabModel.save()
+        tabModel.save(),
+        new Promise((resolve, reject) => {
+          const promises = []
+
+          items.forEach((item) => {
+            if (!item.key) {
+              promises.push(TabItemModel.Create(item.name, item.asset, tabModel, item.hidden, item.available).save())
+            } else {
+              promises.push(new Parse.Query(TabItemModel)
+                .equalTo(ITEM_TAB_KEY, tabModel)
+                .equalTo(ITEM_KEY_KEY, item.key)
+                .first()
+                .then((itemModel) => {
+                  itemModel.set(ITEM_NAME_KEY, item.name)
+                  itemModel.set(ITEM_ASSET_KEY, item.asset)
+                  itemModel.set(ITEM_HIDDEN_KEY, item.hidden)
+                  itemModel.set(ITEM_AVAILABLE_KEY, item.available)
+
+                  return itemModel.save()
+                })
+              )
+            }
+          })
+          Promise.all(promises)
+            .catch(reject)
+            .then(resolve)
+        })
       ]).catch((err) => {
         commit('setError', err)
       }).then(([tabModel, items]) => {
+        console.log(items)
         commit('clearState')
         callback(tabModel)
       })
     })
 }
 
-export const deleteTab = ({ commit, getters: { tab } }) => {
+export const deleteTab = ({ commit, getters: { tab, items } }) => {
   tabToModel(tab)
     .catch((err) => {
       commit('setError', err)
     })
     .then((tabModel) => {
-      tabModel.destroy()
+      Promise.all([
+        tabModel.destroy()
+      ])
+        .catch((err) => {
+          commit('setError', err)
+        })
         .then(() => {
           commit('tabs/removeTabById', tabModel.id, { root: true })
           commit('clearState')
-        })
-        .catch((err) => {
-          commit('setError', err)
         })
     })
 }
