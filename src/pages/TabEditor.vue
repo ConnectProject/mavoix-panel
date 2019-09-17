@@ -60,7 +60,7 @@
             <div class="absolute-bottom">
               <div class="text-center text-subtitle2">{{ item.name }}</div>
             </div>
-            <div @click="() => onEditItem(item)" class="absolute fit flex justify-center items-center text-center action-icon-wrapper">
+            <div @click="() => onEditItem(item, index)" class="absolute fit flex justify-center items-center text-center action-icon-wrapper">
               <q-icon name="edit" class="action-icon" size="xl" />
             </div>
           </q-img>
@@ -114,6 +114,7 @@
 
 <script>
 import DialogTabItem from '~/components/DialogTabItem'
+import { SLUG_KEY } from '../models/Tab'
 
 export default {
   name: 'TabEditor',
@@ -142,9 +143,10 @@ export default {
     onAddItem () {
       this.$store.commit('tabEditor/openItemDialog', {})
     },
-    onEditItem (item) {
+    onEditItem (item, index) {
       this.$store.commit('tabEditor/openItemDialog', {
         mode: 'edit',
+        index,
         data: Object.assign({}, item)
       })
     },
@@ -153,7 +155,7 @@ export default {
         this.$router.push({
           name: 'tab',
           params: {
-            slug: tab.get('slug')
+            slug: tab.get(SLUG_KEY)
           }
         })
         this.$q.notify({
@@ -163,7 +165,7 @@ export default {
       })
     },
     onDelete () {
-      this.$store.dispatch('tabEditor/deleteIt')
+      this.$store.dispatch('tabEditor/deleteTab')
       this.$router.push({
         name: 'home'
       })

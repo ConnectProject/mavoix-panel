@@ -6,12 +6,12 @@
       </q-card-section>
 
       <q-card-section>
-        <q-input dense v-model="name" autofocus @keyup.enter="onValidate" />
+        <q-input dense v-model="name" autofocus @keyup.enter="onSubmit" />
       </q-card-section>
 
       <q-card-actions align="right" class="text-primary">
         <q-btn flat :label="$t('generic.cancel')" color="negative" @click="onCancel" />
-        <q-btn flat :label="$t('generic.save')" @click="onValidate" />
+        <q-btn flat :label="$t('generic.save')" @click="onSubmit" />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -31,7 +31,7 @@ export default {
     }
   },
   methods: {
-    onValidate () {
+    onSubmit () {
       this.$store.dispatch('tabs/createTabCb', {
         name: this.name,
         callback: (tab) => {

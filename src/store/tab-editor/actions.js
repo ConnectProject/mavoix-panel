@@ -1,8 +1,9 @@
 import Parse from 'parse'
 
-import TabModel, { SLUG_KEY } from '~/models/Tab'
-
+import slugify from 'mavoix-core/utils/slugify'
 import { tabToModel } from './utils'
+
+import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
 import TabItemModel, { TAB_KEY as ITEM_TAB_KEY } from '~/models/TabItem'
 
 export const loadBySlug = ({ commit, dispatch }, slug) => {
@@ -22,7 +23,6 @@ export const fetchItems = ({ commit, getters: { tab } }) => {
   tabToModel(tab)
     .catch((err) => {
       commit('setError', err)
-      throw err
     })
     .then((tabModel) => {
       new Parse.Query(TabItemModel)
@@ -37,16 +37,41 @@ export const fetchItems = ({ commit, getters: { tab } }) => {
     })
 }
 
-export const saveCb = ({ commit, dispatch, getters: { tabModel, tab } }, callback) => {
-}
-
-export const deleteIt = ({ commit, getters: { tabModel } }) => {
-  commit('tabs/removeTabById', tabModel.id, { root: true })
-  tabModel.destroy()
-    .then(() => {
-      commit('clearState')
-    })
+export const saveCb = ({ commit, dispatch, getters: { tab } }, callback) => {
+  tabToModel(tab)
     .catch((err) => {
       commit('setError', err)
+    })
+    .then((tabModel) => {
+      tabModel.set(NAME_KEY, tab.name)
+      tabModel.set(HEX_COLOR_KEY, tab.hexColor)
+      tabModel.set(SLUG_KEY, slugify(tab.name))
+
+      Promise.all([
+        /* Save the tabmodel */
+        tabModel.save()
+      ]).catch((err) => {
+        commit('setError', err)
+      }).then(([tabModel, items]) => {
+        commit('clearState')
+        callback(tabModel)
+      })
+    })
+}
+
+export const deleteTab = ({ commit, getters: { tab } }) => {
+  tabToModel(tab)
+    .catch((err) => {
+      commit('setError', err)
+    })
+    .then((tabModel) => {
+      tabModel.destroy()
+        .then(() => {
+          commit('tabs/removeTabById', tabModel.id, { root: true })
+          commit('clearState')
+        })
+        .catch((err) => {
+          commit('setError', err)
+        })
     })
 }

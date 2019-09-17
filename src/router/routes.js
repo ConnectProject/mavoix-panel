@@ -16,7 +16,7 @@ const routes = [
       { name: 'home', path: '/home', component: () => import('~/pages/Index.vue') },
 
       /* Tabs routes */
-      { name: 'tab', path: '/tab/editor/:slug', component: () => import('~/pages/TabEditor.vue') },
+      { name: 'tab', path: '/tabs/:slug', component: () => import('~/pages/TabEditor.vue') },
 
       /* Devices routes */
       { name: 'device', path: '/devices/:slug', component: () => import('~/pages/Device.vue') }

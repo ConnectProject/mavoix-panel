@@ -3,6 +3,7 @@ export default {
   error: null,
 
   tab: {
+    slug: '',
     name: '',
     hexColor: ''
   },
@@ -11,8 +12,8 @@ export default {
   itemDialog: {
     opened: false,
     mode: null,
+    index: -1,
     data: {
-      id: null,
       asset: null,
       name: null
     }

@@ -21,32 +21,36 @@
         {{ $t(`tabEditor.itemDialog.heading${mode === 'edit' ? 'Edit' : 'New'}`) }}
       </h6>
       <q-card-section class="column items-start justify-start">
+        <!-- Name input -->
         <q-input
           :label="$t('tabEditor.itemDialog.nameLabel')"
           class="q-my-md"
-          @input="setName"
+          @input="onSetName"
           :value="item.name"
           filled/>
 
+        <!-- Asset input (flat button or button image) -->
         <q-btn
           v-if="!item.asset"
           :label="$t('tabEditor.itemDialog.selectAssetLabel')"
           color="accent"
-          @click="selectAsset"/>
+          @click="onSetAsset"/>
         <q-img
           v-else
           class="asset-image"
           :src="item.asset.file._url"
-          @click="selectAsset">
+          @click="onSetAsset">
           <div class="absolute fit flex justify-center items-center text-center image-wrapper">
             <q-icon name="edit" class="action-icon" size="xl" />
           </div>
         </q-img>
       </q-card-section>
+
+      <!-- Actions buttons -->
       <q-card-actions align="right">
         <q-btn v-if="mode === 'edit'" flat :label="$t('generic.delete')" color="negative" @click="onDelete"/>
-        <q-btn flat :label="$t('generic.cancel')" @click="onCloseDialog"/>
-        <q-btn flat :label="$t('generic.validate')" color="primary" @click="onValidate"/>
+        <q-btn flat :label="$t('generic.cancel')" @click="onClose"/>
+        <q-btn flat :label="$t('generic.validate')" color="primary" @click="onSubmit"/>
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -67,33 +71,25 @@ export default {
     }
   },
   methods: {
-    onCloseDialog () {
-      return this.$store.commit('tabEditor/closeItemDialog')
-    },
-    onValidate () {
-      const data = {
-        name: this.item.name,
-        asset: this.item.asset
+    onSubmit () {
+      switch (this.mode) {
+        case 'edit':
+          this.$store.commit('tabEditor/updateItem')
+          break
+        case 'new':
+          this.$store.commit('tabEditor/addItem')
+          break
       }
-
-      if (this.mode === 'edit') {
-        this.$store.commit('tabEditor/updateItem', {
-          id: this.item.id,
-          data
-        })
-      } else {
-        this.$store.commit('tabEditor/addItem')
-      }
-      this.close()
-    },
-    close () {
-      this.$store.commit('tabEditor/closeItemDialog')
+      this.onClose()
     },
     onDelete () {
       this.$store.commit('tabEditor/removeItemDialog')
-      this.close()
+      this.onClose()
     },
-    selectAsset () {
+    onClose () {
+      this.$store.commit('tabEditor/closeItemDialog')
+    },
+    onSetAsset () {
       this.$store.dispatch('assetsManager/openAndLoad', {
         selectMode: true,
         selectCallback: (asset) => {
@@ -101,7 +97,7 @@ export default {
         }
       })
     },
-    setName (name) {
+    onSetName (name) {
       this.$store.commit('tabEditor/setItemDialogName', name)
     }
   }

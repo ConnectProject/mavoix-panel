@@ -1,5 +1,5 @@
 import Parse from 'parse'
-import TabModel, { NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
+import TabModel, { NAME_KEY, HEX_COLOR_KEY, SLUG_KEY } from '~/models/Tab'
 import { NAME_KEY as ITEM_NAME_KEY, ASSET_KEY as ITEM_ASSET_KEY } from '~/models/TabItem'
 
 export const changeByKey = (state, key, newValue) => {
@@ -18,13 +18,14 @@ export const changeByKey = (state, key, newValue) => {
 export const itemIndex = (state, pItem) => state.items.findIndex((item) => item.name === pItem.name)
 
 export const modelToTab = (tabModel) => ({
+  slug: tabModel.get(SLUG_KEY),
   name: tabModel.get(NAME_KEY),
   hexColor: tabModel.get(HEX_COLOR_KEY)
 })
 
 export const tabToModel = (tab) => {
   return new Parse.Query(TabModel)
-    .equalTo(NAME_KEY, tab.name)
+    .equalTo(SLUG_KEY, tab.slug)
     .first()
 }
 

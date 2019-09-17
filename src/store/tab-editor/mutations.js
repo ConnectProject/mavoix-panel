@@ -55,6 +55,22 @@ export const addItem = (state) => {
   })
 }
 
+/**
+ * Update the item opened in the itemDialog
+ * @param {State} state namespaced state
+ */
+export const updateItem = (state) => {
+  const { index, data } = state.itemDialog
+  const { name, asset } = data
+  const { available, hidden } = state.items[index]
+
+  const item = state.items[index]
+  item.name = name
+  item.asset = asset
+  item.available = available
+  item.hidden = hidden
+}
+
 export const toggleItemAvailable = (_, item) => {
   item.available = !item.available
 }
@@ -63,11 +79,12 @@ export const toggleItemHidden = (_, item) => {
   item.hidden = !item.hidden
 }
 
-export const openItemDialog = (state, { mode = 'new', data }) => {
+export const openItemDialog = (state, { mode = 'new', index, data }) => {
   state.itemDialog.opened = true
   state.itemDialog.mode = mode
   if (mode === 'edit') {
     state.itemDialog.data = data
+    state.itemDialog.index = index
   }
 }
 
@@ -85,7 +102,8 @@ export const setItemDialogName = (state, name) => {
 
 export const closeItemDialog = (state) => {
   state.itemDialog.opened = false
-  state.itemDialog.data = {}
+  state.itemDialog.data.name = ''
+  state.itemDialog.data.asset = null
 }
 
 export const pushHistory = (state, { key, from, to }) => {
@@ -119,6 +137,6 @@ export const clearState = (state) => {
 
 export const setError = (state, err) => {
   state.error = err
-  console.error(err)
+  console.error(`Tab editor error: ${err}`)
   state.loading = false
 }
