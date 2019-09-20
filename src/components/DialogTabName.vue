@@ -11,7 +11,7 @@
 
       <q-card-actions align="right" class="text-primary">
         <q-btn flat :label="$t('generic.cancel')" color="negative" @click="onCancel" />
-        <q-btn flat :label="$t('generic.save')" @click="onSubmit" />
+        <q-btn flat :label="$t('generic.save')" @click="onSubmit" :disable="name === ''" />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -32,6 +32,9 @@ export default {
   },
   methods: {
     onSubmit () {
+      if (this.name === '') {
+        return
+      }
       this.$store.dispatch('tabs/createTabCb', {
         name: this.name,
         callback: (tab) => {
