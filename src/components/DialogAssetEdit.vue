@@ -2,7 +2,22 @@
   <q-dialog :value="opened" persistent>
     <q-card>
       <q-card-section>
-        <q-input filled :label="$t('assetsManager.assetNameLabel')" :value="asset.name" @input="onInputName"/>
+        <!-- Name input -->
+        <q-input
+          class="q-my-xs"
+          :label="$t('assetsManager.assetNameLabel')"
+          :value="asset.name"
+          @keyup.enter="onSave"
+          @input="onInputName"
+          filled
+        />
+        
+        <tags-input
+          class="q-my-xs"
+          v-model="tag"
+          :tags="tags"
+          @tags-changed="newTags => tags = newTags"
+        />
       </q-card-section>
       <q-card-actions>
         <q-btn flat color="negative" @click="onDelete">{{ $t('generic.delete') }}</q-btn>
@@ -16,6 +31,12 @@
 <script>
 export default {
   name: 'DialogAssetEdit',
+  data () {
+    return {
+      tag: '',
+      tags: []
+    }
+  },
   computed: {
     asset () {
       return this.$store.getters['assetsManager/editingAsset']

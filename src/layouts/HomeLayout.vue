@@ -88,7 +88,7 @@
           <!-- If the query has returned its result -->
           <div v-else>
             <!-- Click to add a device -->
-            <q-item clickable v-ripple @click="$store.commit('deviceInvitation/openDialog')">
+            <q-item clickable v-ripple @click="$store.dispatch('deviceInvitation/openAndCreate')">
               <q-item-section avatar>
                 <q-icon name="add" />
               </q-item-section>
