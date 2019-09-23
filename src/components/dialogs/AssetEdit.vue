@@ -11,7 +11,7 @@
           @input="onInputName"
           filled
         />
-        
+
         <tags-input
           class="q-my-xs"
           v-model="tag"

@@ -26,6 +26,13 @@ export default {
       selectAssetLabel: 'Sélectionner une image'
     }
   },
+  deviceDialogs: {
+    new: {
+      heading: 'Choisissez un nom pour votre nouvelle appareil'
+    },
+    qrcodeHeading: 'Pour connecter l\'appareil au compte, veuillez scanner ce qrcode depuis l\'application:',
+    codeHeading: 'Ou bien, entrez manuellement ce code dans l\'application'
+  },
   newTabDialog: {
     heading: 'Choisissez un nom pour votre nouvel onglet !'
   },
@@ -38,6 +45,7 @@ export default {
     available: 'Disponible',
     visible: 'Visible',
     undo: 'Undo',
-    redo: 'Redo'
+    redo: 'Redo',
+    loading: 'Chargement'
   }
 }

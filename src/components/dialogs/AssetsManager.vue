@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import AssetEdit from './DialogAssetEdit'
+import AssetEdit from './AssetEdit'
 
 export default {
   name: 'DialogAssetsManager',

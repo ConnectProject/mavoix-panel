@@ -4,7 +4,7 @@
       <q-spinner-puff color="primary" size="2em" />
     </q-item-section>
     <q-item-section>
-      <q-item-label>Chargement...</q-item-label>
+      <q-item-label>{{ $t('generic.loading') }}...</q-item-label>
     </q-item-section>
   </q-item>
 </template>

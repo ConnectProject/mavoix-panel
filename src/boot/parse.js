@@ -2,8 +2,8 @@ import Parse from 'parse'
 
 import TabModel from '~/models/Tab'
 import TabItemModel from '~/models/TabItem'
-import DeviceModel from '~/models/Device'
 import AssetModel from '~/models/Asset'
+import DeviceUserModel from '~/models/DeviceUser'
 
 export default async ({ app, Vue }) => {
   Parse.initialize('mavoix-api', 'javascriptKey')
@@ -12,6 +12,9 @@ export default async ({ app, Vue }) => {
   /* Models */
   Parse.Object.registerSubclass('Tab', TabModel)
   Parse.Object.registerSubclass('TabItem', TabItemModel)
-  Parse.Object.registerSubclass('Device', DeviceModel)
   Parse.Object.registerSubclass('Asset', AssetModel)
+
+  /* User */
+  Parse.User.allowCustomUserClass(true)
+  Parse.User.registerSubclass('DeviceUser', DeviceUserModel)
 }

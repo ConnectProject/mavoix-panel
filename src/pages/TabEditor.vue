@@ -54,7 +54,7 @@
         <q-btn class="stretch q-ma-md" flat size="lg" @click="onAddItem">{{ $t('tabEditor.addItemLabel') }}</q-btn>
       </div>
 
-      <div :style="{ borderColor: tab.hexColor }" class="col-8 scroll row items-start rounded-borders q-pa-xs q-ph-md q-mh-xs q-gutter-x-xl q-gutter-y-md items-container">
+      <div :style="{ borderColor: tab.hexColor }" class="col-8 scroll row items-start rounded-borders q-pa-xs q-ph-md q-mh-xs q-mx-md q-gutter-x-xl q-gutter-y-md items-container">
         <q-card class="col-2" v-for="(item, index) in items" :key="index">
           <q-img class="item-img" :src="item.asset.file._url">
             <div class="absolute-bottom">
@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import DialogTabItem from '~/components/DialogTabItem'
+import DialogTabItem from '~/components/dialogs/TabItem'
 import { SLUG_KEY } from '../models/Tab'
 
 export default {

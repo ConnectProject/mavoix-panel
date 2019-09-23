@@ -87,8 +87,23 @@
           <list-item-loading v-if="$store.state.devices.loading" />
           <!-- If the query has returned its result -->
           <div v-else>
+            <!-- Render fetched devices buttons -->
+            <q-item
+              v-for="(device, index) in devices"
+              :key="index"
+              clickable
+              v-ripple
+            >
+              <q-item-section avatar>
+                <q-icon name="devices_other"/>
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ device.name }}</q-item-label>
+              </q-item-section>
+            </q-item>
+
             <!-- Click to add a device -->
-            <q-item clickable v-ripple @click="$store.dispatch('deviceInvitation/openAndCreate')">
+            <q-item clickable v-ripple @click="$store.commit('devices/openNameDialog')">
               <q-item-section avatar>
                 <q-icon name="add" />
               </q-item-section>
@@ -105,17 +120,21 @@
       <router-view />
     </q-page-container>
 
-    <dialog-tab-name />
-    <dialog-device-invitation />
     <dialog-assets-manager />
+    <dialog-tab-name />
+    <dialog-device-name />
+    <dialog-device-invitation />
   </q-layout>
 </template>
 
 <script>
 import ListItemLoading from '~/components/ListItemLoading'
-import DialogDeviceInvitation from '~/components/DialogDeviceInvitation'
-import DialogTabName from '~/components/DialogTabName'
-import DialogAssetsManager from '~/components/DialogAssetsManager'
+
+/* Dialogs */
+import DialogAssetsManager from '~/components/dialogs/AssetsManager'
+import DialogTabName from '~/components/dialogs/TabName'
+import DialogDeviceName from '~/components/dialogs/DeviceName'
+import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 
 export default {
   name: 'HomeLayout',
@@ -161,9 +180,10 @@ export default {
   },
   components: {
     ListItemLoading,
-    DialogDeviceInvitation,
+    DialogAssetsManager,
     DialogTabName,
-    DialogAssetsManager
+    DialogDeviceName,
+    DialogDeviceInvitation
   }
 }
 </script>
