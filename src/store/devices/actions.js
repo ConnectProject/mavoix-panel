@@ -26,3 +26,21 @@ export const create = ({ commit }, name) => {
       commit('addAndOpenDevice', { model, password })
     })
 }
+
+export const deleteActive = ({ commit, getters: { active } }) => {
+  new Parse.Query(DeviceUser)
+    .equalTo('username', active.name)
+    .first()
+    .catch((err) => {
+      commit('setError', err)
+    })
+    .then((user) => {
+      user.destroy()
+        .catch((err) => {
+          commit('setError', err)
+        })
+        .then(() => {
+          commit('removeActive')
+        })
+    })
+}

@@ -2,18 +2,20 @@
   <q-dialog :value="opened" persistent>
     <div v-if="!opened"/>
     <q-card v-else>
+      <h4 class="q-mb-xs text-h4 text-center">{{ device.name }}</h4>
       <q-card-section class="column items-center justify-center">
-        <h6 class="q-ml-sm text-subtitle2 text-center">{{ $t('deviceDialogs.qrcodeHeading') }}</h6>
+        <h6 class="text-subtitle2 text-center">{{ $t('deviceDialogs.qrcodeHeading') }}</h6>
         <qrcode-vue :value="code" />
       </q-card-section>
 
       <q-card-section class="column items-center justify-center">
-        <h5 class="q-ml-sm text-subtitle2 text-center">{{ $t('deviceDialogs.codeHeading') }}</h5>
+        <h5 class="text-subtitle2 text-center">{{ $t('deviceDialogs.codeHeading') }}</h5>
         <q-input rounded outlined disable class="fit" :input-style="{ textAlign: 'center' }" :value="code"/>
       </q-card-section>
 
       <q-card-actions align="right">
-        <q-btn flat :label="$t('generic.cancel')" color="negative" @click="onCancel"/>
+        <q-btn flat :label="$t('generic.delete')" color="negative" @click="onDelete"/>
+        <q-btn flat :label="$t('generic.close')" @click="onClose"/>
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -36,7 +38,10 @@ export default {
     }
   },
   methods: {
-    onCancel () {
+    onDelete () {
+      this.$store.dispatch('devices/deleteActive')
+    },
+    onClose () {
       this.$store.commit('devices/closeDialog')
     }
   },

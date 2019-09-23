@@ -16,6 +16,11 @@ export const addAndOpenDevice = (state, { model, password }) => {
   openDialog(state, state.devices.length - 1)
 }
 
+export const removeActive = (state) => {
+  state.devices.splice(state.dialog.index, 1)
+  closeDialog(state)
+}
+
 export const openDialog = (state, index) => {
   state.dialog.index = index
   state.dialog.opened = true

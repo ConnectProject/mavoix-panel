@@ -93,6 +93,7 @@
               :key="index"
               clickable
               v-ripple
+              @click="$store.commit('devices/openDialog', index)"
             >
               <q-item-section avatar>
                 <q-icon name="devices_other"/>
