@@ -30,6 +30,7 @@ export default {
     new: {
       heading: 'Choisissez un nom pour votre nouvelle appareil'
     },
+    alreadyUsedHeading: 'Vous ne pouvez plus acceder au mot de passe, supprimez l\'appareil',
     qrcodeHeading: 'Pour connecter l\'appareil au compte, veuillez scanner ce qrcode depuis l\'application:',
     codeHeading: 'Ou bien, entrez manuellement ce code dans l\'application'
   },

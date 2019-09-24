@@ -3,14 +3,22 @@
     <div v-if="!opened"/>
     <q-card v-else>
       <h4 class="q-mb-xs text-h4 text-center">{{ device.name }}</h4>
-      <q-card-section class="column items-center justify-center">
-        <h6 class="text-subtitle2 text-center">{{ $t('deviceDialogs.qrcodeHeading') }}</h6>
-        <qrcode-vue :value="code" />
-      </q-card-section>
 
-      <q-card-section class="column items-center justify-center">
-        <h5 class="text-subtitle2 text-center">{{ $t('deviceDialogs.codeHeading') }}</h5>
-        <q-input rounded outlined disable class="fit" :input-style="{ textAlign: 'center' }" :value="code"/>
+      <!-- Print qrcode and write down the code if the password is known -->
+      <div v-if="device.password">
+        <q-card-section class="column items-center justify-center">
+          <h6 class="text-subtitle2 text-center">{{ $t('deviceDialogs.qrcodeHeading') }}</h6>
+          <qrcode-vue :value="code" />
+        </q-card-section>
+
+        <q-card-section class="column items-center justify-center">
+          <h5 class="text-subtitle2 text-center">{{ $t('deviceDialogs.codeHeading') }}</h5>
+          <q-input rounded outlined disable class="fit" :input-style="{ textAlign: 'center' }" :value="code"/>
+        </q-card-section>
+      </div>
+
+      <q-card-section v-else>
+        <h6 class="text-subtitle2 text-center">{{ $t('deviceDialogs.alreadyUsedHeading') }}</h6>
       </q-card-section>
 
       <q-card-actions align="right">
