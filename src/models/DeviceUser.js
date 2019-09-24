@@ -1,5 +1,5 @@
 import Parse from 'parse'
-import randomString from 'mavoix-core/utils/randomString'
+import randomString from '~/utils/randomString'
 
 export default class DeviceUser extends Parse.User {
   constructor () {

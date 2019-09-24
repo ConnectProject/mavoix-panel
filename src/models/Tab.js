@@ -1,7 +1,7 @@
 import Parse from 'parse'
 
-import randomHex from 'mavoix-core/utils/randomHex'
-import slugify from 'mavoix-core/utils/slugify'
+import randomHex from '~/utils/randomHex'
+import slugify from '~/utils/slugify'
 
 export const NAME_KEY = 'name'
 export const HEX_COLOR_KEY = 'hexColor'

@@ -1,6 +1,6 @@
 import Parse from 'parse'
 
-import randomHex from 'mavoix-core/utils/randomHex'
+import randomHex from '~/utils/randomHex'
 
 export default class DeviceModel extends Parse.Object {
   constructor () {

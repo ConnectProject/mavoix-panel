@@ -6,9 +6,9 @@ module.exports = function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
-      'parse',
-      'i18n',
-      'internalComponents'
+      { path: 'parse', server: false },
+      { path: 'i18n' },
+      { path: 'internalComponents', server: false }
     ],
 
     css: [
@@ -115,7 +115,7 @@ module.exports = function (ctx) {
     animations: [],
 
     ssr: {
-      pwa: false
+      pwa: true
     },
 
     pwa: {
