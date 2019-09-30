@@ -46,14 +46,14 @@
       </div>
 
       <!-- Add asset button -->
-      <q-btn
-        v-if="!selectMode"
-        fab
-        icon="add"
+      <q-fab
         class="absolute-bottom-right q-ma-md"
-        color="primary"
-        @click="onUploadFile"
-      />
+        direction="up"
+        color="accent"
+      >
+        <q-fab-action @click="onUploadFile" color="primary" icon="attach_file" />
+        <q-fab-action color="primary" icon="cloud" />
+      </q-fab>
     </q-card>
 
     <!-- Image upload invisible wrapper -->
