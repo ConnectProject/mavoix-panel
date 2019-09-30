@@ -1,7 +1,8 @@
 export const setDevices = (state, usersModel) => {
   state.devices = usersModel.map((model) => {
     return {
-      name: model.getUsername()
+      name: model.getUsername(),
+      password: ''
     }
   })
   state.loading = false
@@ -14,6 +15,12 @@ export const addAndOpenDevice = (state, { model, password }) => {
   })
   closeNameDialog(state)
   openDialog(state, state.devices.length - 1)
+}
+
+export const updateActivePassword = (state, password) => {
+  state.devices[state.dialog.index].password = password
+
+  console.log(state.devices)
 }
 
 export const removeActive = (state) => {

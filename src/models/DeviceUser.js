@@ -1,6 +1,8 @@
 import Parse from 'parse'
 import randomString from '~/utils/randomString'
 
+export const USERNAME_KEY = 'username'
+
 export default class DeviceUser extends Parse.User {
   constructor () {
     super('DeviceUser')
@@ -15,6 +17,10 @@ export default class DeviceUser extends Parse.User {
   }
 
   static Create (username) {
-    return DeviceUser.New(username, randomString(16))
+    return DeviceUser.New(username, DeviceUser.Password())
+  }
+
+  static Password () {
+    return randomString(16)
   }
 }

@@ -17,8 +17,10 @@
         </q-card-section>
       </div>
 
-      <q-card-section v-else>
+      <!-- Otherwise offer to reset the password -->
+      <q-card-section v-else class="column items-center">
         <h6 class="text-subtitle2 text-center">{{ $t('deviceDialogs.alreadyUsedHeading') }}</h6>
+        <q-btn @click="onReset" color="accent" :label="$t('deviceDialogs.resetPasswordLabel')"/>
       </q-card-section>
 
       <q-card-actions align="right">
@@ -46,6 +48,9 @@ export default {
     }
   },
   methods: {
+    onReset () {
+      this.$store.dispatch('devices/resetActive')
+    },
     onDelete () {
       this.$store.dispatch('devices/deleteActive')
     },

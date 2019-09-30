@@ -27,7 +27,8 @@ export default {
     new: {
       heading: 'Choisissez un nom pour votre nouvelle appareil'
     },
-    alreadyUsedHeading: 'Vous ne pouvez plus acceder au mot de passe, supprimez l\'appareil',
+    alreadyUsedHeading: 'Vous ne pouvez plus acceder au mot de passe, cliquez sur le boutton ci dessous afin de regenerer un code d\'invitation. (Les appareils déjà connecté a ce compte seront déconnectés)',
+    resetPasswordLabel: 'Regénérer',
     qrcodeHeading: 'Pour connecter l\'appareil au compte, veuillez scanner ce qrcode depuis l\'application:',
     codeHeading: 'Ou bien, entrez manuellement ce code dans l\'application'
   },

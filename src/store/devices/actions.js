@@ -1,6 +1,6 @@
 import Parse from 'parse'
 
-import DeviceUser from '~/models/DeviceUser'
+import DeviceUser, { USERNAME_KEY } from '~/models/DeviceUser'
 
 export const loadDevices = ({ commit }) => {
   new Parse.Query(DeviceUser)
@@ -27,9 +27,30 @@ export const create = ({ commit }, name) => {
     })
 }
 
+export const resetActive = ({ commit, getters: { active } }) => {
+  new Parse.Query(DeviceUser)
+    .equalTo(USERNAME_KEY, active.name)
+    .first()
+    .catch((err) => {
+      commit('setError', err)
+    })
+    .then((model) => {
+      const password = DeviceUser.Password()
+      model.setPassword(password)
+
+      model.save()
+        .catch((err) => {
+          commit('setError', err)
+        })
+        .then(() => {
+          commit('updateActivePassword', password)
+        })
+    })
+}
+
 export const deleteActive = ({ commit, getters: { active } }) => {
   new Parse.Query(DeviceUser)
-    .equalTo('username', active.name)
+    .equalTo(USERNAME_KEY, active.name)
     .first()
     .catch((err) => {
       commit('setError', err)
