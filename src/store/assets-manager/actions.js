@@ -1,4 +1,5 @@
 import Parse from 'parse'
+import Unidecode from 'unidecode'
 
 import AssetModel, { NAME_KEY } from '~/models/Asset'
 
@@ -56,17 +57,18 @@ export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editin
 }
 
 export const uploadFile = ({ commit }, file) => {
-  new Parse.File(file.name, file)
+  const name = Unidecode(file.name)
+
+  new Parse.File(name, file)
     .save()
     .catch((err) => {
       commit('setError', err)
     })
     .then((file) => {
-      AssetModel.New(file.name().split('from ')[1] || file.name(), file)
+      AssetModel.New(name, file)
         .save()
         .catch((err) => {
           commit('setError', err)
-          throw err
         })
         .then((asset) => {
           commit('addAsset', asset)

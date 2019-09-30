@@ -57,5 +57,6 @@ export const close = (state) => {
 }
 
 export const setError = (state, err) => {
+  console.error(err)
   state.error = err
 }
