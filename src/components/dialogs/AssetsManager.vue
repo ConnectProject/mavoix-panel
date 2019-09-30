@@ -27,6 +27,15 @@
         </q-btn>
       </q-bar>
 
+      <!-- Filters form -->
+      <q-form class="row q-ma-md">
+        <q-input outlined label="Nom">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </q-form>
+
       <!-- Assets -->
       <div class="row q-col-gutter-none" v-if="!loading">
         <q-card
