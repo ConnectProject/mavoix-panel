@@ -178,6 +178,7 @@ export default {
         selectMode: false
       })
     }
+    this.$store.dispatch('global/initTTS')
   },
   components: {
     ListItemLoading,

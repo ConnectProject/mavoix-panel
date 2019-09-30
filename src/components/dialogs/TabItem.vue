@@ -27,7 +27,11 @@
           class="q-my-md"
           @input="onSetName"
           :value="item.name"
-          filled/>
+          filled>
+          <template v-slot:after>
+            <q-btn color="accent" round dense flat icon="play_arrow" @click="tts.speak({ text: item.name })" />
+          </template>
+        </q-input>
 
         <!-- Asset input (flat button or button image) -->
         <q-btn
@@ -68,6 +72,9 @@ export default {
     },
     mode () {
       return this.$store.getters['tabEditor/itemDialogMode']
+    },
+    tts () {
+      return this.$store.getters['global/tts']
     }
   },
   methods: {
