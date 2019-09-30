@@ -29,7 +29,11 @@
           :value="item.name"
           filled>
           <template v-slot:after>
-            <q-btn color="accent" round dense flat icon="play_arrow" @click="tts.speak({ text: item.name })" />
+            <q-btn
+              color="accent"
+              round dense flat icon="play_arrow"
+              @click="tts.speak({ text: item.name })"
+              :disable="ttsEnabled == false"/>
           </template>
         </q-input>
 
@@ -75,6 +79,9 @@ export default {
     },
     tts () {
       return this.$store.getters['global/tts']
+    },
+    ttsEnabled () {
+      return this.$store.getters['global/ttsEnabled']
     }
   },
   methods: {
@@ -94,6 +101,7 @@ export default {
       this.onClose()
     },
     onClose () {
+      console.log(this.ttsEnabled)
       this.$store.commit('tabEditor/closeItemDialog')
     },
     onSetAsset () {

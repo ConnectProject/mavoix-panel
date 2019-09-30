@@ -1,3 +1,4 @@
 export default {
-  tts: null
+  tts: null,
+  ttsEnabled: true
 }

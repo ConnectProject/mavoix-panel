@@ -9,6 +9,7 @@ export const initTTS = ({ commit }) => {
     'pitch': 1
   }).catch((err) => {
     commit('setError', err)
+  }).then(() => {
+    commit('setTTS', speech)
   })
-  commit('setTTS', speech)
 }
