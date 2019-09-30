@@ -32,12 +32,21 @@ export const setHexColor = (state, hexColor) => {
   state.tab.hexColor = hexColor
 }
 
+/**
+ * Set items from model
+ * @param {State} state namespaced state
+ * @param {[TabItemModel]} itemsModels
+ */
 export const setItems = (state, itemsModels) => {
   state.items = []
 
   itemsModels.forEach((itemModel) => {
     state.items.push(itemModelToItem(itemModel))
   })
+}
+
+export const setItemsRaw = (state, items) => {
+  state.items = items
 }
 
 /**

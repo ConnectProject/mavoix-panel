@@ -54,7 +54,11 @@
         <q-btn class="stretch q-ma-md" flat size="lg" @click="onAddItem">{{ $t('tabEditor.addItemLabel') }}</q-btn>
       </div>
 
-      <div :style="{ borderColor: tab.hexColor }" class="col-8 scroll row items-start rounded-borders q-pa-xs q-ph-md q-mh-xs q-mx-md q-gutter-x-xl q-gutter-y-md items-container">
+      <draggable
+        tag="div"
+        v-model="items"
+        :style="{ borderColor: tab.hexColor }"
+        class="col-8 scroll row items-start rounded-borders q-pa-xs q-ph-md q-mh-xs q-mx-md q-gutter-x-xl q-gutter-y-md items-container">
         <q-card class="col-2" v-for="(item, index) in items" :v-if="!item.deleted" :key="index">
           <q-img class="item-img" :src="item.asset.file._url">
             <div class="absolute-bottom">
@@ -64,6 +68,7 @@
               <q-icon name="edit" class="action-icon" size="xl" />
             </div>
           </q-img>
+
           <q-card-actions align="right">
             <q-checkbox
               left-label
@@ -77,7 +82,7 @@
               @input="() => $store.commit('tabEditor/toggleItemHidden', item)"/>
           </q-card-actions>
         </q-card>
-      </div>
+      </draggable>
     </div>
 
     <dialog-tab-item />
@@ -127,8 +132,13 @@ export default {
     tab () {
       return this.$store.getters['tabEditor/tab']
     },
-    items () {
-      return this.$store.getters['tabEditor/items']
+    items: {
+      get () {
+        return this.$store.getters['tabEditor/items']
+      },
+      set (values) {
+        this.$store.commit('tabEditor/setItemsRaw', values)
+      }
     },
     loading () {
       return this.$store.getters['tabEditor/loading']
