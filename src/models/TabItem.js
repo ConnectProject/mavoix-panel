@@ -1,6 +1,6 @@
 import Parse from 'parse'
 
-import randomstring from 'randomstring'
+import randomString from '~/utils/randomString'
 
 export const NAME_KEY = 'name'
 export const ASSET_KEY = 'asset'
@@ -30,6 +30,6 @@ export default class TabItemModel extends Parse.Object {
   }
 
   static Create (name, asset, tab, hidden, available, order) {
-    return TabItemModel.New(name, asset, tab, available, hidden, randomstring.generate(8), order)
+    return TabItemModel.New(name, asset, tab, available, hidden, randomString(8), order)
   }
 }
