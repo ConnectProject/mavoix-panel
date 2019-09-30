@@ -10,7 +10,8 @@ import TabItemModel, {
   AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
   HIDDEN_KEY as ITEM_HIDDEN_KEY,
   TAB_KEY as ITEM_TAB_KEY,
-  KEY_KEY as ITEM_KEY_KEY
+  KEY_KEY as ITEM_KEY_KEY,
+  ORDER_KEY as ITEM_ORDER_KEY
 } from '~/models/TabItem'
 
 export const loadBySlug = ({ commit, dispatch }, slug) => {
@@ -34,6 +35,7 @@ export const fetchItems = ({ commit, getters: { tab } }) => {
     .then((tabModel) => {
       new Parse.Query(TabItemModel)
         .equalTo(ITEM_TAB_KEY, tabModel)
+        .ascending(ITEM_ORDER_KEY)
         .find()
         .catch((err) => {
           commit('setError', err)
@@ -85,6 +87,7 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
                   itemModel.set(ITEM_ASSET_KEY, item.asset)
                   itemModel.set(ITEM_HIDDEN_KEY, item.hidden)
                   itemModel.set(ITEM_AVAILABLE_KEY, item.available)
+                  itemModel.set(ITEM_ORDER_KEY, item.order)
 
                   return itemModel.save()
                 })

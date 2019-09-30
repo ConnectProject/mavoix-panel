@@ -47,6 +47,10 @@ export const setItems = (state, itemsModels) => {
 
 export const setItemsRaw = (state, items) => {
   state.items = items
+
+  state.items.forEach((item, index) => {
+    item.order = index
+  })
 }
 
 /**
@@ -62,7 +66,8 @@ export const addItem = (state) => {
     asset,
     key: null,
     available: true,
-    hidden: false
+    hidden: false,
+    order: state.items.length
   })
 }
 
