@@ -1,4 +1,4 @@
-export default {
+export const getDefaultState = () => ({
   loading: true,
   error: null,
 
@@ -9,6 +9,7 @@ export default {
   },
 
   items: [],
+  deletedItems: [],
   itemDialog: {
     opened: false,
     mode: null,
@@ -23,4 +24,6 @@ export default {
     index: 0,
     data: []
   }
-}
+})
+
+export default getDefaultState()

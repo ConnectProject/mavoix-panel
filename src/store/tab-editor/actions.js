@@ -44,7 +44,7 @@ export const fetchItems = ({ commit, getters: { tab } }) => {
     })
 }
 
-export const saveCb = ({ commit, dispatch, getters: { tab, items } }, callback) => {
+export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems } }, callback) => {
   tabToModel(tab)
     .catch((err) => {
       commit('setError', err)
@@ -59,6 +59,18 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items } }, callback) 
         tabModel.save(),
         new Promise((resolve, reject) => {
           const promises = []
+
+          deletedItems.forEach((item) => {
+            if (item.key) {
+              promises.push(new Parse.Query(TabItemModel)
+                .equalTo(ITEM_TAB_KEY, tabModel)
+                .equalTo(ITEM_KEY_KEY, item.key)
+                .first()
+                .then((itemModel) => {
+                  return itemModel.destroy()
+                }))
+            }
+          })
 
           items.forEach((item) => {
             if (!item.key) {
@@ -85,9 +97,9 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items } }, callback) 
         })
       ]).catch((err) => {
         commit('setError', err)
-      }).then(([tabModel, items]) => {
-        console.log(items)
+      }).then(([tabModel]) => {
         commit('clearState')
+        dispatch('loadBySlug', tabModel.get(SLUG_KEY))
         callback(tabModel)
       })
     })

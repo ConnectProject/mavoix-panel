@@ -2,6 +2,8 @@ export const tab = ({ tab }) => tab
 
 export const items = ({ items }) => items
 
+export const deletedItems = ({ deletedItems }) => deletedItems
+
 export const itemDialog = ({ itemDialog: { data } }) => data
 
 export const itemDialogOpened = ({ itemDialog: { opened } }) => opened

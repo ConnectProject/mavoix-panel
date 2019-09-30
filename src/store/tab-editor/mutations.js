@@ -1,5 +1,6 @@
 import { NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
 import { changeByKey, modelToTab, itemModelToItem, itemIndex } from './utils'
+import { getDefaultState } from './state'
 
 /**
  * Set the tab used by the Tab Editor
@@ -40,7 +41,7 @@ export const setItems = (state, itemsModels) => {
 }
 
 /**
- * Add an item to the tab
+ * Add the itemDialog's item to the tab
  * @param {State} state namespaced state
  * @param {Item} item parse model to add
  */
@@ -91,7 +92,10 @@ export const openItemDialog = (state, { mode = 'new', index, data }) => {
 }
 
 export const removeItemDialog = (state) => {
-  state.items.splice(itemIndex(state, state.itemDialog.data), 1)
+  const index = itemIndex(state, state.itemDialog.data)
+
+  state.deletedItems.push(state.items[index])
+  state.items.splice(index, 1)
 }
 
 export const setItemDialogAsset = (state, asset) => {
@@ -134,7 +138,7 @@ export const redo = (state) => {
 }
 
 export const clearState = (state) => {
-  Object.assign(state, {})
+  Object.assign(state, getDefaultState())
 }
 
 export const setError = (state, err) => {
