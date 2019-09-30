@@ -10,9 +10,9 @@ export const itemDialogOpened = ({ itemDialog: { opened } }) => opened
 
 export const itemDialogMode = ({ itemDialog: { mode } }) => mode
 
-export const isUndoable = ({ history }) => history.index > 0
+export const isUndoable = ({ undoStack }) => undoStack.length === 0
 
-export const isRedoable = ({ history }) => history.index === history.data.length
+export const isRedoable = ({ redoStack }) => redoStack.length === 0
 
 export const tabModel = ({ tabModel }) => tabModel
 

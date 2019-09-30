@@ -20,10 +20,8 @@ export const getDefaultState = () => ({
     }
   },
 
-  history: {
-    index: 0,
-    data: []
-  }
+  undoStack: [],
+  redoStack: []
 })
 
 export default getDefaultState()
