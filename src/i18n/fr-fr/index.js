@@ -41,8 +41,8 @@ export default {
     delete: 'Supprimer',
     cancel: 'Annuler',
     save: 'Sauvegarder',
-    available: 'Disponible',
-    visible: 'Visible',
+    unavailable: 'Indisponible',
+    invisible: 'Invisible',
     undo: 'Undo',
     redo: 'Redo',
     loading: 'Chargement'

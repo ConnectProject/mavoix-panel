@@ -72,13 +72,13 @@
           <q-card-actions align="right">
             <q-checkbox
               left-label
-              :label="$t('generic.available')"
-              :value="item.available"
+              :label="$t('generic.unavailable')"
+              :value="!item.available"
               @input="() => $store.commit('tabEditor/toggleItemAvailable', item)"/>
             <q-checkbox
               left-label
-              :label="$t('generic.visible')"
-              :value="!item.hidden"
+              :label="$t('generic.invisible')"
+              :value="item.hidden"
               @input="() => $store.commit('tabEditor/toggleItemHidden', item)"/>
           </q-card-actions>
         </q-card>
