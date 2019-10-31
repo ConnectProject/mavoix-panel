@@ -76,7 +76,7 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
 
           items.forEach((item) => {
             if (!item.key) {
-              promises.push(TabItemModel.Create(item.name, item.asset, tabModel, item.hidden, item.available).save())
+              promises.push(TabItemModel.Create(item.name, item.asset, tabModel, item.hidden, item.available, item.order).save())
             } else {
               promises.push(new Parse.Query(TabItemModel)
                 .equalTo(ITEM_TAB_KEY, tabModel)
