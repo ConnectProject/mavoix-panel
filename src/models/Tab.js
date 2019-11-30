@@ -7,6 +7,9 @@ export const NAME_KEY = 'name'
 export const HEX_COLOR_KEY = 'hexColor'
 export const SLUG_KEY = 'slug'
 
+/*
+** Represents a tab.
+*/
 export default class TabModel extends Parse.Object {
   constructor () {
     super('Tab')
@@ -16,9 +19,9 @@ export default class TabModel extends Parse.Object {
     const newTab = new TabModel()
 
     newTab
-      .set(NAME_KEY, name)
-      .set(HEX_COLOR_KEY, hexColor)
-      .set(SLUG_KEY, slugify(name))
+      .set(NAME_KEY, name) // Tab's name
+      .set(HEX_COLOR_KEY, hexColor) // Tab's color
+      .set(SLUG_KEY, slugify(name)) // Tab's slug (http://exemple.com/tabs/{slug})
     return newTab
   }
 
