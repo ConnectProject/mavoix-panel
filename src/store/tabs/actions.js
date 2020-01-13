@@ -18,12 +18,12 @@ export const loadTabs = ({ commit }) => {
 }
 
 /**
- * 
- * @param {Context} ctx 
+ * Create a tab
+ * @param {Context} ctx
  * @param {{ String, Function }} {
  *  name: the name of the new tab,
  *  callback: function to call when tab's been created
- * } 
+ * }
  */
 export const createTabCb = ({ commit }, { name, callback }) => {
   TabModel.Create(name)
@@ -40,7 +40,7 @@ export const createTabCb = ({ commit }, { name, callback }) => {
 }
 
 /**
- * 
+ * Delete a tab
  * @param {Context} ctx
  * @param {{ Tab, Function }} {
  *  tab: the tab object to delete,

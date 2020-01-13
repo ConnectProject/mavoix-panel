@@ -6,7 +6,7 @@ export const devices = ({ devices }) => devices
 
 /**
  * Return the opened device
- * @param {State} state 
+ * @param {State} state
  */
 export const active = ({ devices, dialog }) => devices[dialog.index]
 

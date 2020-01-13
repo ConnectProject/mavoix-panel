@@ -9,6 +9,12 @@ import {
   ORDER_KEY as ITEM_ORDER_KEY
 } from '~/models/TabItem'
 
+/**
+ * Set something in the tab from its key
+ * @param {State} state
+ * @param {String} key to change
+ * @param {*} newValue to set
+ */
 export const changeByKey = (state, key, newValue) => {
   switch (key) {
     case NAME_KEY:
@@ -22,20 +28,37 @@ export const changeByKey = (state, key, newValue) => {
   }
 }
 
+/**
+ * Find an item's index in the list of items
+ * @param {State} state
+ * @param {Item} pItem to find
+ */
 export const itemIndex = (state, pItem) => state.items.findIndex((item) => item.name === pItem.name)
 
+/**
+ * Transform a model into an object
+ * @param {TabModel} tabModel the model to transform
+ */
 export const modelToTab = (tabModel) => ({
   slug: tabModel.get(SLUG_KEY),
   name: tabModel.get(NAME_KEY),
   hexColor: tabModel.get(HEX_COLOR_KEY)
 })
 
+/**
+ * Retrive a tab's model from its object
+ * @param {Tab} tab the obect to retrive
+ */
 export const tabToModel = (tab) => {
   return new Parse.Query(TabModel)
     .equalTo(SLUG_KEY, tab.slug)
     .first()
 }
 
+/**
+ * Transform an tab's item model into a tab's item object
+ * @param {ItemModel} itemModel
+ */
 export const itemModelToItem = (itemModel) => ({
   name: itemModel.get(ITEM_NAME_KEY),
   asset: itemModel.get(ITEM_ASSET_KEY),

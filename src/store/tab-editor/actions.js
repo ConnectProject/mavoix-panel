@@ -14,6 +14,11 @@ import TabItemModel, {
   ORDER_KEY as ITEM_ORDER_KEY
 } from '~/models/TabItem'
 
+/**
+ * Load a tab with its slug
+ * @param {Context} ctx
+ * @param {String} slug the tab's slug
+ */
 export const loadBySlug = ({ commit, dispatch }, slug) => {
   new Parse.Query(TabModel)
     .equalTo(SLUG_KEY, slug)
@@ -27,6 +32,10 @@ export const loadBySlug = ({ commit, dispatch }, slug) => {
     })
 }
 
+/**
+ * Load every items for the loaded tab
+ * @param {Context} ctx
+ */
 export const fetchItems = ({ commit, getters: { tab } }) => {
   tabToModel(tab)
     .catch((err) => {
@@ -46,12 +55,20 @@ export const fetchItems = ({ commit, getters: { tab } }) => {
     })
 }
 
+/**
+ * Save the tab's modifications
+ * @param {Context} ctx
+ * @param {Function} callback to call when tab saved
+ */
 export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems } }, callback) => {
   tabToModel(tab)
     .catch((err) => {
       commit('setError', err)
     })
     .then((tabModel) => {
+      /**
+       * Save basic changes
+       */
       tabModel.set(NAME_KEY, tab.name)
       tabModel.set(HEX_COLOR_KEY, tab.hexColor)
       tabModel.set(SLUG_KEY, slugify(tab.name))
@@ -59,6 +76,8 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
       Promise.all([
         /* Save the tabmodel */
         tabModel.save(),
+
+        /* Delete removed items */
         new Promise((resolve, reject) => {
           const promises = []
 
@@ -74,10 +93,13 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
             }
           })
 
+          /* Save items */
           items.forEach((item) => {
             if (!item.key) {
+              /* Save item as new item */
               promises.push(TabItemModel.Create(item.name, item.asset, tabModel, item.hidden, item.available, item.order).save())
             } else {
+              /* Update item if existing */
               promises.push(new Parse.Query(TabItemModel)
                 .equalTo(ITEM_TAB_KEY, tabModel)
                 .equalTo(ITEM_KEY_KEY, item.key)
@@ -108,7 +130,11 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
     })
 }
 
-export const deleteTab = ({ commit, getters: { tab, items } }) => {
+/**
+ * Delete the tab
+ * @param {Context} ctx
+ */
+export const deleteTab = ({ commit, getters: { tab } }) => {
   tabToModel(tab)
     .catch((err) => {
       commit('setError', err)

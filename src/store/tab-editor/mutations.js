@@ -85,14 +85,36 @@ export const updateItem = (state) => {
   undoStackPushDo(state, new ActionUpdateItem(from, to))
 }
 
+/**
+ * Toggle availability for an item
+ * @param {State} _
+ * @param {Item} item to toggle availability
+ */
 export const toggleItemAvailable = (_, item) => {
   item.available = !item.available
 }
 
+/**
+ * Toggle visibility for an item
+ * @param {State} _ 
+ * @param {Item} item to toggle visibility
+ */
 export const toggleItemHidden = (_, item) => {
   item.hidden = !item.hidden
 }
 
+/**
+ * 
+ * @param {State} state
+ * @param {{ String, Number, { AssetModel, String }}} {
+ *  mode: see state.js
+ *  index: index of the edited item
+ *  data: {
+ *   asset: Asset of the item,
+ *   name: Name of the item
+ *  }
+ * }
+ */
 export const openItemDialog = (state, { mode = 'new', index, data }) => {
   state.itemDialog.opened = true
   state.itemDialog.mode = mode
@@ -102,6 +124,10 @@ export const openItemDialog = (state, { mode = 'new', index, data }) => {
   }
 }
 
+/**
+ * Remove the item loaded in the dialog for the list of items
+ * @param {State} state
+ */
 export const removeItemDialog = (state) => {
   const index = itemIndex(state, state.itemDialog.data)
 
@@ -109,42 +135,78 @@ export const removeItemDialog = (state) => {
   state.items.splice(index, 1)
 }
 
+/**
+ * Define a new asset for the edited item
+ * @param {State} state
+ * @param {Asset} asset new asset
+ */
 export const setItemDialogAsset = (state, asset) => {
   state.itemDialog.data.asset = asset
 }
 
+/**
+ * Define a new name for the edited item
+ * @param {State} state
+ * @param {String} name new name
+ */
 export const setItemDialogName = (state, name) => {
   state.itemDialog.data.name = name
 }
 
+/**
+ * Close the item dialog and reset its properties
+ * @param {State} state
+ */
 export const closeItemDialog = (state) => {
   state.itemDialog.opened = false
   state.itemDialog.data.name = ''
   state.itemDialog.data.asset = null
 }
 
+/**
+ * Do an action and push it to undo stack
+ * @param {State} state
+ * @param {Action} action to do
+ */
 export const undoStackPushDo = (state, action) => {
   action.do(state)
   state.undoStack.push(action)
   state.redoStack = []
 }
 
+/**
+ * Undo
+ * @param {State} state
+ */
 export const undo = (state) => {
   const action = state.undoStack.pop()
   action.reverse(state)
   state.redoStack.push(action)
 }
 
+/**
+ * Redo
+ * @param {State} state
+ */
 export const redo = (state) => {
   const action = state.redoStack.pop()
   action.do(state)
   state.undoStack.push(action)
 }
 
+/**
+ * Reset state
+ * @param {State} state
+ */
 export const clearState = (state) => {
   Object.assign(state, getDefaultState())
 }
 
+/**
+ * Used to throw an error
+ * @param {State} state
+ * @param {Error} error is the error to set
+ */
 export const setError = (state, err) => {
   state.error = err
   console.error(`Tab editor error: ${err}`)

@@ -19,7 +19,7 @@ export const setDevices = (state, deviceModels) => {
  * @param {{ DeviceUserModel, String }} {
  *   model: the device to add and open
  *   password: the password of the new device
- * } 
+ * }
  */
 export const addAndOpenDevice = (state, { model, password }) => {
   state.devices.push({

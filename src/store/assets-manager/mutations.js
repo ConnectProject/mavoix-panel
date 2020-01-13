@@ -35,7 +35,7 @@ export const removeEditingAsset = (state) => {
 /**
  * Update the edited asset's fields
  * @param {State} state
- * @param {AssetModel} assetModel 
+ * @param {AssetModel} assetModel
  */
 export const updateEditingAsset = (state, assetModel) => {
   const asset = assetFromModel(assetModel)
@@ -74,7 +74,7 @@ export const cancelEdit = (state) => {
 
 /**
  * Call selectCallback and close assets manager
- * 
+ *
  * @param {State} state
  * @param {Asset} asset asset to select
  */
@@ -86,7 +86,7 @@ export const selectAsset = (state, asset) => {
 }
 
 /**
- * 
+ * Open the assets manager
  * @param {State} state
  * @param {{Boolean, Function}} {
  *  selectMode: true if open to select an asset, false if to manage
