@@ -96,7 +96,7 @@ export const toggleItemAvailable = (_, item) => {
 
 /**
  * Toggle visibility for an item
- * @param {State} _ 
+ * @param {State} _
  * @param {Item} item to toggle visibility
  */
 export const toggleItemHidden = (_, item) => {
@@ -104,7 +104,7 @@ export const toggleItemHidden = (_, item) => {
 }
 
 /**
- * 
+ * Open the item dialog
  * @param {State} state
  * @param {{ String, Number, { AssetModel, String }}} {
  *  mode: see state.js
