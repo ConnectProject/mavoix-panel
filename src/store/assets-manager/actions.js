@@ -5,13 +5,27 @@ import AssetModel, { NAME_KEY } from '~/models/Asset'
 
 import { modelFromAsset } from './utils'
 
+/**
+ * Open the asset manager and load assets
+ * @param {Context} ctx
+ * @param {{ Boolean, Function }} {
+ *  selectMode: is the asset manager started to select an asset or to manage them
+ *  selectCallback: is selectMode is true call this function with the selected asset as parameter
+ * }
+ *
+ */
 export const openAndLoad = ({ commit, dispatch }, { selectMode = false, selectCallback }) => {
   commit('open', { selectMode, selectCallback })
   dispatch('loadAssets')
 }
 
+/**
+ * Load every assets for the user
+ * @param {Context} ctx
+ */
 export const loadAssets = ({ commit }) => {
   new Parse.Query(AssetModel)
+    // .find({ PARENT_KEY: user._id })
     .find()
     .catch((err) => {
       commit('setError', err)
@@ -21,6 +35,10 @@ export const loadAssets = ({ commit }) => {
     })
 }
 
+/**
+ * Delete the asset that's edited
+ * @param {Context} ctx
+ */
 export const destroyEditingAsset = ({ commit, state: { assets, editingIndex } }) => {
   modelFromAsset(assets[editingIndex])
     .catch((err) => {
@@ -38,6 +56,10 @@ export const destroyEditingAsset = ({ commit, state: { assets, editingIndex } })
     })
 }
 
+/**
+ * Save the asset that's edited
+ * @param {Context} ctx
+ */
 export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editingAsset } }) => {
   modelFromAsset(assets[editingIndex])
     .catch((err) => {
@@ -56,6 +78,11 @@ export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editin
     })
 }
 
+/**
+ * Upload a file and create the asset
+ * @param {Context} ctx
+ * @param {File} file the file to upload
+ */
 export const uploadFile = ({ commit }, file) => {
   const name = Unidecode(file.name)
 

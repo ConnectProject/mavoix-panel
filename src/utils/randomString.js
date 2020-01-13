@@ -1,6 +1,8 @@
-
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
+/**
+ * Generate a random alphanumeric string of a specific length
+ */
 export default (length) => {
   let result = ''
 

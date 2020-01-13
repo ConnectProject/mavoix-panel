@@ -2,6 +2,10 @@ import Parse from 'parse'
 
 import TabModel from '~/models/Tab'
 
+/**
+ * Load tabs
+ * @param {Context} ctx
+ */
 export const loadTabs = ({ commit }) => {
   new Parse.Query(TabModel)
     .find()
@@ -13,6 +17,14 @@ export const loadTabs = ({ commit }) => {
     })
 }
 
+/**
+ * 
+ * @param {Context} ctx 
+ * @param {{ String, Function }} {
+ *  name: the name of the new tab,
+ *  callback: function to call when tab's been created
+ * } 
+ */
 export const createTabCb = ({ commit }, { name, callback }) => {
   TabModel.Create(name)
     .save()
@@ -27,6 +39,14 @@ export const createTabCb = ({ commit }, { name, callback }) => {
     })
 }
 
+/**
+ * 
+ * @param {Context} ctx
+ * @param {{ Tab, Function }} {
+ *  tab: the tab object to delete,
+ *  callback: function to call when tab's been deleted
+ * }
+ */
 export const deleteTabCb = ({ commit }, { tab, callback }) => {
   const id = tab.id
 

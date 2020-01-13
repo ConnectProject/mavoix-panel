@@ -1,5 +1,9 @@
 import Speak from 'speak-tts'
 
+/**
+ * Init the text to speech plugin
+ * @param {Context} ctx
+ */
 export const initTTS = ({ commit }) => {
   const speech = new Speak()
   speech.init({
