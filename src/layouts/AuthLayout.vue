@@ -1,10 +1,3 @@
- Layout Builder
-Visible Header
-Visible Footer
-Visible left-side Drawer
-Visible right-side Drawer
-Inject Drawer content for scrolling
-Quasar
 <template>
   <q-layout view="hHh lpR fFf">
 
@@ -24,9 +17,6 @@ Quasar
 
 <script>
 export default {
-  data () {
-    return {
-    }
-  }
+  name: 'AuthLayout'
 }
 </script>

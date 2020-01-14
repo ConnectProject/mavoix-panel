@@ -139,37 +139,18 @@ import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 
 export default {
   name: 'HomeLayout',
-  data () {
-    return {
-      drawerOpen: this.$q.platform.is.desktop
-    }
+  components: {
+    ListItemLoading,
+    DialogAssetsManager,
+    DialogTabName,
+    DialogDeviceName,
+    DialogDeviceInvitation
   },
-  computed: {
-    devices () {
-      return this.$store.getters['devices/devices']
-    },
-    tabs () {
-      return this.$store.getters['tabs/tabs']
-    }
-  },
-  watch: {
-    '$route' (to, from) {
-      if (to.params.assets && to.params.assets === 'assets') {
-        this.$store.dispatch('assetsManager/openAndLoad', {
-          selectMode: false
-        })
-      }
-    }
-  },
-  methods: {
-    createAndGoToTab (name) {
-    },
-    onLogout () {
-      this.$router.push({
-        name: 'auth'
-      })
-    }
-  },
+  /**
+   * Load tabs
+   * Load devices
+   * If route is host/assets open assets manager
+   */
   mounted () {
     this.$store.dispatch('tabs/loadTabs')
     this.$store.dispatch('devices/loadDevices')
@@ -180,12 +161,46 @@ export default {
     }
     this.$store.dispatch('global/initTTS')
   },
-  components: {
-    ListItemLoading,
-    DialogAssetsManager,
-    DialogTabName,
-    DialogDeviceName,
-    DialogDeviceInvitation
+  data () {
+    return {
+      drawerOpen: this.$q.platform.is.desktop
+    }
+  },
+  computed: {
+    /**
+     * Return all devices
+     */
+    devices () {
+      return this.$store.getters['devices/devices']
+    },
+    /**
+     * Return all tabs
+     */
+    tabs () {
+      return this.$store.getters['tabs/tabs']
+    }
+  },
+  watch: {
+    /**
+     * When route change, if its host/assets open assets manager
+     */
+    '$route' (to, from) {
+      if (to.params.assets && to.params.assets === 'assets') {
+        this.$store.dispatch('assetsManager/openAndLoad', {
+          selectMode: false
+        })
+      }
+    }
+  },
+  methods: {
+    /**
+     * Go to auth page
+     */
+    onLogout () {
+      this.$router.push({
+        name: 'auth'
+      })
+    }
   }
 }
 </script>
