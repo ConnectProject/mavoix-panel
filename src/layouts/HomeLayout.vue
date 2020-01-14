@@ -138,7 +138,7 @@ import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 
 export default {
-  name: 'HomeLayout',
+  name: 'LayoutHome',
   components: {
     ListItemLoading,
     DialogAssetsManager,

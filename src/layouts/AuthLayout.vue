@@ -17,6 +17,6 @@
 
 <script>
 export default {
-  name: 'AuthLayout'
+  name: 'LayoutAuth'
 }
 </script>

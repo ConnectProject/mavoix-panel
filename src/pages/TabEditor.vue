@@ -170,7 +170,7 @@ import DialogTabItem from '~/components/dialogs/TabItem'
 import { SLUG_KEY } from '../models/Tab'
 
 export default {
-  name: 'TabEditor',
+  name: 'PageTabEditor',
   components: {
     DialogTabItem
   },

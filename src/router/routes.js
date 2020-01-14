@@ -5,7 +5,7 @@ const routes = [
     component: () => import('~/layouts/AuthLayout.vue'),
     children: [
       /* Auth homepage */
-      { name: 'auth', path: '/', component: () => import('~/pages/Authenticate.vue') }
+      { name: 'auth', path: '/', component: () => import('~/pages/auth/Home.vue') }
     ]
   },
   {
@@ -14,7 +14,7 @@ const routes = [
     component: () => import('~/layouts/HomeLayout.vue'),
     children: [
       /* Homepage */
-      { name: 'home', path: '/home', component: () => import('~/pages/Index.vue') },
+      { name: 'home', path: '/home', component: () => import('~/pages/Home.vue') },
 
       /* Tab editor */
       { name: 'tab', path: '/tabs/:slug', component: () => import('~/pages/TabEditor.vue') }
