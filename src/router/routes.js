@@ -17,10 +17,7 @@ const routes = [
       { name: 'home', path: '/home', component: () => import('~/pages/Index.vue') },
 
       /* Tab editor */
-      { name: 'tab', path: '/tabs/:slug', component: () => import('~/pages/TabEditor.vue') },
-
-      /* Devices routes */
-      { name: 'device', path: '/devices/:slug', component: () => import('~/pages/Device.vue') }
+      { name: 'tab', path: '/tabs/:slug', component: () => import('~/pages/TabEditor.vue') }
     ]
   }
 ]
