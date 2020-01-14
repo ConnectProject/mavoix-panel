@@ -1,17 +1,44 @@
 <template>
-  <q-dialog :value="opened" persistent>
+  <q-dialog
+    :value="opened"
+    persistent
+  >
     <q-card style="min-width: 400px">
       <q-card-section>
-        <div class="text-h6">{{ $t('deviceDialogs.new.heading') }}</div>
+        <div class="text-h6">
+          {{ $t('deviceDialogs.new.heading') }}
+        </div>
       </q-card-section>
 
+      <!-- Device name -->
       <q-card-section>
-        <q-input dense v-model="name" autofocus @keyup.enter="onSubmit" />
+        <q-input
+          dense
+          v-model="name"
+          autofocus
+          @keyup.enter="onSubmit"
+        />
       </q-card-section>
 
-      <q-card-actions align="right" class="text-primary">
-        <q-btn flat :label="$t('generic.cancel')" color="negative" @click="onCancel" />
-        <q-btn flat :label="$t('generic.save')" @click="onSubmit" :disable="name === ''" />
+      <q-card-actions
+        align="right"
+        class="text-primary"
+      >
+        <!-- Cancel -->
+        <q-btn
+          flat
+          :label="$t('generic.cancel')"
+          color="negative"
+          @click="onCancel"
+        />
+
+        <!-- Save -->
+        <q-btn
+          flat
+          :label="$t('generic.save')"
+          @click="onSubmit"
+          :disable="name === ''"
+        />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -26,11 +53,17 @@ export default {
     }
   },
   computed: {
+    /**
+     * Return true if the dialog should be opened
+     */
     opened () {
       return this.$store.getters['devices/nameDialog'].opened
     }
   },
   methods: {
+    /**
+     * Call when submit to create the device and open the dialog
+     */
     onSubmit () {
       if (this.name === '') {
         return
@@ -38,6 +71,9 @@ export default {
       this.$store.dispatch('devices/create', this.name)
       this.name = ''
     },
+    /**
+     * Call to call the dialog
+     */
     onCancel () {
       this.$store.commit('devices/closeNameDialog')
     }

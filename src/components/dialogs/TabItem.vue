@@ -15,7 +15,10 @@
 </style>
 
 <template>
-  <q-dialog :value="opened" persistent>
+  <q-dialog
+    :value="opened"
+    persistent
+  >
     <q-card class="column items-center q-pa-md">
       <h6 class="q-mt-md q-mb-xs text-center">
         {{ $t(`tabEditor.itemDialog.heading${mode === 'edit' ? 'Edit' : 'New'}`) }}
@@ -49,16 +52,39 @@
           :src="item.asset.file._url"
           @click="onSetAsset">
           <div class="absolute fit flex justify-center items-center text-center image-wrapper">
-            <q-icon name="edit" class="action-icon" size="xl" />
+            <q-icon
+              name="edit"
+              class="action-icon"
+              size="xl"
+            />
           </div>
         </q-img>
       </q-card-section>
 
-      <!-- Actions buttons -->
       <q-card-actions align="right">
-        <q-btn v-if="mode === 'edit'" flat :label="$t('generic.delete')" color="negative" @click="onDelete"/>
-        <q-btn flat :label="$t('generic.cancel')" @click="onClose"/>
-        <q-btn flat :label="$t('generic.validate')" color="primary" @click="onSubmit"/>
+        <!-- Delete the item, only printed in edit mode -->
+        <q-btn
+          v-if="mode === 'edit'"
+          flat
+          :label="$t('generic.delete')"
+          color="negative"
+          @click="onDelete"
+        />
+
+        <!-- Cancel modifications -->
+        <q-btn
+          flat
+          :label="$t('generic.cancel')"
+          @click="onClose"
+        />
+
+        <!-- Save modifications -->
+        <q-btn
+          flat
+          :label="$t('generic.validate')"
+          color="primary"
+          @click="onSubmit"
+        />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -68,23 +94,42 @@
 export default {
   name: 'DialogTabItem',
   computed: {
+    /**
+     * Return true if the dialog should be opened
+     */
     opened () {
       return this.$store.getters['tabEditor/itemDialogOpened']
     },
+    /**
+     * Return the item
+     */
     item () {
       return this.$store.getters['tabEditor/itemDialog']
     },
+    /**
+     * Return the mode (new or edit)
+     */
     mode () {
       return this.$store.getters['tabEditor/itemDialogMode']
     },
+    /**
+     * Return the tts plugin
+     */
     tts () {
       return this.$store.getters['global/tts']
     },
+    /**
+     * Return true if tts is enabled
+     */
     ttsEnabled () {
       return this.$store.getters['global/ttsEnabled']
     }
   },
   methods: {
+    /**
+     * Call on submit to update or add the item to the tab
+     * Then close the dialog
+     */
     onSubmit () {
       switch (this.mode) {
         case 'edit':
@@ -96,14 +141,22 @@ export default {
       }
       this.onClose()
     },
+    /**
+     * Call to delete the item
+     */
     onDelete () {
       this.$store.commit('tabEditor/removeItemDialog')
       this.onClose()
     },
+    /**
+     * Call to close the dialog
+     */
     onClose () {
-      console.log(this.ttsEnabled)
       this.$store.commit('tabEditor/closeItemDialog')
     },
+    /**
+     * Call to open the asset manager to select an asset for the item
+     */
     onSetAsset () {
       this.$store.dispatch('assetsManager/openAndLoad', {
         selectMode: true,
@@ -112,6 +165,9 @@ export default {
         }
       })
     },
+    /**
+     * Call to set the item's name
+     */
     onSetName (name) {
       this.$store.commit('tabEditor/setItemDialogName', name)
     }

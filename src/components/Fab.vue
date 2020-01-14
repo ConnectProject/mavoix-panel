@@ -1,5 +1,8 @@
 <template>
-  <q-page-sticky position="bottom-right" :offset="[18, 18]">
+  <q-page-sticky
+    position="bottom-right"
+    :offset="[18, 18]"
+  >
     <q-btn
       fab
       :icon="$props.icon || 'add'"
@@ -11,7 +14,7 @@
 
 <script>
 export default {
-  name: 'Fab',
+  name: 'ComponentFab',
   props: {
     icon: String,
     color: String,

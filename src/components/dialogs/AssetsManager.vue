@@ -80,34 +80,61 @@ import AssetEdit from './AssetEdit'
 
 export default {
   name: 'DialogAssetsManager',
+  components: {
+    AssetEdit
+  },
   computed: {
+    /**
+     * Return true if the dialog should be opened
+     */
     opened () {
       return this.$store.getters['assetsManager/opened']
     },
+    /**
+     * Return true if assets are loading
+     */
     loading () {
       return this.$store.getters['assetsManager/loading']
     },
+    /**
+     * Return all assets
+     */
     assets () {
       return this.$store.getters['assetsManager/all']
     },
+    /**
+     * Return true if assets manager opened to select asset, false if its to manage assets
+     */
     selectMode () {
       return this.$store.getters['assetsManager/selectMode']
     }
   },
   methods: {
+    /**
+     * Call to cancel
+     */
     onCancel () {
       if (!this.selectMode) this.$router.back()
       this.$store.commit('assetsManager/close')
     },
+    /**
+     * Call to upload a file
+     */
     onUploadFile () {
       this.$refs['invisibleFileInput'].click()
     },
+    /**
+     * When a file has been uploaded create the asset
+     */
     onInputFile ({ target: { files } }) {
       if (files.length > 0) {
         const file = files[0]
         this.$store.dispatch('assetsManager/uploadFile', file)
       }
     },
+    /**
+     * When clicking on the asset select it or edit it
+     */
     onActionAsset (asset) {
       if (this.selectMode) {
         this.$store.commit('assetsManager/selectAsset', asset)
@@ -115,9 +142,6 @@ export default {
         this.$store.commit('assetsManager/editAsset', asset)
       }
     }
-  },
-  components: {
-    AssetEdit
   }
 }
 </script>

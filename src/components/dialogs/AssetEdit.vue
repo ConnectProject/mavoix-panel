@@ -1,5 +1,8 @@
 <template>
-  <q-dialog :value="opened" persistent>
+  <q-dialog
+    :value="opened"
+    persistent
+  >
     <q-card>
       <q-card-section>
         <!-- Name input -->
@@ -11,18 +14,33 @@
           @input="onInputName"
           filled
         />
-
-        <tags-input
-          class="q-my-xs"
-          v-model="tag"
-          :tags="tags"
-          @tags-changed="newTags => tags = newTags"
-        />
       </q-card-section>
       <q-card-actions>
-        <q-btn flat color="negative" @click="onDelete">{{ $t('generic.delete') }}</q-btn>
-        <q-btn flat @click="onCancel">{{ $t('generic.cancel') }}</q-btn>
-        <q-btn flat color="primary" @click="onSave">{{ $t('generic.save') }}</q-btn>
+        <!-- Delete tab -->
+        <q-btn
+          flat
+          color="negative"
+          @click="onDelete"
+        >
+          {{ $t('generic.delete') }}
+        </q-btn>
+
+        <!-- Cancel modifications -->
+        <q-btn
+          flat
+          @click="onCancel"
+        >
+          {{ $t('generic.cancel') }}
+        </q-btn>
+
+        <!-- Save modifications -->
+        <q-btn
+          flat
+          color="primary"
+          @click="onSave"
+        >
+          {{ $t('generic.save') }}
+        </q-btn>
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -31,30 +49,42 @@
 <script>
 export default {
   name: 'DialogAssetEdit',
-  data () {
-    return {
-      tag: '',
-      tags: []
-    }
-  },
   computed: {
-    asset () {
-      return this.$store.getters['assetsManager/editingAsset']
-    },
+    /**
+     * Return true if the dialog should be opened
+     */
     opened () {
       return this.$store.getters['assetsManager/editing']
+    },
+    /**
+     * Return the asset
+     */
+    asset () {
+      return this.$store.getters['assetsManager/editingAsset']
     }
   },
   methods: {
+    /**
+     * Call so set asset's name
+     */
     onInputName (name) {
       this.$store.commit('assetsManager/editingAssetSetName', name)
     },
+    /**
+     * Call to delete the asset
+     */
     onDelete () {
       this.$store.dispatch('assetsManager/destroyEditingAsset')
     },
+    /**
+     * Call to cancel modifications or creation
+     */
     onCancel () {
       this.$store.commit('assetsManager/cancelEdit')
     },
+    /**
+     * Call to save the asset
+     */
     onSave () {
       this.$store.dispatch('assetsManager/saveEditingAsset')
     }

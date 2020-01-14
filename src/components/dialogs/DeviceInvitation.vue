@@ -1,6 +1,11 @@
 <template>
-  <q-dialog :value="opened" persistent>
-    <div v-if="!opened"/>
+  <q-dialog
+    :value="opened"
+    persistent
+  >
+    <!-- Don't print anything if device not loaded -->
+    <div v-if="!opened"></div>
+
     <q-card v-else>
       <h4 class="q-mb-xs text-h4 text-center">{{ device.name }}</h4>
 
@@ -24,7 +29,10 @@
       </q-card-section>
 
       <q-card-actions align="right">
+        <!-- Delete device -->
         <q-btn flat :label="$t('generic.delete')" color="negative" @click="onDelete"/>
+
+        <!-- Close dialog -->
         <q-btn flat :label="$t('generic.close')" @click="onClose"/>
       </q-card-actions>
     </q-card>
@@ -36,30 +44,48 @@ import QrcodeVue from 'qrcode.vue'
 
 export default {
   name: 'DialogDeviceInvitation',
+  components: {
+    QrcodeVue
+  },
   computed: {
+    /**
+     * Return true if the dialog should be opened
+     */
     opened () {
       return this.$store.getters['devices/dialog'].opened
     },
+    /**
+     * Return the device
+     */
     device () {
       return this.$store.getters['devices/active']
     },
+    /**
+     * Return the code (in the form name:password)
+     */
     code () {
       return `${this.device.name}:${this.device.password}`
     }
   },
   methods: {
+    /**
+     * Call to create a new password for the device
+     */
     onReset () {
       this.$store.dispatch('devices/resetActive')
     },
+    /**
+     * Call to delete the device
+     */
     onDelete () {
       this.$store.dispatch('devices/deleteActive')
     },
+    /**
+     * Call to close the dialog
+     */
     onClose () {
       this.$store.commit('devices/closeDialog')
     }
-  },
-  components: {
-    QrcodeVue
   }
 }
 </script>
