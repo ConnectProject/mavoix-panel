@@ -21,7 +21,7 @@ input[type='file']
 </style>
 
 <template>
-  <q-page-container v-if="opened" class="relative-position" :value="opened" style="padding-left: 0px; padding-top: 80px">
+  <q-page-container v-if="opened && route == 'assets'" class="relative-position" :value="opened" style="padding-left: 0px; padding-top: 90px">
 
     <q-page class="row" v-if="!loading">
 
@@ -30,8 +30,9 @@ input[type='file']
           v-for="(asset, index) in assets"
           :key="index"
           @click="() => onActionAsset(asset)"
-          class="col-2 q-ma-md asset-card">
-          <q-img :ratio="16 / 9" :src="asset.file._url" basic>
+          class="col-2 q-ma-md asset-card"
+        >
+          <q-img class="fit" :ratio="16 / 9" :src="asset.file._url" basic>
             <div class="absolute-bottom text-subtitle2 text-center">
               {{ asset.name }}
             </div>
@@ -89,6 +90,9 @@ export default {
     AssetEdit
   },
   computed: {
+    route () {
+      return this.$route['params']['assets']
+    },
     /**
      * Return true if the dialog should be opened
      */

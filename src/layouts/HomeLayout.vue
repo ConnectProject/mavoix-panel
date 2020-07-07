@@ -1,4 +1,20 @@
+
 <template>
+  <div  @dragenter="onDragEnter">
+  <div
+    class="dnd z-max hidden text-center row items-center justify-center full-height full-width bg-black text-white"
+    ref="dnd"
+  >
+    <div class="text-center">
+      <div class="dotted">
+        <q-icon name="cloud_upload" style="font-size: 5em;" />
+        <br/>
+        {{ $t('dropFiles') }}
+      </div>
+    </div>
+    <div class="fixed full-height full-width transparent" @dragleave="onDragLeave">
+    </div>
+  </div>
   <q-layout view="hHh Lpr lff">
     <!-- Toolbar -->
     <q-header elevated>
@@ -126,6 +142,7 @@
     <dialog-device-name />
     <dialog-device-invitation />
   </q-layout>
+  </div>
 </template>
 
 <script>
@@ -163,6 +180,7 @@ export default {
   },
   data () {
     return {
+      dnd: false,
       drawerOpen: this.$q.platform.is.desktop
     }
   },
@@ -193,9 +211,18 @@ export default {
     }
   },
   methods: {
+    onDragEnter (e) {
+      let dt = e.dataTransfer
+      if (dt.types && (dt.types.indexOf ? dt.types.indexOf('Files') !== -1 : dt.types.contains('Files'))) {
+        this.$refs['dnd'].classList.remove('hidden')
+      }
+    },
+    onDragLeave (e) {
+      this.$refs['dnd'].classList.add('hidden')
+    },
     /**
      * Go to auth page
-     */
+     **/
     onLogout () {
       this.$router.push({
         name: 'auth'
@@ -208,5 +235,17 @@ export default {
 <style lang="stylus" scoped>
 .menu-list .q-item {
   border-radius: 0 32px 32px 0
+}
+.drag-enter{
+  background red !important
+}
+.dnd{
+  position fixed
+  opacity .95
+}
+.dotted{
+  border 2px dotted white
+  border-radius 8px
+  padding 24px 32px;
 }
 </style>

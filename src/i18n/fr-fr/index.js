@@ -1,5 +1,6 @@
 export default {
   appTitle: 'Ma Voix',
+  dropFiles: 'Déposez ici vos fichiers',
   logoutLabel: 'Déconnexion',
   navDrawer: {
     home: 'Accueil',
