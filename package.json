@@ -31,7 +31,7 @@
     "eslint": "^5.10.0",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^5.0.0",
-    "stylus-supremacy": "^2.12.7"
+    "stylus-supremacy": "^2.14.5"
   },
   "engines": {
     "node": ">= 8.9.0",
