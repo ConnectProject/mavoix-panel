@@ -2,6 +2,9 @@
 <template>
   <div  @dragenter="onDragEnter">
     <!-- Dropzone -->
+    <div class="camera z-max text-center row items-center justify-center full-height full-width bg-black text-white">
+        <camera/>
+    </div>
     <div
       class="dnd z-max hidden text-center row items-center justify-center full-height full-width bg-black text-white"
       ref="dnd"
@@ -156,6 +159,8 @@ import DialogTabName from '~/components/dialogs/TabName'
 import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 
+import Camera from '~/components/Camera'
+
 export default {
   name: 'LayoutHome',
   components: {
@@ -163,7 +168,8 @@ export default {
     DialogAssetsManager,
     DialogTabName,
     DialogDeviceName,
-    DialogDeviceInvitation
+    DialogDeviceInvitation,
+    Camera
   },
   /**
    * Load tabs
@@ -213,15 +219,24 @@ export default {
     }
   },
   methods: {
+    /**
+     * show dropzone when entering window
+     **/
     onDragEnter (e) {
       let dt = e.dataTransfer
       if (dt.types && (dt.types.indexOf ? dt.types.indexOf('Files') !== -1 : dt.types.contains('Files'))) {
         this.$refs['dnd'].classList.remove('hidden')
       }
     },
+    /**
+     * hide dropzone when leaving window
+     **/
     onDragLeave (e) {
       this.$refs['dnd'].classList.add('hidden')
     },
+    /**
+     * Upload file on drop
+     **/
     uploadFile ({ target: { files } }) {
       if (files.length > 0) {
         let file = ''
@@ -257,6 +272,9 @@ export default {
 .dnd{
   position fixed
   opacity .95
+}
+.camera{
+  position fixed
 }
 .dotted{
   border 2px dotted white

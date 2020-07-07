@@ -18,13 +18,14 @@ input[type='file']
   position fixed
   left 100%
   top 100%
+.fixed
+  position:fixed
 </style>
 
 <template>
   <q-page-container v-if="opened && route == 'assets'" class="relative-position" :value="opened" style="padding-left: 0px; padding-top: 90px">
 
     <q-page class="row" v-if="!loading">
-
         <!-- Assets -->
         <q-card
           v-for="(asset, index) in assets"
@@ -50,7 +51,7 @@ input[type='file']
           >
           <q-fab-action @click="onUploadFile" color="primary" icon="attach_file" />
           <q-fab-action color="primary" icon="cloud" />
-          <q-fab-action color="primary" icon="camera" />
+          <q-fab-action color="primary" icon="camera" @click="showCam" />
         </q-fab>
 
         <!-- Image upload invisible wrapper -->
@@ -60,7 +61,6 @@ input[type='file']
 
         <!-- Asset edit dialog -->
         <asset-edit v-if="!selectMode"/>
-
         <!-- Filters form -->
         <q-page-sticky
           expand
@@ -83,9 +83,13 @@ input[type='file']
 
 <script>
 import AssetEdit from './AssetEdit'
-
 export default {
   name: 'DialogAssetsManager',
+  data () {
+    return {
+      isCamera: false
+    }
+  },
   components: {
     AssetEdit
   },
@@ -119,6 +123,9 @@ export default {
     }
   },
   methods: {
+    showCam () {
+      this.isCamera = true
+    },
     /**
      * Call to cancel
      */
