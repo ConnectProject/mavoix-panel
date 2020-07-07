@@ -21,7 +21,7 @@ input[type='file']
 </style>
 
 <template>
-  <q-page-container v-if="opened" class="relative-position" :value="opened" style="padding-left: 0px; padding-top: 140px">
+  <q-page-container v-if="opened" class="relative-position" :value="opened" style="padding-left: 0px; padding-top: 80px">
 
     <q-page class="row" v-if="!loading">
 
@@ -64,7 +64,6 @@ input[type='file']
         <q-page-sticky
           expand
           position="top"
-          style="padding-top:50px"
         >
           <q-toolbar class="bg-white">
             <q-form class="row q-ma-md">
