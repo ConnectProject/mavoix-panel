@@ -1,20 +1,22 @@
 
 <template>
   <div  @dragenter="onDragEnter">
-  <div
-    class="dnd z-max hidden text-center row items-center justify-center full-height full-width bg-black text-white"
-    ref="dnd"
-  >
-    <div class="text-center">
-      <div class="dotted">
-        <q-icon name="cloud_upload" style="font-size: 5em;" />
-        <br/>
-        {{ $t('dropFiles') }}
+    <!-- Dropzone -->
+    <div
+      class="dnd z-max hidden text-center row items-center justify-center full-height full-width bg-black text-white"
+      ref="dnd"
+    >
+      <div class="text-center">
+        <div class="dotted">
+          <q-icon name="cloud_upload" style="font-size: 5em;" />
+          <br/>
+          {{ $t('dropFiles') }}
+        </div>
+      </div>
+      <div class="fixed full-height full-width transparent" @dragleave="onDragLeave">
+        <input type="file" class="full-height full-width transparent" multiple @input="uploadFile" />
       </div>
     </div>
-    <div class="fixed full-height full-width transparent" @dragleave="onDragLeave">
-    </div>
-  </div>
   <q-layout view="hHh Lpr lff">
     <!-- Toolbar -->
     <q-header elevated>
@@ -220,6 +222,16 @@ export default {
     onDragLeave (e) {
       this.$refs['dnd'].classList.add('hidden')
     },
+    uploadFile ({ target: { files } }) {
+      if (files.length > 0) {
+        let file = ''
+        for (let i = 0; i < files.length; i++) {
+          file = files[i]
+          this.$store.dispatch('assetsManager/uploadFile', file)
+        }
+      }
+      this.$refs['dnd'].classList.add('hidden')
+    },
     /**
      * Go to auth page
      **/
@@ -233,6 +245,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.transparent{
+  opacity: 0
+}
 .menu-list .q-item {
   border-radius: 0 32px 32px 0
 }
