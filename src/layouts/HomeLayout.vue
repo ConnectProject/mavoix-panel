@@ -119,9 +119,9 @@
 
     <q-page-container>
       <router-view />
+      <dialog-assets-manager />
     </q-page-container>
 
-    <dialog-assets-manager />
     <dialog-tab-name />
     <dialog-device-name />
     <dialog-device-invitation />

@@ -14,30 +14,19 @@
   opacity 1
 .action-icon
   font-size 3em
+input[type='file']
+  position fixed
+  left 100%
+  top 100%
 </style>
 
 <template>
-  <q-dialog v-if="opened" class="relative-position" :value="opened" maximized persistent>
-    <q-card>
-      <!-- Top bar -->
-      <q-bar class="bg-accent">
-        <q-space />
-        <q-btn dense flat icon="close" color="white" @click="onCancel">
-          <q-tooltip content-class="bg-white text-primary">{{ $t('generic.close') }}</q-tooltip>
-        </q-btn>
-      </q-bar>
+  <q-page-container v-if="opened" class="relative-position" :value="opened" style="padding-left: 0px; padding-top: 140px">
 
-      <!-- Filters form -->
-      <q-form class="row q-ma-md">
-        <q-input outlined label="Nom">
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-      </q-form>
+    
+    <q-page class="row" v-if="!loading">
 
-      <!-- Assets -->
-      <div class="row q-col-gutter-none" v-if="!loading">
+        <!-- Assets -->
         <q-card
           v-for="(asset, index) in assets"
           :key="index"
@@ -52,27 +41,45 @@
             </div>
           </q-img>
         </q-card>
-      </div>
 
-      <!-- Add asset button -->
-      <q-fab
-        class="absolute-bottom-right q-ma-md"
-        direction="up"
-        color="accent"
-      >
-        <q-fab-action @click="onUploadFile" color="primary" icon="attach_file" />
-        <q-fab-action color="primary" icon="cloud" />
-      </q-fab>
-    </q-card>
+        <!-- Add asset button -->
+        <q-fab
+            class="fixed-bottom-right q-ma-md"
+            direction="up"
+            color="accent"
+          >
+          <q-fab-action @click="onUploadFile" color="primary" icon="attach_file" />
+          <q-fab-action color="primary" icon="cloud" />
+          <q-fab-action color="primary" icon="camera" />
+        </q-fab>
 
-    <!-- Image upload invisible wrapper -->
-    <div v-if="!selectMode" class="image-upload-wrapper">
-      <input type="file" ref="invisibleFileInput" @input="onInputFile" />
-    </div>
+        <!-- Image upload invisible wrapper -->
+        <div v-if="!selectMode" class="image-upload-wrapper">
+          <input type="file" ref="invisibleFileInput" @input="onInputFile" />
+        </div>
 
-    <!-- Asset edit dialog -->
-    <asset-edit v-if="!selectMode"/>
-  </q-dialog>
+        <!-- Asset edit dialog -->
+        <asset-edit v-if="!selectMode"/>
+
+        <!-- Filters form -->
+        <q-page-sticky 
+          expand
+          position="top"
+          style="padding-top:50px"
+        >
+          <q-toolbar class="bg-white">
+            <q-form class="row q-ma-md">
+              <q-input outlined label="Nom">
+                <template v-slot:append>
+                  <q-icon name="search" />
+                </template>
+              </q-input>
+            </q-form>
+          </q-toolbar>
+        </q-page-sticky>
+
+    </q-page>
+  </q-page-container>
 </template>
 
 <script>

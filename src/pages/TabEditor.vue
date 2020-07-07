@@ -20,7 +20,8 @@
 
 <template>
   <!-- Print nothing if loading -->
-  <div v-if="loading"></div>
+  <div v-if="loading">
+  </div>
 
   <q-page
     v-else
