@@ -23,7 +23,6 @@ input[type='file']
 <template>
   <q-page-container v-if="opened" class="relative-position" :value="opened" style="padding-left: 0px; padding-top: 140px">
 
-    
     <q-page class="row" v-if="!loading">
 
         <!-- Assets -->
@@ -62,7 +61,7 @@ input[type='file']
         <asset-edit v-if="!selectMode"/>
 
         <!-- Filters form -->
-        <q-page-sticky 
+        <q-page-sticky
           expand
           position="top"
           style="padding-top:50px"
