@@ -84,6 +84,8 @@ export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editin
  * @param {File} file the file to upload
  */
 export const uploadFile = ({ commit }, file) => {
+  console.log('testttt:')
+  console.log(file)
   const name = Unidecode(file.name)
 
   new Parse.File(name, file)

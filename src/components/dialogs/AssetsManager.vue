@@ -33,7 +33,7 @@ input[type='file']
           @click="() => onActionAsset(asset)"
           class="col-2 q-ma-md asset-card"
         >
-          <q-img class="fit" :ratio="16 / 9" :src="asset.file._url" basic>
+          <q-img v-if="asset.file" class="fit" :ratio="16 / 9" :src="asset.file._url" basic>
             <div class="absolute-bottom text-subtitle2 text-center">
               {{ asset.name }}
             </div>
@@ -50,8 +50,8 @@ input[type='file']
             color="accent"
           >
           <q-fab-action @click="onUploadFile" color="primary" icon="attach_file" />
-          <q-fab-action color="primary" icon="cloud" />
-          <q-fab-action color="primary" icon="camera" @click="showCam" />
+<!--           <q-fab-action color="primary" icon="cloud" /> -->
+          <q-fab-action color="primary" icon="camera_alt" @click="showCam" />
         </q-fab>
 
         <!-- Image upload invisible wrapper -->
@@ -87,7 +87,6 @@ export default {
   name: 'DialogAssetsManager',
   data () {
     return {
-      isCamera: false
     }
   },
   components: {
@@ -124,7 +123,7 @@ export default {
   },
   methods: {
     showCam () {
-      this.isCamera = true
+      this.$emit('showCam')
     },
     /**
      * Call to cancel

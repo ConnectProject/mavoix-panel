@@ -1,10 +1,19 @@
 
 <template>
   <div  @dragenter="onDragEnter">
-    <!-- Dropzone -->
-    <div class="camera z-max text-center row items-center justify-center full-height full-width bg-black text-white">
-        <camera/>
+    <!-- Camera zone -->
+    <div v-if="isCamera"
+      class="camera z-max text-center row items-center justify-center full-height full-width text-white"
+    >
+      <q-icon
+        name="close"
+        class="q-pa-xl cursor-pointer absolute-top-right"
+        style="font-size: 3em"
+        @click="isCamera = false"
+      />
+      <camera/>
     </div>
+    <!-- Dropzone -->
     <div
       class="dnd z-max hidden text-center row items-center justify-center full-height full-width bg-black text-white"
       ref="dnd"
@@ -17,6 +26,7 @@
         </div>
       </div>
       <div class="fixed full-height full-width transparent" @dragleave="onDragLeave">
+        <!-- full size multiple-files input -->
         <input type="file" class="full-height full-width transparent" multiple @input="uploadFile" />
       </div>
     </div>
@@ -140,7 +150,7 @@
 
     <q-page-container>
       <router-view />
-      <dialog-assets-manager />
+      <dialog-assets-manager @showCam="isCamera = true" />
     </q-page-container>
 
     <dialog-tab-name />
@@ -189,6 +199,7 @@ export default {
   data () {
     return {
       dnd: false,
+      isCamera: false,
       drawerOpen: this.$q.platform.is.desktop
     }
   },
@@ -275,6 +286,7 @@ export default {
 }
 .camera{
   position fixed
+  background-color rgba(0,0,0,0.8)
 }
 .dotted{
   border 2px dotted white

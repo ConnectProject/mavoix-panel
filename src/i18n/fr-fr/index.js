@@ -10,6 +10,11 @@ export default {
     devices: 'Appareils',
     addDevice: 'Ajouter un appareil'
   },
+  camera: {
+    snapPic: 'prendre une photo',
+    retake: 'reprendre',
+    imageName: 'Nom de l'image'
+  },
   assetsManager: {
     assetNameLabel: 'Nom de l\'image'
   },
