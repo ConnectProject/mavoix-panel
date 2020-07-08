@@ -1,12 +1,6 @@
 <style lang="stylus" scoped>
 .image-upload-wrapper
   display hidden
-.asset-card
-  cursor pointer
-  transition 0.2s
-  opacity 1
-.asset-card:hover
-  opacity 0.3
 .action-icon-wrapper
   opacity 0
   transition 0.3s
@@ -20,6 +14,13 @@ input[type='file']
   top 100%
 .fixed
   position:fixed
+.card .erase{
+  opacity 0
+  transition 0.2s
+}
+.card:hover .erase{
+  opacity 1
+}
 </style>
 
 <template>
@@ -30,17 +31,41 @@ input[type='file']
         <q-card
           v-for="(asset, index) in assets"
           :key="index"
-          @click="() => onActionAsset(asset)"
-          class="col-2 q-ma-md asset-card"
+          class="card col-2 q-ma-md"
         >
           <q-img v-if="asset.file" class="fit" :ratio="16 / 9" :src="asset.file._url" basic>
-            <div class="absolute-bottom text-subtitle2 text-center">
-              {{ asset.name }}
-            </div>
-            <div class="absolute fit flex justify-center items-center text-center action-icon-wrapper">
-              <q-icon :name="selectMode ? 'done' : 'edit'" class="action-icon" size="xl" />
-            </div>
           </q-img>
+          <div class="erase absolute-right q-mt-sm q-mr-sm">
+            <q-btn
+              round
+              class=" q-mr-xs"
+              dense
+              color="red"
+              size="q-pa-sm"
+              icon="delete"
+              @click="eraseAsset(asset)"
+            />
+          </div>
+          <q-input
+            class="absolute-bottom"
+            v-model="asset.name"
+            label="Name"
+            style="background-color:rgba(255,255,255,0.7)"
+            filled
+            @click="editAsset(asset)"
+            @keyup.enter="saveAsset(asset.name)"
+          >
+            <template v-slot:append>
+              <q-btn
+                round
+                dense
+                color="blue"
+                size="m"
+                icon="save"
+                @click="saveAsset(asset.name)"
+              />
+            </template>
+          </q-input>
         </q-card>
 
         <!-- Add asset button -->
@@ -56,7 +81,12 @@ input[type='file']
 
         <!-- Image upload invisible wrapper -->
         <div v-if="!selectMode" class="image-upload-wrapper">
-          <input type="file" ref="invisibleFileInput" @input="onInputFile" />
+          <input
+            type="file"
+            ref="invisibleFileInput"
+            @input="onInputFile"
+            multiple
+          />
         </div>
 
         <!-- Asset edit dialog -->
@@ -125,6 +155,19 @@ export default {
     showCam () {
       this.$emit('showCam')
     },
+    editAsset (asset) {
+      this.$store.commit('assetsManager/editAsset', asset)
+    },
+    saveAsset (name) {
+      this.$store.commit('assetsManager/editingAssetSetName', name)
+      this.$store.dispatch('assetsManager/saveEditingAsset')
+      document.activeElement.blur()
+      this.$q.notify({ position: 'top-right', message: this.$t('assetsManager.nameSave') + name, color: 'blue' })
+    },
+    eraseAsset (asset) {
+      this.$store.commit('assetsManager/editAsset', asset)
+      this.$store.dispatch('assetsManager/destroyEditingAsset')
+    },
     /**
      * Call to cancel
      */
@@ -143,20 +186,29 @@ export default {
      */
     onInputFile ({ target: { files } }) {
       if (files.length > 0) {
-        const file = files[0]
-        this.$store.dispatch('assetsManager/uploadFile', file)
+        let file = ''
+        let length = files.length
+        for (let i = 0; i < files.length; i++) {
+          file = files[i]
+          this.$store.dispatch('assetsManager/uploadFile', file)
+        }
+        if (length > 1) {
+          this.$q.notify({ position: 'top-right', message: length + this.$t('dnd.filesSaved'), color: 'blue' })
+        } else {
+          this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
+        }
       }
-    },
+    }
     /**
      * When clicking on the asset select it or edit it
      */
-    onActionAsset (asset) {
-      if (this.selectMode) {
-        this.$store.commit('assetsManager/selectAsset', asset)
-      } else {
-        this.$store.commit('assetsManager/editAsset', asset)
-      }
-    }
+    // onActionAsset (asset) {
+    //   if (this.selectMode) {
+    //     this.$store.commit('assetsManager/selectAsset', asset)
+    //   } else {
+    //     this.$store.commit('assetsManager/editAsset', asset)
+    //   }
+    // }
   }
 }
 </script>

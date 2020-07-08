@@ -1,6 +1,5 @@
 export default {
   appTitle: 'Ma Voix',
-  dropFiles: 'Déposez ici vos fichiers',
   logoutLabel: 'Déconnexion',
   navDrawer: {
     home: 'Accueil',
@@ -10,13 +9,19 @@ export default {
     devices: 'Appareils',
     addDevice: 'Ajouter un appareil'
   },
+  dnd: {
+    dropFiles: 'Déposez ici vos fichiers',
+    filesSaved: ' images enregistrées',
+    fileSaved: ' image enregistrée'
+  },
   camera: {
     snapPic: 'prendre une photo',
     retake: 'reprendre',
-    imageName: 'Nom de l'image'
+    imageName: 'Nom de l\'image'
   },
   assetsManager: {
-    assetNameLabel: 'Nom de l\'image'
+    assetNameLabel: 'Nom de l\'image',
+    nameSave: 'Nom enregistré : '
   },
   tabEditor: {
     tabNameLabel: 'Nom',

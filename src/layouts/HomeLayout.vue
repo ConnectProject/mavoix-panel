@@ -22,7 +22,7 @@
         <div class="dotted">
           <q-icon name="cloud_upload" style="font-size: 5em;" />
           <br/>
-          {{ $t('dropFiles') }}
+          {{ $t('dnddropFiles') }}
         </div>
       </div>
       <div class="fixed full-height full-width transparent" @dragleave="onDragLeave">
@@ -251,9 +251,15 @@ export default {
     uploadFile ({ target: { files } }) {
       if (files.length > 0) {
         let file = ''
+        let length = files.length
         for (let i = 0; i < files.length; i++) {
           file = files[i]
           this.$store.dispatch('assetsManager/uploadFile', file)
+        }
+        if (length > 1) {
+          this.$q.notify({ position: 'top-right', message: length + this.$t('dnd.filesSaved'), color: 'blue' })
+        } else {
+          this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
         }
       }
       this.$refs['dnd'].classList.add('hidden')

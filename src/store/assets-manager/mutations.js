@@ -52,7 +52,7 @@ export const editAsset = (state, asset) => {
   state.editingAsset = {
     name: state.assets[state.editingIndex].name
   }
-  state.editing = true
+  // state.editing = true
 }
 
 /**

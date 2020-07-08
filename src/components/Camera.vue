@@ -54,7 +54,7 @@
             color="blue"
             icon-right="save"
             label="save"
-            @click="saveImage" 
+            @click="saveImage"
           />
         </template>
       </q-input>
