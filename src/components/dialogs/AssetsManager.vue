@@ -1,19 +1,16 @@
 <style lang="stylus" scoped>
 .image-upload-wrapper
   display hidden
-.action-icon-wrapper
-  opacity 0
-  transition 0.3s
-.action-icon-wrapper:hover
-  opacity 1
-.action-icon
-  font-size 3em
 input[type='file']
   position fixed
   left 100%
   top 100%
-.fixed
-  position:fixed
+.card{
+  max-height 120px
+}
+.rounded-borders{
+  border-radius 4px !important
+}
 .card .erase{
   opacity 0
   transition 0.2s
@@ -29,11 +26,11 @@ input[type='file']
     <q-page class="row" v-if="!loading">
         <!-- Assets -->
         <q-card
-          v-for="(asset, index) in assets"
+          v-for="(asset, index) in assetsSorted"
           :key="index"
           class="card col-2 q-ma-md"
         >
-          <q-img v-if="asset.file" class="fit" :ratio="16 / 9" :src="asset.file._url" basic>
+          <q-img v-if="asset.file" class="fit rounded-borders" :ratio="16 / 9" :src="asset.file._url" basic>
           </q-img>
           <div class="erase absolute-right q-mt-sm q-mr-sm">
             <q-btn
@@ -98,7 +95,7 @@ input[type='file']
         >
           <q-toolbar class="bg-white">
             <q-form class="row q-ma-md">
-              <q-input outlined label="Nom">
+              <q-input outlined label="Nom" v-model="search">
                 <template v-slot:append>
                   <q-icon name="search" />
                 </template>
@@ -117,6 +114,7 @@ export default {
   name: 'DialogAssetsManager',
   data () {
     return {
+      search: ''
     }
   },
   components: {
@@ -143,6 +141,9 @@ export default {
      */
     assets () {
       return this.$store.getters['assetsManager/all']
+    },
+    assetsSorted () {
+      return this.$store.getters['assetsManager/all'].filter((elem) => { return (this.search === '' || elem.name.toUpperCase().includes(this.search.toUpperCase())) })
     },
     /**
      * Return true if assets manager opened to select asset, false if its to manage assets
