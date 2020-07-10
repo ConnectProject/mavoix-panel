@@ -124,6 +124,19 @@ export const openItemDialog = (state, { mode = 'new', index, data }) => {
   }
 }
 
+export const openItemChoice = (state, { mode = 'new', index, data }) => {
+  state.itemChoice.opened = true
+  state.itemChoice.mode = mode
+  if (mode === 'edit') {
+    state.itemChoice.data = data
+    state.itemChoice.index = index
+  }
+}
+
+export const closeItemChoice = (state, { mode = 'new', index, data }) => {
+  state.itemChoice.opened = false
+}
+
 /**
  * Remove the item loaded in the dialog for the list of items
  * @param {State} state

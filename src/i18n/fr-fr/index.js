@@ -23,6 +23,9 @@ export default {
     assetNameLabel: 'Nom de l\'image',
     nameSave: 'Nom enregistré : '
   },
+  assets: {
+    select: 'Sélectionnez les images à ajouter :'
+  },
   tabEditor: {
     tabNameLabel: 'Nom',
     tabColorLabel: 'Couleur',
@@ -52,6 +55,7 @@ export default {
     delete: 'Supprimer',
     cancel: 'Annuler',
     save: 'Sauvegarder',
+    add: 'Ajouter',
     unavailable: 'Indisponible',
     invisible: 'Invisible',
     undo: 'Undo',

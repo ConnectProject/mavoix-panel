@@ -26,7 +26,7 @@ input[type='file']
 <template>
   <q-page-container v-if="opened && route == 'assets'" class="container-holder relative-position" :value="opened">
 
-    <q-page class="row" v-if="!loading">
+    <q-page class="row content-start" v-if="!loading">
         <!-- Assets -->
         <q-card
           v-for="(asset, index) in assetsSorted"
@@ -41,6 +41,7 @@ input[type='file']
               class="q-mr-xs"
               dense
               color="red"
+              size="q-pa-sm"
               icon="delete"
               @click="eraseAsset(asset)"
             >
@@ -51,7 +52,7 @@ input[type='file']
           </div>
           <q-input
             class="absolute-bottom"
-            v-model="asset.name"
+            :value="asset.name"
             label="Name"
             style="background-color:rgba(255,255,255,0.7)"
             filled

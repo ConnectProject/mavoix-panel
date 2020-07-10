@@ -21,12 +21,13 @@ export const deletedItems = ({ deletedItems }) => deletedItems
  * @param {State} state
  */
 export const itemDialog = ({ itemDialog: { data } }) => data
-
+export const itemChoice = ({ itemChoice: { data } }) => data
 /**
  * Return true if item's dialog is open
  * @param {State} state
  */
 export const itemDialogOpened = ({ itemDialog: { opened } }) => opened
+export const itemChoiceOpened = ({ itemChoice: { opened } }) => opened
 
 /**
  * Return the item dialog's mode (see state.js)

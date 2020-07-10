@@ -24,6 +24,15 @@ export const getDefaultState = () => ({
     }
   },
 
+  itemChoice: {
+    opened: false, // true if dialog's open
+    mode: null, // dialog mode: `new` or `edit`
+    index: -1, // position of the edited item if mode === 'edit'
+    data: {
+      asset: null, // asset of the item
+      name: null // name of the item
+    }
+  },
   /**
    * Undo / Redo stacks
    */

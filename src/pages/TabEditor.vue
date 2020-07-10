@@ -92,6 +92,7 @@
     </div>
 
     <dialog-tab-item />
+    <assets />
 
     <q-page-sticky
       expand
@@ -174,17 +175,20 @@
         </q-tooltip>
       </q-btn>
     </q-page-sticky>
+
   </q-page>
 </template>
 
 <script>
 import DialogTabItem from '~/components/dialogs/TabItem'
 import { SLUG_KEY } from '../models/Tab'
+import Assets from '~/components/Assets'
 
 export default {
   name: 'PageTabEditor',
   components: {
-    DialogTabItem
+    DialogTabItem,
+    Assets
   },
   /**
    * When component mounted load everything
@@ -284,7 +288,8 @@ export default {
      * Call to open the item dialog in new item mode
      */
     onAddItem () {
-      this.$store.commit('tabEditor/openItemDialog', {})
+      // this.$store.commit('tabEditor/openItemDialog', {})
+      this.$store.commit('tabEditor/openItemChoice', {})
     },
     /**
      * Call to open the item dialog in edit item mode
