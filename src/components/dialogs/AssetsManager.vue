@@ -1,4 +1,7 @@
 <style lang="stylus" scoped>
+.container-holder
+  padding-left 0px !important
+  padding-top 90px !important
 .image-upload-wrapper
   display hidden
 input[type='file']
@@ -21,7 +24,7 @@ input[type='file']
 </style>
 
 <template>
-  <q-page-container v-if="opened && route == 'assets'" class="relative-position" :value="opened" style="padding-left: 0px; padding-top: 90px">
+  <q-page-container v-if="opened && route == 'assets'" class="container-holder relative-position" :value="opened">
 
     <q-page class="row" v-if="!loading">
         <!-- Assets -->
@@ -35,13 +38,16 @@ input[type='file']
           <div class="erase absolute-right q-mt-sm q-mr-sm">
             <q-btn
               round
-              class=" q-mr-xs"
+              class="q-mr-xs"
               dense
               color="red"
-              size="q-pa-sm"
               icon="delete"
               @click="eraseAsset(asset)"
-            />
+            >
+              <q-tooltip>
+                {{ $t('generic.delete') }}
+              </q-tooltip>
+            </q-btn>
           </div>
           <q-input
             class="absolute-bottom"
@@ -60,7 +66,11 @@ input[type='file']
                 size="m"
                 icon="save"
                 @click="saveAsset(asset.name)"
-              />
+              >
+                <q-tooltip>
+                  {{ $t('generic.save') }}
+                </q-tooltip>
+              </q-btn>
             </template>
           </q-input>
         </q-card>
@@ -88,7 +98,7 @@ input[type='file']
 
         <!-- Asset edit dialog -->
         <asset-edit v-if="!selectMode"/>
-        <!-- Filters form -->
+        <!-- Search form -->
         <q-page-sticky
           expand
           position="top"

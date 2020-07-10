@@ -15,7 +15,10 @@
   font-size 2em
 .items-container
   margin-top 24px
-  border-style solid
+  margin-left 4px
+.holder-container
+  padding-left 0px
+  padding-top 90px
 </style>
 
 <template>
@@ -25,65 +28,19 @@
 
   <q-page
     v-else
-    class="flex items-stretch q-pa-xl"
+    class="flex items-stretch q-pa-xl holder-container"
+    style=""
   >
-    <div class="column container">
-      <div class="col-2 row justify-center items-center">
+    <div class="col-2">
+<!--       <div class="col-2 row justify-center items-center">
 
-        <!-- Name input -->
-        <q-input
-          :label="$t('tabEditor.tabNameLabel')"
-          class="q-ma-md"
-          :value="tab.name"
-          @input="setName"
-          filled
-        />
-
-        <!-- HexColor input -->
-        <q-input
-          :label="$t('tabEditor.tabColorLabel')"
-          class="q-ma-md"
-          :value="tab.hexColor"
-          @input="setHexColor"
-          filled
-        >
-          <template v-slot:append>
-            <q-icon
-              name="colorize"
-              class="cursor-pointer"
-            >
-              <q-popup-proxy
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-color
-                  no-header
-                  no-footer
-                  :value="tab.hexColor"
-                  @input="setHexColor"
-                  inline
-                  class="my-picker"
-                />
-              </q-popup-proxy>
-            </q-icon>
-          </template>
-        </q-input>
-
-        <!-- Add item button -->
-        <q-btn
-          class="stretch q-ma-md"
-          flat size="lg"
-          @click="onAddItem">
-            {{ $t('tabEditor.addItemLabel') }}
-          </q-btn>
-      </div>
+      </div> -->
 
       <!-- Items container -->
       <draggable
         tag="div"
         v-model="items"
-        :style="{ borderColor: tab.hexColor }"
-        class="col-8 scroll row items-start rounded-borders q-pa-xs q-ph-md q-mh-xs q-mx-md q-gutter-x-xl q-gutter-y-md items-container">
+        class="col-8 full-height row items-start q-gutter-x-md q-gutter-y-md items-container">
 
         <!-- Items -->
         <q-card
@@ -136,6 +93,60 @@
 
     <dialog-tab-item />
 
+    <q-page-sticky
+      expand
+      position="top"
+    >
+      <q-toolbar class="bg-white">
+        <!-- Name input -->
+        <q-input
+          :label="$t('tabEditor.tabNameLabel')"
+          class="q-ma-md"
+          :value="tab.name"
+          @input="setName"
+          filled
+        />
+
+        <!-- HexColor input -->
+        <q-input
+          :label="$t('tabEditor.tabColorLabel')"
+          class="q-ma-md"
+          :value="tab.hexColor"
+          @input="setHexColor"
+          filled
+        >
+          <template v-slot:append>
+            <q-icon
+              name="colorize"
+              class="cursor-pointer"
+              :style="'color: ' + tab.hexColor"
+            >
+              <q-popup-proxy
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-color
+                  no-header
+                  no-footer
+                  :value="tab.hexColor"
+                  @input="setHexColor"
+                  inline
+                  class="my-picker"
+                />
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+        </q-input>
+
+        <!-- Add item button -->
+        <q-btn
+          class="q-px-md q-py-md q-ma-md"
+          size="md"
+          @click="onAddItem">
+            {{ $t('tabEditor.addItemLabel') }}
+        </q-btn>
+      </q-toolbar>
+    </q-page-sticky>
     <!-- Udo, Redo buttons -->
     <q-page-sticky position="top-right" :offset="[18, 18]">
       <q-btn class="q-mx-xs" fab icon="undo" color="accent" @click="onUndo" :disable="$store.getters['tabEditor/isUndoable']">
