@@ -4,6 +4,12 @@
 .item-img
   cursor pointer
   transition .1s linear
+  width: 100%;
+  background-position: center !important
+  background-size: cover !important
+  background-repeat: no-repeat !important
+  transition: background 0.1s
+  background: black
 .item-img:hover
   opacity 0.4
 .action-icon-wrapper
@@ -19,6 +25,16 @@
 .holder-container
   padding-left 0px
   padding-top 90px
+.dropping
+  display none
+.ghost
+  opacity 0
+  div
+    opacity 0
+    position relative
+    width 100% !important
+    height 100% !important
+
 </style>
 
 <template>
@@ -31,29 +47,30 @@
     class="flex items-stretch q-pa-xl holder-container"
     style=""
   >
-    <div class="col-2">
+    <div class="col-2 full-width">
 <!--       <div class="col-2 row justify-center items-center">
 
       </div> -->
-
       <!-- Items container -->
       <draggable
         tag="div"
         v-model="items"
-        class="col-8 full-height row items-start q-gutter-x-md q-gutter-y-md items-container">
-
+        draggable=".item"
+        ghost-class="ghost"
+        class="col-8 full-height full-width row content-start items-start q-gutter-x-md q-gutter-y-md items-container">
         <!-- Items -->
         <q-card
-          class="col-2"
+          class="col-2 item"
           v-for="(item, index) in items"
           :v-if="!item.deleted"
           :key="index"
         >
           <!-- Item's image -->
+          <div class="dropping">
+          </div>
           <q-img
             :ratio="16/9"
-            class="item-img"
-            :src="item.asset.file._url"
+            :class="'item-img class-'+ item.key"
           >
             <div
               class="absolute-bottom"
@@ -63,7 +80,6 @@
                 {{ item.name }}
               </div>
             </div>
-
             <!-- Edit button -->
             <div
               @click="() => onEditItem(item, index)"
@@ -72,7 +88,6 @@
               <q-icon name="edit" class="action-icon" size="xl" />
             </div>
           </q-img>
-
           <q-card-actions align="right">
             <!-- Toggle availability -->
             <q-checkbox
@@ -193,13 +208,14 @@ export default {
   /**
    * When component mounted load everything
    */
-  mounted () {
-    this.load()
-  },
   data () {
     return {
-      hex: ''
+      hex: '',
+      loaded: false
     }
+  },
+  mounted () {
+    this.load()
   },
   computed: {
     /**
@@ -213,7 +229,26 @@ export default {
      */
     items: {
       get () {
-        return this.$store.getters['tabEditor/items']
+        let items = this.$store.getters['tabEditor/items']
+        let css = ''
+        if (!this.loaded) {
+          let that = this
+          for (let i = 0; i < items.length; i++) {
+            this.getBase64Image(items[i].asset.file._url, function (base64image) {
+              let newClass = ' .class-' + items[i].key + '{ background-image: url("data:image/png;base64,' + base64image + '") !important}'
+              css = css + newClass
+              if (i + 1 === items.length) {
+                let styleTag = document.createElement('style')
+                styleTag.appendChild(document.createTextNode(css))
+                document.head.appendChild(styleTag)
+                console.log('css:')
+                console.log(css)
+                that.loaded = true
+              }
+            })
+          }
+        }
+        return items
       },
       set (values) {
         this.$store.commit('tabEditor/setItemsRaw', values)
@@ -235,11 +270,29 @@ export default {
     }
   },
   methods: {
+    getBase64Image (imgUrl, callback) {
+      var img = new Image()
+      // onload fires when the image is fully loadded, and has width and height
+      img.onload = function () {
+        var canvas = document.createElement('canvas')
+        canvas.width = img.width
+        canvas.height = img.height
+        var ctx = canvas.getContext('2d')
+        ctx.drawImage(img, 0, 0)
+        var dataURL = canvas.toDataURL('image/png')
+        dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, '')
+        callback(dataURL) // the base64 string
+      }
+      // set attributes and src
+      img.setAttribute('crossOrigin', 'anonymous')
+      img.src = imgUrl
+    },
     /**
      * Load tab
      */
     load () {
       this.$store.dispatch('tabEditor/loadBySlug', this.$route.params.slug)
+      this.$nextTick()
     },
     /**
      * Call to save the tab

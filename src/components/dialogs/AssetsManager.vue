@@ -52,7 +52,7 @@ input[type='file']
           </div>
           <q-input
             class="absolute-bottom"
-            :value="asset.name"
+            v-model="asset.name"
             label="Name"
             style="background-color:rgba(255,255,255,0.7)"
             filled
@@ -125,7 +125,8 @@ export default {
   name: 'DialogAssetsManager',
   data () {
     return {
-      search: ''
+      search: '',
+      assetsSpecial: []
     }
   },
   components: {
@@ -171,6 +172,7 @@ export default {
       this.$store.commit('assetsManager/editAsset', asset)
     },
     saveAsset (name) {
+      console.log(name)
       this.$store.commit('assetsManager/editingAssetSetName', name)
       this.$store.dispatch('assetsManager/saveEditingAsset')
       document.activeElement.blur()

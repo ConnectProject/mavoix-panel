@@ -22,7 +22,7 @@
         <div class="dotted">
           <q-icon name="cloud_upload" style="font-size: 5em;" />
           <br/>
-          {{ $t('dnddropFiles') }}
+          {{ $t('dnd.dropFiles') }}
         </div>
       </div>
       <div class="fixed full-height full-width transparent" @dragleave="onDragLeave">

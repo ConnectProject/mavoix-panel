@@ -29,7 +29,7 @@
 
         <q-card-section style="max-height: calc(100% - 120px)" class="scroll row">
           <q-card
-            v-for="(asset, index) in assetsSpecial"
+            v-for="(asset, index) in assetsEditable"
             :key="index"
             class="card col-2 q-ma-md"
           >
@@ -61,8 +61,17 @@
         <q-separator />
 
         <q-card-actions align="right">
-          <q-btn flat :label="$t('generic.cancel')" color="" v-close-popup />
-          <q-btn flat :label="$t('generic.add')" color="primary" v-close-popup />
+          <q-btn
+            flat
+            :label="$t('generic.cancel')"
+            color="red"
+            @click="cancel"
+          />
+          <q-btn
+            flat
+            :label="$t('generic.add')"
+            color="primary"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -76,26 +85,27 @@ export default {
   data () {
     return {
       search: '',
-      assetsSpecial: []
+      assetsEditable: []
     }
   },
-  components: {
-  },
+  /**
+   * We create a version of the assets with a boolean editable so we can decide which assets to add to a given tab
+   */
   mounted () {
     this.$store.dispatch('assetsManager/loadAssets').then(() => {
-      this.assetsSpecial = this.assets.map(function (el) {
+      this.assetsEditable = this.assets.map(function (el) {
         var o = Object.assign({}, el)
         o.isSelected = false
         return o
       })
       console.log(this.assets)
-      console.log(this.assetsSpecial)
+      console.log(this.assetsEditable)
     })
     this.$refs.dialog['message'] = 'bonjour'
   },
   watch: {
     assets (to, from) {
-      this.assetsSpecial = to.map(function (el) {
+      this.assetsEditable = to.map(function (el) {
         var o = Object.assign({}, el)
         o.isSelected = false
         return o
@@ -124,6 +134,9 @@ export default {
     assets () {
       return this.$store.getters['assetsManager/all']
     },
+    /**
+     * Return assets that contain the search query
+     */
     assetsSorted () {
       return this.$store.getters['assetsManager/all'].filter((elem) => { return (this.search === '' || elem.name.toUpperCase().includes(this.search.toUpperCase())) })
     },
@@ -148,6 +161,18 @@ export default {
       this.$store.commit('assetsManager/editAsset', asset)
       this.$store.dispatch('assetsManager/destroyEditingAsset')
     },
+    cancel () {
+      this.assetsEditable = this.assetsEditable.map(function (el) {
+        var o = Object.assign({}, el)
+        o.isSelected = false
+        return o
+      })
+      this.$store.commit('tabEditor/closeItemChoice', {})
+    },
+    /**
+     * Call to cancel
+     * these two next are important (Quasar's Dialog behavior)
+     */
     hide () {
       this.$refs.dialog.hide()
     },
@@ -156,9 +181,6 @@ export default {
       // when QDialog emits "hide" event
       this.$store.commit('tabEditor/closeItemChoice', {})
     },
-    /**
-     * Call to cancel
-     */
     // onCancel () {
     //   if (!this.selectMode) this.$router.back()
     //   this.$store.commit('assetsManager/close')
