@@ -42,7 +42,23 @@ export const setItems = (state, itemsModels) => {
     state.items.push(itemModelToItem(itemModel))
   })
 }
-
+/**
+ * push items from model
+ * @param {State} state namespaced state
+ * @param {[TabItemModel]} itemsModels
+ */
+export const pushItems = (state, items) => {
+  items.forEach((item) => {
+    state.items.push({
+      name: item.name,
+      asset: item,
+      key: undefined,
+      available: true,
+      hidden: false,
+      order: state.items.length
+    })
+  })
+}
 export const setItemsRaw = (state, items) => {
   state.items = items
 

@@ -71,6 +71,7 @@
             flat
             :label="$t('generic.add')"
             color="primary"
+            @click="addSelectedItems"
           />
         </q-card-actions>
       </q-card>
@@ -85,7 +86,8 @@ export default {
   data () {
     return {
       search: '',
-      assetsEditable: []
+      assetsEditable: [],
+      assetsToAdd: []
     }
   },
   /**
@@ -168,6 +170,15 @@ export default {
         return o
       })
       this.$store.commit('tabEditor/closeItemChoice', {})
+    },
+    addSelectedItems () {
+      this.assetsToAdd = this.assetsEditable.filter(function (el) { return el.isSelected }).map(function (el) {
+        var o = Object.assign({}, el)
+        delete o.isSelected
+        return o
+      })
+      this.$store.commit('tabEditor/pushItems', this.assetsToAdd)
+      console.log(this.assetsToAdd)
     },
     /**
      * Call to cancel

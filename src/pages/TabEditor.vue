@@ -70,7 +70,7 @@
           </div>
           <q-img
             :ratio="16/9"
-            :class="'item-img class-'+ item.key"
+            :class="'item-img class-'+ item.asset.id"
           >
             <div
               class="absolute-bottom"
@@ -211,7 +211,9 @@ export default {
   data () {
     return {
       hex: '',
-      loaded: false
+      loaded: false,
+      numberLoaded: 0,
+      itemsLoaded: []
     }
   },
   mounted () {
@@ -230,20 +232,25 @@ export default {
     items: {
       get () {
         let items = this.$store.getters['tabEditor/items']
+        console.log('items:')
+        console.log(items)
         let css = ''
-        if (!this.loaded) {
-          let that = this
-          for (let i = 0; i < items.length; i++) {
+        let that = this
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].asset && !this.itemsLoaded.includes(items[i].asset.id)) {
+            that.itemsLoaded.push(items[i].asset.id)
             this.getBase64Image(items[i].asset.file._url, function (base64image) {
-              let newClass = ' .class-' + items[i].key + '{ background-image: url("data:image/png;base64,' + base64image + '") !important}'
+              let newClass = ' .class-' + items[i].asset.id + '{ background-image: url("' + base64image + '") !important}'
+              console.log(base64image.substr(0, 200))
               css = css + newClass
-              if (i + 1 === items.length) {
+              console.log(i)
+              console.log(that.itemsLoaded)
+              if (that.numberLoaded === items.length) {
                 let styleTag = document.createElement('style')
                 styleTag.appendChild(document.createTextNode(css))
                 document.head.appendChild(styleTag)
                 console.log('css:')
                 console.log(css)
-                that.loaded = true
               }
             })
           }
@@ -273,6 +280,7 @@ export default {
     getBase64Image (imgUrl, callback) {
       var img = new Image()
       // onload fires when the image is fully loadded, and has width and height
+      let that = this
       img.onload = function () {
         var canvas = document.createElement('canvas')
         canvas.width = img.width
@@ -280,7 +288,8 @@ export default {
         var ctx = canvas.getContext('2d')
         ctx.drawImage(img, 0, 0)
         var dataURL = canvas.toDataURL('image/png')
-        dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, '')
+        // dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, '')
+        that.numberLoaded = that.numberLoaded + 1
         callback(dataURL) // the base64 string
       }
       // set attributes and src

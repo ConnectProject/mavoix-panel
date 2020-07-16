@@ -9,6 +9,7 @@ export const getDefaultState = () => ({
   },
 
   items: [], // items of the tab
+  selectedItems: [], // list of items selected to be added to a tab
   deletedItems: [], // deleted items
 
   /**

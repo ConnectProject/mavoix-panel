@@ -9,6 +9,11 @@ export const tab = ({ tab }) => tab
  * @param {State} state
  */
 export const items = ({ items }) => items
+/**
+ * Return the array of selected items
+ * @param {State} state
+ */
+export const selectedItems = ({ selectedItems }) => selectedItems
 
 /**
  * Return the array of deleted items
