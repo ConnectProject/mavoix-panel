@@ -35,9 +35,10 @@
           >
             <q-img
               v-if="asset.file"
-              class="fit rounded-borders"
+              class="fit rounded-borders cursor-pointer"
               :ratio="16 / 9"
               :src="asset.file._url"
+              @click="asset.isSelected = !asset.isSelected"
               basic>
             </q-img>
             <div class="absolute-right q-mt-sm q-mr-sm">
@@ -55,6 +56,12 @@
               @keyup.enter="saveAsset(asset.name)"
             >
             </q-input>
+            <q-btn
+              color="primary"
+              class="absolute-bottom-right q-mb-sm q-mr-md"
+              round dense flat icon="play_arrow"
+              @click="tts.speak({ text: asset.name })"
+              :disable="ttsEnabled == false"/>
           </q-card>
         </q-card-section>
 
@@ -100,8 +107,6 @@ export default {
         o.isSelected = false
         return o
       })
-      console.log(this.assets)
-      console.log(this.assetsEditable)
     })
     this.$refs.dialog['message'] = 'bonjour'
   },
@@ -129,6 +134,18 @@ export default {
      */
     loading () {
       return this.$store.getters['assetsManager/loading']
+    },
+    /**
+     * Return the tts plugin
+     */
+    tts () {
+      return this.$store.getters['global/tts']
+    },
+    /**
+     * Return true if tts is enabled
+     */
+    ttsEnabled () {
+      return this.$store.getters['global/ttsEnabled']
     },
     /**
      * Return all assets
@@ -163,6 +180,9 @@ export default {
       this.$store.commit('assetsManager/editAsset', asset)
       this.$store.dispatch('assetsManager/destroyEditingAsset')
     },
+    /**
+     * Reset assets editable and close dialog
+     */
     cancel () {
       this.assetsEditable = this.assetsEditable.map(function (el) {
         var o = Object.assign({}, el)
@@ -171,6 +191,9 @@ export default {
       })
       this.$store.commit('tabEditor/closeItemChoice', {})
     },
+    /**
+     * Add selected items to the tab
+     */
     addSelectedItems () {
       this.assetsToAdd = this.assetsEditable.filter(function (el) { return el.isSelected }).map(function (el) {
         var o = Object.assign({}, el)
@@ -178,10 +201,10 @@ export default {
         return o
       })
       this.$store.commit('tabEditor/pushItems', this.assetsToAdd)
-      console.log(this.assetsToAdd)
+      this.cancel()
     },
     /**
-     * Call to cancel
+     * Call to hide the dialog
      * these two next are important (Quasar's Dialog behavior)
      */
     hide () {
@@ -220,16 +243,6 @@ export default {
         }
       }
     }
-    /**
-     * When clicking on the asset select it or edit it
-     */
-    // onActionAsset (asset) {
-    //   if (this.selectMode) {
-    //     this.$store.commit('assetsManager/selectAsset', asset)
-    //   } else {
-    //     this.$store.commit('assetsManager/editAsset', asset)
-    //   }
-    // }
   }
 }
 </script>

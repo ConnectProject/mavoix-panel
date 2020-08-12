@@ -52,6 +52,7 @@
 
       </div> -->
       <!-- Items container -->
+
       <draggable
         tag="div"
         v-model="items"
@@ -164,7 +165,7 @@
       </q-toolbar>
     </q-page-sticky>
     <!-- Udo, Redo buttons -->
-    <q-page-sticky position="top-right" :offset="[18, 18]">
+<!--     <q-page-sticky position="top-right" :offset="[18, 18]">
       <q-btn class="q-mx-xs" fab icon="undo" color="accent" @click="onUndo" :disable="$store.getters['tabEditor/isUndoable']">
         <q-tooltip>
           {{ $t('generic.undo') }}
@@ -175,11 +176,11 @@
           {{ $t('generic.redo') }}
         </q-tooltip>
       </q-btn>
-    </q-page-sticky>
+    </q-page-sticky> -->
 
     <!-- Delete, Save buttons -->
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn class="q-mx-xs" fab icon="delete" color="negative" @click="onDelete">
+      <q-btn class="q-mx-xs" fab icon="delete" color="negative" @click="deletion = true">
         <q-tooltip>
           {{ $t('generic.delete') }}
         </q-tooltip>
@@ -190,7 +191,22 @@
         </q-tooltip>
       </q-btn>
     </q-page-sticky>
+    <q-dialog v-model="deletion">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Supprimer l'onglet</div>
+        </q-card-section>
 
+        <q-card-section class="q-pt-none">
+          êtes-vous sûr de vouloir supprimer l'onglet ?
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Oui" color="primary" @click="onDelete" />
+          <q-btn flat label="Non" color="primary" @click="deletion = false" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -208,16 +224,17 @@ export default {
   /**
    * When component mounted load everything
    */
+  mounted () {
+    this.load()
+  },
   data () {
     return {
       hex: '',
       loaded: false,
+      deletion: false,
       numberLoaded: 0,
       itemsLoaded: []
     }
-  },
-  mounted () {
-    this.load()
   },
   computed: {
     /**
@@ -232,27 +249,23 @@ export default {
     items: {
       get () {
         let items = this.$store.getters['tabEditor/items']
-        console.log('items:')
-        console.log(items)
         let css = ''
         let that = this
-        for (let i = 0; i < items.length; i++) {
-          if (items[i].asset && !this.itemsLoaded.includes(items[i].asset.id)) {
-            that.itemsLoaded.push(items[i].asset.id)
-            this.getBase64Image(items[i].asset.file._url, function (base64image) {
-              let newClass = ' .class-' + items[i].asset.id + '{ background-image: url("' + base64image + '") !important}'
-              console.log(base64image.substr(0, 200))
-              css = css + newClass
-              console.log(i)
-              console.log(that.itemsLoaded)
-              if (that.numberLoaded === items.length) {
-                let styleTag = document.createElement('style')
-                styleTag.appendChild(document.createTextNode(css))
-                document.head.appendChild(styleTag)
-                console.log('css:')
-                console.log(css)
-              }
-            })
+        // here we check if we have loaded the images in css background, we do this for the sake performance and to avoid visual glitch in the implementation of vue-draggable
+        if (that.numberLoaded <= items.length) {
+          for (let i = 0; i < items.length; i++) {
+            if (items[i].asset && !this.itemsLoaded.includes(items[i].asset.id)) {
+              that.itemsLoaded.push(items[i].asset.id)
+              this.getBase64Image(items[i].asset.file._url, function (base64image) {
+                let newClass = ' .class-' + items[i].asset.id + '{ background-image: url("' + base64image + '") !important}'
+                css = css + newClass
+                if (that.numberLoaded === items.length) {
+                  let styleTag = document.createElement('style')
+                  styleTag.appendChild(document.createTextNode(css))
+                  document.head.appendChild(styleTag)
+                }
+              })
+            }
           }
         }
         return items
@@ -277,6 +290,9 @@ export default {
     }
   },
   methods: {
+    /**
+     * convert url to base64 data to avoid reloading files
+     */
     getBase64Image (imgUrl, callback) {
       var img = new Image()
       // onload fires when the image is fully loadded, and has width and height
@@ -315,7 +331,6 @@ export default {
             slug: tab.get(SLUG_KEY)
           }
         })
-
         /* Toast message */
         this.$q.notify({
           message: `${tab.get('name')} saved`,
@@ -328,7 +343,7 @@ export default {
      */
     onDelete () {
       this.$store.dispatch('tabEditor/deleteTab')
-
+      this.deletion = false
       /* Go to home */
       this.$router.push({
         name: 'home'
