@@ -29,7 +29,8 @@ export default {
   tabEditor: {
     tabNameLabel: 'Nom',
     tabColorLabel: 'Couleur',
-    addItemLabel: 'Ajouter une image',
+    addItemLabel: 'Ajouter des images',
+    editLanguage: 'Modifier Voix',
     itemDialog: {
       headingNew: 'Ajout d\'une image',
       headingEdit: 'Editer une image',

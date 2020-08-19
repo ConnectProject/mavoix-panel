@@ -1,6 +1,6 @@
 import { modelToTab, itemModelToItem, itemIndex } from './utils'
 import { getDefaultState } from './state'
-import { ActionName, ActionHexColor, ActionNewItem, ActionUpdateItem } from './stackActions'
+import { ActionName, ActionHexColor, ActionNewItem, ActionUpdateItem, ActionLanguage, ActionSpeed } from './stackActions'
 
 /**
  * Set the tab used by the Tab Editor
@@ -9,6 +9,8 @@ import { ActionName, ActionHexColor, ActionNewItem, ActionUpdateItem } from './s
  */
 export const setTab = (state, tabModel) => {
   state.tab = modelToTab(tabModel)
+  state.speed = state.speeds[state.speedsCodes.indexOf(state.tab.speed)]
+  state.language = state.languages[state.languagesCodes.indexOf(state.tab.language)]
   state.loading = false
 }
 
@@ -28,6 +30,23 @@ export const setName = (state, name) => {
  */
 export const setHexColor = (state, hexColor) => {
   undoStackPushDo(state, new ActionHexColor(state.tab.hexColor, hexColor))
+}
+
+export const setLanguage = (state, indexLanguage) => {
+  console.log(indexLanguage)
+  state.language = state.languages[indexLanguage]
+  let lang = state.languagesCodes[indexLanguage]
+  console.log(lang)
+  undoStackPushDo(state, new ActionLanguage(state.tab.language, lang))
+  console.log(state.tab.language)
+}
+
+export const setSpeed = (state, indexSpeed) => {
+  state.speed = state.speeds[indexSpeed]
+  let speed = state.speedsCodes[indexSpeed]
+  console.log(state.speed)
+  undoStackPushDo(state, new ActionSpeed(state.tab.speed, speed))
+  console.log(state.tab.speed)
 }
 
 /**
@@ -147,6 +166,10 @@ export const openItemChoice = (state, { mode = 'new', index, data }) => {
     state.itemChoice.data = data
     state.itemChoice.index = index
   }
+}
+
+export const openLanguageChoice = (state) => {
+  state.itemLanguage.opened = true
 }
 
 export const closeItemChoice = (state, { mode = 'new', index, data }) => {

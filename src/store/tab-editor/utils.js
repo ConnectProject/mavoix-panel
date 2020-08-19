@@ -1,5 +1,5 @@
 import Parse from 'parse'
-import TabModel, { NAME_KEY, HEX_COLOR_KEY, SLUG_KEY } from '~/models/Tab'
+import TabModel, { NAME_KEY, HEX_COLOR_KEY, SLUG_KEY, SPEED_KEY, LANGUAGE_KEY } from '~/models/Tab'
 import {
   NAME_KEY as ITEM_NAME_KEY,
   ASSET_KEY as ITEM_ASSET_KEY,
@@ -42,7 +42,9 @@ export const itemIndex = (state, pItem) => state.items.findIndex((item) => item.
 export const modelToTab = (tabModel) => ({
   slug: tabModel.get(SLUG_KEY),
   name: tabModel.get(NAME_KEY),
-  hexColor: tabModel.get(HEX_COLOR_KEY)
+  hexColor: tabModel.get(HEX_COLOR_KEY),
+  speed: tabModel.get(SPEED_KEY),
+  language: tabModel.get(LANGUAGE_KEY)
 })
 
 /**

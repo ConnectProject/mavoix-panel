@@ -33,7 +33,13 @@ export const itemChoice = ({ itemChoice: { data } }) => data
  */
 export const itemDialogOpened = ({ itemDialog: { opened } }) => opened
 export const itemChoiceOpened = ({ itemChoice: { opened } }) => opened
-
+export const itemLanguageOpened = ({ itemLanguage: { opened } }) => opened
+export const languages = ({ languages }) => languages
+export const speeds = ({ speeds }) => speeds
+export const language = ({ language }) => language
+export const speed = ({ speed }) => speed
+export const languagesCodes = ({ languagesCodes }) => languagesCodes
+export const speedsCodes = ({ speedsCodes }) => speedsCodes
 /**
  * Return the item dialog's mode (see state.js)
  * @param {State} state

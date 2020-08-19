@@ -3,7 +3,7 @@ import Parse from 'parse'
 import slugify from '~/utils/slugify'
 import { tabToModel } from './utils'
 
-import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY } from '~/models/Tab'
+import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY, SPEED_KEY, LANGUAGE_KEY } from '~/models/Tab'
 import TabItemModel, {
   NAME_KEY as ITEM_NAME_KEY,
   ASSET_KEY as ITEM_ASSET_KEY,
@@ -72,7 +72,10 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
       tabModel.set(NAME_KEY, tab.name)
       tabModel.set(HEX_COLOR_KEY, tab.hexColor)
       tabModel.set(SLUG_KEY, slugify(tab.name))
-
+      tabModel.set(SPEED_KEY, tab.speed)
+      tabModel.set(LANGUAGE_KEY, tab.language)
+      console.log(tab)
+      console.log('^^^^^')
       Promise.all([
         /* Save the tabmodel */
         tabModel.save(),

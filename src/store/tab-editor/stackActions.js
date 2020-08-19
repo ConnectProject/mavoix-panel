@@ -53,6 +53,25 @@ export class ActionHexColor extends Action {
   }
 }
 
+export class ActionLanguage extends Action {
+  reverse (state) {
+    state.tab.language = this.from
+  }
+
+  do (state) {
+    state.tab.language = this.to
+  }
+}
+
+export class ActionSpeed extends Action {
+  reverse (state) {
+    state.tab.speed = this.from
+  }
+
+  do (state) {
+    state.tab.speed = this.to
+  }
+}
 /**
  * Action that add an item to the tab
  */

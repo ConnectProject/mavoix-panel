@@ -106,7 +106,6 @@
         </q-card>
       </draggable>
     </div>
-
     <dialog-tab-item />
     <assets />
 
@@ -154,7 +153,22 @@
             </q-icon>
           </template>
         </q-input>
-
+        <q-select
+          :value="speed"
+          :options="speeds"
+          class="q-ma-md"
+          filled
+          style="min-width: 150px"
+          @input="setSpeed"
+          label="Speed" />
+        <q-select
+          :value="language"
+          :options="options"
+          class="q-ma-md"
+          @input="setLanguage"
+          style="min-width: 150px"
+          filled
+          label="Accent" />
         <!-- Add item button -->
         <q-btn
           class="q-px-md q-py-md q-ma-md"
@@ -162,6 +176,7 @@
           @click="onAddItem">
             {{ $t('tabEditor.addItemLabel') }}
         </q-btn>
+        <!-- edit language button -->
       </q-toolbar>
     </q-page-sticky>
     <!-- Udo, Redo buttons -->
@@ -214,18 +229,21 @@
 import DialogTabItem from '~/components/dialogs/TabItem'
 import { SLUG_KEY } from '../models/Tab'
 import Assets from '~/components/Assets'
+import { QSelect } from 'quasar'
 
 export default {
   name: 'PageTabEditor',
   components: {
     DialogTabItem,
-    Assets
+    Assets,
+    QSelect
   },
   /**
    * When component mounted load everything
    */
   mounted () {
     this.load()
+    console.log('________tab')
   },
   data () {
     return {
@@ -242,6 +260,21 @@ export default {
      */
     tab () {
       return this.$store.getters['tabEditor/tab']
+    },
+    speed () {
+      return this.$store.getters['tabEditor/speed']
+    },
+    language () {
+      return this.$store.getters['tabEditor/language']
+    },
+    /**
+     * possible languages
+     */
+    speeds () {
+      return this.$store.getters['tabEditor/speeds']
+    },
+    options () {
+      return this.$store.getters['tabEditor/languages']
     },
     /**
      * The tab's items
@@ -360,6 +393,12 @@ export default {
      */
     setHexColor (hexColor) {
       this.$store.commit('tabEditor/setHexColor', hexColor)
+    },
+    setLanguage (language) {
+      this.$store.commit('tabEditor/setLanguage', this.options.indexOf(language))
+    },
+    setSpeed (speed) {
+      this.$store.commit('tabEditor/setSpeed', this.speeds.indexOf(speed))
     },
     /**
      * Call to open the item dialog in new item mode
