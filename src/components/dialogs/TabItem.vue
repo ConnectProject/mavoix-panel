@@ -125,6 +125,14 @@ export default {
       return this.$store.getters['global/ttsEnabled']
     }
   },
+  watch: {
+    /**
+     * init tts when opening dialog
+     */
+    opened (newValue, oldValue) {
+      this.$store.dispatch('global/initTTS')
+    }
+  },
   methods: {
     /**
      * Call on submit to update or add the item to the tab

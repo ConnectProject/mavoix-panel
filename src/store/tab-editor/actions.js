@@ -74,8 +74,6 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
       tabModel.set(SLUG_KEY, slugify(tab.name))
       tabModel.set(SPEED_KEY, tab.speed)
       tabModel.set(LANGUAGE_KEY, tab.language)
-      console.log(tab)
-      console.log('^^^^^')
       Promise.all([
         /* Save the tabmodel */
         tabModel.save(),
@@ -129,6 +127,7 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
         commit('clearState')
         dispatch('loadBySlug', tabModel.get(SLUG_KEY))
         callback(tabModel)
+        dispatch('global/initTTS')
       })
     })
 }

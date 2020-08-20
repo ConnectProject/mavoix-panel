@@ -223,6 +223,7 @@ export default {
      */
     '$route' (to, from) {
       if (to.params.assets && to.params.assets === 'assets') {
+        this.$store.dispatch('global/initTTS')
         this.$store.dispatch('assetsManager/openAndLoad', {
           selectMode: false
         })

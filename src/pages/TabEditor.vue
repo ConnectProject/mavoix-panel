@@ -243,7 +243,6 @@ export default {
    */
   mounted () {
     this.load()
-    console.log('________tab')
   },
   data () {
     return {
@@ -320,6 +319,7 @@ export default {
      */
     '$route' (newValue, oldValue) {
       this.load()
+      this.$store.dispatch('global/initTTS')
     }
   },
   methods: {
