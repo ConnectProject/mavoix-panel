@@ -407,6 +407,7 @@ export default {
     onAddItem () {
       // this.$store.commit('tabEditor/openItemDialog', {})
       this.$store.commit('tabEditor/openItemChoice', {})
+      this.$store.dispatch('global/initTTS')
     },
     /**
      * Call to open the item dialog in edit item mode
