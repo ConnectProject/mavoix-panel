@@ -9,3 +9,5 @@ export const tts = ({ tts }) => tts
  * @param {State} state
  */
 export const ttsEnabled = ({ ttsEnabled }) => ttsEnabled
+
+export const imagesSelected = ({ imagesSelected }) => imagesSelected

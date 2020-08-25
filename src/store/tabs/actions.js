@@ -7,6 +7,7 @@ import TabModel from '~/models/Tab'
  * @param {Context} ctx
  */
 export const loadTabs = ({ commit }) => {
+  console.log('load tabs')
   new Parse.Query(TabModel)
     .find()
     .then((tabs) => {

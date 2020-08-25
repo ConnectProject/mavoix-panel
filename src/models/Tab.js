@@ -30,6 +30,6 @@ export default class TabModel extends Parse.Object {
   }
 
   static Create (name) {
-    return TabModel.New(name, randomHex(), {})
+    return TabModel.New(name, randomHex(), 1.0, 'fr_FR')
   }
 }

@@ -37,6 +37,7 @@ export const itemLanguageOpened = ({ itemLanguage: { opened } }) => opened
 export const languages = ({ languages }) => languages
 export const speeds = ({ speeds }) => speeds
 export const language = ({ language }) => language
+export const languageCode = ({ tab: { language } }) => language.substring(0, 2)
 export const speed = ({ speed }) => speed
 export const languagesCodes = ({ languagesCodes }) => languagesCodes
 export const speedsCodes = ({ speedsCodes }) => speedsCodes

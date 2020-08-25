@@ -71,8 +71,9 @@
           </div>
           <q-img
             :ratio="16/9"
-            :class="'item-img class-'+ item.asset.id"
+            :src="item.asset.url"
           >
+            <!-- :class="'item-img class-'+ item.asset.id" -->
             <div
               class="absolute-bottom"
             >
@@ -281,25 +282,25 @@ export default {
     items: {
       get () {
         let items = this.$store.getters['tabEditor/items']
-        let css = ''
-        let that = this
+        // let css = ''
+        // let that = this
         // here we check if we have loaded the images in css background, we do this for the sake performance and to avoid visual glitch in the implementation of vue-draggable
-        if (that.numberLoaded <= items.length) {
-          for (let i = 0; i < items.length; i++) {
-            if (items[i].asset && !this.itemsLoaded.includes(items[i].asset.id)) {
-              that.itemsLoaded.push(items[i].asset.id)
-              this.getBase64Image(items[i].asset.file._url, function (base64image) {
-                let newClass = ' .class-' + items[i].asset.id + '{ background-image: url("' + base64image + '") !important}'
-                css = css + newClass
-                if (that.numberLoaded === items.length) {
-                  let styleTag = document.createElement('style')
-                  styleTag.appendChild(document.createTextNode(css))
-                  document.head.appendChild(styleTag)
-                }
-              })
-            }
-          }
-        }
+        // if (that.numberLoaded <= items.length) {
+        //   for (let i = 0; i < items.length; i++) {
+        //     if (items[i].asset && !this.itemsLoaded.includes(items[i].asset.id)) {
+        //       that.itemsLoaded.push(items[i].asset.id)
+        //       this.getBase64Image(items[i].asset.file._url, function (base64image) {
+        //         let newClass = ' .class-' + items[i].asset.id + '{ background-image: url("' + base64image + '") !important}'
+        //         css = css + newClass
+        //         if (that.numberLoaded === items.length) {
+        //           let styleTag = document.createElement('style')
+        //           styleTag.appendChild(document.createTextNode(css))
+        //           document.head.appendChild(styleTag)
+        //         }
+        //       })
+        //     }
+        //   }
+        // }
         return items
       },
       set (values) {

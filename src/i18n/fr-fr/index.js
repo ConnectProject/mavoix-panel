@@ -24,7 +24,8 @@ export default {
     nameSave: 'Nom enregistré : '
   },
   assets: {
-    select: 'Sélectionnez les images à ajouter :'
+    select: 'Sélectionnez les images à ajouter :',
+    chooseImages: 'Choisissez les images à ajouter'
   },
   tabEditor: {
     tabNameLabel: 'Nom',

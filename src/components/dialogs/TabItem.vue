@@ -49,7 +49,7 @@
         <q-img
           v-else
           class="asset-image"
-          :src="item.asset.file._url"
+          :src="item.asset.url"
           @click="onSetAsset">
           <div class="absolute fit flex justify-center items-center text-center image-wrapper">
             <q-icon

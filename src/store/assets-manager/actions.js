@@ -83,9 +83,8 @@ export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editin
  * @param {Context} ctx
  * @param {File} file the file to upload
  */
+
 export const uploadFile = ({ commit }, file) => {
-  console.log('testttt:')
-  console.log(file)
   const name = Unidecode(file.name)
 
   new Parse.File(name, file)
@@ -94,7 +93,7 @@ export const uploadFile = ({ commit }, file) => {
       commit('setError', err)
     })
     .then((file) => {
-      AssetModel.New(name, file)
+      AssetModel.New(name, file, file._url)
         .save()
         .catch((err) => {
           commit('setError', err)
@@ -102,5 +101,17 @@ export const uploadFile = ({ commit }, file) => {
         .then((asset) => {
           commit('addAsset', asset)
         })
+    })
+}
+
+export const addAsset = ({ commit }, obj) => {
+  AssetModel.New(obj.name, false, obj.url)
+    .save()
+    .catch((err) => {
+      commit('setError', err)
+    })
+    .then((asset) => {
+      console.log(asset)
+      commit('addAsset', asset)
     })
 }

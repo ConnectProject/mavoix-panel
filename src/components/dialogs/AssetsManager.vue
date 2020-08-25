@@ -33,7 +33,7 @@ input[type='file']
           :key="index"
           class="card col-2 q-ma-md"
         >
-          <q-img v-if="asset.file" class="fit rounded-borders" :ratio="16 / 9" :src="asset.file._url" basic>
+          <q-img v-if="asset.url" class="fit rounded-borders" :ratio="16 / 9" :src="asset.url" basic>
           </q-img>
           <div class="erase absolute-right q-mt-sm q-mr-sm">
             <q-btn
@@ -75,6 +75,37 @@ input[type='file']
             </template>
           </q-input>
         </q-card>
+        <q-card
+          v-for="(asset, index) in images"
+          :key="'x_' + index"
+          class="card col-2 q-ma-md"
+        >
+          <q-img v-if="asset.url" class="fit rounded-borders" :ratio="16 / 9" :src="asset.url" basic>
+          </q-img>
+          <q-input
+            class="absolute-bottom"
+            v-model="asset.names[lang]"
+            label="Name"
+            style="background-color:rgba(255,255,255,0.7)"
+            filled
+            @keyup.enter="addAsset(asset.names[lang],asset.url)"
+          >
+            <template v-slot:append>
+              <q-btn
+                round
+                dense
+                color="blue"
+                size="m"
+                icon="add"
+                @click="addAsset(asset.names[lang],asset.url)"
+              >
+                <q-tooltip>
+                  {{ $t('generic.add') }}
+                </q-tooltip>
+              </q-btn>
+            </template>
+          </q-input>
+        </q-card>
 
         <!-- Add asset button -->
         <q-fab
@@ -82,6 +113,7 @@ input[type='file']
             direction="up"
             color="accent"
           >
+          <q-fab-action color="primary" icon="search" @click="activateSearch" />
           <q-fab-action @click="onUploadFile" color="primary" icon="attach_file" />
 <!--           <q-fab-action color="primary" icon="cloud" /> -->
           <q-fab-action color="primary" icon="camera_alt" @click="showCam" />
@@ -106,7 +138,7 @@ input[type='file']
         >
           <q-toolbar class="bg-white">
             <q-form class="row q-ma-md">
-              <q-input outlined label="Nom" v-model="search">
+              <q-input outlined label="Rechercher" v-model="search">
                 <template v-slot:append>
                   <q-icon name="search" />
                 </template>
@@ -126,15 +158,32 @@ export default {
   data () {
     return {
       search: '',
+      lang: 'fr',
       assetsSpecial: []
     }
   },
   components: {
     AssetEdit
   },
+  mounted () {
+    this.$store.dispatch('tabs/loadTabs')
+    this.search = ''
+    let lang = 'fr'
+    if (this.tabs[0]?.attributes?.language) {
+      lang = this.tabs[0].attributes.language.substring(0, 2)
+    }
+    this.lang = lang
+    console.log('mounted')
+  },
   computed: {
     route () {
       return this.$route['params']['assets']
+    },
+    images () {
+      return this.$store.getters['global/imagesSelected']
+    },
+    tabs () {
+      return this.$store.getters['tabs/tabs']
     },
     /**
      * Return true if the dialog should be opened
@@ -164,9 +213,28 @@ export default {
       return this.$store.getters['assetsManager/selectMode']
     }
   },
+  watch: {
+    tabs (to, from) {
+      let lang = 'fr'
+      if (this.tabs[0]?.attributes?.language) {
+        lang = this.tabs[0].attributes.language.substring(0, 2)
+      }
+      this.lang = lang
+    },
+    search (to, from) {
+      console.log(this.lang)
+      this.$store.commit('global/setImages', { 'text': to, 'language': this.lang })
+    }
+  },
   methods: {
+    /**
+     * convert url to base64 data to be saved
+     */
     showCam () {
       this.$emit('showCam')
+    },
+    activateSearch () {
+
     },
     editAsset (asset) {
       this.$store.commit('assetsManager/editAsset', asset)
@@ -194,6 +262,11 @@ export default {
      */
     onUploadFile () {
       this.$refs['invisibleFileInput'].click()
+    },
+    addAsset (name, url) {
+      this.$store.dispatch('assetsManager/addAsset', { 'name': name, 'url': url })
+      this.search = ''
+      this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
     },
     /**
      * When a file has been uploaded create the asset

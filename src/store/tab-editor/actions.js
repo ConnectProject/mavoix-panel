@@ -127,7 +127,6 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
         commit('clearState')
         dispatch('loadBySlug', tabModel.get(SLUG_KEY))
         callback(tabModel)
-        dispatch('global/initTTS')
       })
     })
 }

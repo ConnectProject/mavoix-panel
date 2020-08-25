@@ -17,3 +17,17 @@ export const setError = (state, err) => {
   state.error = err
   console.error(err)
 }
+
+export const setImages = (state, obj) => {
+  if (obj.text.length > 1) {
+    let lang = 'fr'
+    if (obj.language) {
+      lang = obj.language
+    }
+    console.log(lang)
+    console.log(obj.text)
+    state.imagesSelected = state.images.filter(word => word.names[lang]?.includes(obj.text)).slice(0, 10)
+  } else {
+    state.imagesSelected = []
+  }
+}

@@ -19,7 +19,7 @@
       ref="dialog"
       full-width
       full-height
-      message="Choisissez les images à ajouter">
+      message="$t('assets.chooseImages')">
       <q-card >
         <q-card-section>
           <div class="text-h6">{{ $t('assets.select') }}</div>
@@ -34,10 +34,10 @@
             class="card col-2 q-ma-md"
           >
             <q-img
-              v-if="asset.file"
+              v-if="asset.url"
               class="fit rounded-borders cursor-pointer"
               :ratio="16 / 9"
-              :src="asset.file._url"
+              :src="asset.url"
               @click="asset.isSelected = !asset.isSelected"
               basic>
             </q-img>

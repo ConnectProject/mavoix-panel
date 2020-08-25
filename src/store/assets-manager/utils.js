@@ -1,5 +1,5 @@
 import Parse from 'parse'
-import AssetModel, { NAME_KEY, PARSE_FILE_KEY } from '~/models/Asset'
+import AssetModel, { NAME_KEY, PARSE_FILE_KEY, URL_KEY } from '~/models/Asset'
 
 /**
  * Return the index of an asset in an array of assets
@@ -15,6 +15,7 @@ export const assetIndex = (assets, asset) => assets.findIndex((a) => a.id === as
 export const assetFromModel = (assetModel) => ({
   id: assetModel.id,
   name: assetModel.get(NAME_KEY),
+  url: assetModel.get(URL_KEY),
   file: assetModel.get(PARSE_FILE_KEY)
 })
 
