@@ -6,6 +6,7 @@ import tabEditor from './tab-editor'
 import tabs from './tabs'
 import assetsManager from './assets-manager'
 import global from './global'
+import users from './users'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       devices,
+      users,
       tabs,
       tabEditor,
       assetsManager,

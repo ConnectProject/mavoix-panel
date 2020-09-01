@@ -4,6 +4,7 @@ import TabModel from '~/models/Tab'
 import TabItemModel from '~/models/TabItem'
 import AssetModel from '~/models/Asset'
 import DeviceUserModel from '~/models/DeviceUser'
+import ParseUserModel from '~/models/ParseUser'
 
 /*
 ** Initilize parse client with its models
@@ -21,4 +22,5 @@ export default async ({ app, Vue }) => {
   /* User */
   Parse.User.allowCustomUserClass(true)
   Parse.User.registerSubclass('DeviceUser', DeviceUserModel)
+  Parse.User.registerSubclass('ParseUser', ParseUserModel)
 }

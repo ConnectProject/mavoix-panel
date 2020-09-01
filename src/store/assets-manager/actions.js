@@ -25,12 +25,13 @@ export const openAndLoad = ({ commit, dispatch }, { selectMode = false, selectCa
  */
 export const loadAssets = ({ commit }) => {
   new Parse.Query(AssetModel)
-    // .find({ PARENT_KEY: user._id })
+    .equalTo('user', localStorage.id)
     .find()
     .catch((err) => {
       commit('setError', err)
     })
     .then((assets) => {
+      console.log(assets)
       commit('setAssets', assets.reverse())
     })
 }
@@ -93,7 +94,7 @@ export const uploadFile = ({ commit }, file) => {
       commit('setError', err)
     })
     .then((file) => {
-      AssetModel.New(name, file, file._url)
+      AssetModel.New(name, file, file._url, localStorage.id)
         .save()
         .catch((err) => {
           commit('setError', err)
@@ -105,7 +106,7 @@ export const uploadFile = ({ commit }, file) => {
 }
 
 export const addAsset = ({ commit }, obj) => {
-  AssetModel.New(obj.name, false, obj.url)
+  AssetModel.New(obj.name, false, obj.url, localStorage.id)
     .save()
     .catch((err) => {
       commit('setError', err)

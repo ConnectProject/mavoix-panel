@@ -9,6 +9,7 @@ import TabModel from '~/models/Tab'
 export const loadTabs = ({ commit }) => {
   console.log('load tabs')
   new Parse.Query(TabModel)
+    .equalTo('user', localStorage.id)
     .find()
     .then((tabs) => {
       commit('setTabs', tabs)
@@ -27,7 +28,7 @@ export const loadTabs = ({ commit }) => {
  * }
  */
 export const createTabCb = ({ commit }, { name, callback }) => {
-  TabModel.Create(name)
+  TabModel.Create(name, localStorage.id)
     .save()
     .then((tab) => {
       if (tab) {

@@ -1,12 +1,11 @@
 /**
- * Set devices
+ * Set users
  * @param {state} state
- * @param {[DeviceUserModel]} deviceModels devices to load
+ * @param {[DeviceUserModel]} deviceModels users to load
  */
 export const setDevices = (state, deviceModels) => {
   state.devices = deviceModels.map((model) => {
     return {
-      deviceName: model.get('deviceName'),
       name: model.getUsername(),
       password: ''
     }
@@ -22,14 +21,12 @@ export const setDevices = (state, deviceModels) => {
  *   password: the password of the new device
  * }
  */
-export const addAndOpenDevice = (state, { model, password }) => {
-  state.devices.push({
-    deviceName: model.get('deviceName'),
-    name: model.getUsername(),
-    password: password
-  })
-  closeNameDialog(state)
-  openDialog(state, state.devices.length - 1)
+export const addAndOpenDevice = (state, { model }) => {
+  state.user.name = model.getUsername()
+  state.user.id = model._getId()
+  localStorage.id = model._getId()
+  state.isConnected = !state.isConnected
+  console.log(state.user)
 }
 
 /**
@@ -38,9 +35,9 @@ export const addAndOpenDevice = (state, { model, password }) => {
  * @param {String} password new password
  */
 export const updateActivePassword = (state, password) => {
-  state.devices[state.dialog.index].password = password
+  state.users[state.dialog.index].password = password
 
-  console.log(state.devices)
+  console.log(state.users)
 }
 
 /**
@@ -48,7 +45,7 @@ export const updateActivePassword = (state, password) => {
  * @param {State} state
  */
 export const removeActive = (state) => {
-  state.devices.splice(state.dialog.index, 1)
+  state.users.splice(state.dialog.index, 1)
   closeDialog(state)
 }
 
@@ -102,7 +99,7 @@ export const setNameDialog = (state, name) => {
  * @param {Error} error is the error to set
  */
 export const setError = (state, err) => {
-  console.error(err)
-  state.error = err
+  console.error(err.message)
+  state.error = err.message
   state.loading = false
 }

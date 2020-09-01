@@ -22,6 +22,7 @@ import TabItemModel, {
 export const loadBySlug = ({ commit, dispatch }, slug) => {
   new Parse.Query(TabModel)
     .equalTo(SLUG_KEY, slug)
+    .equalTo('user', localStorage.id)
     .first()
     .then((tabModel) => {
       commit('setTab', tabModel)

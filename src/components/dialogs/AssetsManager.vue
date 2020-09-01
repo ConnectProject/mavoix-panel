@@ -166,7 +166,7 @@ export default {
     AssetEdit
   },
   mounted () {
-    this.$store.dispatch('tabs/loadTabs')
+    this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
     this.search = ''
     let lang = 'fr'
     if (this.tabs[0]?.attributes?.language) {
@@ -227,9 +227,6 @@ export default {
     }
   },
   methods: {
-    /**
-     * convert url to base64 data to be saved
-     */
     showCam () {
       this.$emit('showCam')
     },

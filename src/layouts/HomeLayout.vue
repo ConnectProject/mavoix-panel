@@ -113,6 +113,7 @@
           </div>
 
           <!-- Devices -->
+          {{ users }}
           <q-item-label header>{{ $t('navDrawer.devices') }}</q-item-label>
           <!-- If the query is loading -->
           <list-item-loading v-if="$store.state.devices.loading" />
@@ -130,7 +131,7 @@
                 <q-icon name="devices_other"/>
               </q-item-section>
               <q-item-section>
-                <q-item-label>{{ device.name }}</q-item-label>
+                <q-item-label>{{ device.deviceName }}</q-item-label>
               </q-item-section>
             </q-item>
 
@@ -187,14 +188,20 @@ export default {
    * If route is host/assets open assets manager
    */
   mounted () {
-    this.$store.dispatch('tabs/loadTabs')
-    this.$store.dispatch('devices/loadDevices')
-    if (this.$route.params.assets && this.$route.params.assets === 'assets') {
-      this.$store.dispatch('assetsManager/openAndLoad', {
-        selectMode: false
+    if (typeof localStorage.id === 'undefined' || localStorage.id === 'undefined') {
+      this.$router.push({
+        name: 'auth'
       })
+    } else {
+      this.$store.dispatch('tabs/loadTabs')
+      this.$store.dispatch('devices/loadDevices')
+      if (this.$route.params.assets && this.$route.params.assets === 'assets') {
+        this.$store.dispatch('assetsManager/openAndLoad', {
+          selectMode: false
+        })
+      }
+      this.$store.dispatch('global/initTTS')
     }
-    this.$store.dispatch('global/initTTS')
   },
   data () {
     return {
@@ -204,6 +211,9 @@ export default {
     }
   },
   computed: {
+    users () {
+      return this.$store.getters['users/users']
+    },
     /**
      * Return all devices
      */
@@ -226,8 +236,7 @@ export default {
         this.$store.dispatch('assetsManager/openAndLoad', {
           selectMode: false
         })
-        console.log('ok')
-        this.$store.dispatch('tabs/loadTabs')
+        this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
       }
     }
   },
@@ -270,6 +279,7 @@ export default {
      * Go to auth page
      **/
     onLogout () {
+      localStorage.id = undefined
       this.$router.push({
         name: 'auth'
       })

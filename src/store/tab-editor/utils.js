@@ -44,7 +44,8 @@ export const modelToTab = (tabModel) => ({
   name: tabModel.get(NAME_KEY),
   hexColor: tabModel.get(HEX_COLOR_KEY),
   speed: tabModel.get(SPEED_KEY),
-  language: tabModel.get(LANGUAGE_KEY)
+  language: tabModel.get(LANGUAGE_KEY),
+  user: localStorage.id
 })
 
 /**
@@ -54,6 +55,7 @@ export const modelToTab = (tabModel) => ({
 export const tabToModel = (tab) => {
   return new Parse.Query(TabModel)
     .equalTo(SLUG_KEY, tab.slug)
+    .equalTo('user', localStorage.id)
     .first()
 }
 

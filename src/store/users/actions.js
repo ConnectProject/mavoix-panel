@@ -1,14 +1,12 @@
 import Parse from 'parse'
-
-import DeviceUser, { USERNAME_KEY } from '~/models/DeviceUser'
+import ParseUser, { USERNAME_KEY } from '~/models/ParseUser'
 
 /**
  * Load devices
  * @param {Context} ctx
  */
-export const loadDevices = ({ commit }) => {
-  new Parse.Query(DeviceUser)
-    .equalTo('linkedAccount', localStorage.id)
+export const loadUsers = ({ commit }) => {
+  new Parse.Query(ParseUser)
     .find()
     .catch((err) => {
       commit('setError', err)
@@ -18,22 +16,48 @@ export const loadDevices = ({ commit }) => {
     })
 }
 
+export const currentUser = ({ commit }) => {
+  new Parse.Query(ParseUser)
+    .equalTo('id', localStorage.id)
+    .find()
+    .catch((err) => {
+      commit('setError', err)
+    })
+    .then((user) => {
+      console.log(user)
+      commit('addAndOpenDevice', { user })
+    })
+}
+
 /**
  * Create a new device and open the model to view it
  * @param {Context} ctx
  * @param {String} name name of the new device
  */
-export const create = ({ commit }, name) => {
-  const deviceUser = DeviceUser.Create(name, localStorage.id)
-  const password = deviceUser.get('password')
 
-  deviceUser
+export const create = ({ commit }, [name, password]) => {
+  console.log(name)
+  console.log(password)
+  const parseUser = ParseUser.Create(name, password)
+  parseUser
     .signUp()
     .catch((err) => {
       commit('setError', err)
     })
     .then((model) => {
-      commit('addAndOpenDevice', { model, password })
+      commit('addAndOpenDevice', { model })
+    })
+}
+
+export const connect = ({ commit }, [name, password]) => {
+  const parseUser = ParseUser.logIn(name, password)
+  parseUser
+    .catch((err) => {
+      commit('setError', err)
+    })
+    .then((model) => {
+      localStorage.id = model._getId()
+      commit('addAndOpenDevice', { model })
     })
 }
 
@@ -42,15 +66,14 @@ export const create = ({ commit }, name) => {
  * @param {Context} ctx
  */
 export const resetActive = ({ commit, getters: { active } }) => {
-  new Parse.Query(DeviceUser)
+  new Parse.Query(ParseUser)
     .equalTo(USERNAME_KEY, active.name)
-    .equalTo('linkedAccount', localStorage.id)
     .first()
     .catch((err) => {
       commit('setError', err)
     })
     .then((model) => {
-      const password = DeviceUser.Password()
+      const password = ParseUser.Password()
       model.setPassword(password)
 
       model.save()
@@ -68,9 +91,8 @@ export const resetActive = ({ commit, getters: { active } }) => {
  * @param {Context} ctx
  */
 export const deleteActive = ({ commit, getters: { active } }) => {
-  new Parse.Query(DeviceUser)
+  new Parse.Query(ParseUser)
     .equalTo(USERNAME_KEY, active.name)
-    .equalTo('linkedAccount', localStorage.id)
     .first()
     .catch((err) => {
       commit('setError', err)

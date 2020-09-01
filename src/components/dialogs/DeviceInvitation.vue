@@ -7,7 +7,7 @@
     <div v-if="!opened"></div>
 
     <q-card v-else>
-      <h4 class="q-mb-xs text-h4 text-center">{{ device.name }}</h4>
+      <h4 class="q-mb-xs text-h4 text-center">{{ device.deviceName }}</h4>
 
       <!-- Print qrcode and write down the code if the password is known -->
       <div v-if="device.password">

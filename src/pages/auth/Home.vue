@@ -1,11 +1,14 @@
 <template>
   <q-page class="flex flex-center">
     <q-card>
-      <q-input outlined label="Username" v-model="email" class="q-ma-md"></q-input>
+      <h5 class="q-ma-md">{{ isConnexion ? 'Connexion' : 'Inscription'}} :</h5>
+      <q-input outlined label="Email" v-model="email" class="q-ma-md"></q-input>
       <q-input outlined label="Password" v-model="password" class="q-ma-md"></q-input>
-      <q-btn @click="$router.push({ name: 'home' })" class="q-ma-md">
-        Connexion
+      <q-btn @click="createUser" class="q-ma-md">
+        {{ isConnexion ? 'Connexion' : 'Inscription'}}
       </q-btn>
+      <br/>
+      <div class="q-ma-md cursor-pointer" @click="isConnexion = !isConnexion"><small>{{ isConnexion ? 'incription' : 'connexion' }}</small></div>
     </q-card>
   </q-page>
 </template>
@@ -15,8 +18,41 @@ export default {
   name: 'PageAuthHome',
   data () {
     return {
-      username: '',
-      password: ''
+      email: '',
+      password: '',
+      isConnexion: false
+    }
+  },
+  computed: {
+    users () {
+      return this.$store.getters['users/users']
+    },
+    isConnected () {
+      return this.$store.getters['users/isConnected']
+    },
+    error () {
+      return this.$store.getters['users/error']
+    }
+  },
+  watch: {
+    isConnected (newValue, oldValue) {
+      this.$router.push({
+        name: 'home'
+      })
+    },
+    error (newVal, oldVal) {
+      this.$q.notify({ position: 'top-right', message: newVal, color: 'blue' })
+    }
+  },
+  methods: {
+    createUser () {
+      let that = this
+      if (this.isConnexion) {
+        this.$store.dispatch('users/connect', [that.email, that.password])
+      } else {
+        this.$store.dispatch('users/create', [that.email, that.password])
+      }
+      // this.$router.push('/home')
     }
   }
 }
