@@ -81,7 +81,7 @@
           </q-item>
 
           <!-- Tabs -->
-          <q-item-label header>{{ $t('navDrawer.tabs') }}</q-item-label>
+          <q-item-label header>{{ $t('navDrawer.tabs') }}:</q-item-label>
           <!-- If the query is loading -->
           <list-item-loading v-if="$store.state.tabs.loading" />
           <div v-else>
@@ -113,38 +113,10 @@
           </div>
 
           <!-- Devices -->
-          {{ users }}
-          <q-item-label header>{{ $t('navDrawer.devices') }}</q-item-label>
-          <!-- If the query is loading -->
-          <list-item-loading v-if="$store.state.devices.loading" />
-          <!-- If the query has returned its result -->
-          <div v-else>
-            <!-- Render fetched devices buttons -->
-            <q-item
-              v-for="(device, index) in devices"
-              :key="index"
-              clickable
-              v-ripple
-              @click="$store.commit('devices/openDialog', index)"
-            >
-              <q-item-section avatar>
-                <q-icon name="devices_other"/>
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>{{ device.deviceName }}</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <!-- Click to add a device -->
-            <q-item clickable v-ripple @click="$store.commit('devices/openNameDialog')">
-              <q-item-section avatar>
-                <q-icon name="add" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>{{ $t('navDrawer.addDevice') }}</q-item-label>
-              </q-item-section>
-            </q-item>
-          </div>
+          <q-item-label header>{{ $t('navDrawer.devices') }}:</q-item-label>
+          <center>
+            <qrcode-vue :value="code" />
+          </center>
         </q-list>
       </q-scroll-area>
     </q-drawer>
@@ -163,6 +135,7 @@
 
 <script>
 import ListItemLoading from '~/components/ListItemLoading'
+import QrcodeVue from 'qrcode.vue'
 
 /* Dialogs */
 import DialogAssetsManager from '~/components/dialogs/AssetsManager'
@@ -175,6 +148,7 @@ import Camera from '~/components/Camera'
 export default {
   name: 'LayoutHome',
   components: {
+    QrcodeVue,
     ListItemLoading,
     DialogAssetsManager,
     DialogTabName,
@@ -211,6 +185,9 @@ export default {
     }
   },
   computed: {
+    code () {
+      return localStorage.username + ':' + localStorage.password
+    },
     users () {
       return this.$store.getters['users/users']
     },

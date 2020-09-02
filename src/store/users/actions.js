@@ -1,5 +1,5 @@
 import Parse from 'parse'
-import ParseUser, { USERNAME_KEY } from '~/models/ParseUser'
+import ParseUser from '~/models/ParseUser'
 
 /**
  * Load devices
@@ -36,8 +36,6 @@ export const currentUser = ({ commit }) => {
  */
 
 export const create = ({ commit }, [name, password]) => {
-  console.log(name)
-  console.log(password)
   const parseUser = ParseUser.Create(name, password)
   parseUser
     .signUp()
@@ -45,6 +43,9 @@ export const create = ({ commit }, [name, password]) => {
       commit('setError', err)
     })
     .then((model) => {
+      localStorage.id = model._getId()
+      localStorage.username = name
+      localStorage.password = password
       commit('addAndOpenDevice', { model })
     })
 }
@@ -57,53 +58,8 @@ export const connect = ({ commit }, [name, password]) => {
     })
     .then((model) => {
       localStorage.id = model._getId()
+      localStorage.username = name
+      localStorage.password = password
       commit('addAndOpenDevice', { model })
-    })
-}
-
-/**
- * Create a new password for the opened device
- * @param {Context} ctx
- */
-export const resetActive = ({ commit, getters: { active } }) => {
-  new Parse.Query(ParseUser)
-    .equalTo(USERNAME_KEY, active.name)
-    .first()
-    .catch((err) => {
-      commit('setError', err)
-    })
-    .then((model) => {
-      const password = ParseUser.Password()
-      model.setPassword(password)
-
-      model.save()
-        .catch((err) => {
-          commit('setError', err)
-        })
-        .then(() => {
-          commit('updateActivePassword', password)
-        })
-    })
-}
-
-/**
- * Delete the opened device
- * @param {Context} ctx
- */
-export const deleteActive = ({ commit, getters: { active } }) => {
-  new Parse.Query(ParseUser)
-    .equalTo(USERNAME_KEY, active.name)
-    .first()
-    .catch((err) => {
-      commit('setError', err)
-    })
-    .then((user) => {
-      user.destroy()
-        .catch((err) => {
-          commit('setError', err)
-        })
-        .then(() => {
-          commit('removeActive')
-        })
     })
 }

@@ -3,7 +3,7 @@
     <q-card>
       <h5 class="q-ma-md">{{ isConnexion ? 'Connexion' : 'Inscription'}} :</h5>
       <q-input outlined label="Email" v-model="email" class="q-ma-md"></q-input>
-      <q-input outlined label="Password" v-model="password" class="q-ma-md"></q-input>
+      <q-input outlined label="Password" type="password" v-model="password" class="q-ma-md"></q-input>
       <q-btn @click="createUser" class="q-ma-md">
         {{ isConnexion ? 'Connexion' : 'Inscription'}}
       </q-btn>

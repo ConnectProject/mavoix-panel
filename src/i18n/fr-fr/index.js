@@ -6,7 +6,7 @@ export default {
     assetsManager: 'Images',
     tabs: 'Onglets',
     addTab: 'Ajouter un onglet',
-    devices: 'Appareils',
+    devices: 'Appareil',
     addDevice: 'Ajouter un appareil'
   },
   dnd: {
