@@ -144,7 +144,9 @@ import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 
 import Camera from '~/components/Camera'
-
+import { LocalStorage } from 'quasar'
+console.log('id:')
+console.log(LocalStorage.id)
 export default {
   name: 'LayoutHome',
   components: {
@@ -162,7 +164,7 @@ export default {
    * If route is host/assets open assets manager
    */
   mounted () {
-    if (typeof localStorage.id === 'undefined' || localStorage.id === 'undefined') {
+    if (typeof LocalStorage.id === 'undefined' || LocalStorage.id === 'undefined') {
       this.$router.push({
         name: 'auth'
       })
@@ -186,7 +188,7 @@ export default {
   },
   computed: {
     code () {
-      return localStorage.username + ':' + localStorage.password
+      return LocalStorage.username + ':' + LocalStorage.password
     },
     users () {
       return this.$store.getters['users/users']
@@ -256,7 +258,7 @@ export default {
      * Go to auth page
      **/
     onLogout () {
-      localStorage.id = undefined
+      LocalStorage.id = undefined
       this.$router.push({
         name: 'auth'
       })

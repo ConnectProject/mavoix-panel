@@ -1,6 +1,6 @@
 import Parse from 'parse'
 import ParseUser from '~/models/ParseUser'
-
+import { LocalStorage } from 'quasar'
 /**
  * Load devices
  * @param {Context} ctx
@@ -18,7 +18,7 @@ export const loadUsers = ({ commit }) => {
 
 export const currentUser = ({ commit }) => {
   new Parse.Query(ParseUser)
-    .equalTo('id', localStorage.id)
+    .equalTo('id', LocalStorage.id)
     .find()
     .catch((err) => {
       commit('setError', err)
@@ -43,9 +43,9 @@ export const create = ({ commit }, [name, password]) => {
       commit('setError', err)
     })
     .then((model) => {
-      localStorage.id = model._getId()
-      localStorage.username = name
-      localStorage.password = password
+      LocalStorage.id = model._getId()
+      LocalStorage.username = name
+      LocalStorage.password = password
       commit('addAndOpenDevice', { model })
     })
 }
@@ -57,9 +57,9 @@ export const connect = ({ commit }, [name, password]) => {
       commit('setError', err)
     })
     .then((model) => {
-      localStorage.id = model._getId()
-      localStorage.username = name
-      localStorage.password = password
+      LocalStorage.id = model._getId()
+      LocalStorage.username = name
+      LocalStorage.password = password
       commit('addAndOpenDevice', { model })
     })
 }

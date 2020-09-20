@@ -1,6 +1,6 @@
 import Parse from 'parse'
 import Unidecode from 'unidecode'
-
+import { LocalStorage } from 'quasar'
 import AssetModel, { NAME_KEY } from '~/models/Asset'
 
 import { modelFromAsset } from './utils'
@@ -25,7 +25,7 @@ export const openAndLoad = ({ commit, dispatch }, { selectMode = false, selectCa
  */
 export const loadAssets = ({ commit }) => {
   new Parse.Query(AssetModel)
-    .equalTo('user', localStorage.id)
+    .equalTo('user', LocalStorage.id)
     .find()
     .catch((err) => {
       commit('setError', err)
@@ -94,7 +94,7 @@ export const uploadFile = ({ commit }, file) => {
       commit('setError', err)
     })
     .then((file) => {
-      AssetModel.New(name, file, file._url, localStorage.id)
+      AssetModel.New(name, file, file._url, LocalStorage.id)
         .save()
         .catch((err) => {
           commit('setError', err)
@@ -106,7 +106,7 @@ export const uploadFile = ({ commit }, file) => {
 }
 
 export const addAsset = ({ commit }, obj) => {
-  AssetModel.New(obj.name, false, obj.url, localStorage.id)
+  AssetModel.New(obj.name, false, obj.url, LocalStorage.id)
     .save()
     .catch((err) => {
       commit('setError', err)
