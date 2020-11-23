@@ -63,11 +63,19 @@ export const tabToModel = (tab) => {
  * Transform an tab's item model into a tab's item object
  * @param {ItemModel} itemModel
  */
-export const itemModelToItem = (itemModel) => ({
-  name: itemModel.get(ITEM_NAME_KEY),
-  asset: itemModel.get(ITEM_ASSET_KEY),
-  key: itemModel.get(ITEM_KEY_KEY),
-  available: itemModel.get(ITEM_AVAILABLE_KEY),
-  hidden: itemModel.get(ITEM_HIDDEN_KEY),
-  order: itemModel.get(ITEM_ORDER_KEY)
-})
+export const itemModelToItem = (itemModel) => {
+  var asset = itemModel.get(ITEM_ASSET_KEY)
+  const parseFile = asset.file
+  // update asset url if asset is a Parse file
+  if (parseFile) {
+    asset.url = `${Parse.serverURL}/files/${Parse.applicationId}/${parseFile._name}`
+  }
+  return {
+    name: itemModel.get(ITEM_NAME_KEY),
+    asset: asset,
+    key: itemModel.get(ITEM_KEY_KEY),
+    available: itemModel.get(ITEM_AVAILABLE_KEY),
+    hidden: itemModel.get(ITEM_HIDDEN_KEY),
+    order: itemModel.get(ITEM_ORDER_KEY)
+  }
+}

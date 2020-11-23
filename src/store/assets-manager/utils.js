@@ -12,12 +12,18 @@ export const assetIndex = (assets, asset) => assets.findIndex((a) => a.id === as
  * Transform a model to an object
  * @param {AssetModel} assetModel the model to transform
  */
-export const assetFromModel = (assetModel) => ({
-  id: assetModel.id,
-  name: assetModel.get(NAME_KEY),
-  url: assetModel.get(URL_KEY),
-  file: assetModel.get(PARSE_FILE_KEY)
-})
+export const assetFromModel = (assetModel) => {
+  const parseFile = assetModel.get(PARSE_FILE_KEY)
+  const url = parseFile
+    ? parseFile._url
+    : assetModel.get(URL_KEY)
+  return {
+    id: assetModel.id,
+    name: assetModel.get(NAME_KEY),
+    url: url,
+    file: parseFile
+  }
+}
 
 /**
  * Retrive a model from an object
