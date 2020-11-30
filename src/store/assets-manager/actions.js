@@ -87,21 +87,20 @@ export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editin
 
 export const uploadFile = ({ commit }, file) => {
   const name = Unidecode(file.name)
+    .replace(/[^a-z0-9. \-_]/gi, '_')
 
   new Parse.File(name, file)
     .save()
-    .catch((err) => {
-      commit('setError', err)
-    })
     .then((file) => {
       AssetModel.New(name, file, file._url, LocalStorage.id)
         .save()
-        .catch((err) => {
-          commit('setError', err)
-        })
         .then((asset) => {
           commit('addAsset', asset)
         })
+    })
+    .catch((err) => {
+      // No error message displayed to user when upload fails
+      commit('setError', err)
     })
 }
 
