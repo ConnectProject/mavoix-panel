@@ -20,9 +20,9 @@ export const initTTS = ({ commit, rootState }) => {
     'lang': lang,
     'rate': speed,
     'pitch': 1
-  }).catch((err) => {
-    commit('setError', err)
   }).then(() => {
     commit('setTTS', speech)
+  }).catch((err) => {
+    commit('setError', err)
   })
 }

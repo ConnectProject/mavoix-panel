@@ -39,20 +39,17 @@ export const loadBySlug = ({ commit, dispatch }, slug) => {
  */
 export const fetchItems = ({ commit, getters: { tab } }) => {
   tabToModel(tab)
-    .catch((err) => {
-      commit('setError', err)
-    })
-    .then((tabModel) => {
+    .then((tabModel) =>
       new Parse.Query(TabItemModel)
         .equalTo(ITEM_TAB_KEY, tabModel)
         .ascending(ITEM_ORDER_KEY)
         .find()
-        .catch((err) => {
-          commit('setError', err)
-        })
-        .then((itemsModel) => {
-          commit('setItems', itemsModel)
-        })
+    )
+    .then((itemsModel) => {
+      commit('setItems', itemsModel)
+    })
+    .catch((err) => {
+      commit('setError', err)
     })
 }
 
@@ -63,10 +60,8 @@ export const fetchItems = ({ commit, getters: { tab } }) => {
  */
 export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems } }, callback) => {
   tabToModel(tab)
-    .catch((err) => {
-      commit('setError', err)
-    })
     .then((tabModel) => {
+      const promises = []
       /**
        * Save basic changes
        */
@@ -75,60 +70,57 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
       tabModel.set(SLUG_KEY, slugify(tab.name))
       tabModel.set(SPEED_KEY, tab.speed)
       tabModel.set(LANGUAGE_KEY, tab.language)
-      Promise.all([
-        /* Save the tabmodel */
-        tabModel.save(),
 
-        /* Delete removed items */
-        new Promise((resolve, reject) => {
-          const promises = []
+      /* Save the tabmodel */
+      promises.push(tabModel.save())
 
-          deletedItems.forEach((item) => {
-            if (item.key) {
-              promises.push(new Parse.Query(TabItemModel)
-                .equalTo(ITEM_TAB_KEY, tabModel)
-                .equalTo(ITEM_KEY_KEY, item.key)
-                .first()
-                .then((itemModel) => {
-                  return itemModel.destroy()
-                }))
-            }
-          })
-
-          /* Save items */
-          items.forEach((item) => {
-            if (!item.key) {
-              /* Save item as new item */
-              promises.push(TabItemModel.Create(item.name, item.asset, tabModel, item.hidden, item.available, item.order).save())
-            } else {
-              /* Update item if existing */
-              promises.push(new Parse.Query(TabItemModel)
-                .equalTo(ITEM_TAB_KEY, tabModel)
-                .equalTo(ITEM_KEY_KEY, item.key)
-                .first()
-                .then((itemModel) => {
-                  itemModel.set(ITEM_NAME_KEY, item.name)
-                  itemModel.set(ITEM_ASSET_KEY, item.asset)
-                  itemModel.set(ITEM_HIDDEN_KEY, item.hidden)
-                  itemModel.set(ITEM_AVAILABLE_KEY, item.available)
-                  itemModel.set(ITEM_ORDER_KEY, item.order)
-
-                  return itemModel.save()
-                })
-              )
-            }
-          })
-          Promise.all(promises)
-            .catch(reject)
-            .then(resolve)
-        })
-      ]).catch((err) => {
-        commit('setError', err)
-      }).then(([tabModel]) => {
-        commit('clearState')
-        dispatch('loadBySlug', tabModel.get(SLUG_KEY))
-        callback(tabModel)
+      /* Delete removed items */
+      deletedItems.forEach((item) => {
+        if (item.key) {
+          promises.push(new Parse.Query(TabItemModel)
+            .equalTo(ITEM_TAB_KEY, tabModel)
+            .equalTo(ITEM_KEY_KEY, item.key)
+            .first()
+            .then((itemModel) => {
+              return itemModel.destroy()
+            }))
+        }
       })
+
+      /* Save items */
+      items.forEach((item) => {
+        if (!item.key) {
+          /* Save item as new item */
+          promises.push(TabItemModel.Create(item.name, item.asset, tabModel, item.hidden, item.available, item.order).save())
+        } else {
+          /* Update item if existing */
+          promises.push(new Parse.Query(TabItemModel)
+            .equalTo(ITEM_TAB_KEY, tabModel)
+            .equalTo(ITEM_KEY_KEY, item.key)
+            .first()
+            .then((itemModel) => {
+              itemModel.set(ITEM_NAME_KEY, item.name)
+              itemModel.set(ITEM_ASSET_KEY, item.asset)
+              itemModel.set(ITEM_HIDDEN_KEY, item.hidden)
+              itemModel.set(ITEM_AVAILABLE_KEY, item.available)
+              itemModel.set(ITEM_ORDER_KEY, item.order)
+
+              return itemModel.save()
+            })
+          )
+        }
+      })
+      return Promise.all(promises)
+    })
+    .then(([tabModel]) => {
+      commit('clearState')
+      return Promise.all([
+        dispatch('loadBySlug', tabModel.get(SLUG_KEY)),
+        callback(tabModel)
+      ])
+    })
+    .catch((err) => {
+      commit('setError', err)
     })
 }
 
@@ -138,19 +130,14 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
  */
 export const deleteTab = ({ commit, getters: { tab } }) => {
   tabToModel(tab)
-    .catch((err) => {
-      commit('setError', err)
-    })
-    .then((tabModel) => {
-      Promise.all([
-        tabModel.destroy()
-      ])
-        .catch((err) => {
-          commit('setError', err)
-        })
+    .then((tabModel) =>
+      tabModel.destroy()
         .then(() => {
           commit('tabs/removeTabById', tabModel.id, { root: true })
           commit('clearState')
         })
+    )
+    .catch((err) => {
+      commit('setError', err)
     })
 }

@@ -27,12 +27,12 @@ export const loadAssets = ({ commit }) => {
   new Parse.Query(AssetModel)
     .equalTo('user', LocalStorage.id)
     .find()
-    .catch((err) => {
-      commit('setError', err)
-    })
     .then((assets) => {
       console.log(assets)
       commit('setAssets', assets.reverse())
+    })
+    .catch((err) => {
+      commit('setError', err)
     })
 }
 
@@ -42,18 +42,13 @@ export const loadAssets = ({ commit }) => {
  */
 export const destroyEditingAsset = ({ commit, state: { assets, editingIndex } }) => {
   modelFromAsset(assets[editingIndex])
-    .catch((err) => {
-      commit('setError', err)
-    })
-    .then((assetModel) => {
+    .then((assetModel) =>
       assetModel.destroy()
-        .catch((err) => {
-          commit('setError', err)
-        })
-        .then(() => {
-          commit('removeEditingAsset')
-          commit('cancelEdit')
-        })
+    ).then(() => {
+      commit('removeEditingAsset')
+      commit('cancelEdit')
+    }).catch((err) => {
+      commit('setError', err)
     })
 }
 
@@ -63,19 +58,16 @@ export const destroyEditingAsset = ({ commit, state: { assets, editingIndex } })
  */
 export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editingAsset } }) => {
   modelFromAsset(assets[editingIndex])
-    .catch((err) => {
-      commit('setError', err)
-    })
     .then((assetModel) => {
       assetModel.set(NAME_KEY, editingAsset.name)
-      assetModel.save()
-        .catch((err) => {
-          commit('setError', err)
-        })
-        .then((assetModel) => {
-          commit('updateEditingAsset', assetModel)
-          commit('cancelEdit')
-        })
+      return assetModel.save()
+    })
+    .then((assetModel) => {
+      commit('updateEditingAsset', assetModel)
+      commit('cancelEdit')
+    })
+    .catch((err) => {
+      commit('setError', err)
     })
 }
 
@@ -91,15 +83,14 @@ export const uploadFile = ({ commit }, file) => {
 
   new Parse.File(name, file)
     .save()
-    .then((file) => {
+    .then((file) =>
       AssetModel.New(name, file, file._url, LocalStorage.id)
         .save()
-        .then((asset) => {
-          commit('addAsset', asset)
-        })
+    )
+    .then((asset) => {
+      commit('addAsset', asset)
     })
     .catch((err) => {
-      // No error message displayed to user when upload fails
       commit('setError', err)
     })
 }
@@ -107,11 +98,11 @@ export const uploadFile = ({ commit }, file) => {
 export const addAsset = ({ commit }, obj) => {
   AssetModel.New(obj.name, false, obj.url, LocalStorage.id)
     .save()
-    .catch((err) => {
-      commit('setError', err)
-    })
     .then((asset) => {
       console.log(asset)
       commit('addAsset', asset)
+    })
+    .catch((err) => {
+      commit('setError', err)
     })
 }

@@ -10,11 +10,11 @@ export const loadDevices = ({ commit }) => {
   new Parse.Query(DeviceUser)
     .equalTo('linkedAccount', localStorage.id)
     .find()
-    .catch((err) => {
-      commit('setError', err)
-    })
     .then((users) => {
       commit('setDevices', users)
+    })
+    .catch((err) => {
+      commit('setError', err)
     })
 }
 
@@ -29,11 +29,11 @@ export const create = ({ commit }, name) => {
 
   deviceUser
     .signUp()
-    .catch((err) => {
-      commit('setError', err)
-    })
     .then((model) => {
       commit('addAndOpenDevice', { model, password })
+    })
+    .catch((err) => {
+      commit('setError', err)
     })
 }
 
@@ -46,20 +46,17 @@ export const resetActive = ({ commit, getters: { active } }) => {
     .equalTo(USERNAME_KEY, active.name)
     .equalTo('linkedAccount', localStorage.id)
     .first()
-    .catch((err) => {
-      commit('setError', err)
-    })
     .then((model) => {
       const password = DeviceUser.Password()
       model.setPassword(password)
 
-      model.save()
-        .catch((err) => {
-          commit('setError', err)
-        })
+      return model.save()
         .then(() => {
           commit('updateActivePassword', password)
         })
+    })
+    .catch((err) => {
+      commit('setError', err)
     })
 }
 
@@ -72,16 +69,13 @@ export const deleteActive = ({ commit, getters: { active } }) => {
     .equalTo(USERNAME_KEY, active.name)
     .equalTo('linkedAccount', localStorage.id)
     .first()
+    .then((user) =>
+      user.destroy()
+    )
+    .then(() => {
+      commit('removeActive')
+    })
     .catch((err) => {
       commit('setError', err)
-    })
-    .then((user) => {
-      user.destroy()
-        .catch((err) => {
-          commit('setError', err)
-        })
-        .then(() => {
-          commit('removeActive')
-        })
     })
 }
