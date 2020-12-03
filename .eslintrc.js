@@ -48,7 +48,8 @@ module.exports = {
     'prefer-promise-reject-errors': 'off',
 
     // allow console.log during development only
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    // does not work as expected: https://medium.com/@boyskypart/how-to-build-and-delete-all-console-in-quasar-framework-97ae324451b2
+    // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // allow debugger during development only
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
