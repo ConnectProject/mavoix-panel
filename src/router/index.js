@@ -21,10 +21,10 @@ export default function (/* { store, ssrContext } */) {
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
   })
-
-  Router.push({
-    name: 'auth'
-  })
+  // Seems to do nothing and end up with an uncaught promise
+  // Router.push({
+  //   name: 'auth'
+  // })
 
   return Router
 }
