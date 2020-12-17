@@ -359,12 +359,8 @@ export default {
     onSave () {
       this.$store.dispatch('tabEditor/saveCb', (tab) => {
         /* When the tab's name is changed the slugs change to, so redirect to the new url */
-        this.$router.push({
-          name: 'tab',
-          params: {
-            slug: tab.get(SLUG_KEY)
-          }
-        })
+        const path = `/tabs/${tab.get(SLUG_KEY)}`
+        if (this.$route.path !== path) this.$router.push(path)
         /* Toast message */
         this.$q.notify({
           message: `${tab.get('name')} saved`,
