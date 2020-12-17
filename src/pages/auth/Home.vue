@@ -24,9 +24,10 @@ export default {
     }
   },
   computed: {
-    users () {
-      return this.$store.getters['users/users']
-    },
+    // does not seem to be used
+    // users () {
+    //   return this.$store.getters['users/users']
+    // },
     isConnected () {
       return this.$store.getters['users/isConnected']
     },
@@ -46,11 +47,10 @@ export default {
   },
   methods: {
     createUser () {
-      let that = this
       if (this.isConnexion) {
-        this.$store.dispatch('users/connect', [that.email, that.password])
+        this.$store.dispatch('users/connect', [this.email, this.password])
       } else {
-        this.$store.dispatch('users/create', [that.email, that.password])
+        this.$store.dispatch('users/create', [this.email, this.password])
       }
       // this.$router.push('/home')
     }

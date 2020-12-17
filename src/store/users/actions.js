@@ -1,32 +1,34 @@
-import Parse from 'parse'
+// import Parse from 'parse'
 import ParseUser from '~/models/ParseUser'
 /**
  * Load devices
  * @param {Context} ctx
  */
-export const loadUsers = ({ commit }) => {
-  new Parse.Query(ParseUser)
-    .find()
-    .then((users) => {
-      commit('setDevices', users)
-    })
-    .catch((err) => {
-      commit('setError', err)
-    })
-}
+// does not seem to be used
+// export const loadUsers = ({ commit }) => {
+//   new Parse.Query(ParseUser)
+//     .find()
+//     .then((users) => {
+//       commit('setDevices', users)
+//     })
+//     .catch((err) => {
+//       commit('setError', err)
+//     })
+// }
 
-export const currentUser = ({ commit }) => {
-  new Parse.Query(ParseUser)
-    .equalTo('id', LocalStorage.id)
-    .find()
-    .then((user) => {
-      console.log(user)
-      commit('addAndOpenDevice', { user })
-    })
-    .catch((err) => {
-      commit('setError', err)
-    })
-}
+// does not seem to be used
+// export const currentUser = ({ commit }) => {
+//   new Parse.Query(ParseUser)
+//     .equalTo('id', LocalStorage.id)
+//     .find()
+//     .then((user) => {
+//       console.log(user)
+//       commit('addAndOpenDevice', { user })
+//     })
+//     .catch((err) => {
+//       commit('setError', err)
+//     })
+// }
 
 /**
  * Create a new device and open the model to view it
@@ -35,8 +37,7 @@ export const currentUser = ({ commit }) => {
  */
 
 export const create = ({ commit }, [name, password]) => {
-  const parseUser = ParseUser.Create(name, password)
-  parseUser
+  ParseUser.Create(name, password)
     .signUp()
     .then((model) => {
       localStorage.id = model._getId()
@@ -50,8 +51,7 @@ export const create = ({ commit }, [name, password]) => {
 }
 
 export const connect = ({ commit }, [name, password]) => {
-  const parseUser = ParseUser.logIn(name, password)
-  parseUser
+  ParseUser.logIn(name, password)
     .then((model) => {
       localStorage.id = model._getId()
       localStorage.username = name
