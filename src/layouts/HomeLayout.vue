@@ -258,9 +258,9 @@ export default {
      * Go to auth page
      **/
     onLogout () {
-      localStorage.remove('id')
-      localStorage.remove('username')
-      localStorage.remove('password')
+      localStorage.removeItem('id')
+      localStorage.removeItem('username')
+      localStorage.removeItem('password')
       this.$router.push({
         name: 'auth'
       })
