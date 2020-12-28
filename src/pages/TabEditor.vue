@@ -108,7 +108,7 @@
       </draggable>
     </div>
     <dialog-tab-item />
-    <assets />
+    <add-assets />
 
     <q-page-sticky
       expand
@@ -229,14 +229,14 @@
 <script>
 import DialogTabItem from '~/components/dialogs/TabItem'
 import { SLUG_KEY } from '../models/Tab'
-import Assets from '~/components/Assets'
+import AddAssets from '~/components/AddAssets'
 import { QSelect } from 'quasar'
 
 export default {
   name: 'PageTabEditor',
   components: {
     DialogTabItem,
-    Assets,
+    AddAssets,
     QSelect
   },
   /**
