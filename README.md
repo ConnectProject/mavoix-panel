@@ -10,7 +10,10 @@
 > `npm install`
 
 3. Load environment variables
-> To load environment variables you can copy `.env.exemple` to a file called `.env` and set the variables like in api
+> To load environment variables you can copy `.env.example` to a file called `.env` and set the variables to match the api.
+
+4. Install Quasar CLI
+> `npm install -g @quasar/cli`
 
 ## Running
 > `quasar dev -m ssr`

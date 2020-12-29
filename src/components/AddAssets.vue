@@ -108,7 +108,6 @@ export default {
         return o
       })
     })
-    this.$refs.dialog['message'] = 'bonjour'
   },
   watch: {
     assets (to, from) {

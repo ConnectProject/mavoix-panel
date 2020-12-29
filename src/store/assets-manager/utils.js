@@ -14,8 +14,10 @@ export const assetIndex = (assets, asset) => assets.findIndex((a) => a.id === as
  */
 export const assetFromModel = (assetModel) => {
   const parseFile = assetModel.get(PARSE_FILE_KEY)
+  // update asset url if asset is a Parse file
   const url = parseFile
-    ? parseFile._url
+    // ? parseFile.url()
+    ? `${Parse.serverURL}/files/${Parse.applicationId}/${parseFile._name}`
     : assetModel.get(URL_KEY)
   return {
     id: assetModel.id,
