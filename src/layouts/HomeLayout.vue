@@ -97,19 +97,35 @@
             <q-item
               v-for="(tab, index) in tabs"
               :key="index"
+              :style="{
+                color: 'white',
+                'border-radius':' 32px 0 0 32px',
+                background: tab.get('hexColor'),
+                marginRight:(tab.get('name')===selectedTab.name)?0:'1px',
+                marginLeft:(tab.get('name')===selectedTab.name)?'5px':'20px'
+                }"
               clickable
               v-ripple
               :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
             >
               <q-item-section avatar>
-                <q-icon name="category" :style="{ color: tab.get('hexColor') }"/>
+                <q-icon name="category" :style="{ background: tab.get('hexColor') }"/>
               </q-item-section>
               <q-item-section>
-                <q-item-label>{{ tab.get('name') }}</q-item-label>
+                <q-item-label
+                  style="color:black"
+                >{{ tab.get('name') }}</q-item-label>
               </q-item-section>
             </q-item>
 
             <!-- Click to add a tab -->
+            <q-item
+              style="margin-left:150px;border-radius:32px 0 0 32px;background:white" clickable v-ripple @click="$store.commit('tabs/openDialog')">
+              <q-item-section avatar>
+                <q-icon name="add" />
+              </q-item-section>
+            </q-item>
+            <!--
             <q-item clickable v-ripple @click="$store.commit('tabs/openDialog')">
               <q-item-section avatar>
                 <q-icon name="add" />
@@ -121,7 +137,7 @@
           </div>
 
           <!-- Devices -->
-          <q-item-label header>{{ $t('navDrawer.devices') }}:</q-item-label>
+          <q-item-label header class="text-white">{{ $t('navDrawer.devices') }}</q-item-label>
           <center>
             <qrcode-vue :value="code" />
           </center>
