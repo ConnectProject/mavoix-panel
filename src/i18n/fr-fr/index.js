@@ -30,6 +30,8 @@ export default {
   tabEditor: {
     tabNameLabel: 'Nom',
     tabColorLabel: 'Couleur',
+    tabSpeed: 'Vitesse',
+    tabLanguage: 'Langue',
     addItemLabel: 'Ajouter des images',
     editLanguage: 'Modifier Voix',
     itemDialog: {
