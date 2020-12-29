@@ -32,7 +32,7 @@
     </div>
   <q-layout view="hHh Lpr lff">
     <!-- Toolbar -->
-    <q-header elevated>
+    <q-header style="background:grey">
       <q-toolbar>
         <q-btn flat dense round @click="drawerOpen = !drawerOpen" aria-label="Menu">
           <q-icon name="menu" />
@@ -45,8 +45,16 @@
     </q-header>
 
     <!-- Navigation drawer -->
-    <q-drawer v-model="drawerOpen" :width="200" :breakpoint="500" show-if-abovebordered>
-      <q-scroll-area class="fit">
+    <q-drawer
+      v-model="drawerOpen"
+      :width="200"
+      :breakpoint="500"
+      show-if-abovebordered
+    >
+      <q-scroll-area
+        style="background:grey"
+        class="fit"
+      >
         <q-list padding class="menu-list">
           <!-- Home -->
           <q-item
@@ -81,7 +89,7 @@
           </q-item>
 
           <!-- Tabs -->
-          <q-item-label header>{{ $t('navDrawer.tabs') }}:</q-item-label>
+          <q-item-label header class="text-white">{{ $t('navDrawer.tabs') }}</q-item-label>
           <!-- If the query is loading -->
           <list-item-loading v-if="$store.state.tabs.loading" />
           <div v-else>
