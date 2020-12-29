@@ -45,7 +45,7 @@
   <q-page
     v-else
     class="flex items-stretch q-pa-xl holder-container"
-    style=""
+    :style="`background: ${tab.hexColor}`"
   >
     <div class="col-2 full-width">
 <!--       <div class="col-2 row justify-center items-center">
@@ -114,7 +114,9 @@
       expand
       position="top"
     >
-      <q-toolbar class="bg-white">
+      <q-toolbar
+        style="background:rgba(255,255,255,0.3)"
+      >
         <!-- Name input -->
         <q-input
           :label="$t('tabEditor.tabNameLabel')"
@@ -161,7 +163,7 @@
           filled
           style="min-width: 150px"
           @input="setSpeed"
-          label="Speed" />
+          :label="$t('tabEditor.tabSpeed')" />
         <q-select
           :value="language"
           :options="options"
@@ -169,7 +171,7 @@
           @input="setLanguage"
           style="min-width: 150px"
           filled
-          label="Accent" />
+          :label="$t('tabEditor.tabLanguage')" />
         <!-- Add item button -->
         <q-btn
           class="q-px-md q-py-md q-ma-md"
