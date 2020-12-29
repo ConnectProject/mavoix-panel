@@ -134,6 +134,7 @@
                 <q-item-label>{{ $t('navDrawer.addTab') }}</q-item-label>
               </q-item-section>
             </q-item>
+            -->
           </div>
 
           <!-- Devices -->
@@ -228,6 +229,9 @@ export default {
      */
     tabs () {
       return this.$store.getters['tabs/tabs']
+    },
+    selectedTab () {
+      return this.$store.getters['tabEditor/tab']
     }
   },
   watch: {
@@ -299,6 +303,8 @@ export default {
 }
 .menu-list .q-item {
   border-radius: 0 32px 32px 0
+  margin 1px 1px 0 10px
+  color black
 }
 .drag-enter{
   background red !important
