@@ -70,7 +70,7 @@
           <div class="dropping">
           </div>
           <q-img
-            :ratio="16/9"
+            :ratio="1"
             :src="item.asset.url"
           >
             <!-- :class="'item-img class-'+ item.asset.id" -->
