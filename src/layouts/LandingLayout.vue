@@ -39,7 +39,7 @@
 
           <!-- Item 2.2 -->
           <div class="col-md-5 col-lg-3 col-xs-12 col-sm-12">
-            <q-img src="/assets/mavoix.jpg" contain style="max-width:500px;height:90%"/>
+            <q-img src="assets/mavoix.jpg" contain style="max-width:500px;height:90%"/>
           </div>
           <div class="col-md-1 col-lg-3 col-xs-12 col-sm-12"></div>
         </div>
@@ -49,7 +49,7 @@
           <!-- Item 2.1 -->
           <div class="col-md-1 col-lg-3 col-xs-12 col-sm-12"></div>
           <div class="col-md-5 col-lg-3 col-xs-12 col-sm-12">
-            <q-img src="/assets/connect.jpg" style="width:500px"/>
+            <q-img src="assets/connect.jpg" style="width:500px"/>
           </div>
 
           <!-- Item 2.2 -->
@@ -87,7 +87,7 @@
 
           <!-- Item 2.2 -->
           <div class="col-md-5 col-lg-3 col-xs-12 col-sm-12">
-            <q-img src="/assets/data.svg" style="width:500px"/>
+            <q-img src="assets/data.svg" style="width:500px"/>
           </div>
           <div class="col-md-1 col-lg-3 col-xs-12 col-sm-12"></div>
         </div>
