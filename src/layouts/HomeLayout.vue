@@ -59,6 +59,7 @@
           <q-item
             clickable
             v-ripple
+            class="text-white"
             :to="{ name: 'home' }"
           >
             <q-item-section avatar>
@@ -72,6 +73,7 @@
           <q-item
             clickable
             v-ripple
+            class="text-white"
             @click="$router.push({
               name: 'base',
               params: {
