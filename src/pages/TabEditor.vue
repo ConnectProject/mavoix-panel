@@ -115,12 +115,13 @@
       position="top"
     >
       <q-toolbar
-        style="background:rgba(255,255,255,0.3)"
+        style="opacity:1; border-bottom: thin solid rgba(255,255,255,0.7)"
+        :style='{ background: tab.hexColor }'
       >
         <!-- Name input -->
         <q-input
           :label="$t('tabEditor.tabNameLabel')"
-          class="q-ma-md"
+          class="q-ma-md bg-white"
           :value="tab.name"
           @input="setName"
           filled
@@ -129,7 +130,7 @@
         <!-- HexColor input -->
         <q-input
           :label="$t('tabEditor.tabColorLabel')"
-          class="q-ma-md"
+          class="q-ma-md bg-white"
           :value="tab.hexColor"
           @input="setHexColor"
           filled
@@ -138,7 +139,6 @@
             <q-icon
               name="colorize"
               class="cursor-pointer"
-              :style="'color: ' + tab.hexColor"
             >
               <q-popup-proxy
                 transition-show="scale"
@@ -159,7 +159,7 @@
         <q-select
           :value="speed"
           :options="speeds"
-          class="q-ma-md"
+          class="q-ma-md bg-white"
           filled
           style="min-width: 150px"
           @input="setSpeed"
@@ -167,17 +167,18 @@
         <q-select
           :value="language"
           :options="options"
-          class="q-ma-md"
+          class="q-ma-md bg-white"
           @input="setLanguage"
           style="min-width: 150px"
           filled
           :label="$t('tabEditor.tabLanguage')" />
         <!-- Add item button -->
         <q-btn
-          class="q-px-md q-py-md q-ma-md"
-          size="md"
+          class="q-px-md q-py-md q-ma-md bg-white no-shadow"
+          no-caps
+          icon-right="photo_library"
+          :label="$t('tabEditor.addItemLabel')"
           @click="onAddItem">
-            {{ $t('tabEditor.addItemLabel') }}
         </q-btn>
         <!-- edit language button -->
       </q-toolbar>
