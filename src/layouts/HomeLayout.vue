@@ -30,17 +30,16 @@
         <input type="file" class="full-height full-width transparent" multiple @input="uploadFile" />
       </div>
     </div>
+
   <q-layout view="hHh Lpr lff">
+
     <!-- Toolbar -->
     <q-header style="background:grey">
-      <q-toolbar>
-        <q-btn flat dense round @click="drawerOpen = !drawerOpen" aria-label="Menu">
-          <q-icon name="menu" />
-        </q-btn>
-
+      <q-toolbar style="height:75px">
         <q-toolbar-title>{{ $t('appTitle') }}</q-toolbar-title>
-
-        <q-btn @click="onLogout" flat>{{ $t('logoutLabel') }}</q-btn>
+        <q-btn onclick="alert('Go to doc')" flat icon="help"></q-btn>
+        <q-btn onclick="alert('Go to project\'s GitHub')" flat icon="fab fa-github"></q-btn>
+        <q-btn @click="onLogout" flat no-caps>{{ $t('logoutLabel') }}</q-btn>
       </q-toolbar>
     </q-header>
 
