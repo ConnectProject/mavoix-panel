@@ -13,6 +13,7 @@
       />
       <camera/>
     </div>
+
     <!-- Dropzone -->
     <div
       class="dnd z-max hidden text-center row items-center justify-center full-height full-width bg-black text-white"
@@ -109,12 +110,9 @@
               v-ripple
               :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
             >
-              <q-item-section avatar>
-                <q-icon name="category" :style="{ background: tab.get('hexColor') }"/>
-              </q-item-section>
               <q-item-section>
                 <q-item-label
-                  style="color:black"
+                  style="color:black;text-align:center"
                 >{{ tab.get('name') }}</q-item-label>
               </q-item-section>
             </q-item>
