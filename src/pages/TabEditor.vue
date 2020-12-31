@@ -72,6 +72,7 @@
           <q-img
             :ratio="1"
             :src="item.asset.url"
+            contain
           >
             <!-- :class="'item-img class-'+ item.asset.id" -->
             <div
