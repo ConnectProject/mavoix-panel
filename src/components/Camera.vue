@@ -97,6 +97,11 @@ export default {
       })
     }
   },
+  beforeDestroy () {
+    this.$refs.video.pause()
+    this.$refs.video.src = ''
+    this.$refs.video.srcObject.getTracks()[0].stop()
+  },
   methods: {
     /**
      * Capture the image

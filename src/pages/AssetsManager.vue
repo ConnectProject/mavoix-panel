@@ -39,6 +39,7 @@ input[type='file']
         class="fit rounded-borders"
         :ratio="16 / 9"
         :src="asset.url"
+        contain
         basic
       />
       <div class="erase absolute-right q-mt-sm q-mr-sm">

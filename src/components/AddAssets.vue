@@ -43,8 +43,8 @@
               :ratio="16 / 9"
               :src="asset.url"
               @click="asset.isSelected = !asset.isSelected"
-            basic
-          >
+              contain
+              basic>
             </q-img>
             <div class="absolute-right q-mt-sm q-mr-sm">
             <q-checkbox v-model="asset.isSelected" />
