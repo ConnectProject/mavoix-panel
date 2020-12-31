@@ -186,7 +186,7 @@ export default {
    * If route is host/assets open assets manager
    */
   mounted () {
-    if (!this.$q.localStorage.getItem('id')) {
+    if (!process.browser && !localStorage.getItem('id')) {
       this.$router.push({
         name: 'auth'
       })
@@ -210,8 +210,12 @@ export default {
   },
   computed: {
     code () {
-      return this.$q.localStorage.getItem('username') + ':' +
-        this.$q.localStorage.getItem('password')
+      if (process.browser) {
+        return localStorage.getItem('username') + ':' +
+          localStorage.getItem('password')
+      } else {
+        return ':'
+      }
     },
     users () {
       return this.$store.getters['users/users']
@@ -284,9 +288,9 @@ export default {
      * Go to auth page
      **/
     onLogout () {
-      this.$q.localStorage.removeItem('id')
-      this.$q.localStorage.removeItem('username')
-      this.$q.localStorage.removeItem('password')
+      localStorage.removeItem('id')
+      localStorage.removeItem('username')
+      localStorage.removeItem('password')
       this.$router.push({
         name: 'auth'
       })

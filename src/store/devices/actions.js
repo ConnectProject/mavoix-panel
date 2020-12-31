@@ -1,14 +1,13 @@
 import Parse from 'parse'
 
 import DeviceUser, { USERNAME_KEY } from '~/models/DeviceUser'
-import { LocalStorage } from 'quasar'
 /**
  * Load devices
  * @param {Context} ctx
  */
 export const loadDevices = ({ commit }) => {
   new Parse.Query(DeviceUser)
-    .equalTo('linkedAccount', LocalStorage.id)
+    .equalTo('linkedAccount', localStorage.id)
     .find()
     .then((users) => {
       commit('setDevices', users)
@@ -24,7 +23,7 @@ export const loadDevices = ({ commit }) => {
  * @param {String} name name of the new device
  */
 export const create = ({ commit }, name) => {
-  const deviceUser = DeviceUser.Create(name, LocalStorage.id)
+  const deviceUser = DeviceUser.Create(name, localStorage.id)
   const password = deviceUser.get('password')
 
   deviceUser
@@ -44,7 +43,7 @@ export const create = ({ commit }, name) => {
 export const resetActive = ({ commit, getters: { active } }) => {
   new Parse.Query(DeviceUser)
     .equalTo(USERNAME_KEY, active.name)
-    .equalTo('linkedAccount', LocalStorage.id)
+    .equalTo('linkedAccount', localStorage.id)
     .first()
     .then((model) => {
       const password = DeviceUser.Password()
@@ -67,7 +66,7 @@ export const resetActive = ({ commit, getters: { active } }) => {
 export const deleteActive = ({ commit, getters: { active } }) => {
   new Parse.Query(DeviceUser)
     .equalTo(USERNAME_KEY, active.name)
-    .equalTo('linkedAccount', LocalStorage.id)
+    .equalTo('linkedAccount', localStorage.id)
     .first()
     .then((user) =>
       user.destroy()
