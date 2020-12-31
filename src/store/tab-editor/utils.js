@@ -9,6 +9,7 @@ import {
   ORDER_KEY as ITEM_ORDER_KEY
 } from '~/models/TabItem'
 
+import { LocalStorage } from 'quasar'
 /**
  * Set something in the tab from its key
  * @param {State} state
@@ -45,7 +46,7 @@ export const modelToTab = (tabModel) => ({
   hexColor: tabModel.get(HEX_COLOR_KEY),
   speed: tabModel.get(SPEED_KEY),
   language: tabModel.get(LANGUAGE_KEY),
-  user: localStorage.id
+  user: LocalStorage.id
 })
 
 /**
@@ -55,7 +56,7 @@ export const modelToTab = (tabModel) => ({
 export const tabToModel = (tab) => {
   return new Parse.Query(TabModel)
     .equalTo(SLUG_KEY, tab.slug)
-    .equalTo('user', localStorage.id)
+    .equalTo('user', LocalStorage.id)
     .first()
 }
 

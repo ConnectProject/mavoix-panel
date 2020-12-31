@@ -2,6 +2,7 @@ import Parse from 'parse'
 
 import slugify from '~/utils/slugify'
 import { tabToModel } from './utils'
+import { LocalStorage } from 'quasar'
 
 import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY, SPEED_KEY, LANGUAGE_KEY } from '~/models/Tab'
 import TabItemModel, {
@@ -22,7 +23,7 @@ import TabItemModel, {
 export const loadBySlug = ({ commit, dispatch }, slug) => {
   new Parse.Query(TabModel)
     .equalTo(SLUG_KEY, slug)
-    .equalTo('user', localStorage.id)
+    .equalTo('user', LocalStorage.id)
     .first()
     .then((tabModel) => {
       commit('setTab', tabModel)
