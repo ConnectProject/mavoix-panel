@@ -39,6 +39,7 @@ export const loadBySlugWithoutItem = ({ commit, dispatch }, slug) => {
     .equalTo('user', localStorage.id)
     .first()
     .then((tabModel) => {
+      commit('setTab', tabModel)
       console.log('tab changed')
     })
     .catch((err) => {
