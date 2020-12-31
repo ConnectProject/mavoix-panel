@@ -54,6 +54,7 @@ export const saveTabWithoutItem = ({ commit, dispatch, getters: { tab } }, callb
       /**
        * Save basic changes
        */
+      tabModel.set(NAME_KEY, tab.name)
       tabModel.set(HEX_COLOR_KEY, tab.hexColor)
       tabModel.set(SLUG_KEY, slugify(tab.name))
       tabModel.set(SPEED_KEY, tab.speed)

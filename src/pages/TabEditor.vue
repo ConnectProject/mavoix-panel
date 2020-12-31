@@ -126,7 +126,7 @@
           :value="tab.name"
           @input="setName"
           @keyup.enter="$event.target.blur()"
-          @blur="onSave()"
+          @blur="onSaveTabElement('nom de l\'onglet')"
           filled
         />
 
@@ -380,6 +380,8 @@ export default {
       let notif = message ? 'enregistrement ' + message : 'changement enregistré'
       this.$store.dispatch('tabEditor/saveTabWithoutItem', (tab) => {
         /* Toast message */
+        const path = `/tabs/${tab.get(SLUG_KEY)}`
+        if (this.$route.path !== path) this.$router.push(path)
         this.$q.notify({
           message: notif,
           color: 'purple'
