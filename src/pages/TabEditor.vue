@@ -72,6 +72,7 @@
           <q-img
             :ratio="1"
             :src="item.asset.url"
+            contain
           >
             <!-- :class="'item-img class-'+ item.asset.id" -->
             <div
@@ -124,6 +125,8 @@
           class="q-ma-md bg-white"
           :value="tab.name"
           @input="setName"
+          @keyup.enter="$event.target.blur()"
+          @blur="onSaveTabElement('nom de l\'onglet')"
           filled
         />
 
@@ -133,6 +136,8 @@
           class="q-ma-md bg-white"
           :value="tab.hexColor"
           @input="setHexColor"
+          @keyup.enter="$event.target.blur()"
+          @blur="onSaveTabElement('couleur')"
           filled
         >
           <template v-slot:append>
@@ -371,6 +376,18 @@ export default {
         })
       })
     },
+    onSaveTabElement (message) {
+      let notif = message ? 'enregistrement ' + message : 'changement enregistré'
+      this.$store.dispatch('tabEditor/saveTabWithoutItem', (tab) => {
+        /* Toast message */
+        const path = `/tabs/${tab.get(SLUG_KEY)}`
+        if (this.$route.path !== path) this.$router.push(path)
+        this.$q.notify({
+          message: notif,
+          color: 'purple'
+        })
+      })
+    },
     /**
      * Call to remove tab
      */
@@ -396,9 +413,11 @@ export default {
     },
     setLanguage (language) {
       this.$store.commit('tabEditor/setLanguage', this.options.indexOf(language))
+      this.onSaveTabElement('langue')
     },
     setSpeed (speed) {
       this.$store.commit('tabEditor/setSpeed', this.speeds.indexOf(speed))
+      this.onSaveTabElement('vitesse')
     },
     /**
      * Call to open the item dialog in new item mode

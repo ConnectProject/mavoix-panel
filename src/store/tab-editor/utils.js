@@ -8,7 +8,6 @@ import {
   HIDDEN_KEY as ITEM_HIDDEN_KEY,
   ORDER_KEY as ITEM_ORDER_KEY
 } from '~/models/TabItem'
-
 /**
  * Set something in the tab from its key
  * @param {State} state

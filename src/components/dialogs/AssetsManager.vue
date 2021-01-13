@@ -33,7 +33,7 @@ input[type='file']
           :key="index"
           class="card col-2 q-ma-md"
         >
-          <q-img v-if="asset.url" class="fit rounded-borders" :ratio="16 / 9" :src="asset.url" basic>
+          <q-img v-if="asset.url" class="fit rounded-borders" :ratio="16 / 9" :src="asset.url" contain basic>
           </q-img>
           <div class="erase absolute-right q-mt-sm q-mr-sm">
             <q-btn

@@ -33,6 +33,49 @@ export const loadBySlug = ({ commit, dispatch }, slug) => {
     })
 }
 
+export const loadBySlugWithoutItem = ({ commit, dispatch }, slug) => {
+  new Parse.Query(TabModel)
+    .equalTo(SLUG_KEY, slug)
+    .equalTo('user', localStorage.id)
+    .first()
+    .then((tabModel) => {
+      commit('setTab', tabModel)
+      console.log('tab changed')
+    })
+    .catch((err) => {
+      commit('setError', err)
+    })
+}
+
+export const saveTabWithoutItem = ({ commit, dispatch, getters: { tab } }, callback) => {
+  tabToModel(tab)
+    .then((tabModel) => {
+      const promises = []
+      /**
+       * Save basic changes
+       */
+      tabModel.set(NAME_KEY, tab.name)
+      tabModel.set(HEX_COLOR_KEY, tab.hexColor)
+      tabModel.set(SLUG_KEY, slugify(tab.name))
+      tabModel.set(SPEED_KEY, tab.speed)
+      tabModel.set(LANGUAGE_KEY, tab.language)
+
+      /* Save the tabmodel */
+      promises.push(tabModel.save())
+
+      return Promise.all(promises)
+    })
+    .then(([tabModel]) => {
+      return Promise.all([
+        dispatch('loadBySlugWithoutItem', tabModel.get(SLUG_KEY)),
+        callback(tabModel)
+      ])
+    })
+    .catch((err) => {
+      commit('setError', err)
+    })
+}
+
 /**
  * Load every items for the loaded tab
  * @param {Context} ctx

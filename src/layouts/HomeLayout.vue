@@ -168,8 +168,7 @@ import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 
 import Camera from '~/components/Camera'
-console.log('id:')
-console.log(localStorage.id)
+
 export default {
   name: 'LayoutHome',
   components: {
@@ -187,7 +186,7 @@ export default {
    * If route is host/assets open assets manager
    */
   mounted () {
-    if (!localStorage.getItem('id')) {
+    if (!process.browser && !localStorage.getItem('id')) {
       this.$router.push({
         name: 'auth'
       })
@@ -211,8 +210,12 @@ export default {
   },
   computed: {
     code () {
-      return localStorage.getItem('username') + ':' +
-        localStorage.getItem('password')
+      if (process.browser) {
+        return localStorage.getItem('username') + ':' +
+          localStorage.getItem('password')
+      } else {
+        return ':'
+      }
     },
     users () {
       return this.$store.getters['users/users']
@@ -285,9 +288,7 @@ export default {
      * Go to auth page
      **/
     onLogout () {
-      localStorage.removeItem('id')
-      localStorage.removeItem('username')
-      localStorage.removeItem('password')
+      localStorage.clear()
       this.$router.push({
         name: 'auth'
       })

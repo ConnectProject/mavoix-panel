@@ -1,7 +1,6 @@
 import Parse from 'parse'
 
 import DeviceUser, { USERNAME_KEY } from '~/models/DeviceUser'
-
 /**
  * Load devices
  * @param {Context} ctx
