@@ -89,7 +89,7 @@ module.exports = function (ctx) {
     build: {
       devtool: 'source-map',
       scopeHoisting: true,
-      // vueRouterMode: 'history',
+      vueRouterMode: 'history',
       // vueCompiler: true,
       // gzip: true,
       // analyze: true,
