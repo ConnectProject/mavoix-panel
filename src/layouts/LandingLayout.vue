@@ -1,3 +1,10 @@
+<style scoped>
+  .custom_tab {
+    width:120px;
+    min-height:auto !important
+  }
+</style>
+
 <template>
   <q-layout view="lHh lpr lFf">
 
@@ -6,10 +13,29 @@
       <q-toolbar>
         <q-space ></q-space>
         <q-tabs v-model="selected_tab" shrink>
-          <q-tab class="q-mr-sm q-py-xs custom_tab" no-caps @click="scrollToElement('id_mavoix');" style="width:120px;min-height:auto !important" label="MaVoix" />
-          <q-tab class="q-mr-sm q-py-xs custom_tab" no-caps @click="scrollToElement('id_about');" style="width:120px;min-height:auto !important" label="About Us" />
-          <q-tab class="q-mr-sm q-py-xs custom_tab" no-caps @click="scrollToElement('id_doc');" style="width:120px;min-height:auto !important" label="Documentation" />
-          <q-tab class="q-mr-sm q-py-xs custom_tab" no-caps @click="scrollToElement('id_login');" style="width:120px;min-height:auto !important" label="Sign In" />
+          <a
+            href="https://mavoix.connect-project.io/app/"
+            style="color: inherit; text-decoration: none">
+            <q-tab
+              class="q-mr-sm q-py-xs custom_tab"
+              no-caps
+              label="MaVoix" />
+          </a>
+          <q-tab
+            class="q-mr-sm q-py-xs custom_tab"
+            no-caps
+            onclick="alert('Go to about')"
+            label="About Us" />
+          <q-tab
+            class="q-mr-sm q-py-xs custom_tab"
+            no-caps
+            onclick="alert('Go to doc')"
+            label="Documentation" />
+          <q-route-tab
+            class="q-mr-sm q-py-xs custom_tab"
+            no-caps
+            :to="{name: 'auth'}"
+            label="Sign In" />
         </q-tabs>
       </q-toolbar>
     </q-header>
@@ -117,24 +143,7 @@
 </template>
 
 <script>
-import { scroll } from 'quasar'
-const { getScrollTarget, setScrollPosition } = scroll
-
 export default {
-  // name: 'LayoutName',
-
-  data () {
-    return {
-    }
-  },
-  methods: {
-    scrollToElement (id) {
-      let el = document.getElementById(id)
-      const target = getScrollTarget(el)
-      const offset = el.offsetTop + 3
-      const duration = 900
-      setScrollPosition(target, offset, duration)
-    }
-  }
+  name: 'LayoutLanding'
 }
 </script>

@@ -20,7 +20,7 @@ export default {
     return {
       email: '',
       password: '',
-      isConnexion: false
+      isConnexion: true
     }
   },
   computed: {

@@ -9,7 +9,7 @@ const routes = [
     component: () => import('~/layouts/AuthLayout.vue'),
     children: [
       /* Auth homepage */
-      { name: 'auth', path: '', component: () => import('~/pages/auth/Home.vue') }
+      { name: 'auth', path: '', component: () => import('~/pages/AuthHome.vue') }
     ]
   },
   {
