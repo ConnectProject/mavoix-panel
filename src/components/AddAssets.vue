@@ -19,15 +19,19 @@
       ref="dialog"
       full-width
       full-height
-      message="$t('assets.chooseImages')">
-      <q-card >
+    message="$t('assets.chooseImages')"
+  >
+    <q-card>
         <q-card-section>
           <div class="text-h6">{{ $t('assets.select') }}</div>
         </q-card-section>
 
         <q-separator />
 
-        <q-card-section style="max-height: calc(100% - 120px)" class="scroll row">
+      <q-card-section
+        style="max-height: calc(100% - 120px)"
+        class="scroll row"
+      >
           <q-card
             v-for="(asset, index) in assetsEditable"
             :key="index"
@@ -39,12 +43,11 @@
               :ratio="16 / 9"
               :src="asset.url"
               @click="asset.isSelected = !asset.isSelected"
-              basic>
+            basic
+          >
             </q-img>
             <div class="absolute-right q-mt-sm q-mr-sm">
-              <q-checkbox
-                v-model="asset.isSelected"
-              />
+            <q-checkbox v-model="asset.isSelected" />
             </div>
             <q-input
               class="absolute-bottom"
@@ -59,9 +62,13 @@
             <q-btn
               color="primary"
               class="absolute-bottom-right q-mb-sm q-mr-md"
-              round dense flat icon="play_arrow"
+              round
+              dense
+              flat
+              icon="play_arrow"
               @click="tts.speak({ text: asset.name })"
-              :disable="ttsEnabled == false"/>
+              :disable="ttsEnabled == false"
+            />
           </q-card>
         </q-card-section>
 
@@ -157,13 +164,14 @@ export default {
      */
     assetsSorted () {
       return this.$store.getters['assetsManager/all'].filter((elem) => { return (this.search === '' || elem.name.toUpperCase().includes(this.search.toUpperCase())) })
-    },
+    } // ,
     /**
      * Return true if assets manager opened to select asset, false if its to manage assets
+     * Never called
      */
-    selectMode () {
-      return this.$store.getters['assetsManager/selectMode']
-    }
+    // selectMode () {
+    //   return this.$store.getters['assetsManager/selectMode']
+    // }
   },
   methods: {
     editAsset (asset) {

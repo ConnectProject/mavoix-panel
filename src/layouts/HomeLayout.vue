@@ -75,12 +75,7 @@
             clickable
             v-ripple
             class="text-white"
-            @click="$router.push({
-              name: 'base',
-              params: {
-                assets: 'assets'
-              }
-            })"
+            :to="{ name: 'assets' }"
           >
             <q-item-section avatar>
                <q-icon name="photo_library" />
@@ -147,7 +142,7 @@
 
     <q-page-container>
       <router-view />
-      <dialog-assets-manager @showCam="isCamera = true" />
+      <!-- <dialog-assets-manager @showCam="isCamera = true" /> -->
     </q-page-container>
 
     <dialog-tab-name />
@@ -162,7 +157,7 @@ import ListItemLoading from '~/components/ListItemLoading'
 import QrcodeVue from 'qrcode.vue'
 
 /* Dialogs */
-import DialogAssetsManager from '~/components/dialogs/AssetsManager'
+// import DialogAssetsManager from '~/components/dialogs/AssetsManager'
 import DialogTabName from '~/components/dialogs/TabName'
 import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
@@ -175,7 +170,7 @@ export default {
   components: {
     QrcodeVue,
     ListItemLoading,
-    DialogAssetsManager,
+    // DialogAssetsManager,
     DialogTabName,
     DialogDeviceName,
     DialogDeviceInvitation,

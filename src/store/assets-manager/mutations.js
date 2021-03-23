@@ -72,18 +72,19 @@ export const cancelEdit = (state) => {
   state.editing = false
 }
 
-/**
- * Call selectCallback and close assets manager
- *
- * @param {State} state
- * @param {Asset} asset asset to select
- */
-export const selectAsset = (state, asset) => {
-  if (state.selectCallback) {
-    state.selectCallback(asset)
-    state.opened = false
-  }
-}
+// /**
+//  * Call selectCallback and close assets manager
+//  *
+//  * @param {State} state
+//  * @param {Asset} asset asset to select
+//  * Never called
+//  */
+// export const selectAsset = (state, asset) => {
+//   if (state.selectCallback) {
+//     state.selectCallback(asset)
+//     state.opened = false
+//   }
+// }
 
 /**
  * Open the assets manager

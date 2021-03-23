@@ -30,27 +30,35 @@
           class="q-my-md"
           @input="onSetName"
           :value="item.name"
-          filled>
+          filled
+        >
           <template v-slot:after>
             <q-btn
               color="accent"
-              round dense flat icon="play_arrow"
+              round
+              dense
+              flat
+              icon="play_arrow"
               @click="tts.speak({ text: item.name })"
-              :disable="ttsEnabled == false"/>
+              :disable="ttsEnabled == false"
+            />
           </template>
         </q-input>
 
         <!-- Asset input (flat button or button image) -->
+        <!-- Not clear when the item is not an asset (maybe it is never the case) -->
         <q-btn
           v-if="!item.asset"
           :label="$t('tabEditor.itemDialog.selectAssetLabel')"
           color="accent"
-          @click="onSetAsset"/>
+          @click="onSetAsset"
+        />
         <q-img
           v-else
           class="asset-image"
           :src="item.asset.url"
-          @click="onSetAsset">
+          @click="onSetAsset"
+        >
           <div class="absolute fit flex justify-center items-center text-center image-wrapper">
             <q-icon
               name="edit"
