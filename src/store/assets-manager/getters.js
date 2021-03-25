@@ -33,3 +33,5 @@ export const editing = ({ editing }) => editing
  * @param {State} state
  */
 export const selectMode = ({ selectMode }) => selectMode
+
+export const error = ({ error }) => error

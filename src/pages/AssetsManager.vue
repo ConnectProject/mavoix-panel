@@ -131,7 +131,7 @@ input[type='file']
         @click="activateSearch"
       />
       <q-fab-action
-        @click="onUploadFile"
+        @click="$refs.invisibleFileInput.click()"
         color="primary"
         icon="attach_file"
       />
@@ -239,9 +239,13 @@ export default {
     },
     /**
      * Return true if assets manager opened to select asset, false if its to manage assets
+     * (not sure if assets manager can still be used to selectMode)
      */
     selectMode () {
       return this.$store.getters['assetsManager/selectMode']
+    },
+    error () {
+      return this.$store.getters['assetsManager/error']
     }
   },
   watch: {
@@ -255,11 +259,17 @@ export default {
     search (to, from) {
       console.log(this.lang)
       this.$store.commit('global/setImages', { 'text': to, 'language': this.lang })
+    },
+    error (newVal) {
+      if (newVal) {
+        this.$q.notify({ position: 'top-right', message: newVal, color: 'red' })
+        this.$store.commit('assetsManager/resetError')
+      }
     }
   },
   methods: {
     showCam () {
-      this.$emit('showCam')
+      this.$root.$emit('showCam')
     },
     activateSearch () {
 
@@ -286,12 +296,6 @@ export default {
     //   if (!this.selectMode) this.$router.back()
     //   this.$store.commit('assetsManager/close')
     // },
-    /**
-     * Call to upload a file
-     */
-    onUploadFile () {
-      this.$refs['invisibleFileInput'].click()
-    },
     addAsset (name, url) {
       this.$store.dispatch('assetsManager/addAsset', { 'name': name, 'url': url })
       this.search = ''
@@ -302,17 +306,18 @@ export default {
      */
     onInputFile ({ target: { files } }) {
       if (files.length > 0) {
-        let file = ''
         let length = files.length
-        for (let i = 0; i < files.length; i++) {
-          file = files[i]
-          this.$store.dispatch('assetsManager/uploadFile', file)
-        }
-        if (length > 1) {
-          this.$q.notify({ position: 'top-right', message: length + this.$t('dnd.filesSaved'), color: 'blue' })
-        } else {
-          this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
-        }
+        let promises = Array.from(files).map((file) =>
+          this.$store.dispatch('assetsManager/uploadFile', file))
+        Promise.all(promises).then(res => {
+          if (length > 1) {
+            this.$q.notify({ position: 'top-right', message: length + this.$t('dnd.filesSaved'), color: 'blue' })
+          } else {
+            this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
+          }
+        }).catch(() =>
+          console.error('Failed to upload files')
+        )
       }
     }
     /**

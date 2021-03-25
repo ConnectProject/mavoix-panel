@@ -103,3 +103,11 @@ export const setError = (state, err) => {
   state.error = err.message
   state.loading = false
 }
+
+/**
+ * Used to reset a thrown error so that it can be thrown again
+ * @param {State} state
+ */
+export const resetError = (state) => {
+  state.error = null
+}

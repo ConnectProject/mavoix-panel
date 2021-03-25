@@ -15,6 +15,8 @@
     </div>
 
     <!-- Dropzone -->
+    <!-- This Dropzone seems to be never visible
+    We should remove this part if we don't use it anymore (or is it a hidden feature?) -->
     <div
       class="dnd z-max hidden text-center row items-center justify-center full-height full-width bg-black text-white"
       ref="dnd"
@@ -191,6 +193,7 @@ export default {
       this.$store.dispatch('devices/loadDevices')
       this.$store.dispatch('global/initTTS')
     }
+    this.$root.$on('showCam', () => { this.isCamera = true })
   },
   data () {
     return {
@@ -255,6 +258,7 @@ export default {
     },
     /**
      * Upload file on drop
+     * This function may not be used if the DropZone is not used
      **/
     uploadFile ({ target: { files } }) {
       if (files.length > 0) {

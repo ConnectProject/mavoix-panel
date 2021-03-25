@@ -81,7 +81,7 @@ export const uploadFile = ({ commit }, file) => {
     .replace(/^[^a-z0-9]+/i, '')
     .replace(/[^a-z0-9. \-_]/gi, '_')
 
-  new Parse.File(name, file)
+  return new Parse.File(name, file)
     .save()
     .then((file) =>
       AssetModel.New(name, file, file._url, localStorage.getItem('id'))
@@ -92,6 +92,7 @@ export const uploadFile = ({ commit }, file) => {
     })
     .catch((err) => {
       commit('setError', err)
+      throw err
     })
 }
 

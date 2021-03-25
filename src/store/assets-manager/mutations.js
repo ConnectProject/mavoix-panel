@@ -115,5 +115,13 @@ export const close = (state) => {
  */
 export const setError = (state, err) => {
   console.error(err)
-  state.error = err
+  state.error = err.message
+}
+
+/**
+ * Used to reset a thrown error so that it can be thrown again
+ * @param {State} state
+ */
+export const resetError = (state) => {
+  state.error = null
 }

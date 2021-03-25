@@ -38,13 +38,16 @@ export default {
     }
   },
   watch: {
-    isConnected (newValue, oldValue) {
+    isConnected () {
       this.$router.push({
         name: 'home'
       })
     },
-    error (newVal, oldVal) {
-      this.$q.notify({ position: 'top-right', message: newVal, color: 'blue' })
+    error (newVal) {
+      if (newVal) {
+        this.$q.notify({ position: 'top-right', message: newVal, color: 'red' })
+        this.$store.commit('users/resetError')
+      }
     }
   },
   methods: {
