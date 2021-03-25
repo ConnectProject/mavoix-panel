@@ -1,3 +1,4 @@
+// No longer used, was used before when AssetsManger was a dialog
 <template>
   <q-dialog
     :value="opened"

@@ -46,7 +46,8 @@
         </q-input>
 
         <!-- Asset input (flat button or button image) -->
-        <!-- Not clear when the item is not an asset (maybe it is never the case) -->
+        <!-- Not clear when the item is not an asset -->
+        <!-- (maybe it is never the case, was the case before when we could use this to add a new image) -->
         <q-btn
           v-if="!item.asset"
           :label="$t('tabEditor.itemDialog.selectAssetLabel')"
@@ -172,6 +173,7 @@ export default {
     },
     /**
      * Call to open the asset manager to select an asset for the item
+     * Called when we click on the pencil when the image is opened, but no longer do anything
      */
     onSetAsset () {
       this.$store.dispatch('assetsManager/openAndLoad', {

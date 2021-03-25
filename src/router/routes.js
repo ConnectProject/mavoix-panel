@@ -24,7 +24,7 @@ const routes = [
       { name: 'tab', path: '/tabs/:slug', component: () => import('~/pages/TabEditor.vue') },
 
       /* Asset editor */
-      { name: 'assets', path: '/assets', component: () => import('~/components/dialogs/AssetsManager.vue') }
+      { name: 'assets', path: '/assets', component: () => import('~/pages/AssetsManager.vue') }
     ]
   }
 ]

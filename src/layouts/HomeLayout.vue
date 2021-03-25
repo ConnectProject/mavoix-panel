@@ -189,11 +189,6 @@ export default {
     } else {
       this.$store.dispatch('tabs/loadTabs')
       this.$store.dispatch('devices/loadDevices')
-      if (this.$route.params.assets && this.$route.params.assets === 'assets') {
-        this.$store.dispatch('assetsManager/openAndLoad', {
-          selectMode: false
-        })
-      }
       this.$store.dispatch('global/initTTS')
     }
   },
@@ -228,19 +223,20 @@ export default {
       return this.$store.getters['tabEditor/tab']
     }
   },
-  watch: {
-    /**
-     * When route change, if its host/assets open assets manager
-     */
-    '$route' (to, from) {
-      if (to.params.assets && to.params.assets === 'assets') {
-        this.$store.dispatch('assetsManager/openAndLoad', {
-          selectMode: false
-        })
-        this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
-      }
-    }
-  },
+  // watch: {
+  //   /**
+  //    * When route change, if its host/assets open assets manager
+  //    * Do not seem to be useful anymore
+  //    */
+  //   '$route' (to, from) {
+  //     if (to.params.assets && to.params.assets === 'assets') {
+  //       this.$store.dispatch('assetsManager/openAndLoad', {
+  //         selectMode: false
+  //       })
+  //       this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
+  //     }
+  //   }
+  // },
   methods: {
     /**
      * show dropzone when entering window

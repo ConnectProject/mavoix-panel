@@ -1,7 +1,7 @@
 <style lang="stylus" scoped>
-.container-holder
+.content-start
   padding-left 0px !important
-  padding-top 90px !important
+  padding-top 90px !important // set to avoid that images are hindered by the search form
 .image-upload-wrapper
   display hidden
 input[type='file']
@@ -24,48 +24,83 @@ input[type='file']
 </style>
 
 <template>
-  <q-page-container class="container-holder relative-position">
-
-    <q-page
-      class="row content-start"
-      v-if="!loading"
+  <q-page
+    class="row content-start"
+    v-if="!loading"
+  >
+    <!-- Assets -->
+    <q-card
+      v-for="(asset, index) in assetsSorted"
+      :key="index"
+      class="card col-2 q-ma-md"
     >
-      <!-- Assets -->
-      <q-card
-        v-for="(asset, index) in assetsSorted"
-        :key="index"
-        class="card col-2 q-ma-md"
+      <q-img
+        v-if="asset.url"
+        class="fit rounded-borders"
+        :ratio="16 / 9"
+        :src="asset.url"
+        basic
+      />
+      <div class="erase absolute-right q-mt-sm q-mr-sm">
+        <q-btn
+          round
+          class="q-mr-xs"
+          dense
+          color="red"
+          size="q-pa-sm"
+          icon="delete"
+          @click="eraseAsset(asset)"
+        >
+          <q-tooltip>
+            {{ $t('generic.delete') }}
+          </q-tooltip>
+        </q-btn>
+      </div>
+      <q-input
+        class="absolute-bottom"
+        v-model="asset.name"
+        label="Name"
+        style="background-color:rgba(255,255,255,0.7)"
+        filled
+        @click="editAsset(asset)"
+        @keyup.enter="saveAsset(asset.name)"
       >
-        <q-img
-          v-if="asset.url"
-          class="fit rounded-borders"
-          :ratio="16 / 9"
-          :src="asset.url"
-          basic
-        />
-        <div class="erase absolute-right q-mt-sm q-mr-sm">
+        <template v-slot:append>
           <q-btn
             round
-            class="q-mr-xs"
             dense
-            color="red"
-            size="q-pa-sm"
-            icon="delete"
-            @click="eraseAsset(asset)"
+            color="blue"
+            size="m"
+            icon="save"
+            @click="saveAsset(asset.name)"
           >
             <q-tooltip>
-              {{ $t('generic.delete') }}
+              {{ $t('generic.save') }}
             </q-tooltip>
           </q-btn>
-        </div>
+        </template>
+      </q-input>
+    </q-card>
+    <q-card
+      v-for="(asset, index) in images"
+      :key="'x_' + index"
+      class="card col-2 q-ma-md"
+    >
+      <q-img
+        v-if="asset.url"
+        class="fit rounded-borders"
+        :ratio="16 / 9"
+        :src="asset.url"
+        basic
+      >
+        </q-img>
         <q-input
           class="absolute-bottom"
-          v-model="asset.name"
+          v-model="asset.names[lang]"
           label="Name"
           style="background-color:rgba(255,255,255,0.7)"
           filled
-          @click="editAsset(asset)"
-          @keyup.enter="saveAsset(asset.name)"
+          @keyup.enter="addAsset(asset.names[lang],asset.url)"
         >
           <template v-slot:append>
             <q-btn
@@ -73,119 +108,81 @@ input[type='file']
               dense
               color="blue"
               size="m"
-              icon="save"
-              @click="saveAsset(asset.name)"
+              icon="add"
+              @click="addAsset(asset.names[lang],asset.url)"
             >
               <q-tooltip>
-                {{ $t('generic.save') }}
+                {{ $t('generic.add') }}
               </q-tooltip>
             </q-btn>
           </template>
         </q-input>
       </q-card>
-      <q-card
-        v-for="(asset, index) in images"
-        :key="'x_' + index"
-        class="card col-2 q-ma-md"
-      >
-        <q-img
-          v-if="asset.url"
-          class="fit rounded-borders"
-          :ratio="16 / 9"
-          :src="asset.url"
-          basic
+
+      <!-- Add asset button -->
+      <q-fab
+          class="fixed-bottom-right q-ma-md"
+          direction="up"
+          color="accent"
         >
-          </q-img>
-          <q-input
-            class="absolute-bottom"
-            v-model="asset.names[lang]"
-            label="Name"
-            style="background-color:rgba(255,255,255,0.7)"
-            filled
-            @keyup.enter="addAsset(asset.names[lang],asset.url)"
-          >
+      <q-fab-action
+        color="primary"
+        icon="search"
+        @click="activateSearch"
+      />
+      <q-fab-action
+        @click="onUploadFile"
+        color="primary"
+        icon="attach_file"
+      />
+<!--           <q-fab-action color="primary" icon="cloud" /> -->
+      <q-fab-action
+        color="primary"
+        icon="camera_alt"
+        @click="showCam"
+      />
+      </q-fab>
+
+      <!-- Image upload invisible wrapper -->
+    <div
+      v-if="!selectMode"
+      class="image-upload-wrapper"
+    >
+      <input
+        type="file"
+        ref="invisibleFileInput"
+        @input="onInputFile"
+        multiple
+      />
+    </div>
+
+    <!-- Asset edit dialog -->
+    <!-- <asset-edit v-if="!selectMode" /> -->
+    <!-- Search form -->
+    <q-page-sticky
+      expand
+      position="top"
+    >
+      <q-toolbar class="bg-white">
+        <q-form class="row q-ma-md">
+        <q-input
+          outlined
+          label="Rechercher"
+          v-model="search"
+        >
             <template v-slot:append>
-              <q-btn
-                round
-                dense
-                color="blue"
-                size="m"
-                icon="add"
-                @click="addAsset(asset.names[lang],asset.url)"
-              >
-                <q-tooltip>
-                  {{ $t('generic.add') }}
-                </q-tooltip>
-              </q-btn>
+              <q-icon name="search" />
             </template>
           </q-input>
-        </q-card>
+        </q-form>
+      </q-toolbar>
+    </q-page-sticky>
 
-        <!-- Add asset button -->
-        <q-fab
-            class="fixed-bottom-right q-ma-md"
-            direction="up"
-            color="accent"
-          >
-        <q-fab-action
-          color="primary"
-          icon="search"
-          @click="activateSearch"
-        />
-        <q-fab-action
-          @click="onUploadFile"
-          color="primary"
-          icon="attach_file"
-        />
-<!--           <q-fab-action color="primary" icon="cloud" /> -->
-        <q-fab-action
-          color="primary"
-          icon="camera_alt"
-          @click="showCam"
-        />
-        </q-fab>
-
-        <!-- Image upload invisible wrapper -->
-      <div
-        v-if="!selectMode"
-        class="image-upload-wrapper"
-      >
-        <input
-          type="file"
-          ref="invisibleFileInput"
-          @input="onInputFile"
-          multiple
-        />
-      </div>
-
-      <!-- Asset edit dialog -->
-      <asset-edit v-if="!selectMode" />
-        <!-- Search form -->
-        <q-page-sticky
-          expand
-          position="top"
-        >
-          <q-toolbar class="bg-white">
-            <q-form class="row q-ma-md">
-            <q-input
-              outlined
-              label="Rechercher"
-              v-model="search"
-            >
-                <template v-slot:append>
-                  <q-icon name="search" />
-                </template>
-              </q-input>
-            </q-form>
-          </q-toolbar>
-        </q-page-sticky>
-
-    </q-page>
-  </q-page-container>
+  </q-page>
 </template>
 
 <script>
-import AssetEdit from './AssetEdit'
+// import AssetEdit from '~/components/dialogs/AssetEdit'
 export default {
   name: 'DialogAssetsManager',
   data () {
@@ -195,9 +192,9 @@ export default {
       assetsSpecial: []
     }
   },
-  components: {
-    AssetEdit
-  },
+  // components: {
+  //   AssetEdit
+  // },
   mounted () {
     this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
     this.search = ''
@@ -206,6 +203,7 @@ export default {
       lang = this.tabs[0].attributes.language.substring(0, 2)
     }
     this.lang = lang
+    this.$store.dispatch('assetsManager/loadAssets')
     console.log('mounted')
   },
   computed: {
