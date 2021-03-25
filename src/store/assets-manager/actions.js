@@ -78,6 +78,7 @@ export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editin
 
 export const uploadFile = ({ commit }, file) => {
   const name = Unidecode(file.name)
+    .replace(/^[^a-z0-9]+/i, '')
     .replace(/[^a-z0-9. \-_]/gi, '_')
 
   new Parse.File(name, file)

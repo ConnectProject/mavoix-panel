@@ -24,7 +24,10 @@
   margin-left 4px
 .holder-container
   padding-left 0px
-  padding-top 90px
+   // for that images are not hindered by the toolbar
+   // as the toolbar dimension is variable, it would be better
+   // to find a more flexible way to achieve this
+  padding-top 6rem
 .dropping
   display none
 .ghost
@@ -117,11 +120,12 @@
       <q-toolbar
         style="opacity:1; border-bottom: thin solid rgba(255,255,255,0.7)"
         :style='{ background: tab.hexColor }'
+        class="row"
       >
         <!-- Name input -->
         <q-input
           :label="$t('tabEditor.tabNameLabel')"
-          class="q-ma-md bg-white"
+          class="q-ma-md bg-white col"
           :value="tab.name"
           @input="setName"
           filled
@@ -130,7 +134,7 @@
         <!-- HexColor input -->
         <q-input
           :label="$t('tabEditor.tabColorLabel')"
-          class="q-ma-md bg-white"
+          class="q-ma-md bg-white col"
           :value="tab.hexColor"
           @input="setHexColor"
           filled
@@ -159,22 +163,20 @@
         <q-select
           :value="speed"
           :options="speeds"
-          class="q-ma-md bg-white"
+          class="q-ma-md bg-white col"
           filled
-          style="min-width: 150px"
           @input="setSpeed"
           :label="$t('tabEditor.tabSpeed')" />
         <q-select
           :value="language"
           :options="options"
-          class="q-ma-md bg-white"
+          class="q-ma-md bg-white col"
           @input="setLanguage"
-          style="min-width: 150px"
           filled
           :label="$t('tabEditor.tabLanguage')" />
         <!-- Add item button -->
         <q-btn
-          class="q-px-md q-py-md q-ma-md bg-white no-shadow"
+          class="q-px-md q-py-md q-ma-md bg-white no-shadow col-3"
           no-caps
           icon-right="photo_library"
           :label="$t('tabEditor.addItemLabel')"

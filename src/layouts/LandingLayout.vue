@@ -12,7 +12,7 @@
     <q-header class="q-py-sm" style="background-color:white; color:grey">
       <q-toolbar>
         <q-space ></q-space>
-        <q-tabs v-model="selected_tab" shrink>
+        <q-tabs shrink>
           <a
             href="https://mavoix.connect-project.io/app/"
             style="color: inherit; text-decoration: none">
@@ -125,14 +125,14 @@
           </div>
         </div>
 
-        <q-toolbar class="flex flex-center text-white" style="background-color: black" :style="'border-top: 2px solid '+ theme_color">
+        <q-toolbar class="flex flex-center text-white" style="background-color: black" :style="'border-top: 2px solid'">
           <div class="q-pa-sm q-gutter-sm">
             <q-btn round type="a" href="https://twitter.com/ConnectProject"
-                          :style="'background:'+ theme_color +'; color: white !important;'" icon="fab fa-twitter" />
+                          :style="'color: white !important;'" icon="fab fa-twitter" />
             <q-btn round type="a" href="https://github.com/ConnectProject"
-                          :style="'background:'+ theme_color +'; color: white !important;'" icon="fab fa-github" />
+                          :style="'color: white !important;'" icon="fab fa-github" />
             <q-btn round type="a" href="mailto:contact@connectproject.io"
-                          :style="'background:'+ theme_color +'; color: white !important;'" icon="email" />
+                          :style="'color: white !important;'" icon="email" />
           </div>
         </q-toolbar>
 
