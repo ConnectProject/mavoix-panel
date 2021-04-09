@@ -28,6 +28,7 @@ export default class TabModel extends Parse.Object {
       .set(USER_KEY, user) // Tab's user id
       .set(HEX_COLOR_KEY, hexColor) // Tab's color
       .set(SLUG_KEY, slugify(name)) // Tab's slug (http://exemple.com/tabs/{slug})
+
     return newTab
   }
 

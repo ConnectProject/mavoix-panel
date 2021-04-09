@@ -2,14 +2,35 @@
   <q-page class="flex flex-center">
     <q-card>
       <q-form @submit="createUser">
-        <h5 class="q-ma-md">{{ isConnexion ? 'Connexion' : 'Inscription'}} :</h5>
-        <q-input outlined label="Email" v-model="email" class="q-ma-md"></q-input>
-        <q-input outlined label="Password" type="password" v-model="password" class="q-ma-md"></q-input>
-        <q-btn type="submit" class="q-ma-md">
-          {{ isConnexion ? 'Connexion' : 'Inscription'}}
+        <h5 class="q-ma-md">
+          {{ isConnexion ? 'Connexion' : 'Inscription' }} :
+        </h5>
+        <q-input
+          v-model="email"
+          outlined
+          label="Email"
+          class="q-ma-md"
+        />
+        <q-input
+          v-model="password"
+          outlined
+          label="Password"
+          type="password"
+          class="q-ma-md"
+        />
+        <q-btn
+          type="submit"
+          class="q-ma-md"
+        >
+          {{ isConnexion ? 'Connexion' : 'Inscription' }}
         </q-btn>
-        <br/>
-        <div class="q-ma-md cursor-pointer" @click="isConnexion = !isConnexion"><small>{{ isConnexion ? 'incription' : 'connexion' }}</small></div>
+        <br>
+        <div
+          class="q-ma-md cursor-pointer"
+          @click="isConnexion = !isConnexion"
+        >
+          <small>{{ isConnexion ? 'incription' : 'connexion' }}</small>
+        </div>
       </q-form>
     </q-card>
   </q-page>

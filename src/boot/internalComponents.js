@@ -1,6 +1,6 @@
+import Draggable from 'vuedraggable'
 import Fab from '~/components/Fab.vue'
 import VueTagsInput from '@johmun/vue-tags-input'
-import Draggable from 'vuedraggable'
 
 /*
 ** Add project's components globally

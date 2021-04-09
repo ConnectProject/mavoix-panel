@@ -13,8 +13,8 @@
       <!-- Device name -->
       <q-card-section>
         <q-input
-          dense
           v-model="name"
+          dense
           autofocus
           @keyup.enter="onSubmit"
         />
@@ -36,8 +36,8 @@
         <q-btn
           flat
           :label="$t('generic.save')"
-          @click="onSubmit"
           :disable="name === ''"
+          @click="onSubmit"
         />
       </q-card-actions>
     </q-card>
@@ -53,16 +53,19 @@ export default {
     }
   },
   computed: {
+
     /**
-     * Return true if the dialog should be opened
+     * @returns {boolean} true if the dialog should be opened
      */
     opened () {
       return this.$store.getters['devices/nameDialog'].opened
     }
   },
   methods: {
+
     /**
      * Call when submit to create the device and open the dialog
+     * @returns {void}
      */
     onSubmit () {
       if (this.name === '') {
@@ -71,8 +74,10 @@ export default {
       this.$store.dispatch('devices/create', this.name)
       this.name = ''
     },
+
     /**
      * Call to call the dialog
+     * @returns {void}
      */
     onCancel () {
       this.$store.commit('devices/closeNameDialog')

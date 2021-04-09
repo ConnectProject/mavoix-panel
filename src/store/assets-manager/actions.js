@@ -1,17 +1,17 @@
+import AssetModel, { NAME_KEY } from '~/models/Asset'
 import Parse from 'parse'
 import Unidecode from 'unidecode'
-import AssetModel, { NAME_KEY } from '~/models/Asset'
 
 import { modelFromAsset } from './utils'
 
 /**
  * Open the asset manager and load assets
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
  * @param {{ Boolean, Function }} {
  *  selectMode: is the asset manager started to select an asset or to manage them
  *  selectCallback: is selectMode is true call this function with the selected asset as parameter
  * }
- *
+ * @returns {void}
  */
 export const openAndLoad = ({ commit, dispatch }, { selectMode = false, selectCallback }) => {
   commit('open', { selectMode, selectCallback })
@@ -20,7 +20,8 @@ export const openAndLoad = ({ commit, dispatch }, { selectMode = false, selectCa
 
 /**
  * Load every assets for the user
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
+ * @returns {Promise} did the action succeed
  */
 export const loadAssets = ({ commit }) => {
   new Parse.Query(AssetModel)
@@ -37,28 +38,33 @@ export const loadAssets = ({ commit }) => {
 
 /**
  * Delete the asset that's edited
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
+ * @returns {Promise} did the action succeed
  */
 export const destroyEditingAsset = ({ commit, state: { assets, editingIndex } }) => {
   modelFromAsset(assets[editingIndex])
     .then((assetModel) =>
       assetModel.destroy()
-    ).then(() => {
+    )
+    .then(() => {
       commit('removeEditingAsset')
       commit('cancelEdit')
-    }).catch((err) => {
+    })
+    .catch((err) => {
       commit('setError', err)
     })
 }
 
 /**
  * Save the asset that's edited
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
+ * @returns {Promise} did the action succeed
  */
 export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editingAsset } }) => {
   modelFromAsset(assets[editingIndex])
     .then((assetModel) => {
       assetModel.set(NAME_KEY, editingAsset.name)
+
       return assetModel.save()
     })
     .then((assetModel) => {
@@ -72,7 +78,7 @@ export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editin
 
 /**
  * Upload a file and create the asset
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
  * @param {File} file the file to upload
  */
 
@@ -83,8 +89,8 @@ export const uploadFile = ({ commit }, file) => {
 
   return new Parse.File(name, file)
     .save()
-    .then((file) =>
-      AssetModel.New(name, file, file._url, localStorage.getItem('id'))
+    .then((newFile) =>
+      AssetModel.New(name, newFile, newFile._url, localStorage.getItem('id'))
         .save()
     )
     .then((asset) => {

@@ -1,16 +1,20 @@
 module.exports = {
-  presets: [[
-    '@quasar/babel-preset-app', {
-      targets: {
-        node: 'current'
+  presets: [
+    [
+      '@quasar/babel-preset-app', {
+        targets: {
+          node: 'current'
+        }
       }
-    }
-  ]],
+    ]
+  ],
   plugins: [
-    ['module-resolver', {
-      'alias': {
-        '~': './src'
+    [
+      'module-resolver', {
+        'alias': {
+          '~': './src'
+        }
       }
-    }]
+    ]
   ]
 }

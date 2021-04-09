@@ -1,7 +1,8 @@
 /**
  * Set tabs
- * @param {State} state
- * @param {[TabModel]} tabs tabs to set
+ * @param {State} state vuex state
+ * @param {TabModel[]} tabs tabs to set
+ * @returns {void}
  */
 export const setTabs = (state, tabs) => {
   state.tabs = tabs
@@ -10,8 +11,9 @@ export const setTabs = (state, tabs) => {
 
 /**
  * Add a tab
- * @param {State} state
+ * @param {State} state vuex state
  * @param {TabModel} tab tab to add
+ * @returns {void}
  */
 export const addTab = (state, tab) => {
   state.tabs.push(tab)
@@ -19,8 +21,9 @@ export const addTab = (state, tab) => {
 
 /**
  * Remove a tab from its id
- * @param {State} state
+ * @param {State} state vuex state
  * @param {String} id tab's id to remove
+ * @returns {void}
  */
 export const removeTabById = (state, id) => {
   state.tabs = state.tabs.filter(el => el.id !== id)
@@ -28,7 +31,8 @@ export const removeTabById = (state, id) => {
 
 /**
  * Open the new tabs dialog
- * @param {State} state
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const openDialog = (state) => {
   state.dialogOpen = true
@@ -36,7 +40,8 @@ export const openDialog = (state) => {
 
 /**
  * Close the new tabs dialog
- * @param {State} state
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const closeDialog = (state) => {
   state.dialogOpen = false
@@ -44,8 +49,9 @@ export const closeDialog = (state) => {
 
 /**
  * Used to throw an error
- * @param {State} state
- * @param {Error} error is the error to set
+ * @param {State} state vuex state
+ * @param {Error} err is the error to set
+ * @returns {void}
  */
 export const setError = (state, err) => {
   state.error = err

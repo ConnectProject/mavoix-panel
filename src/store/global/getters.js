@@ -1,12 +1,12 @@
+/* eslint-disable no-shadow */
+
 /**
- * Return the tts object
- * @param {State} state
+ * @return {boolean} the tts object
  */
 export const tts = ({ tts }) => tts
 
 /**
- * Return true if tts is enabled
- * @param {State} state
+ * @returns {boolean} true if tts is enabled
  */
 export const ttsEnabled = ({ ttsEnabled }) => ttsEnabled
 

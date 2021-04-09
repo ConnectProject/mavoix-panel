@@ -12,6 +12,7 @@
  */
 
 module.exports.extendApp = function ({ app }) {
+
   /*
      Extend the parts of the express app that you
      want to use with development server too.

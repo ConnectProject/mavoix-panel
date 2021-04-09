@@ -17,6 +17,7 @@ export default class DeviceUser extends Parse.User {
     newDeviceUser.setPassword(password)
     newDeviceUser.set('linkedAccount', id)
     newDeviceUser.set('deviceName', devicename)
+
     return newDeviceUser
   }
 

@@ -1,25 +1,25 @@
 /**
  * Set devices
- * @param {state} state
- * @param {[DeviceUserModel]} deviceModels devices to load
+ * @param {State} state vuex state
+ * @param {DeviceUserModel[]} deviceModels devices to load
+ * @returns {void}
  */
 export const setDevices = (state, deviceModels) => {
-  state.devices = deviceModels.map((model) => {
-    return {
-      deviceName: model.get('deviceName'),
-      name: model.getUsername(),
-      password: ''
-    }
-  })
+  state.devices = deviceModels.map((model) => ({
+    deviceName: model.get('deviceName'),
+    name: model.getUsername(),
+    password: ''
+  }))
   state.loading = false
 }
 
 /**
  * Add a device and open the modal to view it
- * @param {State} state
+ * @param {State} state vuex state
  * @param {{ DeviceUserModel, String }} {
  *   model: the device to add and open
  *   password: the password of the new device
+ * @returns {void}
  * }
  */
 export const addAndOpenDevice = (state, { model, password }) => {
@@ -34,8 +34,9 @@ export const addAndOpenDevice = (state, { model, password }) => {
 
 /**
  * Set the password of the opened device
- * @param {State} state
+ * @param {State} state vuex state
  * @param {String} password new password
+ * @returns {void}
  */
 export const updateActivePassword = (state, password) => {
   state.devices[state.dialog.index].password = password
@@ -45,7 +46,8 @@ export const updateActivePassword = (state, password) => {
 
 /**
  * Remove the opened device
- * @param {State} state
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const removeActive = (state) => {
   state.devices.splice(state.dialog.index, 1)
@@ -54,8 +56,9 @@ export const removeActive = (state) => {
 
 /**
  * Open a device with its index
- * @param {State} state
+ * @param {State} state vuex state
  * @param {Number} index position of the device to open
+ * @returns {void}
  */
 export const openDialog = (state, index) => {
   state.dialog.index = index
@@ -64,7 +67,8 @@ export const openDialog = (state, index) => {
 
 /**
  * Close the device dialog
- * @param {State} state
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const closeDialog = (state) => {
   state.dialog.opened = false
@@ -72,7 +76,8 @@ export const closeDialog = (state) => {
 
 /**
  * Open name dialog
- * @param {State} state
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const openNameDialog = (state) => {
   state.nameDialog.name = ''
@@ -81,7 +86,8 @@ export const openNameDialog = (state) => {
 
 /**
  * Close name dialog
- * @param {State} state
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const closeNameDialog = (state) => {
   state.nameDialog.opened = false
@@ -89,8 +95,9 @@ export const closeNameDialog = (state) => {
 
 /**
  * Set name dialog's name
- * @param {State} state
+ * @param {State} state vuex state
  * @param {String} name the new name
+ * @returns {void}
  */
 export const setNameDialog = (state, name) => {
   state.nameDialog.name = name
@@ -98,8 +105,9 @@ export const setNameDialog = (state, name) => {
 
 /**
  * Used to throw an error
- * @param {State} state
- * @param {Error} error is the error to set
+ * @param {State} state vuex state
+ * @param {Error} err is the error to set
+ * @returns {void}
  */
 export const setError = (state, err) => {
   console.error(err)

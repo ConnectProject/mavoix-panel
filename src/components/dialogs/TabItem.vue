@@ -28,9 +28,9 @@
         <q-input
           :label="$t('tabEditor.itemDialog.nameLabel')"
           class="q-my-md"
-          @input="onSetName"
           :value="item.name"
           filled
+          @input="onSetName"
         >
           <template v-slot:after>
             <q-btn
@@ -39,8 +39,8 @@
               dense
               flat
               icon="play_arrow"
-              @click="tts.speak({ text: item.name })"
               :disable="ttsEnabled == false"
+              @click="tts.speak({ text: item.name })"
             />
           </template>
         </q-input>
@@ -103,77 +103,92 @@
 export default {
   name: 'DialogTabItem',
   computed: {
+
     /**
-     * Return true if the dialog should be opened
+     * @returns {boolean} true if the dialog should be opened
      */
     opened () {
       return this.$store.getters['tabEditor/itemDialogOpened']
     },
+
     /**
-     * Return the item
+     * @returns {boolean} the item
      */
     item () {
       return this.$store.getters['tabEditor/itemDialog']
     },
+
     /**
-     * Return the mode (new or edit)
+     * @returns {string} the mode (new or edit)
      */
     mode () {
       return this.$store.getters['tabEditor/itemDialogMode']
     },
+
     /**
-     * Return the tts plugin
+     * @returns {Object} the tts plugin
      */
     tts () {
       return this.$store.getters['global/tts']
     },
+
     /**
-     * Return true if tts is enabled
+     * @returns {boolean} true if tts is enabled
      */
     ttsEnabled () {
       return this.$store.getters['global/ttsEnabled']
     }
   },
   watch: {
+
     /**
      * init tts when opening dialog
+     * @returns {void}
      */
-    opened (newValue, oldValue) {
+    opened () {
       this.$store.dispatch('global/initTTS')
     }
   },
   methods: {
+
     /**
      * Call on submit to update or add the item to the tab
      * Then close the dialog
+     * @returns {void}
      */
     onSubmit () {
       switch (this.mode) {
-        case 'edit':
-          this.$store.commit('tabEditor/updateItem')
-          break
-        case 'new':
-          this.$store.commit('tabEditor/addItem')
-          break
+      case 'edit':
+        this.$store.commit('tabEditor/updateItem')
+        break
+      case 'new':
+        this.$store.commit('tabEditor/addItem')
+        break
       }
       this.onClose()
     },
+
     /**
      * Call to delete the item
+     * @returns {void}
      */
     onDelete () {
       this.$store.commit('tabEditor/removeItemDialog')
       this.onClose()
     },
+
     /**
      * Call to close the dialog
+     * @returns {void}
      */
     onClose () {
       this.$store.commit('tabEditor/closeItemDialog')
     },
+
     /**
      * Call to open the asset manager to select an asset for the item
      * Called when we click on the pencil when the image is opened, but no longer do anything
+     * @returns {void}
      */
     onSetAsset () {
       this.$store.dispatch('assetsManager/openAndLoad', {
@@ -183,8 +198,11 @@ export default {
         }
       })
     },
+
     /**
      * Call to set the item's name
+     * @param {string} name new name
+     * @returns {void}
      */
     onSetName (name) {
       this.$store.commit('tabEditor/setItemDialogName', name)

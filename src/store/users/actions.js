@@ -1,8 +1,9 @@
 // import Parse from 'parse'
 import ParseUser from '~/models/ParseUser'
+
 /**
  * Load devices
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
  */
 // does not seem to be used
 // export const loadUsers = ({ commit }) => {
@@ -32,7 +33,7 @@ import ParseUser from '~/models/ParseUser'
 
 /**
  * Create a new device and open the model to view it
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
  * @param {String} name name of the new device
  */
 

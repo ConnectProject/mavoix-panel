@@ -2,6 +2,8 @@ const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567
 
 /**
  * Generate a random alphanumeric string of a specific length
+ * @param {number} length specified length
+ * @returns {string} random alphanumeric string
  */
 export default (length) => {
   let result = ''
@@ -9,5 +11,6 @@ export default (length) => {
   for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length))
   }
+
   return result
 }

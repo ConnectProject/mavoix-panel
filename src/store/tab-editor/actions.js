@@ -1,23 +1,24 @@
+import TabItemModel, {
+  ASSET_KEY as ITEM_ASSET_KEY,
+  AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
+  HIDDEN_KEY as ITEM_HIDDEN_KEY,
+  KEY_KEY as ITEM_KEY_KEY,
+  NAME_KEY as ITEM_NAME_KEY,
+  ORDER_KEY as ITEM_ORDER_KEY,
+  TAB_KEY as ITEM_TAB_KEY
+} from '~/models/TabItem'
+import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
+
 import Parse from 'parse'
 
 import slugify from '~/utils/slugify'
 import { tabToModel } from './utils'
 
-import TabModel, { SLUG_KEY, NAME_KEY, HEX_COLOR_KEY, SPEED_KEY, LANGUAGE_KEY } from '~/models/Tab'
-import TabItemModel, {
-  NAME_KEY as ITEM_NAME_KEY,
-  ASSET_KEY as ITEM_ASSET_KEY,
-  AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
-  HIDDEN_KEY as ITEM_HIDDEN_KEY,
-  TAB_KEY as ITEM_TAB_KEY,
-  KEY_KEY as ITEM_KEY_KEY,
-  ORDER_KEY as ITEM_ORDER_KEY
-} from '~/models/TabItem'
-
 /**
  * Load a tab with its slug
- * @param {Context} ctx
+ * @param {Context} ctx context passed by vuex
  * @param {String} slug the tab's slug
+ * @returns {Promise} Parse query
  */
 export const loadBySlug = ({ commit, dispatch }, slug) => {
   new Parse.Query(TabModel)
@@ -35,7 +36,8 @@ export const loadBySlug = ({ commit, dispatch }, slug) => {
 
 /**
  * Load every items for the loaded tab
- * @param {Context} ctx
+ * @param {Context} ctx context passed by vuex
+ * @returns {Promise} fetchItems succeeded
  */
 export const fetchItems = ({ commit, getters: { tab } }) => {
   tabToModel(tab)
@@ -55,13 +57,15 @@ export const fetchItems = ({ commit, getters: { tab } }) => {
 
 /**
  * Save the tab's modifications
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
  * @param {Function} callback to call when tab saved
+ * @returns {Promise} saveCb succeeded
  */
 export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems } }, callback) => {
   tabToModel(tab)
     .then((tabModel) => {
       const promises = []
+
       /**
        * Save basic changes
        */
@@ -81,18 +85,18 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
             .equalTo(ITEM_TAB_KEY, tabModel)
             .equalTo(ITEM_KEY_KEY, item.key)
             .first()
-            .then((itemModel) => {
-              return itemModel.destroy()
-            }))
+            .then((itemModel) => itemModel.destroy()))
         }
       })
 
       /* Save items */
       items.forEach((item) => {
         if (!item.key) {
+
           /* Save item as new item */
           promises.push(TabItemModel.Create(item.name, item.asset, tabModel, item.hidden, item.available, item.order).save())
         } else {
+
           /* Update item if existing */
           promises.push(new Parse.Query(TabItemModel)
             .equalTo(ITEM_TAB_KEY, tabModel)
@@ -110,10 +114,12 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
           )
         }
       })
+
       return Promise.all(promises)
     })
     .then(([tabModel]) => {
       commit('clearState')
+
       return Promise.all([
         dispatch('loadBySlug', tabModel.get(SLUG_KEY)),
         callback(tabModel)
@@ -126,7 +132,8 @@ export const saveCb = ({ commit, dispatch, getters: { tab, items, deletedItems }
 
 /**
  * Delete the tab
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
+ * @returns {Promise} deleteTab succeeded
  */
 export const deleteTab = ({ commit, getters: { tab } }) => {
   tabToModel(tab)

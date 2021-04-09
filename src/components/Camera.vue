@@ -7,16 +7,15 @@
         width="640"
         height="480"
         autoplay
-      >
-      </video>
+      />
       <!-- where the image taken will be displayed -->
       <img
-        class="absolute-top-left"
         v-if="captures.length"
-        v-bind:src="captures[captures.length - 1]"
+        class="absolute-top-left"
+        :src="captures[captures.length - 1]"
         width="640"
         height="480"
-      />
+      >
     </div>
     <div>
       <div class="snap">
@@ -24,30 +23,30 @@
         <q-btn
           v-if="captures.length === 0"
           class="bg-blue"
-          @click="capture()"
           icon-right="camera_alt"
           :label="$t('camera.snapPic')"
+          @click="capture()"
         />
         <!-- button to retake image -->
         <q-btn
           v-if="captures.length"
           class="bg-red"
-          @click="retake()"
           icon-right="redo"
           :label="$t('camera.retake')"
+          @click="retake()"
         />
       </div>
       <!-- input for changing the name -->
       <q-input
-        ref="titleImage"
-        standout="bg-white"
         v-if="image !== null"
+        ref="titleImage"
+        v-model="title"
+        standout="bg-white"
         class="absolute-top-left full-width"
         color="blue"
-        @keyup.enter="saveImage"
         filled
         :label="$t('camera.imageName')"
-        v-model="title"
+        @keyup.enter="saveImage"
       >
         <template v-slot:append>
           <q-btn
@@ -64,15 +63,14 @@
       ref="canvas"
       width="640"
       height="480"
-    >
-    </canvas>
+    />
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'app',
+  name: 'App',
   data () {
     return {
       video: {},
@@ -85,7 +83,7 @@ export default {
   },
   mounted () {
     this.video = this.$refs.video
-    let that = this
+    const that = this
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
         try {
@@ -103,21 +101,25 @@ export default {
     this.$refs.video.srcObject.getTracks()[0].stop()
   },
   methods: {
+
     /**
      * Capture the image
+     * @returns {void}
      */
     capture () {
       this.canvas = this.$refs.canvas
       this.canvas.getContext('2d').drawImage(this.video, 0, 0, 640, 480)
       this.captures.push(this.canvas.toDataURL('image/png'))
       this.image = this.canvas.toDataURL('image/png')
-      let that = this
+      const that = this
       setTimeout(() => {
         that.$refs.titleImage.focus()
       }, 20)
     },
+
     /**
      * Save it in the back
+     * @returns {void}
      */
     saveImage () {
       if (this.title === '') {
@@ -128,8 +130,10 @@ export default {
         this.retake()
       })
     },
+
     /**
      * Reitinialize data to retake picture
+     * @returns {void}
      */
     retake () {
       this.image = null
@@ -137,14 +141,23 @@ export default {
       this.file = null
       this.title = ''
     },
+
     /**
      * transform canvas data to JS File interface (preparing to send to API)
+     * @param {string} dataurl data URI containing a representation of the image
+     * @param {string} filename name entered by the user
+     * @returns {File} file created
      */
     dataToFile (dataurl, filename) {
-      var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1], bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n)
+      var arr = dataurl.split(','),
+        bstr = atob(arr[1]),
+        [, mime] = arr[0].match(/:(.*?);/),
+        n = bstr.length,
+        u8arr = new Uint8Array(n)
       while (n--) {
         u8arr[n] = bstr.charCodeAt(n)
       }
+
       return new File([u8arr], filename, { type: mime })
     }
   }

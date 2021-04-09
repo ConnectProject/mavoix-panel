@@ -40,6 +40,7 @@ export const getDefaultState = () => ({
       name: null // name of the item
     }
   },
+
   /**
    * Undo / Redo stacks
    */

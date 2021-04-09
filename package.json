@@ -38,6 +38,7 @@
     "babel-eslint": "^10.0.1",
     "babel-plugin-module-resolver": "^4",
     "eslint": "^6",
+    "eslint-config-naat": "git+https://github.com/neuroanatomy/eslint-config-naat.git",
     "eslint-loader": "^2.1.1",
     "eslint-plugin-vue": "^5.0.0",
     "stylus-supremacy": "^2.14.5"

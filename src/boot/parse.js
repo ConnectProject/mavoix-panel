@@ -1,15 +1,15 @@
-import Parse from 'parse'
 
-import TabModel from '~/models/Tab'
-import TabItemModel from '~/models/TabItem'
 import AssetModel from '~/models/Asset'
 import DeviceUserModel from '~/models/DeviceUser'
+import Parse from 'parse'
 import ParseUserModel from '~/models/ParseUser'
+import TabItemModel from '~/models/TabItem'
+import TabModel from '~/models/Tab'
 
 /*
 ** Initilize parse client with its models
 */
-export default async ({ app, Vue }) => {
+export default ({ app, Vue }) => {
   const { PARSE_APP_ID, PARSE_JS_KEY, PARSE_URL } = process.env
   Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY)
   Parse.serverURL = PARSE_URL

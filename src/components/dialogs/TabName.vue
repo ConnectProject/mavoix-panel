@@ -13,8 +13,8 @@
       <!-- Tab's name -->
       <q-card-section>
         <q-input
-          dense
           v-model="name"
+          dense
           autofocus
           @keyup.enter="onSubmit"
         />
@@ -36,8 +36,8 @@
         <q-btn
           flat
           :label="$t('generic.save')"
-          @click="onSubmit"
           :disable="name === ''"
+          @click="onSubmit"
         />
       </q-card-actions>
     </q-card>
@@ -53,17 +53,20 @@ export default {
     }
   },
   computed: {
+
     /**
-     * Return true if the dialog should be opened
+     * @returns {boolean} true if the dialog should be opened
      */
     opened () {
       return this.$store.getters['tabs/dialogOpened']
     }
   },
   methods: {
+
     /**
      * Call on submit to create the tab and redirect to it
      * then close the dialog
+     * @returns {void}
      */
     onSubmit () {
       if (this.name === '') {
@@ -83,8 +86,10 @@ export default {
       })
       this.name = ''
     },
+
     /**
      * Call to cancel
+     * @returns {void}
      */
     onCancel () {
       this.$store.commit('tabs/closeDialog')

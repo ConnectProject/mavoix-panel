@@ -1,43 +1,46 @@
-import Parse from 'parse'
-import TabModel, { NAME_KEY, HEX_COLOR_KEY, SLUG_KEY, SPEED_KEY, LANGUAGE_KEY } from '~/models/Tab'
 import {
-  NAME_KEY as ITEM_NAME_KEY,
   ASSET_KEY as ITEM_ASSET_KEY,
-  KEY_KEY as ITEM_KEY_KEY,
   AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
   HIDDEN_KEY as ITEM_HIDDEN_KEY,
+  KEY_KEY as ITEM_KEY_KEY,
+  NAME_KEY as ITEM_NAME_KEY,
   ORDER_KEY as ITEM_ORDER_KEY
 } from '~/models/TabItem'
+import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
+import Parse from 'parse'
 
 /**
  * Set something in the tab from its key
- * @param {State} state
+ * @param {State} state vuex state
  * @param {String} key to change
  * @param {*} newValue to set
+ * @returns {void}
  */
 export const changeByKey = (state, key, newValue) => {
   switch (key) {
-    case NAME_KEY:
-      state.tab.name = newValue
-      break
-    case HEX_COLOR_KEY:
-      state.tab.hexColor = newValue
-      break
-    default:
-      break
+  case NAME_KEY:
+    state.tab.name = newValue
+    break
+  case HEX_COLOR_KEY:
+    state.tab.hexColor = newValue
+    break
+  default:
+    break
   }
 }
 
 /**
  * Find an item's index in the list of items
- * @param {State} state
+ * @param {State} state vuex state
  * @param {Item} pItem to find
+ * @returns {number} index of the item
  */
 export const itemIndex = (state, pItem) => state.items.findIndex((item) => item.name === pItem.name)
 
 /**
  * Transform a model into an object
  * @param {TabModel} tabModel the model to transform
+ * @returns {Tab} the transformed object
  */
 export const modelToTab = (tabModel) => ({
   slug: tabModel.get(SLUG_KEY),
@@ -50,18 +53,18 @@ export const modelToTab = (tabModel) => ({
 
 /**
  * Retrive a tab's model from its object
- * @param {Tab} tab the obect to retrive
+ * @param {Tab} tab the object to retrieve
+ * @returns {TabModel} the tab model
  */
-export const tabToModel = (tab) => {
-  return new Parse.Query(TabModel)
-    .equalTo(SLUG_KEY, tab.slug)
-    .equalTo('user', localStorage.id)
-    .first()
-}
+export const tabToModel = (tab) => new Parse.Query(TabModel)
+  .equalTo(SLUG_KEY, tab.slug)
+  .equalTo('user', localStorage.id)
+  .first()
 
 /**
  * Transform an tab's item model into a tab's item object
- * @param {ItemModel} itemModel
+ * @param {ItemModel} itemModel the model to transform
+ * @returns {ItemTab} the transformed item tab
  */
 export const itemModelToItem = (itemModel) => {
   var asset = itemModel.get(ITEM_ASSET_KEY)
@@ -70,6 +73,7 @@ export const itemModelToItem = (itemModel) => {
   if (parseFile) {
     asset.url = `${Parse.serverURL}/files/${Parse.applicationId}/${parseFile._name}`
   }
+
   return {
     name: itemModel.get(ITEM_NAME_KEY),
     asset: asset,

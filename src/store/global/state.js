@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 export default {
   tts: null, // tts plugin
   ttsEnabled: false, // true if tts enabled,
@@ -27,9 +29,7 @@ export default {
         'cr': 'planeta',
         'nl': 'planeet'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/10_euros.png',
@@ -54,9 +54,7 @@ export default {
         'cr': '10 eura',
         'nl': '10 euro'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cumpleanos_4.png',
@@ -81,9 +79,7 @@ export default {
         'cr': 'rođendani',
         'nl': 'verjaardag'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/praxia_19.png',
@@ -108,9 +104,7 @@ export default {
         'cr': 'praksija',
         'nl': 'myofunctionele therapie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/anillo.png',
@@ -135,9 +129,7 @@ export default {
         'cr': 'prsten',
         'nl': 'ring'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/caballito.png',
@@ -162,9 +154,7 @@ export default {
         'cr': 'drveni konjić',
         'nl': 'schommelpaard'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/mano_derecha_1.png',
@@ -189,9 +179,7 @@ export default {
         'cr': 'desna ruka',
         'nl': 'rechterhand'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pantalon_3.png',
@@ -216,9 +204,7 @@ export default {
         'cr': 'hlače',
         'nl': 'pantalon'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hacer_caca_3.png',
@@ -243,9 +229,7 @@ export default {
         'cr': 'ići u kupaonicu',
         'nl': 'poepen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/alcohol_1.png',
@@ -270,9 +254,7 @@ export default {
         'cr': 'alkohol',
         'nl': 'alcohol'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/reptiles.png',
@@ -297,9 +279,7 @@ export default {
         'cr': 'reptili',
         'nl': 'reptielen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/enamorar.png',
@@ -324,9 +304,7 @@ export default {
         'cr': 'zaljubiti se',
         'nl': 'verliefd zijn op'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/iglu.png',
@@ -351,9 +329,7 @@ export default {
         'cr': 'iglu',
         'nl': 'iglo'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/juntar_2.png',
@@ -378,9 +354,7 @@ export default {
         'cr': 'sastaviti',
         'nl': 'samenvoegen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/isla.png',
@@ -405,9 +379,7 @@ export default {
         'cr': 'otok',
         'nl': 'eiland'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cortar_el_cesped.png',
@@ -432,9 +404,7 @@ export default {
         'cr': 'kositi travu',
         'nl': 'maai het gazon'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/taller.png',
@@ -459,9 +429,7 @@ export default {
         'cr': 'radonica',
         'nl': 'werkplaats'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/enferma.png',
@@ -476,9 +444,7 @@ export default {
         'ca': 'malalta',
         'nl': 'ziek'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/politica_1.png',
@@ -503,9 +469,7 @@ export default {
         'cr': 'politika',
         'nl': 'politici'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/liberacion.png',
@@ -530,9 +494,7 @@ export default {
         'cr': 'oslobođenje',
         'nl': 'bevrijding'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dependiente_1.png',
@@ -557,9 +519,7 @@ export default {
         'cr': 'prodavač',
         'nl': 'verkoper '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/monitor.png',
@@ -584,9 +544,7 @@ export default {
         'cr': 'zaslon',
         'nl': 'monitor'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/monopatin.png',
@@ -611,9 +569,7 @@ export default {
         'cr': 'skejtbord',
         'nl': 'skateboard'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/apoyarse.png',
@@ -638,9 +594,7 @@ export default {
         'cr': 'osloniti se na',
         'nl': 'leunen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/otros.png',
@@ -665,9 +619,7 @@ export default {
         'cr': 'drugi',
         'nl': 'ander'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/triciclos.png',
@@ -683,9 +635,7 @@ export default {
         'ca': 'tricicles',
         'nl': 'driewielers'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tenias.png',
@@ -710,9 +660,7 @@ export default {
         'cr': 'trakavice',
         'nl': 'lintwormen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Vieja_Cuaresma.png',
@@ -736,9 +684,7 @@ export default {
         'br': 'Velha Quaresma',
         'nl': 'Vieja Cuaresma'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pasar_sin_mirar.png',
@@ -763,9 +709,7 @@ export default {
         'cr': 'prijeći bez gledanja',
         'nl': 'passeren zonder te kijken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/parque_tematico.png',
@@ -790,9 +734,7 @@ export default {
         'cr': 'tematski park',
         'nl': 'themapark'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/soplar_2.png',
@@ -817,9 +759,7 @@ export default {
         'cr': 'puhati',
         'nl': 'blazen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tecnica_de_administracion.png',
@@ -844,9 +784,7 @@ export default {
         'cr': 'administrativna službenica',
         'nl': 'administratief medewerkster'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/electroencefalograma_4.png',
@@ -871,9 +809,7 @@ export default {
         'cr': 'elektroencefalogram',
         'nl': 'EEG'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/recorrer.png',
@@ -898,9 +834,7 @@ export default {
         'cr': 'pokriti',
         'nl': 'afleggen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tomar_3.png',
@@ -925,9 +859,7 @@ export default {
         'cr': 'imati',
         'nl': 'nemen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/mando_1.png',
@@ -952,9 +884,7 @@ export default {
         'cr': 'kontrola',
         'nl': 'besturing'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/peninsula.png',
@@ -979,9 +909,7 @@ export default {
         'cr': 'poluotok',
         'nl': 'schiereiland'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/baches.png',
@@ -1006,9 +934,7 @@ export default {
         'cr': 'rupe',
         'nl': 'gaten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/metro_de_carpintero.png',
@@ -1033,9 +959,7 @@ export default {
         'cr': 'stolarsko ravnalo',
         'nl': 'duimstok'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuarto_de_bano.png',
@@ -1060,9 +984,7 @@ export default {
         'cr': 'kupaonica',
         'nl': 'badkamer'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/analisis_4.png',
@@ -1087,9 +1009,7 @@ export default {
         'cr': 'analiza',
         'nl': 'onderzoek'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/callar.png',
@@ -1114,9 +1034,7 @@ export default {
         'cr': 'umuknuti',
         'nl': 'zwijgen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/heladero.png',
@@ -1140,9 +1058,7 @@ export default {
         'cr': 'sladoledar',
         'nl': 'ijsverkoper'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/signar.png',
@@ -1167,9 +1083,7 @@ export default {
         'cr': 'potpisati',
         'nl': 'praten met gebarentaal'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/compostaje.png',
@@ -1194,9 +1108,7 @@ export default {
         'cr': 'kompostiranje',
         'nl': 'compostering'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/broche.png',
@@ -1221,9 +1133,7 @@ export default {
         'cr': 'broš',
         'nl': 'broche'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/900.png',
@@ -1237,9 +1147,7 @@ export default {
         'ca': '900',
         'nl': 'negenhonderd'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/linea_ondulada.png',
@@ -1264,9 +1172,7 @@ export default {
         'cr': 'valovita linija',
         'nl': 'golvende lijn'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/carpa.png',
@@ -1291,9 +1197,7 @@ export default {
         'cr': 'šaran',
         'nl': 'karper '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/antisepticos.png',
@@ -1310,9 +1214,7 @@ export default {
         'ca': 'antisÚptics',
         'nl': 'antiseptisch'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/casco_5.png',
@@ -1337,9 +1239,7 @@ export default {
         'cr': 'kaciga',
         'nl': 'Helm'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/triangulo.png',
@@ -1364,9 +1264,7 @@ export default {
         'cr': 'trokut',
         'nl': 'driehoek'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/erupciones.png',
@@ -1382,9 +1280,7 @@ export default {
         'ca': 'erupcions',
         'nl': 'erupties'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/patilla.png',
@@ -1409,9 +1305,7 @@ export default {
         'cr': 'zalistak',
         'nl': 'bakkebaard'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/perfumera.png',
@@ -1436,9 +1330,7 @@ export default {
         'cr': 'parfumer',
         'nl': 'Parfumeuze'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cajas_de_tomate_frito.png',
@@ -1463,9 +1355,7 @@ export default {
         'cr': 'tetrapaci pasirane rajčice',
         'nl': 'blikjes tomatenpuree'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/masaje_corporal.png',
@@ -1490,9 +1380,7 @@ export default {
         'cr': 'masaža tijela',
         'nl': 'lichaamsmassage '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sauna_1.png',
@@ -1517,9 +1405,7 @@ export default {
         'cr': 'sauna',
         'nl': 'sauna'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/boutique_1.png',
@@ -1544,9 +1430,7 @@ export default {
         'cr': 'butik',
         'nl': 'boutique'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/garfio.png',
@@ -1571,9 +1455,7 @@ export default {
         'cr': 'kuka',
         'nl': 'haak'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/manos_detras_de_la_cabeza_3.png',
@@ -1598,9 +1480,7 @@ export default {
         'cr': 'ruke iza glave',
         'nl': 'handen achter het hoofd'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/andar_1.png',
@@ -1625,9 +1505,7 @@ export default {
         'cr': 'hodati',
         'nl': 'de hort op gaan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/latas_de_olivas.png',
@@ -1652,9 +1530,7 @@ export default {
         'cr': 'limenke maslina',
         'nl': 'blikken olijven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/campo_de_voleibol.png',
@@ -1679,9 +1555,7 @@ export default {
         'cr': 'odbojkaški teren',
         'nl': 'volleybalveld'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gato_2.png',
@@ -1692,9 +1566,7 @@ export default {
         'eu': 'katu',
         'pt': 'gato'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/directora_de_orquesta_1.png',
@@ -1719,9 +1591,7 @@ export default {
         'cr': 'dirigent',
         'nl': 'dirigente'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bofetada_1.png',
@@ -1746,9 +1616,7 @@ export default {
         'cr': 'šamar',
         'nl': 'klap in het gezicht'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/homosexual_1.png',
@@ -1773,9 +1641,7 @@ export default {
         'cr': 'homoseksualac',
         'nl': 'homosexueel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/educacion_fisica_32.png',
@@ -1800,9 +1666,7 @@ export default {
         'cr': 'tjelesni odgoj',
         'nl': 'gymles '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/almacen_de_papeleria.png',
@@ -1827,9 +1691,7 @@ export default {
         'cr': 'papirnice',
         'nl': 'kantoorbenodigdhedenmagazijn'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/misa_1.png',
@@ -1854,9 +1716,7 @@ export default {
         'cr': 'misa',
         'nl': 'misdienst '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/curiosos_1.png',
@@ -1872,9 +1732,7 @@ export default {
         'ca': 'curiosos',
         'nl': 'nieuwsgierig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/retrovisor_interior.png',
@@ -1899,9 +1757,7 @@ export default {
         'cr': 'retrovizor',
         'nl': 'binnenspiegel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/llave_1.png',
@@ -1926,9 +1782,7 @@ export default {
         'cr': 'ključ',
         'nl': 'kraan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/educacion_fisica_26.png',
@@ -1953,9 +1807,7 @@ export default {
         'cr': 'tjelesni odgoj',
         'nl': 'gymles '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/torre_Eiffel.png',
@@ -1980,9 +1832,7 @@ export default {
         'cr': 'Eiffelov toranj',
         'nl': 'Eifeltoren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/poder.png',
@@ -2007,9 +1857,7 @@ export default {
         'cr': 'biti u mogućnosti',
         'nl': 'macht'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/implantes_cocleares_2.png',
@@ -2025,9 +1873,7 @@ export default {
         'ca': 'implants coclears',
         'nl': 'cochleaire implantaten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/domador.png',
@@ -2052,9 +1898,7 @@ export default {
         'cr': 'krotitelj',
         'nl': 'dierentemmer '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/equilibrada.png',
@@ -2070,9 +1914,7 @@ export default {
         'ca': 'equilibrada',
         'nl': 'evenwichtig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/jefa_de_cocina.png',
@@ -2097,9 +1939,7 @@ export default {
         'cr': 'glavni kuhar',
         'nl': 'cheffin van de keuken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/flor_de_azafran.png',
@@ -2124,9 +1964,7 @@ export default {
         'cr': 'šafran',
         'nl': 'saffraanbloem'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Gallinita_ciega.png',
@@ -2151,9 +1989,7 @@ export default {
         'cr': 'igra Slijepi miš',
         'nl': 'Blinde kip'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fabricar.png',
@@ -2178,9 +2014,7 @@ export default {
         'cr': 'proizvoditi',
         'nl': 'fabriceren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/archivar.png',
@@ -2205,9 +2039,7 @@ export default {
         'cr': 'zabilježiti',
         'nl': 'archiveren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/avion_3.png',
@@ -2232,9 +2064,7 @@ export default {
         'cr': 'zrakoplov',
         'nl': 'vliegtuig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/rollizo_1.png',
@@ -2259,9 +2089,7 @@ export default {
         'cr': 'debeo',
         'nl': 'stevig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hortaliza.png',
@@ -2286,9 +2114,7 @@ export default {
         'cr': 'povrće',
         'nl': 'groente'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/liso.png',
@@ -2313,9 +2139,7 @@ export default {
         'cr': 'glatko',
         'nl': 'glad'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/trabajar_2.png',
@@ -2340,9 +2164,7 @@ export default {
         'cr': 'raditi',
         'nl': 'werken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/aparcamiento_de_bicicletas.png',
@@ -2359,9 +2181,7 @@ export default {
         'ca': 'aparcament de bicicletes',
         'nl': 'fietsenstalling'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/parpado.png',
@@ -2386,9 +2206,7 @@ export default {
         'cr': 'očni kapak',
         'nl': 'ooglid'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/partido_1.png',
@@ -2413,9 +2231,7 @@ export default {
         'cr': 'igre',
         'nl': 'partij'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/persona_con_movilidad_reducida_5.png',
@@ -2431,9 +2247,7 @@ export default {
         'ca': 'persona amb mobilitat reduïda',
         'nl': 'vrouw met beperkte mobiliteit'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pavo.png',
@@ -2458,9 +2272,7 @@ export default {
         'cr': 'purica',
         'nl': 'kalkoen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/amarrar.png',
@@ -2485,9 +2297,7 @@ export default {
         'cr': 'privezati',
         'nl': 'vastmaken '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/decir_1.png',
@@ -2512,9 +2322,7 @@ export default {
         'cr': 'reći',
         'nl': 'zeggen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tulipan.png',
@@ -2539,9 +2347,7 @@ export default {
         'cr': 'tulipan',
         'nl': 'Tulp '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/helado.png',
@@ -2566,9 +2372,7 @@ export default {
         'cr': 'sladoled',
         'nl': 'ijs'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bingo.png',
@@ -2593,9 +2397,7 @@ export default {
         'cr': 'loto',
         'nl': 'bingo'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuento.png',
@@ -2620,9 +2422,7 @@ export default {
         'cr': 'priča',
         'nl': 'verhaal'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/medias.png',
@@ -2647,9 +2447,7 @@ export default {
         'cr': 'tajice',
         'nl': 'panty'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/vosotros.png',
@@ -2674,9 +2472,7 @@ export default {
         'cr': 'vi',
         'nl': 'jullie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/marino_1.png',
@@ -2701,9 +2497,7 @@ export default {
         'cr': 'mornar',
         'nl': 'zeeman'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuidar.png',
@@ -2728,9 +2522,7 @@ export default {
         'cr': 'brinuti se za',
         'nl': 'voorzichtig zijn'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/oponerse_1.png',
@@ -2755,9 +2547,7 @@ export default {
         'cr': 'protiviti se',
         'nl': 'bezwaar maken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/luna_nueva.png',
@@ -2782,9 +2572,7 @@ export default {
         'cr': 'mladi mjesec',
         'nl': 'Nieuwe Maan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sonarse_la_nariz_1.png',
@@ -2809,9 +2597,7 @@ export default {
         'cr': 'ispuhati nos',
         'nl': 'neus snuiten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tatuaje.png',
@@ -2836,9 +2622,7 @@ export default {
         'cr': 'tetoviranje',
         'nl': 'tatoe'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/puertas_oscilobatientes.png',
@@ -2863,9 +2647,7 @@ export default {
         'cr': 'nagnuti i okrenuti vrata',
         'nl': 'draai -kiep deuren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/capsula.png',
@@ -2890,9 +2672,7 @@ export default {
         'cr': 'kapsula',
         'nl': 'capsule'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/olivas.png',
@@ -2917,9 +2697,7 @@ export default {
         'cr': 'masline',
         'nl': 'olijven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/libro_de_ciencias_sociales.png',
@@ -2944,9 +2722,7 @@ export default {
         'cr': 'knjiga o društvenim znanostima',
         'nl': 'boek over sociale wetenschappen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/siesta_1.png',
@@ -2962,9 +2738,7 @@ export default {
         'ca': 'sesta',
         'nl': 'middagdutje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dia_de_Reyes.png',
@@ -2989,9 +2763,7 @@ export default {
         'cr': 'Blagdan Tri kralja',
         'nl': 'Driekoningen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/treinta_y_nueve.png',
@@ -3005,9 +2777,7 @@ export default {
         'ca': 'trenta-nou',
         'nl': 'tweeëndertig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/toda.png',
@@ -3032,9 +2802,7 @@ export default {
         'cr': 'svi',
         'nl': 'elk'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/profesoras.png',
@@ -3050,9 +2818,7 @@ export default {
         'ca': 'professores',
         'nl': 'docente'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/organos.png',
@@ -3077,9 +2843,7 @@ export default {
         'cr': 'organi',
         'nl': 'organen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/representacion_grafica.png',
@@ -3104,9 +2868,7 @@ export default {
         'cr': 'grafikon',
         'nl': 'grafische weergaven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/brocheta_mixta.png',
@@ -3130,9 +2892,7 @@ export default {
         'cr': 'mješoviti ražanj',
         'nl': 'gemengde spies'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/momento.png',
@@ -3157,9 +2917,7 @@ export default {
         'cr': 'trenutak',
         'nl': 'moment'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/paladares.png',
@@ -3184,9 +2942,7 @@ export default {
         'cr': 'nepca',
         'nl': 'gehemeltes'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sacapuntas.png',
@@ -3211,9 +2967,7 @@ export default {
         'cr': 'šiljilo',
         'nl': 'puntenslijper'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/toser_1.png',
@@ -3238,9 +2992,7 @@ export default {
         'cr': 'kašalj',
         'nl': 'hoesten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/escuchar_2.png',
@@ -3265,9 +3017,7 @@ export default {
         'cr': 'slušati',
         'nl': 'luisteren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/acto_2.png',
@@ -3292,9 +3042,7 @@ export default {
         'cr': 'događaj',
         'nl': 'plechtigheid '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lectura_labial.png',
@@ -3310,9 +3058,7 @@ export default {
         'ca': 'lectura labial',
         'nl': 'Spraakafzien '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pescadillas.png',
@@ -3337,9 +3083,7 @@ export default {
         'cr': 'mladi oslići',
         'nl': 'schelvissen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/medios_de_comunicacion.png',
@@ -3364,9 +3108,7 @@ export default {
         'cr': 'medij',
         'nl': 'communicatie middelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/teleoperador.png',
@@ -3391,9 +3133,7 @@ export default {
         'cr': 'telefonski operater',
         'nl': 'telefonist'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/granero.png',
@@ -3409,9 +3149,7 @@ export default {
         'ca': 'graner',
         'nl': 'graanschuur'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/palo_de_lluvia.png',
@@ -3436,9 +3174,7 @@ export default {
         'cr': 'kišni štap',
         'nl': 'regenstok'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/20.png',
@@ -3463,9 +3199,7 @@ export default {
         'cr': 'dvadeset',
         'nl': '20'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pollo_4.png',
@@ -3490,9 +3224,7 @@ export default {
         'cr': 'piletina',
         'nl': 'kip'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/34.png',
@@ -3506,9 +3238,7 @@ export default {
         'ca': '34',
         'nl': 'vierendertig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/inmersion_2.png',
@@ -3533,9 +3263,7 @@ export default {
         'cr': 'zaranjanje',
         'nl': 'onderdompelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/suyos.png',
@@ -3560,9 +3288,7 @@ export default {
         'cr': 'njihov',
         'nl': 'hunne'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/orientadora.png',
@@ -3587,9 +3313,7 @@ export default {
         'cr': 'savjetnica',
         'nl': 'adviseuse'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/enfadado_1.png',
@@ -3614,9 +3338,7 @@ export default {
         'cr': 'ljut',
         'nl': 'boos'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/aseo_2.png',
@@ -3641,9 +3363,7 @@ export default {
         'cr': 'toaletne potrepštine',
         'nl': 'toiletartikelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sentarse_en_el_banco_1.png',
@@ -3668,9 +3388,7 @@ export default {
         'cr': 'sjesti na klupu',
         'nl': 'op een bank gaan zitten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ensenar.png',
@@ -3695,9 +3413,7 @@ export default {
         'cr': 'pokazati',
         'nl': 'exposeren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/limon.png',
@@ -3722,9 +3438,7 @@ export default {
         'cr': 'limun',
         'nl': 'citroen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/azulejos.png',
@@ -3749,9 +3463,7 @@ export default {
         'cr': 'keramičke pločice',
         'nl': 'tegeltjes'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/prisma.png',
@@ -3776,9 +3488,7 @@ export default {
         'cr': 'prizma',
         'nl': 'prisma'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/descalzo.png',
@@ -3803,9 +3513,7 @@ export default {
         'cr': 'bos',
         'nl': 'blootsvoets'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sillas_de_ruedas_1.png',
@@ -3830,9 +3538,7 @@ export default {
         'cr': 'invalidska kolica',
         'nl': 'rolstoel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/socorrista_2.png',
@@ -3857,9 +3563,7 @@ export default {
         'cr': 'spasioc',
         'nl': 'badmeester'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/adosado.png',
@@ -3884,9 +3588,7 @@ export default {
         'cr': 'povezan jednom stranom',
         'nl': 'rijtjeshuis'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tijeras.png',
@@ -3911,9 +3613,7 @@ export default {
         'cr': 'škare',
         'nl': 'Schaar'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/numero_2.png',
@@ -3938,9 +3638,7 @@ export default {
         'cr': 'brojevi',
         'nl': 'nummer'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/chofer_3.png',
@@ -3965,9 +3663,7 @@ export default {
         'cr': 'vozač',
         'nl': 'chauffeur'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pluma_de_insulina.png',
@@ -3992,9 +3688,7 @@ export default {
         'cr': 'inzulinska olovka',
         'nl': 'insulinepen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/intentar.png',
@@ -4019,9 +3713,7 @@ export default {
         'cr': 'pokušati',
         'nl': 'proberen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/actor.png',
@@ -4046,9 +3738,7 @@ export default {
         'cr': 'glumac',
         'nl': 'acteur'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/San_Sebastian.png',
@@ -4072,9 +3762,7 @@ export default {
         'br': 'San Sebastián',
         'nl': 'San Sebastian'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/alcazabas.png',
@@ -4099,9 +3787,7 @@ export default {
         'cr': 'citadele',
         'nl': 'alcazabas'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/las_ocho_en_punto.png',
@@ -4126,9 +3812,7 @@ export default {
         'cr': 'točno osam sati',
         'nl': 'het is precies acht uur '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/plastificadora.png',
@@ -4153,9 +3837,7 @@ export default {
         'cr': 'uređaj za laminiranje',
         'nl': 'lamineerapparaat'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/poseer.png',
@@ -4180,9 +3862,7 @@ export default {
         'cr': 'imati',
         'nl': 'bezitten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/jugador_de_hockey_hielo.png',
@@ -4207,9 +3887,7 @@ export default {
         'cr': 'hokejaška palica',
         'nl': 'ijshockeyspeler'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/abandonar.png',
@@ -4234,9 +3912,7 @@ export default {
         'cr': 'napustiti',
         'nl': 'in de steek laten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pelota_de_ping-pong.png',
@@ -4252,9 +3928,7 @@ export default {
         'ca': 'pilota de ping-pong',
         'nl': 'tafeltennisbal'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/panadera_1.png',
@@ -4279,9 +3953,7 @@ export default {
         'cr': 'pekar',
         'nl': 'bakkerin '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/baloncesto_adaptado.png',
@@ -4306,9 +3978,7 @@ export default {
         'cr': 'košarka u kolicima',
         'nl': 'aangepast basketbal'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/parar.png',
@@ -4333,9 +4003,7 @@ export default {
         'cr': 'zaustaviti se',
         'nl': 'stoppen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/nube.png',
@@ -4360,9 +4028,7 @@ export default {
         'cr': 'oblak',
         'nl': 'nevel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cartas_1.png',
@@ -4387,9 +4053,7 @@ export default {
         'cr': 'igrace karte',
         'nl': 'speelkaarten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/damas.png',
@@ -4414,9 +4078,7 @@ export default {
         'cr': 'igra dame na šahovskoj ploči',
         'nl': 'dammen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/besugos.png',
@@ -4441,9 +4103,7 @@ export default {
         'cr': 'arbuni',
         'nl': 'koolvissen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lampara_1.png',
@@ -4468,9 +4128,7 @@ export default {
         'cr': 'svjetiljka',
         'nl': 'lamp'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/navajas.png',
@@ -4495,9 +4153,7 @@ export default {
         'cr': 'prstac',
         'nl': 'messen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Dulcinea.png',
@@ -4522,9 +4178,7 @@ export default {
         'cr': 'Dulcinea',
         'nl': 'Dulcinea'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/latas_de_almejas.png',
@@ -4549,9 +4203,7 @@ export default {
         'cr': 'limenke školjki',
         'nl': 'blikken clams'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/vendedora_3.png',
@@ -4576,9 +4228,7 @@ export default {
         'cr': 'prodavač',
         'nl': 'verkoopster'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/profesora.png',
@@ -4603,9 +4253,7 @@ export default {
         'cr': 'učiteljica',
         'nl': 'docente'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ir_de_compras_2.png',
@@ -4630,9 +4278,7 @@ export default {
         'cr': 'ići kupovati',
         'nl': 'gaan winkelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bostezar.png',
@@ -4657,9 +4303,7 @@ export default {
         'cr': 'zijevati',
         'nl': 'geeuwen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/jabones.png',
@@ -4684,9 +4328,7 @@ export default {
         'cr': 'tvrdi sapuni',
         'nl': 'zeep'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/nuca.png',
@@ -4711,9 +4353,7 @@ export default {
         'cr': 'stražnji dio vrata',
         'nl': 'nek'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bajos.png',
@@ -4738,9 +4378,7 @@ export default {
         'cr': 'kratak',
         'nl': 'laag'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/San_Juan.png',
@@ -4765,9 +4403,7 @@ export default {
         'cr': 'blagdan svetog Ivana',
         'nl': 'San Juan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/reproduccion.png',
@@ -4792,9 +4428,7 @@ export default {
         'cr': 'reprodukcija',
         'nl': 'reproduktie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tiendas_de_animales.png',
@@ -4819,9 +4453,7 @@ export default {
         'cr': 'trgovine kućnim ljubimcima',
         'nl': 'dierenwinkels'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Castilla_Leon.png',
@@ -4846,9 +4478,7 @@ export default {
         'cr': 'Kastilja-Leon',
         'nl': 'Castilla León'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lavar_los_dientes.png',
@@ -4873,9 +4503,7 @@ export default {
         'cr': 'četkati zube',
         'nl': 'tanden poetsen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hockey_3.png',
@@ -4899,9 +4527,7 @@ export default {
         'br': 'hóquei',
         'nl': 'hockey'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cepillo_de_dientes_electrico.png',
@@ -4918,9 +4544,7 @@ export default {
         'ca': 'raspall de dents elÚctric',
         'nl': 'elektrische tandenborstel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/contenedor_1.png',
@@ -4945,9 +4569,7 @@ export default {
         'cr': 'kontejner',
         'nl': 'vuilcontainer'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/crol.png',
@@ -4972,9 +4594,7 @@ export default {
         'cr': 'puzati',
         'nl': 'borstcrawl'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/recordar_1.png',
@@ -4999,9 +4619,7 @@ export default {
         'cr': 'opozvati',
         'nl': 'herinneren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tres_cuartos.png',
@@ -5026,9 +4644,7 @@ export default {
         'cr': 'tri četvrtine do',
         'nl': 'driekwart'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/istmos.png',
@@ -5053,9 +4669,7 @@ export default {
         'cr': 'tjesnaci',
         'nl': 'landengten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gorrino.png',
@@ -5080,9 +4694,7 @@ export default {
         'cr': 'svinja',
         'nl': 'zwijn'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dolor_de_tripa.png',
@@ -5097,9 +4709,7 @@ export default {
         'ca': 'mal de ventre',
         'nl': 'buikpijn'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/igual.png',
@@ -5124,9 +4734,7 @@ export default {
         'cr': 'znak jednakosti',
         'nl': 'gelijk'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/colgar.png',
@@ -5151,9 +4759,7 @@ export default {
         'cr': 'objesiti',
         'nl': 'ophangen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/advertir.png',
@@ -5178,9 +4784,7 @@ export default {
         'cr': 'upozoriti',
         'nl': 'waarschuwen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ausente_2.png',
@@ -5194,9 +4798,7 @@ export default {
         'ca': 'absent',
         'nl': 'absent'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/estimulacion_1.png',
@@ -5221,9 +4823,7 @@ export default {
         'cr': 'stimulacija',
         'nl': 'stimulatie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/herramienta_1.png',
@@ -5248,9 +4848,7 @@ export default {
         'cr': 'set alata',
         'nl': 'gereedschap'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/calices.png',
@@ -5275,9 +4873,7 @@ export default {
         'cr': 'kaleži',
         'nl': 'kelken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/punos.png',
@@ -5302,9 +4898,7 @@ export default {
         'cr': 'šake',
         'nl': 'fuisten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/guapa.png',
@@ -5329,9 +4923,7 @@ export default {
         'cr': 'lijep',
         'nl': 'lief'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/taller_de_empleo.png',
@@ -5356,9 +4948,7 @@ export default {
         'cr': 'radionica',
         'nl': 'werkgelegenheidsworkshop'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/amapola.png',
@@ -5383,9 +4973,7 @@ export default {
         'cr': 'mak',
         'nl': 'papaver'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dependienta_5.png',
@@ -5410,9 +4998,7 @@ export default {
         'cr': 'prodavačica',
         'nl': 'winkelmeisje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/concejal.png',
@@ -5437,9 +5023,7 @@ export default {
         'cr': 'gradski vijećnik',
         'nl': 'raadslid'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuerpo_de_perfil.png',
@@ -5464,9 +5048,7 @@ export default {
         'cr': 'gledano sa strane',
         'nl': 'profiel van het lichaam'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/veinticuatro.png',
@@ -5491,9 +5073,7 @@ export default {
         'cr': 'broj dvadeset četiri',
         'nl': 'vierentwintig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/alejarse.png',
@@ -5518,9 +5098,7 @@ export default {
         'cr': 'rasti odvojeno',
         'nl': 'weggaan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/baja.png',
@@ -5545,9 +5123,7 @@ export default {
         'cr': 'kratak',
         'nl': 'laag'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tirar_5.png',
@@ -5572,9 +5148,7 @@ export default {
         'cr': 'baciti',
         'nl': 'gooien'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/estuche_de_gafas_1.png',
@@ -5599,9 +5173,7 @@ export default {
         'cr': 'etui za naočale',
         'nl': 'brillenkoker'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cincuenta_y_uno.png',
@@ -5615,9 +5187,7 @@ export default {
         'ca': 'cinquanta-u',
         'nl': 'eenenvijftig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hamaca_colgante_1.png',
@@ -5642,9 +5212,7 @@ export default {
         'cr': 'mreža za spavanje',
         'nl': 'Hangmat'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/autobus.png',
@@ -5669,9 +5237,7 @@ export default {
         'cr': 'autobus',
         'nl': 'lijnbus'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/maquinas.png',
@@ -5696,9 +5262,7 @@ export default {
         'cr': 'strojevi',
         'nl': 'machines'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ochenta_y_cinco.png',
@@ -5712,9 +5276,7 @@ export default {
         'ca': 'huitanta-cinc',
         'nl': 'vijfentachtig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pelar.png',
@@ -5739,9 +5301,7 @@ export default {
         'cr': 'guliti',
         'nl': 'schillen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/heladeria_1.png',
@@ -5766,9 +5326,7 @@ export default {
         'cr': 'sladoledarnica',
         'nl': 'ijssalon'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/quemaduras.png',
@@ -5793,9 +5351,7 @@ export default {
         'cr': 'opekline',
         'nl': 'brandwonden'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hockey.png',
@@ -5819,9 +5375,7 @@ export default {
         'br': 'hóquei',
         'nl': 'hockey'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/aerogenerador.png',
@@ -5846,9 +5400,7 @@ export default {
         'cr': 'vjetroturbina',
         'nl': 'windturbine'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dibujante_1.png',
@@ -5873,9 +5425,7 @@ export default {
         'cr': 'crtač',
         'nl': 'portrettekenaarster'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/arbol_frutal.png',
@@ -5885,9 +5435,7 @@ export default {
         'en': 'fruit tree',
         'pt': 'árvore de fruto'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/broncear_2.png',
@@ -5912,9 +5460,7 @@ export default {
         'cr': 'preplanulost',
         'nl': 'bruinen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/organo.png',
@@ -5939,9 +5485,7 @@ export default {
         'cr': 'organ',
         'nl': 'orgaan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/amar_6.png',
@@ -5966,9 +5510,7 @@ export default {
         'cr': 'voljeti',
         'nl': 'dol zijn op'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/levantar_la_tapa.png',
@@ -5993,9 +5535,7 @@ export default {
         'cr': 'podići dasku od wc školjke',
         'nl': 'WC-deksel open doen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/separar_2.png',
@@ -6020,9 +5560,7 @@ export default {
         'cr': 'odvojiti',
         'nl': 'uit elkaar halen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/resbalarse_1.png',
@@ -6036,9 +5574,7 @@ export default {
         'ca': 'esvarar-se',
         'nl': 'uitglijden'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/recorrer_5.png',
@@ -6063,9 +5599,7 @@ export default {
         'cr': 'pokriti',
         'nl': 'afleggen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/glotona.png',
@@ -6090,9 +5624,7 @@ export default {
         'cr': 'pohlepna',
         'nl': 'veelvraat '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/garra.png',
@@ -6117,9 +5649,7 @@ export default {
         'cr': 'kandža',
         'nl': 'klauw'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fregar.png',
@@ -6144,9 +5674,7 @@ export default {
         'cr': 'oribati',
         'nl': 'boenen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/trabajadores_1.png',
@@ -6171,9 +5699,7 @@ export default {
         'cr': 'radni',
         'nl': 'arbeiders'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pulsera_1.png',
@@ -6198,9 +5724,7 @@ export default {
         'cr': 'narukvica',
         'nl': 'horlogebandje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/coche_3.png',
@@ -6225,9 +5749,7 @@ export default {
         'cr': 'auto',
         'nl': 'auto'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/grabar.png',
@@ -6243,9 +5765,7 @@ export default {
         'ca': 'gravar',
         'nl': 'opnemen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pequeno.png',
@@ -6270,9 +5790,7 @@ export default {
         'cr': 'mali',
         'nl': 'klein'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Lobo_Feroz.png',
@@ -6297,9 +5815,7 @@ export default {
         'cr': 'vuk',
         'nl': 'Grote boze wolf'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dar_palmas_en_las_rodillas.png',
@@ -6324,9 +5840,7 @@ export default {
         'cr': 'tapšati koljenja',
         'nl': 'met de hand op de knieën slaan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/salamandra.png',
@@ -6351,9 +5865,7 @@ export default {
         'cr': 'salamander',
         'nl': 'salamander'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tenista_2.png',
@@ -6378,9 +5890,7 @@ export default {
         'cr': 'tenisač',
         'nl': 'tennisser'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pala.png',
@@ -6405,9 +5915,7 @@ export default {
         'cr': 'lopata',
         'nl': 'schep'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/palomitas.png',
@@ -6432,9 +5940,7 @@ export default {
         'cr': 'kokice',
         'nl': 'Popcorn '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/corbata.png',
@@ -6459,9 +5965,7 @@ export default {
         'cr': 'vezati',
         'nl': 'stropdas'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ave_2.png',
@@ -6486,9 +5990,7 @@ export default {
         'cr': 'ptica',
         'nl': 'vogel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/discapacidad.png',
@@ -6498,9 +6000,7 @@ export default {
         'en': 'disability',
         'pt': 'deficiência'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ala_2.png',
@@ -6525,9 +6025,7 @@ export default {
         'cr': 'krilo',
         'nl': 'vleugel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuarto_del_cafe.png',
@@ -6552,9 +6050,7 @@ export default {
         'cr': 'kavana',
         'nl': 'koffiekamer'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/secuestro.png',
@@ -6570,9 +6066,7 @@ export default {
         'ca': 'segrest',
         'nl': 'ontvoering'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuarto_de_calderas.png',
@@ -6597,9 +6091,7 @@ export default {
         'cr': 'kotlovnica',
         'nl': 'ketelhuis'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/baraja_de_poker.png',
@@ -6624,9 +6116,7 @@ export default {
         'cr': 'špil karata',
         'nl': 'popkerspel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/secuestros_2.png',
@@ -6641,9 +6131,7 @@ export default {
         'ca': 'segrestos',
         'nl': 'ontvoeringen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/megafonos.png',
@@ -6659,9 +6147,7 @@ export default {
         'ca': 'megàfons',
         'nl': 'megafoons'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/telefono_movil.png',
@@ -6686,9 +6172,7 @@ export default {
         'cr': 'mobitel',
         'nl': 'mobieltje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/promover_1.png',
@@ -6713,9 +6197,7 @@ export default {
         'cr': 'promicati',
         'nl': 'promoveren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/buzones.png',
@@ -6740,9 +6222,7 @@ export default {
         'cr': 'poštanski sandučići',
         'nl': 'brievenbussen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/educacion_fisica_6.png',
@@ -6767,9 +6247,7 @@ export default {
         'cr': 'tjelesni odgoj',
         'nl': 'gymles '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/retrovisor.png',
@@ -6794,9 +6272,7 @@ export default {
         'cr': 'prednje zrcalo u autu',
         'nl': 'achteruitkijkspiegel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tienda_de_estetica.png',
@@ -6810,9 +6286,7 @@ export default {
         'ca': 'botiga d�??estÚtica',
         'nl': 'schoonheidssalon'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/organos_1.png',
@@ -6837,9 +6311,7 @@ export default {
         'cr': 'organi',
         'nl': 'organen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pintor_1.png',
@@ -6864,9 +6336,7 @@ export default {
         'cr': 'slikar',
         'nl': 'schilder'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pina.png',
@@ -6891,9 +6361,7 @@ export default {
         'cr': 'ananas',
         'nl': 'ananas'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/audiolibro.png',
@@ -6909,9 +6377,7 @@ export default {
         'ca': 'audiollibre',
         'nl': 'luisterboek'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/levantar_la_mano_4.png',
@@ -6936,9 +6402,7 @@ export default {
         'cr': 'javiti se za riječ',
         'nl': 'handopsteken '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bisonte.png',
@@ -6963,9 +6427,7 @@ export default {
         'cr': 'bizon',
         'nl': 'bizon'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/almacen_de_la_plancha.png',
@@ -6990,9 +6452,7 @@ export default {
         'cr': 'soba za glačanje',
         'nl': 'opbergkast'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/rugir.png',
@@ -7017,9 +6477,7 @@ export default {
         'cr': 'rikati',
         'nl': 'brullen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cojos.png',
@@ -7035,9 +6493,7 @@ export default {
         'ca': 'coixos',
         'nl': 'kreupelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/mano_izquierda.png',
@@ -7051,9 +6507,7 @@ export default {
         'ca': 'mà esquerra',
         'nl': 'linkerhand'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/latas_de_sardinas.png',
@@ -7078,9 +6532,7 @@ export default {
         'cr': 'konzerve sardina',
         'nl': 'blikken sardines'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/corchera.png',
@@ -7105,9 +6557,7 @@ export default {
         'cr': 'oglasna ploča',
         'nl': 'prikbord'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/longitud.png',
@@ -7132,9 +6582,7 @@ export default {
         'cr': 'dužina',
         'nl': 'geografische lengte'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sorprender_1.png',
@@ -7159,9 +6607,7 @@ export default {
         'cr': 'iznenaditi',
         'nl': 'verbaasd staan '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ammonites_1.png',
@@ -7186,9 +6632,7 @@ export default {
         'cr': 'amoniti',
         'nl': 'Ammonieten '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/otear_1.png',
@@ -7213,9 +6657,7 @@ export default {
         'cr': 'provjeriti',
         'nl': 'turen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/preguntar_1.png',
@@ -7240,9 +6682,7 @@ export default {
         'cr': 'pitati',
         'nl': 'vragen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pintar_4.png',
@@ -7267,9 +6707,7 @@ export default {
         'cr': 'slikati',
         'nl': 'schilderen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cine_1.png',
@@ -7294,9 +6732,7 @@ export default {
         'cr': 'kino',
         'nl': 'bioscoop'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hacer_ejercicio_26.png',
@@ -7321,9 +6757,7 @@ export default {
         'cr': 'vježbati',
         'nl': 'oefeningen doen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pestana.png',
@@ -7348,9 +6782,7 @@ export default {
         'cr': 'korak',
         'nl': 'wimper'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/caer_3.png',
@@ -7375,9 +6807,7 @@ export default {
         'cr': 'pasti',
         'nl': 'vallen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/leer_2.png',
@@ -7402,9 +6832,7 @@ export default {
         'cr': 'čitati',
         'nl': 'lezen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/contar_1.png',
@@ -7429,9 +6857,7 @@ export default {
         'cr': 'brojati',
         'nl': 'tellen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/galletas_de_chocolate.png',
@@ -7456,9 +6882,7 @@ export default {
         'cr': 'čokoladni keksi',
         'nl': 'chocoladekoekjes'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/escamas.png',
@@ -7483,9 +6907,7 @@ export default {
         'cr': 'ljuskice na ribi',
         'nl': 'schubbem'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/falanges.png',
@@ -7510,9 +6932,7 @@ export default {
         'cr': 'članci prstiju',
         'nl': 'vingerkootjes'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gusano_1.png',
@@ -7537,9 +6957,7 @@ export default {
         'cr': 'crv',
         'nl': 'worm'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/arrestar.png',
@@ -7564,9 +6982,7 @@ export default {
         'cr': 'uhititi',
         'nl': 'gevangennemen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fuente.png',
@@ -7591,9 +7007,7 @@ export default {
         'cr': 'fontana',
         'nl': 'bron'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/rotura.png',
@@ -7609,9 +7023,7 @@ export default {
         'ca': 'trencament',
         'nl': 'breuk'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hacer_ejercicio_32.png',
@@ -7636,9 +7048,7 @@ export default {
         'cr': 'vježbati',
         'nl': 'oefeningen doen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/patenas.png',
@@ -7663,9 +7073,7 @@ export default {
         'cr': 'plitice',
         'nl': 'hostieschoteltjes'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sacar_la_lengua_2.png',
@@ -7690,9 +7098,7 @@ export default {
         'cr': 'staviti jezik van',
         'nl': 'tong uitsteken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/servicio_3.png',
@@ -7717,9 +7123,7 @@ export default {
         'cr': 'toalet',
         'nl': 'toilet '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pluma_2.png',
@@ -7744,9 +7148,7 @@ export default {
         'cr': 'pero',
         'nl': 'veer'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/enfermar_1.png',
@@ -7771,9 +7173,7 @@ export default {
         'cr': 'razboliti se',
         'nl': 'ziek worden'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bongo.png',
@@ -7798,9 +7198,7 @@ export default {
         'cr': 'bongo',
         'nl': 'bongo'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hindu.png',
@@ -7825,9 +7223,7 @@ export default {
         'cr': 'Hindus',
         'nl': 'Hindoe '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/caer_1.png',
@@ -7852,9 +7248,7 @@ export default {
         'cr': 'pasti',
         'nl': 'vallen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hilo_dental.png',
@@ -7879,9 +7273,7 @@ export default {
         'cr': 'zubni konac',
         'nl': 'dental floss'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gobierno.png',
@@ -7906,9 +7298,7 @@ export default {
         'cr': 'vlada',
         'nl': 'regering'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pintar_6.png',
@@ -7933,9 +7323,7 @@ export default {
         'cr': 'slikati',
         'nl': 'schilderen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hacer_ejercicio_24.png',
@@ -7960,9 +7348,7 @@ export default {
         'cr': 'vježbati',
         'nl': 'oefeningen doen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/preguntar_3.png',
@@ -7987,9 +7373,7 @@ export default {
         'cr': 'pitati',
         'nl': 'vragen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bellos.png',
@@ -8014,9 +7398,7 @@ export default {
         'cr': 'lijep',
         'nl': 'knap'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/mal.png',
@@ -8041,9 +7423,7 @@ export default {
         'cr': 'zlo',
         'nl': 'slecht'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bar_1.png',
@@ -8068,9 +7448,7 @@ export default {
         'cr': 'bar',
         'nl': 'bar'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dialogar.png',
@@ -8095,9 +7473,7 @@ export default {
         'cr': 'razgovarati',
         'nl': 'dialoog voeren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/parking.png',
@@ -8122,9 +7498,7 @@ export default {
         'cr': 'parkiralište',
         'nl': 'parkeerterrein'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gritar_2.png',
@@ -8149,9 +7523,7 @@ export default {
         'cr': 'vikati',
         'nl': 'schreeuwen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/agua_no_potable_1.png',
@@ -8176,9 +7548,7 @@ export default {
         'cr': 'nepitka voda',
         'nl': 'niet-drinkbaar water'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Teatro_romano_de_Merida.png',
@@ -8203,9 +7573,7 @@ export default {
         'cr': 'rimsko kazalište Merida',
         'nl': 'Romeins theater van Mérida'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/colonias.png',
@@ -8230,9 +7598,7 @@ export default {
         'cr': 'ljetni kamp',
         'nl': 'campings'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/remangarse.png',
@@ -8248,9 +7614,7 @@ export default {
         'ca': 'arromangar-se',
         'nl': 'mouwen oprollen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/enfermar_3.png',
@@ -8275,9 +7639,7 @@ export default {
         'cr': 'razboliti se',
         'nl': 'ziek worden'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fundas.png',
@@ -8302,9 +7664,7 @@ export default {
         'cr': 'poklopci',
         'nl': 'holsters'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/almendra.png',
@@ -8329,9 +7689,7 @@ export default {
         'cr': 'bademovo drvo',
         'nl': 'amandel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/servicio_1.png',
@@ -8356,9 +7714,7 @@ export default {
         'cr': 'toalet',
         'nl': 'toilet '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hacer_ejercicio_30.png',
@@ -8383,9 +7739,7 @@ export default {
         'cr': 'vježbati',
         'nl': 'oefeningen doen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/habitacion_5.png',
@@ -8410,9 +7764,7 @@ export default {
         'cr': 'soba',
         'nl': 'kamer'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/certificado_de_nacimiento.png',
@@ -8437,9 +7789,7 @@ export default {
         'cr': 'rodni list',
         'nl': 'geboortecertificaat'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hacer_ejercicio_18.png',
@@ -8464,9 +7814,7 @@ export default {
         'cr': 'vježbati',
         'nl': 'oefeningen doen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ninos_1.png',
@@ -8491,9 +7839,7 @@ export default {
         'cr': 'dječaci',
         'nl': 'kinderen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bebida_en_caja_1.png',
@@ -8518,9 +7864,7 @@ export default {
         'cr': 'piće u pakiranju',
         'nl': 'fris in pakjes'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/setenta_y_dos.png',
@@ -8534,9 +7878,7 @@ export default {
         'ca': 'setanta-dos',
         'nl': 'tweeënzeventig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/educacion_fisica_4.png',
@@ -8561,9 +7903,7 @@ export default {
         'cr': 'tjelesni odgoj',
         'nl': 'gymles '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/carton.png',
@@ -8588,9 +7928,7 @@ export default {
         'cr': 'karton',
         'nl': 'karton'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/machacar.png',
@@ -8615,9 +7953,7 @@ export default {
         'cr': 'slomiti',
         'nl': 'fijnstampen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cangrejo_1.png',
@@ -8642,9 +7978,7 @@ export default {
         'cr': 'rak',
         'nl': 'krab'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/jorobado.png',
@@ -8669,9 +8003,7 @@ export default {
         'cr': 'grbav',
         'nl': 'gebochelde'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cesped.png',
@@ -8696,9 +8028,7 @@ export default {
         'cr': 'travnjak',
         'nl': 'grasveld'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/clic_1.png',
@@ -8723,9 +8053,7 @@ export default {
         'cr': 'kliknuti',
         'nl': 'klik '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/filete_2.png',
@@ -8750,9 +8078,7 @@ export default {
         'cr': 'file (ribe)',
         'nl': 'filet '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pegar_esparadrapo.png',
@@ -8766,9 +8092,7 @@ export default {
         'ca': 'apegar esparadrap',
         'nl': 'pleister plakken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bricolaje.png',
@@ -8793,9 +8117,7 @@ export default {
         'cr': 'DIY',
         'nl': 'doe-het zelven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/vuestros.png',
@@ -8820,9 +8142,7 @@ export default {
         'cr': 'Vaši',
         'nl': 'uw'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tabaco.png',
@@ -8847,9 +8167,7 @@ export default {
         'cr': 'cigarete',
         'nl': 'tabak '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pintor_3.png',
@@ -8874,9 +8192,7 @@ export default {
         'cr': 'slikar',
         'nl': 'schilder'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sangre.png',
@@ -8901,9 +8217,7 @@ export default {
         'cr': 'krv',
         'nl': 'bloed'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/leopardo.png',
@@ -8928,9 +8242,7 @@ export default {
         'cr': 'leopard',
         'nl': 'jachtluipaard'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/camaras.png',
@@ -8955,9 +8267,7 @@ export default {
         'cr': 'kamere',
         'nl': 'camera\'s'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tarjeta_bus_1.png',
@@ -8973,9 +8283,7 @@ export default {
         'ca': 'targeta de bonobús',
         'nl': 'buskaart'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cubierta.png',
@@ -9000,9 +8308,7 @@ export default {
         'cr': 'paluba',
         'nl': 'dek'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/retencion.png',
@@ -9027,9 +8333,7 @@ export default {
         'cr': 'zastoj',
         'nl': 'verkeersopstopping '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/boccia_1.png',
@@ -9054,9 +8358,7 @@ export default {
         'cr': 'boćanje za osobe u invalidskim kolicima',
         'nl': 'boccia'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/poni_1.png',
@@ -9081,9 +8383,7 @@ export default {
         'cr': 'poni',
         'nl': 'pony'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/barbacoa.png',
@@ -9108,9 +8408,7 @@ export default {
         'cr': 'roštilj',
         'nl': 'barbecueën '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/levadura.png',
@@ -9135,9 +8433,7 @@ export default {
         'cr': 'kvasac',
         'nl': 'gist'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/recorrer_7.png',
@@ -9162,9 +8458,7 @@ export default {
         'cr': 'pokriti',
         'nl': 'afleggen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/amor_1.png',
@@ -9189,9 +8483,7 @@ export default {
         'cr': 'ljubav',
         'nl': 'liefde'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/promover.png',
@@ -9216,9 +8508,7 @@ export default {
         'cr': 'promicati',
         'nl': 'promoveren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bicicleta_de_alquiler.png',
@@ -9235,9 +8525,7 @@ export default {
         'ca': 'bicicleta de lloguer',
         'nl': 'huurfiets'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/descansar.png',
@@ -9262,9 +8550,7 @@ export default {
         'cr': 'odmoriti se',
         'nl': 'uitrusten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/girar_1.png',
@@ -9289,9 +8575,7 @@ export default {
         'cr': 'okrenuti',
         'nl': 'draaien'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/anadir.png',
@@ -9316,9 +8600,7 @@ export default {
         'cr': 'dodati',
         'nl': 'toevoegen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/CRMF.png',
@@ -9342,9 +8624,7 @@ export default {
         'br': 'CRMF',
         'nl': 'revalidatiecentrum voor mensen met een lichamelijke beperking'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/recibos.png',
@@ -9369,9 +8649,7 @@ export default {
         'cr': 'potvrde',
         'nl': 'ontvangstbewijzen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/este.png',
@@ -9396,9 +8674,7 @@ export default {
         'cr': 'ovaj',
         'nl': 'deze'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/aspirar_2.png',
@@ -9423,9 +8699,7 @@ export default {
         'cr': 'usisati',
         'nl': 'afzuigen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/croquetas.png',
@@ -9450,9 +8724,7 @@ export default {
         'cr': 'kroket',
         'nl': 'kroketten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cagar_1.png',
@@ -9477,9 +8749,7 @@ export default {
         'cr': 'defecirati',
         'nl': 'poepen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/moras.png',
@@ -9504,9 +8774,7 @@ export default {
         'cr': 'kupina',
         'nl': 'frambozen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/coche_1.png',
@@ -9531,9 +8799,7 @@ export default {
         'cr': 'auto',
         'nl': 'auto'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/principio.png',
@@ -9558,9 +8824,7 @@ export default {
         'cr': 'početak',
         'nl': 'principe'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/mojada_1.png',
@@ -9585,9 +8849,7 @@ export default {
         'cr': 'mokar',
         'nl': 'nat'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sentidos.png',
@@ -9612,9 +8874,7 @@ export default {
         'cr': 'osjetila',
         'nl': 'zintuigen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/organo_2.png',
@@ -9639,9 +8899,7 @@ export default {
         'cr': 'organ',
         'nl': 'orgaan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/acaudalado.png',
@@ -9666,9 +8924,7 @@ export default {
         'cr': 'bogat',
         'nl': 'welgesteld'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/todoterreno.png',
@@ -9693,9 +8949,7 @@ export default {
         'cr': 'vozilo za sve terene',
         'nl': 'terreinwagen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dar_un_regalo.png',
@@ -9720,9 +8974,7 @@ export default {
         'cr': 'dati poklon',
         'nl': 'cadeau geven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/censura.png',
@@ -9747,9 +8999,7 @@ export default {
         'cr': 'cenzura',
         'nl': 'censuur '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/celo.png',
@@ -9774,9 +9024,7 @@ export default {
         'cr': 'samoljepljiva traka',
         'nl': 'plakband'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pediatra_2.png',
@@ -9801,9 +9049,7 @@ export default {
         'cr': 'pedijatar',
         'nl': 'kinderarts'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/expulsar.png',
@@ -9828,9 +9074,7 @@ export default {
         'cr': 'izbaciti nekoga',
         'nl': 'wegsturen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/amar_4.png',
@@ -9855,9 +9099,7 @@ export default {
         'cr': 'voljeti',
         'nl': 'dol zijn op'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gordos.png',
@@ -9882,9 +9124,7 @@ export default {
         'cr': 'mast',
         'nl': 'vet'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/zapateria.png',
@@ -9909,9 +9149,7 @@ export default {
         'cr': 'dućan s cipelama',
         'nl': 'schoenenwinkel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/conductor.png',
@@ -9936,9 +9174,7 @@ export default {
         'cr': 'vozač',
         'nl': 'chauffeur'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/estrangular.png',
@@ -9963,9 +9199,7 @@ export default {
         'cr': 'zadaviti',
         'nl': 'wurgen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sonrisa_1.png',
@@ -9990,9 +9224,7 @@ export default {
         'cr': 'osmijeh',
         'nl': 'glimlach'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/demandar_2.png',
@@ -10017,9 +9249,7 @@ export default {
         'cr': 'zahtijevati',
         'nl': 'voor de rechtbank dagen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tramite.png',
@@ -10044,9 +9274,7 @@ export default {
         'cr': 'postupak',
         'nl': 'procedure'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/estar_tumbado_1.png',
@@ -10071,9 +9299,7 @@ export default {
         'cr': 'lagati',
         'nl': 'liggen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tirar_7.png',
@@ -10098,9 +9324,7 @@ export default {
         'cr': 'baciti',
         'nl': 'gooien'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sesenta_y_uno.png',
@@ -10114,9 +9338,7 @@ export default {
         'ca': 'seixanta-u',
         'nl': 'eenenzestig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/profesor.png',
@@ -10141,9 +9363,7 @@ export default {
         'cr': 'učitelj',
         'nl': 'docent'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dependienta_7.png',
@@ -10168,9 +9388,7 @@ export default {
         'cr': 'prodavačica',
         'nl': 'winkelmeisje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/moldes.png',
@@ -10186,9 +9404,7 @@ export default {
         'ca': 'motles',
         'nl': 'gietvormen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/vendedora_1.png',
@@ -10213,9 +9429,7 @@ export default {
         'cr': 'prodavač',
         'nl': 'verkoopster'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/poblacion_1.png',
@@ -10240,9 +9454,7 @@ export default {
         'cr': 'grad',
         'nl': 'inwoners'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/transexualidad_1.png',
@@ -10267,9 +9479,7 @@ export default {
         'cr': 'transseksualnost',
         'nl': 'transseksualiteit'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lampara_3.png',
@@ -10294,9 +9504,7 @@ export default {
         'cr': 'svjetiljka',
         'nl': 'lamp'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/iman.png',
@@ -10321,9 +9529,7 @@ export default {
         'cr': 'magnet',
         'nl': 'magneet'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ortopedia.png',
@@ -10348,9 +9554,7 @@ export default {
         'cr': 'trgovina medicinske opreme i ortopedskih pomagala',
         'nl': 'orthopedie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/soja.png',
@@ -10375,9 +9579,7 @@ export default {
         'cr': 'soja',
         'nl': 'soja'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/acertijo.png',
@@ -10402,9 +9604,7 @@ export default {
         'cr': 'zagonetka',
         'nl': 'puzzel '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/alcanzar.png',
@@ -10429,9 +9629,7 @@ export default {
         'cr': 'dosegnuti, dohvatiti',
         'nl': 'bereiken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/productos_de_apoyo_4.png',
@@ -10456,9 +9654,7 @@ export default {
         'cr': 'podrške za proizvode',
         'nl': 'hulpmiddellen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bano.png',
@@ -10483,9 +9679,7 @@ export default {
         'cr': 'kupaonica',
         'nl': 'badkamer'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/contenedor_3.png',
@@ -10510,9 +9704,7 @@ export default {
         'cr': 'kontejner',
         'nl': 'vuilcontainer'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/usted.png',
@@ -10537,9 +9729,7 @@ export default {
         'cr': 'vi',
         'nl': 'u'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/botes.png',
@@ -10564,9 +9754,7 @@ export default {
         'cr': 'limenke',
         'nl': 'potten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/profesora_4.png',
@@ -10591,9 +9779,7 @@ export default {
         'cr': 'učiteljica',
         'nl': 'docente'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hockey_1.png',
@@ -10617,9 +9803,7 @@ export default {
         'br': 'hóquei',
         'nl': 'hockey'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/traje_de_neopreno.png',
@@ -10635,9 +9819,7 @@ export default {
         'ca': 'vestit isotÚrmic',
         'nl': 'wetsuit'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/loro.png',
@@ -10662,9 +9844,7 @@ export default {
         'cr': 'papiga',
         'nl': 'papegaai '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fluorescente.png',
@@ -10689,9 +9869,7 @@ export default {
         'cr': 'svijetleća traka',
         'nl': 'fluorescerend'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/resbalar.png',
@@ -10716,9 +9894,7 @@ export default {
         'cr': 'kliznuti',
         'nl': 'uitglijden'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuarto.png',
@@ -10743,9 +9919,7 @@ export default {
         'cr': 'četvrtine',
         'nl': 'kwart '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/abusos_sexuales_2.png',
@@ -10759,9 +9933,7 @@ export default {
         'ca': 'abusos sexuals',
         'nl': 'seksueel misbruiken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/averios_1.png',
@@ -10786,9 +9958,7 @@ export default {
         'cr': 'perad',
         'nl': 'zwermen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/spa.png',
@@ -10813,9 +9983,7 @@ export default {
         'cr': 'lječilište',
         'nl': 'spa'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tarjeta_bus.png',
@@ -10831,9 +9999,7 @@ export default {
         'ca': 'targeta de bonobús',
         'nl': 'buskaart'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Huesca.png',
@@ -10858,9 +10024,7 @@ export default {
         'cr': 'Huesca',
         'nl': 'Huesca'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lista.png',
@@ -10885,9 +10049,7 @@ export default {
         'cr': 'popis',
         'nl': 'lijst'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/beber_1.png',
@@ -10912,9 +10074,7 @@ export default {
         'cr': 'piti',
         'nl': 'drinken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/rayos_x.png',
@@ -10939,9 +10099,7 @@ export default {
         'cr': 'rendgenske zrake',
         'nl': 'röntgenstraling'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/taquilla_1.png',
@@ -10966,9 +10124,7 @@ export default {
         'cr': 'blagajna',
         'nl': 'kledingkluisje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/esas.png',
@@ -10993,9 +10149,7 @@ export default {
         'cr': 'oni',
         'nl': 'dit'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pantalla_LCD.png',
@@ -11020,9 +10174,7 @@ export default {
         'cr': 'LCD zaslon',
         'nl': 'LCD-scherm'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/arroz_tres_delicias.png',
@@ -11047,9 +10199,7 @@ export default {
         'cr': 'pržena riža',
         'nl': 'nasi'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/plastico.png',
@@ -11074,9 +10224,7 @@ export default {
         'cr': 'plastičan',
         'nl': 'plastic'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/echar_jabon.png',
@@ -11090,9 +10238,7 @@ export default {
         'ca': 'posar sabó',
         'nl': 'zeep nemen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/agrupar_2.png',
@@ -11117,9 +10263,7 @@ export default {
         'cr': 'grupirati',
         'nl': 'combineren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pastel_de_chocolate.png',
@@ -11144,9 +10288,7 @@ export default {
         'cr': 'čokoladna torta',
         'nl': 'chocolade verjaardagstaart'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/duende.png',
@@ -11171,9 +10313,7 @@ export default {
         'cr': 'vila',
         'nl': 'spook'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/peligro.png',
@@ -11198,9 +10338,7 @@ export default {
         'cr': 'opasnost',
         'nl': 'gevaar'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/maiz_1.png',
@@ -11225,9 +10363,7 @@ export default {
         'cr': 'kukuruz',
         'nl': 'maïs '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Clasificacion_Decimal_Universal_9.png',
@@ -11243,9 +10379,7 @@ export default {
         'ca': 'Classificació Decimal Universal',
         'nl': 'Universele decimale classificatie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/baturra.png',
@@ -11266,9 +10400,7 @@ export default {
         'br': 'rústico',
         'nl': 'traditionele aragonese'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/2_euros.png',
@@ -11293,9 +10425,7 @@ export default {
         'cr': '2 eura',
         'nl': '2 euro'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fosil_2.png',
@@ -11320,9 +10450,7 @@ export default {
         'cr': 'fosil',
         'nl': 'fossiel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/equipo_de_intervencion_social.png',
@@ -11347,9 +10475,7 @@ export default {
         'cr': 'tim za socijalne intervencije',
         'nl': 'sociaal interventie team'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cacatua.png',
@@ -11365,9 +10491,7 @@ export default {
         'ca': 'cacatua',
         'nl': 'kakatoe '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/piramide_1.png',
@@ -11392,9 +10516,7 @@ export default {
         'cr': 'piramida',
         'nl': 'piramide'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/alambre.png',
@@ -11419,9 +10541,7 @@ export default {
         'cr': 'žica',
         'nl': 'ijzerdraad'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/culos.png',
@@ -11446,9 +10566,7 @@ export default {
         'cr': 'dna',
         'nl': 'billen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tacata.png',
@@ -11473,9 +10591,7 @@ export default {
         'cr': 'hodalica',
         'nl': 'loopstoel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/prohibido_2.png',
@@ -11500,9 +10616,7 @@ export default {
         'cr': 'zabranjen',
         'nl': 'verboden'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/chofer_1.png',
@@ -11527,9 +10641,7 @@ export default {
         'cr': 'vozač',
         'nl': 'chauffeur'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/semola.png',
@@ -11554,9 +10666,7 @@ export default {
         'cr': 'griz',
         'nl': 'griesmeel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/asilo_de_ancianos_2.png',
@@ -11581,9 +10691,7 @@ export default {
         'cr': 'starački dom',
         'nl': 'verzorgingstehuis'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/vergonzante.png',
@@ -11608,9 +10716,7 @@ export default {
         'cr': 'posramljen',
         'nl': 'beschamend'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/22.png',
@@ -11635,9 +10741,7 @@ export default {
         'cr': 'dvadeset i dva',
         'nl': '22'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/inclinar.png',
@@ -11662,9 +10766,7 @@ export default {
         'cr': 'saviti',
         'nl': 'voorover hangen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cacerola.png',
@@ -11689,9 +10791,7 @@ export default {
         'cr': 'tava za pirjanje',
         'nl': 'braadpan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ardilla.png',
@@ -11716,9 +10816,7 @@ export default {
         'cr': 'vjeverica',
         'nl': 'eekhoorn'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/beisbol.png',
@@ -11743,9 +10841,7 @@ export default {
         'cr': 'bejzbol',
         'nl': 'honkbal'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ciempies.png',
@@ -11770,9 +10866,7 @@ export default {
         'cr': 'faze',
         'nl': 'Duizendpoten '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tigre.png',
@@ -11797,9 +10891,7 @@ export default {
         'cr': 'tigar',
         'nl': 'tijger'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/extrano.png',
@@ -11824,9 +10916,7 @@ export default {
         'cr': 'neobičan',
         'nl': 'vreemd'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/creatividad.png',
@@ -11851,9 +10941,7 @@ export default {
         'cr': 'kreativnost',
         'nl': 'creativiteit'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/prohibido_bicicletas.png',
@@ -11878,9 +10966,7 @@ export default {
         'cr': 'zabranjeno biciklima',
         'nl': 'verboden voor fietsers'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/burro.png',
@@ -11905,9 +10991,7 @@ export default {
         'cr': 'magarac',
         'nl': 'ezel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/desatascar.png',
@@ -11922,9 +11006,7 @@ export default {
         'ca': 'desembussar',
         'nl': 'ontstoppen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/juego_del_paracaidas.png',
@@ -11938,9 +11020,7 @@ export default {
         'ca': 'joc del paracaigudes',
         'nl': 'parachutespel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/techo.png',
@@ -11965,9 +11045,7 @@ export default {
         'cr': 'strop',
         'nl': 'plafond'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/escenario.png',
@@ -11992,9 +11070,7 @@ export default {
         'cr': 'pozornica',
         'nl': 'podium'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuidar_2.png',
@@ -12019,9 +11095,7 @@ export default {
         'cr': 'brinuti se za',
         'nl': 'voorzichtig zijn'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cacarear.png',
@@ -12046,9 +11120,7 @@ export default {
         'cr': 'kokodakati',
         'nl': 'kakelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/percusion.png',
@@ -12073,9 +11145,7 @@ export default {
         'cr': 'perkusija',
         'nl': 'percussie '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/taller_de_memoria.png',
@@ -12100,9 +11170,7 @@ export default {
         'cr': 'radionica tehnike pamćenja',
         'nl': 'geheugen werkshop'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/examinar_4.png',
@@ -12127,9 +11195,7 @@ export default {
         'cr': 'ispitati',
         'nl': 'examineren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/rio_1.png',
@@ -12154,9 +11220,7 @@ export default {
         'cr': 'rijeka',
         'nl': 'rivier'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/36.png',
@@ -12170,9 +11234,7 @@ export default {
         'ca': '36',
         'nl': 'zesendertig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/poster.png',
@@ -12197,9 +11259,7 @@ export default {
         'cr': 'poster',
         'nl': 'poster '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/libros_de_poesia_y_arte.png',
@@ -12224,9 +11284,7 @@ export default {
         'cr': 'knjige iz poezije i umjetnosti',
         'nl': 'poëzie en kunstboeken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sonarse_la_nariz_3.png',
@@ -12251,9 +11309,7 @@ export default {
         'cr': 'ispuhati nos',
         'nl': 'neus snuiten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/aceptar.png',
@@ -12278,9 +11334,7 @@ export default {
         'cr': 'prihvatiti',
         'nl': 'accepteren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/oponerse_3.png',
@@ -12305,9 +11359,7 @@ export default {
         'cr': 'protiviti se',
         'nl': 'bezwaar maken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/accidente.png',
@@ -12332,9 +11384,7 @@ export default {
         'cr': 'nesreća',
         'nl': 'ongeluk'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/corchera_1.png',
@@ -12359,9 +11409,7 @@ export default {
         'cr': 'oglasna ploča',
         'nl': 'prikbord'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Si.png',
@@ -12386,9 +11434,7 @@ export default {
         'cr': 'da',
         'nl': 'ja'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/feo.png',
@@ -12413,9 +11459,7 @@ export default {
         'cr': 'ružno',
         'nl': 'lelijk'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuantos_1.png',
@@ -12440,9 +11484,7 @@ export default {
         'cr': 'koliko...?',
         'nl': 'hoeveel?'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sonar_5.png',
@@ -12467,9 +11509,7 @@ export default {
         'cr': 'san',
         'nl': 'dromen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/desnudas.png',
@@ -12484,9 +11524,7 @@ export default {
         'ca': 'nues',
         'nl': 'naakt'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/persona_con_movilidad_reducida_7.png',
@@ -12502,9 +11540,7 @@ export default {
         'ca': 'persona amb mobilitat reduïda',
         'nl': 'vrouw met beperkte mobiliteit'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/floristeria.png',
@@ -12529,9 +11565,7 @@ export default {
         'cr': 'cvjećarna',
         'nl': 'bloemenshop'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/patin.png',
@@ -12556,9 +11590,7 @@ export default {
         'cr': 'klizaljka',
         'nl': 'schaats'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/guirlaches.png',
@@ -12583,9 +11615,7 @@ export default {
         'cr': 'karamela od badema',
         'nl': 'nougat '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/guerra.png',
@@ -12610,9 +11640,7 @@ export default {
         'cr': 'rat',
         'nl': 'oorlog'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/castillos_hinchables.png',
@@ -12628,9 +11656,7 @@ export default {
         'ca': 'castells inflables',
         'nl': 'opblaasbaar kastelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cinta_adhesiva.png',
@@ -12655,9 +11681,7 @@ export default {
         'cr': 'ljepljiva traka',
         'nl': 'plakband'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/guardia_5.png',
@@ -12682,9 +11706,7 @@ export default {
         'cr': 'stražar',
         'nl': 'Marechaussee '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/insecticida.png',
@@ -12709,9 +11731,7 @@ export default {
         'cr': 'insekticid',
         'nl': 'insecticide'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/platano_1.png',
@@ -12736,9 +11756,7 @@ export default {
         'cr': 'banana',
         'nl': 'banaan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cortaunas.png',
@@ -12763,9 +11781,7 @@ export default {
         'cr': 'grickalica za nokte',
         'nl': 'nageltang'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/certificadas.png',
@@ -12790,9 +11806,7 @@ export default {
         'cr': 'preporučiti',
         'nl': 'gecetificeerde'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/femures.png',
@@ -12817,9 +11831,7 @@ export default {
         'cr': 'bedrena kost',
         'nl': 'dijbenen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/papelera_2.png',
@@ -12844,9 +11856,7 @@ export default {
         'cr': 'kanta za otpatke',
         'nl': 'openbare vuilnisbak'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/empanadas.png',
@@ -12871,9 +11881,7 @@ export default {
         'cr': 'promet',
         'nl': 'empanada\'s'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/recibir_un_email.png',
@@ -12889,9 +11897,7 @@ export default {
         'ca': 'rebre un correu electrònic',
         'nl': 'email ontvangen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/huevo_duro.png',
@@ -12916,9 +11922,7 @@ export default {
         'cr': 'tvrdo kuhano jaje',
         'nl': 'hardgekookt ei'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/roto.png',
@@ -12943,9 +11947,7 @@ export default {
         'cr': 'razbijen',
         'nl': 'stuk'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pico_2.png',
@@ -12970,9 +11972,7 @@ export default {
         'cr': 'pijuk',
         'nl': 'pikhouweel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tu.png',
@@ -12997,9 +11997,7 @@ export default {
         'cr': 'vi',
         'nl': 'jij'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Baltasar.png',
@@ -13024,9 +12022,7 @@ export default {
         'cr': 'Baltazar',
         'nl': 'Baltazar'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/canelon.png',
@@ -13051,9 +12047,7 @@ export default {
         'cr': 'kaneloni',
         'nl': 'Cannelloni '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/alguna_vez.png',
@@ -13069,9 +12063,7 @@ export default {
         'ca': 'alguna vegada',
         'nl': 'af en toe'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/globo_terraqueo.png',
@@ -13096,9 +12088,7 @@ export default {
         'cr': 'Zemlja',
         'nl': 'wereldbol'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/frutos_secos_5.png',
@@ -13123,9 +12113,7 @@ export default {
         'cr': 'sušeno voće',
         'nl': 'droge vruchten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/integracion_social.png',
@@ -13150,9 +12138,7 @@ export default {
         'cr': 'socijalna integracija',
         'nl': 'sociale integratie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/adornar_2.png',
@@ -13177,9 +12163,7 @@ export default {
         'cr': 'ukrašavati',
         'nl': 'optuigen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tomar_el_pulso.png',
@@ -13195,9 +12179,7 @@ export default {
         'ca': 'prendre el pols',
         'nl': 'de pols nemen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/piel_1.png',
@@ -13222,9 +12204,7 @@ export default {
         'cr': 'koža',
         'nl': 'huid'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cortinas.png',
@@ -13249,9 +12229,7 @@ export default {
         'cr': 'zavjese',
         'nl': 'gordijnen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cafes_capuchinos.png',
@@ -13276,9 +12254,7 @@ export default {
         'cr': 'kapućina',
         'nl': 'Cappuccinos'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/averio.png',
@@ -13303,9 +12279,7 @@ export default {
         'cr': 'perad',
         'nl': 'zwerm'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/calzada_1.png',
@@ -13330,9 +12304,7 @@ export default {
         'cr': 'kolnik',
         'nl': 'rijbaan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/treinta.png',
@@ -13357,9 +12329,7 @@ export default {
         'cr': 'broj 30',
         'nl': 'dertig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/concesionario.png',
@@ -13384,9 +12354,7 @@ export default {
         'cr': 'koncesionar',
         'nl': 'consessiehouder'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/avion_1.png',
@@ -13411,9 +12379,7 @@ export default {
         'cr': 'zrakoplov',
         'nl': 'vliegtuig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/soleado.png',
@@ -13438,9 +12404,7 @@ export default {
         'cr': 'sunčano',
         'nl': 'zonnig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/crecimiento_1.png',
@@ -13465,9 +12429,7 @@ export default {
         'cr': 'rast',
         'nl': 'groei '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/educacion_fisica_18.png',
@@ -13492,9 +12454,7 @@ export default {
         'cr': 'tjelesni odgoj',
         'nl': 'gymles '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/avioneta.png',
@@ -13519,9 +12479,7 @@ export default {
         'cr': 'mali avion',
         'nl': 'eenmotorig vliegtuigje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/viajar_11.png',
@@ -13546,9 +12504,7 @@ export default {
         'cr': 'putovati',
         'nl': 'reizen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cerdo_1.png',
@@ -13573,9 +12529,7 @@ export default {
         'cr': 'svinja',
         'nl': 'varken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/educacion_fisica_30.png',
@@ -13600,9 +12554,7 @@ export default {
         'cr': 'tjelesni odgoj',
         'nl': 'gymles '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ultimo.png',
@@ -13627,9 +12579,7 @@ export default {
         'cr': 'zadnji',
         'nl': 'laatste'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/zoologico.png',
@@ -13654,9 +12604,7 @@ export default {
         'cr': 'zoološki vrt',
         'nl': 'dierentuin'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/manos_detras_de_la_cabeza_1.png',
@@ -13681,9 +12629,7 @@ export default {
         'cr': 'ruke iza glave',
         'nl': 'handen achter het hoofd'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/reptar.png',
@@ -13699,9 +12645,7 @@ export default {
         'ca': 'reptar',
         'nl': 'kruipen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/medica.png',
@@ -13726,9 +12670,7 @@ export default {
         'cr': 'liječnik',
         'nl': 'dokter'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/representante.png',
@@ -13753,9 +12695,7 @@ export default {
         'cr': 'zastupnik',
         'nl': 'vertegenwoordigster'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/porque.png',
@@ -13780,9 +12720,7 @@ export default {
         'cr': 'jer',
         'nl': 'omdat'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/islam.png',
@@ -13807,9 +12745,7 @@ export default {
         'cr': 'islam',
         'nl': 'Islam'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/television_1.png',
@@ -13834,9 +12770,7 @@ export default {
         'cr': 'televizija',
         'nl': 'televisie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fruteros.png',
@@ -13861,9 +12795,7 @@ export default {
         'cr': 'zdjele za voće',
         'nl': 'fruitschalen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/deporte_1.png',
@@ -13888,9 +12820,7 @@ export default {
         'cr': 'sport',
         'nl': 'sport'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/difuntos.png',
@@ -13915,9 +12845,7 @@ export default {
         'cr': 'pokojni',
         'nl': 'overledenen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ranas.png',
@@ -13932,9 +12860,7 @@ export default {
         'ca': 'granotes',
         'nl': 'kikkers'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/altura.png',
@@ -13959,9 +12885,7 @@ export default {
         'cr': 'visina',
         'nl': 'hoogte'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/educacion_fisica_24.png',
@@ -13986,9 +12910,7 @@ export default {
         'cr': 'tjelesni odgoj',
         'nl': 'gymles '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ahi.png',
@@ -14013,9 +12935,7 @@ export default {
         'cr': 'tamo',
         'nl': 'daar(ginds) '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/polilla.png',
@@ -14031,9 +12951,7 @@ export default {
         'ca': 'arna',
         'nl': 'gewone pelsmot'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gol.png',
@@ -14058,9 +12976,7 @@ export default {
         'cr': 'zgoditak',
         'nl': 'doel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lavavajillas_2.png',
@@ -14085,9 +13001,7 @@ export default {
         'cr': 'stroj za pranje posuđa',
         'nl': 'vaatwasser'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/colirio.png',
@@ -14103,9 +13017,7 @@ export default {
         'ca': 'col·liri',
         'nl': 'oogdruppel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/rollizo.png',
@@ -14130,9 +13042,7 @@ export default {
         'cr': 'debeo',
         'nl': 'stevig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cartucho_de_tinta.png',
@@ -14148,9 +13058,7 @@ export default {
         'ca': 'cartutx de tinta',
         'nl': 'inktpatroon'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sentimiento.png',
@@ -14175,9 +13083,7 @@ export default {
         'cr': 'osjećaj',
         'nl': 'sentiment'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/distanciar.png',
@@ -14202,9 +13108,7 @@ export default {
         'cr': 'otići daleko',
         'nl': 'wegnemen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/secar_la_cara.png',
@@ -14229,9 +13133,7 @@ export default {
         'cr': 'obrisati lice',
         'nl': 'gezicht afdrogen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/centro_de_dia.png',
@@ -14256,9 +13158,7 @@ export default {
         'cr': 'dnevni centri za starije osobe',
         'nl': 'dagcentrum'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/anciana_2.png',
@@ -14283,9 +13183,7 @@ export default {
         'cr': 'starija osoba',
         'nl': 'bejaarde'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fosiles_1.png',
@@ -14310,9 +13208,7 @@ export default {
         'cr': 'fosili',
         'nl': 'fossielen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/rizos.png',
@@ -14337,9 +13233,7 @@ export default {
         'cr': 'kovrče',
         'nl': 'krullen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/enjambre.png',
@@ -14364,9 +13258,7 @@ export default {
         'cr': 'roj',
         'nl': 'bijenkolonie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/canal.png',
@@ -14391,9 +13283,7 @@ export default {
         'cr': 'kanal',
         'nl': 'kanaal'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/guitarrista.png',
@@ -14418,9 +13308,7 @@ export default {
         'cr': 'gitarist',
         'nl': 'gitarist '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sentarse_en_la_silla_2.png',
@@ -14434,9 +13322,7 @@ export default {
         'ca': 'asseure�??s en la cadira',
         'nl': 'op een stoel gaan zitten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/primos_2.png',
@@ -14449,9 +13335,7 @@ export default {
         'ca': 'cosins',
         'nl': 'neeven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gaseosa.png',
@@ -14476,9 +13360,7 @@ export default {
         'cr': 'soda voda',
         'nl': 'frisdrank'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/faxes.png',
@@ -14503,9 +13385,7 @@ export default {
         'cr': 'faks uređaji',
         'nl': 'fax'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fontanera.png',
@@ -14530,9 +13410,7 @@ export default {
         'cr': 'vodoinstalater',
         'nl': 'loodgietster'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pelear_1.png',
@@ -14557,9 +13435,7 @@ export default {
         'cr': 'borba',
         'nl': 'ruzie maken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/premio.png',
@@ -14584,9 +13460,7 @@ export default {
         'cr': 'nagrada',
         'nl': 'prijs'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/buho.png',
@@ -14611,9 +13485,7 @@ export default {
         'cr': 'sova',
         'nl': 'uil'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/flautas_traveseras.png',
@@ -14638,9 +13510,7 @@ export default {
         'cr': 'poprečne flaute',
         'nl': 'dwarsfluiten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/colgar_1.png',
@@ -14665,9 +13535,7 @@ export default {
         'cr': 'objesiti',
         'nl': 'ophangen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dependencia.png',
@@ -14692,9 +13560,7 @@ export default {
         'cr': 'zavisnost',
         'nl': 'departement'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/nina_en_ropa_interior.png',
@@ -14708,9 +13574,7 @@ export default {
         'ca': 'xiqueta en roba interior',
         'nl': 'klein meisje in ondergoed'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ponerse_las_gafas_1.png',
@@ -14725,9 +13589,7 @@ export default {
         'ca': 'posar-se les ulleres',
         'nl': 'doe de bril op'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/5_centimos.png',
@@ -14752,9 +13614,7 @@ export default {
         'cr': '5 centa',
         'nl': '5 cent'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dependiente_3.png',
@@ -14779,9 +13639,7 @@ export default {
         'cr': 'prodavač',
         'nl': 'verkoper '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/abuelo.png',
@@ -14806,9 +13664,7 @@ export default {
         'cr': 'djed',
         'nl': 'opa'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/chicos_2.png',
@@ -14833,9 +13689,7 @@ export default {
         'cr': 'dječaci',
         'nl': 'jonges'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/adelgazar.png',
@@ -14860,9 +13714,7 @@ export default {
         'cr': 'gubiti na težini',
         'nl': 'afvallen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuchillos.png',
@@ -14887,9 +13739,7 @@ export default {
         'cr': 'noževi',
         'nl': 'messen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/patinador.png',
@@ -14914,9 +13764,7 @@ export default {
         'cr': 'klizač',
         'nl': 'schaatsenrijder '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/abrir_la_ventana.png',
@@ -14941,9 +13789,7 @@ export default {
         'cr': 'otvoriti prozor',
         'nl': 'open het raam'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lanzar_2.png',
@@ -14968,9 +13814,7 @@ export default {
         'cr': 'baciti',
         'nl': 'er uitgooien'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/esgrima.png',
@@ -14986,9 +13830,7 @@ export default {
         'ca': 'esgrima',
         'nl': 'schermsport '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/guisantes.png',
@@ -15013,9 +13855,7 @@ export default {
         'cr': 'grašak',
         'nl': 'doperwten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/enjuagar.png',
@@ -15040,9 +13880,7 @@ export default {
         'cr': 'isprati',
         'nl': 'afspoelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/guantes_de_boxeo.png',
@@ -15067,9 +13905,7 @@ export default {
         'cr': 'boksačka rukavica',
         'nl': 'bokshandschoenen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hacer_caca_1.png',
@@ -15094,9 +13930,7 @@ export default {
         'cr': 'ići u kupaonicu',
         'nl': 'poepen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pantalon_1.png',
@@ -15121,9 +13955,7 @@ export default {
         'cr': 'hlače',
         'nl': 'pantalon'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tirarse_de_cabeza.png',
@@ -15148,9 +13980,7 @@ export default {
         'cr': 'zaroniti glavom',
         'nl': 'duiken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tomar_1.png',
@@ -15175,9 +14005,7 @@ export default {
         'cr': 'imati',
         'nl': 'nemen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/atascar.png',
@@ -15202,9 +14030,7 @@ export default {
         'cr': 'blokirati',
         'nl': 'vast komen zitten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/limpiador_1.png',
@@ -15229,9 +14055,7 @@ export default {
         'cr': 'tekućina za čišćenje',
         'nl': 'schoonmaakmiddel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/copiar_1.png',
@@ -15256,9 +14080,7 @@ export default {
         'cr': 'kopija',
         'nl': 'kopiëren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/chuparse_el_dedo.png',
@@ -15283,9 +14105,7 @@ export default {
         'cr': 'sisati prst',
         'nl': 'op je duim zuigen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/albanil_1.png',
@@ -15310,9 +14130,7 @@ export default {
         'cr': 'građevinski radnik',
         'nl': 'metselaar'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/raton_2.png',
@@ -15337,9 +14155,7 @@ export default {
         'cr': 'miš',
         'nl': 'muis'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/preguntar.png',
@@ -15364,9 +14180,7 @@ export default {
         'cr': 'pitati',
         'nl': 'vragen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/programa_de_cocina.png',
@@ -15391,9 +14205,7 @@ export default {
         'cr': 'kulinarska emisija',
         'nl': 'kook-TV programma'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/alfarero.png',
@@ -15418,9 +14230,7 @@ export default {
         'cr': 'lončar',
         'nl': 'pottenbakker '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/limpiar_el_peine.png',
@@ -15445,9 +14255,7 @@ export default {
         'cr': 'očistiti češalj',
         'nl': 'kam schoonmaken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/plaza_de_toros.png',
@@ -15472,9 +14280,7 @@ export default {
         'cr': 'tor za bikove',
         'nl': 'arena voor stierengevechten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/vaso_de_leche.png',
@@ -15499,9 +14305,7 @@ export default {
         'cr': 'čaša mlijeka',
         'nl': 'glas melk'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/justicia.png',
@@ -15526,9 +14330,7 @@ export default {
         'cr': 'pravda',
         'nl': 'rechtvaardigheid'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tienda_de_telefonia.png',
@@ -15553,9 +14355,7 @@ export default {
         'cr': 'trgovina telekomunikacijskom opremom',
         'nl': 'telefoonwinkel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tener_hambre_1.png',
@@ -15580,9 +14380,7 @@ export default {
         'cr': 'biti gladan',
         'nl': 'honger hebben'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/salvaje.png',
@@ -15607,9 +14405,7 @@ export default {
         'cr': 'divlji',
         'nl': 'wild'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/limpiar_el_cepillo_de_dientes.png',
@@ -15634,9 +14430,7 @@ export default {
         'cr': 'očistiti četkicu',
         'nl': 'tandenborstel schoonmaken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/orar.png',
@@ -15661,9 +14455,7 @@ export default {
         'cr': 'moliti',
         'nl': 'bidden'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fosiles.png',
@@ -15688,9 +14480,7 @@ export default {
         'cr': 'fosili',
         'nl': 'fossielen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Lampara_de_pie.png',
@@ -15715,9 +14505,7 @@ export default {
         'cr': 'stojeća lampa',
         'nl': 'vloerlamp'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/videojuego.png',
@@ -15742,9 +14530,7 @@ export default {
         'cr': 'video igra',
         'nl': 'videospel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tiendas_de_bicicletas.png',
@@ -15760,9 +14546,7 @@ export default {
         'ca': 'botigues de bicicletes',
         'nl': 'fietsenwinkels'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/prohibir.png',
@@ -15787,9 +14571,7 @@ export default {
         'cr': 'zabraniti',
         'nl': 'verbieden '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/mamar.png',
@@ -15814,9 +14596,7 @@ export default {
         'cr': 'dojiti',
         'nl': 'de borst geven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pista_de_atletismo.png',
@@ -15841,9 +14621,7 @@ export default {
         'cr': 'staza za trčanje',
         'nl': 'atletiekbaan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/mocos.png',
@@ -15868,9 +14646,7 @@ export default {
         'cr': 'sluz',
         'nl': 'snot '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pasar_2.png',
@@ -15879,9 +14655,7 @@ export default {
         'es': 'pasar',
         'en': 'to pass'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/flanes.png',
@@ -15906,9 +14680,7 @@ export default {
         'cr': 'karamele',
         'nl': 'Crè­me caramel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cumpleanos_6.png',
@@ -15933,9 +14705,7 @@ export default {
         'cr': 'rođendani',
         'nl': 'verjaardag'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cavernicola.png',
@@ -15960,9 +14730,7 @@ export default {
         'cr': 'pećinski čovjek',
         'nl': 'holbewoner '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/positivas.png',
@@ -15978,9 +14746,7 @@ export default {
         'ca': 'positives',
         'nl': 'positief'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/adquirir.png',
@@ -16005,9 +14771,7 @@ export default {
         'cr': 'kupovati',
         'nl': 'aanschaffen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuarenta_y_tres.png',
@@ -16021,9 +14785,7 @@ export default {
         'ca': 'quaranta-tres',
         'nl': 'drieënveertig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/calor.png',
@@ -16048,9 +14810,7 @@ export default {
         'cr': 'toplina',
         'nl': 'warmte'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Mayo.png',
@@ -16075,9 +14835,7 @@ export default {
         'cr': 'svibanj',
         'nl': 'Mei'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/aca.png',
@@ -16102,9 +14860,7 @@ export default {
         'cr': 'ovdje',
         'nl': 'hier'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/galleta.png',
@@ -16129,9 +14885,7 @@ export default {
         'cr': 'biskvit',
         'nl': 'biscuit'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/simpatico.png',
@@ -16156,9 +14910,7 @@ export default {
         'cr': 'ugodan',
         'nl': 'aangenaam'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/raquetas_de_badminton.png',
@@ -16174,9 +14926,7 @@ export default {
         'ca': 'raquetes de bàdminton',
         'nl': 'badmintonrackets'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/limpiar_5.png',
@@ -16201,9 +14951,7 @@ export default {
         'cr': 'čistiti',
         'nl': 'schoonmaken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/parche.png',
@@ -16228,9 +14976,7 @@ export default {
         'cr': 'zakrpa',
         'nl': 'pleister'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cojo_1.png',
@@ -16246,9 +14992,7 @@ export default {
         'ca': 'coix',
         'nl': 'kreupel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/negocio_1.png',
@@ -16273,9 +15017,7 @@ export default {
         'cr': 'poslovni prostor',
         'nl': 'bedrijf'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/limpiar.png',
@@ -16300,9 +15042,7 @@ export default {
         'cr': 'čistiti',
         'nl': 'schoonmaken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/construir_1.png',
@@ -16327,9 +15067,7 @@ export default {
         'cr': 'konstruirati',
         'nl': 'construeren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/leche_con_cacao.png',
@@ -16354,9 +15092,7 @@ export default {
         'cr': 'kakao',
         'nl': 'chocolademelk'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/zapatera.png',
@@ -16381,9 +15117,7 @@ export default {
         'cr': 'postolar',
         'nl': 'schoenmakster'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/protectora_de_animales.png',
@@ -16397,9 +15131,7 @@ export default {
         'ca': 'protectora d�??animals',
         'nl': 'dierenbescherming'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/viuda_1.png',
@@ -16424,9 +15156,7 @@ export default {
         'cr': 'udovica',
         'nl': 'weduwe'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/recoger_5.png',
@@ -16451,9 +15181,7 @@ export default {
         'cr': 'pospremiti',
         'nl': 'opruimen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/praxia_27.png',
@@ -16478,9 +15206,7 @@ export default {
         'cr': 'praksija',
         'nl': 'myofunctionele therapie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/circulo.png',
@@ -16505,9 +15231,7 @@ export default {
         'cr': 'krug',
         'nl': 'cirkel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/olimpiada.png',
@@ -16532,9 +15256,7 @@ export default {
         'cr': 'olimpijske igre',
         'nl': 'olympiade'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cuerda_1.png',
@@ -16559,9 +15281,7 @@ export default {
         'cr': 'uže',
         'nl': 'touw'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/atun.png',
@@ -16586,9 +15306,7 @@ export default {
         'cr': 'tuna',
         'nl': 'tonijn'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/clima.png',
@@ -16613,9 +15331,7 @@ export default {
         'cr': 'klima',
         'nl': 'klimaat'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/quimioterapia.png',
@@ -16629,9 +15345,7 @@ export default {
         'ca': 'quimioteràpia',
         'nl': 'chemotherapie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/mezclar_1.png',
@@ -16656,9 +15370,7 @@ export default {
         'cr': 'miješati',
         'nl': 'mixen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dependienta.png',
@@ -16683,9 +15395,7 @@ export default {
         'cr': 'prodavačica',
         'nl': 'winkelmeisje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/instrumento_musical_15.png',
@@ -16710,9 +15420,7 @@ export default {
         'cr': 'glazbeni instrument',
         'nl': 'muziek instrument'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/litera.png',
@@ -16737,9 +15445,7 @@ export default {
         'cr': 'krevet na kat',
         'nl': 'stapelbed'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/enhebrar.png',
@@ -16764,9 +15470,7 @@ export default {
         'cr': 'konac',
         'nl': 'insteken '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/telecabinas.png',
@@ -16791,9 +15495,7 @@ export default {
         'cr': 'žičare',
         'nl': 'gondelliften'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gominola.png',
@@ -16818,9 +15520,7 @@ export default {
         'cr': 'gumeni bomboni',
         'nl': 'winegum'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/zanahoria.png',
@@ -16845,9 +15545,7 @@ export default {
         'cr': 'mrkva',
         'nl': 'peen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lleno_1.png',
@@ -16872,9 +15570,7 @@ export default {
         'cr': 'pun',
         'nl': 'gevuld'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pasear_en_bicicleta.png',
@@ -16899,9 +15595,7 @@ export default {
         'cr': 'voziti bicikl',
         'nl': 'stukje gaan fietsen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/postre.png',
@@ -16926,9 +15620,7 @@ export default {
         'cr': 'desert',
         'nl': 'toetje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pesca_4.png',
@@ -16953,9 +15645,7 @@ export default {
         'cr': 'ribolov',
         'nl': 'vissen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pajarerias.png',
@@ -16980,9 +15670,7 @@ export default {
         'cr': 'trgovine za prodaju ptica',
         'nl': 'vogelwinkels'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Aragon_3.png',
@@ -17007,9 +15695,7 @@ export default {
         'cr': 'Aragon',
         'nl': 'Aragón'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/disco_duro.png',
@@ -17034,9 +15720,7 @@ export default {
         'cr': 'tvrdi disk',
         'nl': 'harde schijf'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ciruelas.png',
@@ -17061,9 +15745,7 @@ export default {
         'cr': 'šljive',
         'nl': 'pruimen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ligeros.png',
@@ -17079,9 +15761,7 @@ export default {
         'ca': 'lleugers',
         'nl': 'lichte'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ahora_1.png',
@@ -17106,9 +15786,7 @@ export default {
         'cr': 'sada',
         'nl': 'nu '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/aburridas.png',
@@ -17123,9 +15801,7 @@ export default {
         'ca': 'avorrides',
         'nl': 'saai'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/secador.png',
@@ -17150,9 +15826,7 @@ export default {
         'cr': 'sušilo za kosu',
         'nl': 'haardroger'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pelota_de_tenis.png',
@@ -17177,9 +15851,7 @@ export default {
         'cr': 'teniska loptica',
         'nl': 'tennisbal'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fotografia_1.png',
@@ -17204,9 +15876,7 @@ export default {
         'cr': 'fotografija',
         'nl': 'fotografie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/establos.png',
@@ -17222,9 +15892,7 @@ export default {
         'ca': 'estable',
         'nl': 'stallen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/manchado_1.png',
@@ -17249,9 +15917,7 @@ export default {
         'cr': 'flekav',
         'nl': 'bevlekt'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/juegos_de_palmas.png',
@@ -17265,9 +15931,7 @@ export default {
         'ca': 'jocs de palmes',
         'nl': 'handjeklap spellen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bayas.png',
@@ -17292,9 +15956,7 @@ export default {
         'cr': 'bobice',
         'nl': 'bessen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/castillos.png',
@@ -17319,9 +15981,7 @@ export default {
         'cr': 'dvorci',
         'nl': 'kastelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sonda_gastronasal.png',
@@ -17335,9 +15995,7 @@ export default {
         'ca': 'sonda nasogàstrica',
         'nl': 'maagsonde'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Torta_del_Casar.png',
@@ -17352,9 +16010,7 @@ export default {
         'ca': 'Torta del Casar',
         'nl': 'trouwtaart'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/asomar_1.png',
@@ -17379,9 +16035,7 @@ export default {
         'cr': 'naginjati se',
         'nl': 'uitsteken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tarjeta_grafica.png',
@@ -17406,9 +16060,7 @@ export default {
         'cr': 'grafička ploča',
         'nl': 'grafische kaart'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cabina_electoral_accesible.png',
@@ -17433,9 +16085,7 @@ export default {
         'cr': 'pristupačna glasačka kabina',
         'nl': 'stemhokje voor mindervaliden'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tabla_de_surf.png',
@@ -17460,9 +16110,7 @@ export default {
         'cr': 'daska za surfanje',
         'nl': 'surfplank'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bodega.png',
@@ -17478,9 +16126,7 @@ export default {
         'ca': 'celler',
         'nl': 'bodega'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/coletero.png',
@@ -17505,9 +16151,7 @@ export default {
         'cr': 'vrpca za kosu',
         'nl': 'haarelastiekje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cartera_1.png',
@@ -17532,9 +16176,7 @@ export default {
         'cr': 'novčanik',
         'nl': 'portefuille'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/jugar_al_futbol.png',
@@ -17559,9 +16201,7 @@ export default {
         'cr': 'igrati nogomet',
         'nl': 'voetballen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/aceptar_3.png',
@@ -17586,9 +16226,7 @@ export default {
         'cr': 'prihvatiti',
         'nl': 'accepteren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/novios_2.png',
@@ -17613,9 +16251,7 @@ export default {
         'cr': 'novopečeni bračni par',
         'nl': 'bruidspaar'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/instrumento_musical_29.png',
@@ -17640,9 +16276,7 @@ export default {
         'cr': 'glazbeni instrument',
         'nl': 'muziek instrument'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/trasteros.png',
@@ -17667,9 +16301,7 @@ export default {
         'cr': 'spremišta',
         'nl': 'opslagruimten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/egoistas_1.png',
@@ -17694,9 +16326,7 @@ export default {
         'cr': 'sebičan',
         'nl': 'egoïsten '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/castanera_1.png',
@@ -17721,9 +16351,7 @@ export default {
         'cr': 'kestenjar',
         'nl': 'kastanjeverkoopster'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sudamericano.png',
@@ -17748,9 +16376,7 @@ export default {
         'cr': 'Južnoamerički',
         'nl': 'Zuid-Amerikaan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tutor_4.png',
@@ -17766,9 +16392,7 @@ export default {
         'ca': 'tutor',
         'nl': 'voogd'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/las_ocho_y_media.png',
@@ -17782,9 +16406,7 @@ export default {
         'ca': 'les huit i mitja',
         'nl': 'half negen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/desplazarse.png',
@@ -17809,9 +16431,7 @@ export default {
         'cr': 'premjestiti',
         'nl': 'reizen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/costilla.png',
@@ -17836,9 +16456,7 @@ export default {
         'cr': 'rebro',
         'nl': 'rib'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/chistera.png',
@@ -17863,9 +16481,7 @@ export default {
         'cr': 'cilindar',
         'nl': 'hoge hoed'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sangria.png',
@@ -17888,9 +16504,7 @@ export default {
         'br': 'sangria',
         'nl': 'Sangria '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/segunda_planta.png',
@@ -17904,9 +16518,7 @@ export default {
         'ca': 'segona planta',
         'nl': 'tweede verdieping'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sacar_7.png',
@@ -17931,9 +16543,7 @@ export default {
         'cr': 'iznijeti',
         'nl': 'uittrekken '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/prima_7.png',
@@ -17958,9 +16568,7 @@ export default {
         'cr': 'rođak',
         'nl': 'nichtje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dedo_2.png',
@@ -17985,9 +16593,7 @@ export default {
         'cr': 'prst',
         'nl': 'teen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/derecha.png',
@@ -18012,9 +16618,7 @@ export default {
         'cr': 'desno',
         'nl': 'rechterhand'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hombre_1.png',
@@ -18039,9 +16643,7 @@ export default {
         'cr': 'čovjek',
         'nl': 'man'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/horca.png',
@@ -18066,9 +16668,7 @@ export default {
         'cr': 'vile',
         'nl': 'hark'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/brindar.png',
@@ -18093,9 +16693,7 @@ export default {
         'cr': 'nazdraviti',
         'nl': 'toasten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dolor_de_oido.png',
@@ -18120,9 +16718,7 @@ export default {
         'cr': 'bol u uhu',
         'nl': 'oorpijn'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ovillo.png',
@@ -18147,9 +16743,7 @@ export default {
         'cr': 'klupko',
         'nl': 'bolletje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/jurado.png',
@@ -18165,9 +16759,7 @@ export default {
         'ca': 'jurat',
         'nl': 'jury'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gajo.png',
@@ -18191,9 +16783,7 @@ export default {
         'cr': 'segment',
         'nl': 'partje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ausente.png',
@@ -18207,9 +16797,7 @@ export default {
         'ca': 'absent',
         'nl': 'absent'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/empanada.png',
@@ -18233,9 +16821,7 @@ export default {
         'cr': 'pita',
         'nl': 'pastei'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/luto.png',
@@ -18260,9 +16846,7 @@ export default {
         'cr': 'oplakivanje',
         'nl': 'rouw'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cortafrios_1.png',
@@ -18287,9 +16871,7 @@ export default {
         'cr': 'željezno dlijeto',
         'nl': 'koudbeitels'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/taller_mecanico.png',
@@ -18314,9 +16896,7 @@ export default {
         'cr': 'garaža',
         'nl': 'garagewerkplaats'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sazonar.png',
@@ -18341,9 +16921,7 @@ export default {
         'cr': 'začiniti',
         'nl': 'kruiden'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/entrevista_1.png',
@@ -18368,9 +16946,7 @@ export default {
         'cr': 'intervjuirati',
         'nl': 'interview'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/prima_6.png',
@@ -18395,9 +16971,7 @@ export default {
         'cr': 'rođak',
         'nl': 'nichtje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sacar_6.png',
@@ -18422,9 +16996,7 @@ export default {
         'cr': 'iznijeti',
         'nl': 'uittrekken '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/chimpance.png',
@@ -18449,9 +17021,7 @@ export default {
         'cr': 'čimpanza',
         'nl': 'chimpansee'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/barro.png',
@@ -18476,9 +17046,7 @@ export default {
         'cr': 'blato',
         'nl': 'klei'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tutor_5.png',
@@ -18494,9 +17062,7 @@ export default {
         'ca': 'tutor',
         'nl': 'voogd'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/informatica_2.png',
@@ -18521,9 +17087,7 @@ export default {
         'cr': 'računalni tehničar',
         'nl': 'informaticus'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/las_nueve_y_media.png',
@@ -18537,9 +17101,7 @@ export default {
         'ca': 'les nou i mitja',
         'nl': 'half tien'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/piraguistas.png',
@@ -18564,9 +17126,7 @@ export default {
         'cr': 'kanuisti',
         'nl': 'kanovaarsters'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/saunas_humedas.png',
@@ -18591,9 +17151,7 @@ export default {
         'cr': 'mokre saune',
         'nl': 'natte sauna\'s'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pisadas_1.png',
@@ -18618,9 +17176,7 @@ export default {
         'cr': 'otisci stopa',
         'nl': 'voetafdrukken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/entornos.png',
@@ -18645,9 +17201,7 @@ export default {
         'cr': 'okruženja',
         'nl': 'omgevingen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/instrumento_musical_28.png',
@@ -18672,9 +17226,7 @@ export default {
         'cr': 'glazbeni instrument',
         'nl': 'muziek instrument'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ciencias_sociales.png',
@@ -18699,9 +17251,7 @@ export default {
         'cr': 'društvene znanosti',
         'nl': 'sociale wetenschappen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/nadadora_1.png',
@@ -18717,9 +17267,7 @@ export default {
         'ca': 'nadadora',
         'nl': 'zwemmster '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/novios_3.png',
@@ -18744,9 +17292,7 @@ export default {
         'cr': 'novopečeni bračni par',
         'nl': 'bruidspaar'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/aceptar_2.png',
@@ -18771,9 +17317,7 @@ export default {
         'cr': 'prihvatiti',
         'nl': 'accepteren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/manija_2.png',
@@ -18798,9 +17342,7 @@ export default {
         'cr': 'ručica ručice',
         'nl': 'handgreep '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Tierra_1.png',
@@ -18825,9 +17367,7 @@ export default {
         'cr': 'tlo',
         'nl': 'aarde'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/vivir_1.png',
@@ -18852,9 +17392,7 @@ export default {
         'cr': 'živi u',
         'nl': 'wonen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/guias_1.png',
@@ -18870,9 +17408,7 @@ export default {
         'ca': 'guies',
         'nl': 'gidsen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/nacimientos.png',
@@ -18897,9 +17433,7 @@ export default {
         'cr': 'kolijevke',
         'nl': 'geboorten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/disco.png',
@@ -18924,9 +17458,7 @@ export default {
         'cr': 'disk',
         'nl': 'plaat'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/industria.png',
@@ -18951,9 +17483,7 @@ export default {
         'cr': 'tvornica',
         'nl': 'industrie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/coronas.png',
@@ -18978,9 +17508,7 @@ export default {
         'cr': 'krune',
         'nl': 'kronen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/eventos_1.png',
@@ -19005,9 +17533,7 @@ export default {
         'cr': 'događaji',
         'nl': 'evenementen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Aragon_2.png',
@@ -19032,9 +17558,7 @@ export default {
         'cr': 'Aragon',
         'nl': 'Aragón'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/boxear.png',
@@ -19059,9 +17583,7 @@ export default {
         'cr': 'boksati',
         'nl': 'boksen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/invertebrado.png',
@@ -19086,9 +17608,7 @@ export default {
         'cr': 'beskičmenjaci',
         'nl': 'ongewervelde dieren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/braille.png',
@@ -19113,9 +17633,7 @@ export default {
         'cr': 'Brailleovo pismo',
         'nl': 'braille'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/poner_la_sonda_1.png',
@@ -19129,9 +17647,7 @@ export default {
         'ca': 'col·locar la sonda',
         'nl': 'plaats een sonde'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Polo_Sur.png',
@@ -19156,9 +17672,7 @@ export default {
         'cr': 'južni pol',
         'nl': 'Zuid Pool'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/montana.png',
@@ -19183,9 +17697,7 @@ export default {
         'cr': 'planina',
         'nl': 'berg'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/instrumento_musical_14.png',
@@ -19210,9 +17722,7 @@ export default {
         'cr': 'glazbeni instrument',
         'nl': 'muziek instrument'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/matasuegras.png',
@@ -19237,9 +17747,7 @@ export default {
         'cr': 'puhalica',
         'nl': 'roltong fluitje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fajas.png',
@@ -19264,9 +17772,7 @@ export default {
         'cr': 'steznici',
         'nl': 'korsetten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/acampar.png',
@@ -19291,9 +17797,7 @@ export default {
         'cr': 'kampirati',
         'nl': 'camping'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/borrachas.png',
@@ -19318,9 +17822,7 @@ export default {
         'cr': 'pijan',
         'nl': 'bezopen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pesca_5.png',
@@ -19345,9 +17847,7 @@ export default {
         'cr': 'ribolov',
         'nl': 'vissen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/directora_de_escuela.png',
@@ -19372,9 +17872,7 @@ export default {
         'cr': 'ravnateljica',
         'nl': 'schooldirectrice'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/guante_1.png',
@@ -19399,9 +17897,7 @@ export default {
         'cr': 'rukavica',
         'nl': 'handschoen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/integracion_1.png',
@@ -19426,9 +17922,7 @@ export default {
         'cr': 'integracija',
         'nl': 'integratie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/merceria_1.png',
@@ -19453,9 +17947,7 @@ export default {
         'cr': 'trgovina s šivaćim priborom',
         'nl': 'fournituren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/vecino.png',
@@ -19480,9 +17972,7 @@ export default {
         'cr': 'susjed',
         'nl': 'buurman'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/despeinada.png',
@@ -19507,9 +17997,7 @@ export default {
         'cr': 'razbarušen',
         'nl': 'ongekamd'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/grua_hospitalaria.png',
@@ -19534,9 +18022,7 @@ export default {
         'cr': 'dizalo za pacijente',
         'nl': 'tillift'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/trapecio.png',
@@ -19561,9 +18047,7 @@ export default {
         'cr': 'trapezoid',
         'nl': 'trapezium'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/mio.png',
@@ -19588,9 +18072,7 @@ export default {
         'cr': 'moje',
         'nl': 'mijne'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/estrella_2.png',
@@ -19615,9 +18097,7 @@ export default {
         'cr': 'zvjezdastog oblika',
         'nl': 'ster'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/amontonar_1.png',
@@ -19642,9 +18122,7 @@ export default {
         'cr': 'gomilati',
         'nl': 'opstapelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/recoger_4.png',
@@ -19669,9 +18147,7 @@ export default {
         'cr': 'pospremiti',
         'nl': 'opruimen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/conseguir.png',
@@ -19696,9 +18172,7 @@ export default {
         'cr': 'postići',
         'nl': 'halen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/praxia_26.png',
@@ -19723,9 +18197,7 @@ export default {
         'cr': 'praksija',
         'nl': 'myofunctionele therapie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/rallador.png',
@@ -19750,9 +18222,7 @@ export default {
         'cr': 'ribež',
         'nl': 'keukenrasp'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/emigrar.png',
@@ -19777,9 +18247,7 @@ export default {
         'cr': 'iseliti se',
         'nl': 'emigreren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/eventos.png',
@@ -19804,9 +18272,7 @@ export default {
         'cr': 'događaji',
         'nl': 'evenementen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/flaco.png',
@@ -19831,9 +18297,7 @@ export default {
         'cr': 'tanak',
         'nl': 'mager '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/contenedores.png',
@@ -19858,9 +18322,7 @@ export default {
         'cr': 'kontejneri',
         'nl': 'recycle containers voor afval'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/trono.png',
@@ -19885,9 +18347,7 @@ export default {
         'cr': 'prijestolje',
         'nl': 'troon'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/limpiar_4.png',
@@ -19912,9 +18372,7 @@ export default {
         'cr': 'čistiti',
         'nl': 'schoonmaken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/instruir.png',
@@ -19930,9 +18388,7 @@ export default {
         'ca': 'instruir',
         'nl': 'instrueren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/visita_1.png',
@@ -19957,9 +18413,7 @@ export default {
         'cr': 'posjetiti',
         'nl': 'bezoek '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/praxia_32.png',
@@ -19984,9 +18438,7 @@ export default {
         'cr': 'praksija',
         'nl': 'myofunctionele therapie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/eccema.png',
@@ -20011,9 +18463,7 @@ export default {
         'cr': 'ekcem',
         'nl': 'eczeem'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Reyes.png',
@@ -20038,9 +18488,7 @@ export default {
         'cr': 'blagdan Tri kralja',
         'nl': 'Driekoningen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/masajear.png',
@@ -20065,9 +18513,7 @@ export default {
         'cr': 'masaža',
         'nl': 'masseren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pendrive.png',
@@ -20092,9 +18538,7 @@ export default {
         'cr': 'USB memorija',
         'nl': 'USB-stick'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/izquierda.png',
@@ -20119,9 +18563,7 @@ export default {
         'cr': 'lijevo',
         'nl': 'links'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cumpleanos_7.png',
@@ -20146,9 +18588,7 @@ export default {
         'cr': 'rođendani',
         'nl': 'verjaardag'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ardiente.png',
@@ -20173,9 +18613,7 @@ export default {
         'cr': 'goruće',
         'nl': 'brandend'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sonar.png',
@@ -20200,9 +18638,7 @@ export default {
         'cr': 'san',
         'nl': 'dromen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/moradura.png',
@@ -20227,9 +18663,7 @@ export default {
         'cr': 'modrica',
         'nl': 'ontvelling'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/longitud_2.png',
@@ -20254,9 +18688,7 @@ export default {
         'cr': 'dužina',
         'nl': 'geografische lengte'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/huellas.png',
@@ -20281,9 +18713,7 @@ export default {
         'cr': 'otisci',
         'nl': 'vingerafdrukken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cortafrios.png',
@@ -20308,9 +18738,7 @@ export default {
         'cr': 'željezno dlijeto',
         'nl': 'koudbeitels'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/television.png',
@@ -20335,9 +18763,7 @@ export default {
         'cr': 'televizija',
         'nl': 'televisie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/comunion.png',
@@ -20362,9 +18788,7 @@ export default {
         'cr': 'pričest',
         'nl': 'gemeenschap'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/alcantarilla_1.png',
@@ -20389,9 +18813,7 @@ export default {
         'cr': 'kanalizacija',
         'nl': 'riool'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pintalabios.png',
@@ -20416,9 +18838,7 @@ export default {
         'cr': 'ruž za usne',
         'nl': 'lipenstift'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/jardinero_1.png',
@@ -20443,9 +18863,7 @@ export default {
         'cr': 'vrtlar',
         'nl': 'tuinman'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hundimiento_1.png',
@@ -20470,9 +18888,7 @@ export default {
         'cr': 'potonuće',
         'nl': 'weggezakt'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cita_previa_1.png',
@@ -20497,9 +18913,7 @@ export default {
         'cr': 'ugovoreni sastanak',
         'nl': 'afspraak'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/uvas.png',
@@ -20524,9 +18938,7 @@ export default {
         'cr': 'grožđe',
         'nl': 'druiven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tarjeta.png',
@@ -20551,9 +18963,7 @@ export default {
         'cr': 'kreditna kartica',
         'nl': 'creditcard'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/prohibido_comer_1.png',
@@ -20578,9 +18988,7 @@ export default {
         'cr': 'zabranjeno jedenje',
         'nl': 'verboden te eten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/parachoques.png',
@@ -20605,9 +19013,7 @@ export default {
         'cr': 'branik',
         'nl': 'bumper'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/inmersion.png',
@@ -20632,9 +19038,7 @@ export default {
         'cr': 'zaranjanje',
         'nl': 'onderdompelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/medicinas.png',
@@ -20659,9 +19063,7 @@ export default {
         'cr': 'lijekovi',
         'nl': 'medicijnen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cortina.png',
@@ -20686,9 +19088,7 @@ export default {
         'cr': 'zavjesa',
         'nl': 'gordijn'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tecnico_en_radiologia.png',
@@ -20702,9 +19102,7 @@ export default {
         'ca': 'tÚcnic en radiologia',
         'nl': 'radioloog'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/posterior.png',
@@ -20720,9 +19118,7 @@ export default {
         'ca': 'posterior',
         'nl': 'daarna'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lata_de_olivas_negras.png',
@@ -20747,9 +19143,7 @@ export default {
         'cr': 'limenka crnih maslina',
         'nl': 'blik zwarte olijven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/leche.png',
@@ -20774,9 +19168,7 @@ export default {
         'cr': 'mlijeko',
         'nl': 'melk'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/llamar_al_timbre.png',
@@ -20801,9 +19193,7 @@ export default {
         'cr': 'pozvoniti',
         'nl': 'aanbellen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/arroz.png',
@@ -20828,9 +19218,7 @@ export default {
         'cr': 'riža',
         'nl': 'rijst'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cinturones_de_seguridad.png',
@@ -20855,9 +19243,7 @@ export default {
         'cr': 'sigurnosni pojasevi',
         'nl': 'autogordels'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lavar_el_pelo.png',
@@ -20882,9 +19268,7 @@ export default {
         'cr': 'oprati kosu',
         'nl': 'haren wassen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/moco.png',
@@ -20909,9 +19293,7 @@ export default {
         'cr': 'sluz',
         'nl': 'snot '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/inteligible.png',
@@ -20936,9 +19318,7 @@ export default {
         'cr': 'shvatljiv',
         'nl': 'duidelijk'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/soplar_1.png',
@@ -20963,9 +19343,7 @@ export default {
         'cr': 'puhati',
         'nl': 'blazen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/amanecer.png',
@@ -20990,9 +19368,7 @@ export default {
         'cr': 'zora',
         'nl': 'zonopgang'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/premiar_1.png',
@@ -21017,9 +19393,7 @@ export default {
         'cr': 'nagrada',
         'nl': 'belonen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/fantasma.png',
@@ -21044,9 +19418,7 @@ export default {
         'cr': 'fantom',
         'nl': 'spook'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lampara.png',
@@ -21071,9 +19443,7 @@ export default {
         'cr': 'svjetiljka',
         'nl': 'lamp'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ver_la_television.png',
@@ -21098,9 +19468,7 @@ export default {
         'cr': 'gledati televiziju',
         'nl': 'TV kijken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/oso_de_peluche.png',
@@ -21125,9 +19493,7 @@ export default {
         'cr': 'medvjedić',
         'nl': 'knuffelbeer'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pasear.png',
@@ -21152,9 +19518,7 @@ export default {
         'cr': 'prošetati',
         'nl': 'wandelen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/chatos.png',
@@ -21169,9 +19533,7 @@ export default {
         'ca': 'xatos',
         'nl': 'platten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/vociferar.png',
@@ -21196,9 +19558,7 @@ export default {
         'cr': 'vikati',
         'nl': 'schreeuwen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tijera.png',
@@ -21223,9 +19583,7 @@ export default {
         'cr': 'škare',
         'nl': 'schaar'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tortilla_francesa.png',
@@ -21250,9 +19608,7 @@ export default {
         'cr': 'francuski omlet',
         'nl': 'omelet '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/dependiente_2.png',
@@ -21277,9 +19633,7 @@ export default {
         'cr': 'prodavač',
         'nl': 'verkoper '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lapiz_de_labios.png',
@@ -21304,9 +19658,7 @@ export default {
         'cr': 'ruž za usne',
         'nl': 'lippenstift '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sed_1.png',
@@ -21331,9 +19683,7 @@ export default {
         'cr': 'žeđ',
         'nl': 'dorst'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/emigrar_1.png',
@@ -21358,9 +19708,7 @@ export default {
         'cr': 'iseliti se',
         'nl': 'emigreren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pintar_con_los_dedos.png',
@@ -21385,9 +19733,7 @@ export default {
         'cr': 'obojati bojom za ruke',
         'nl': 'nagels lakken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/transexual.png',
@@ -21412,9 +19758,7 @@ export default {
         'cr': 'transseksualan',
         'nl': 'transseksueel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sordo.png',
@@ -21439,9 +19783,7 @@ export default {
         'cr': 'gluh',
         'nl': 'doof'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/planchados.png',
@@ -21466,9 +19808,7 @@ export default {
         'cr': 'izglačani',
         'nl': 'gestreken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lanzar_3.png',
@@ -21493,9 +19833,7 @@ export default {
         'cr': 'baciti',
         'nl': 'er uitgooien'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/juntar_1.png',
@@ -21520,9 +19858,7 @@ export default {
         'cr': 'sastaviti',
         'nl': 'samenvoegen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gente_1.png',
@@ -21547,9 +19883,7 @@ export default {
         'cr': 'skupina ljudi',
         'nl': 'mensen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/casco_6.png',
@@ -21574,9 +19908,7 @@ export default {
         'cr': 'kaciga',
         'nl': 'Helm'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/primos_3.png',
@@ -21589,9 +19921,7 @@ export default {
         'ca': 'cosins',
         'nl': 'neeven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/apisonadora.png',
@@ -21616,9 +19946,7 @@ export default {
         'cr': 'valjak',
         'nl': 'wegwals'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sentarse_en_la_silla_3.png',
@@ -21632,9 +19960,7 @@ export default {
         'ca': 'asseure�??s en la cadira',
         'nl': 'op een stoel gaan zitten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/grifo.png',
@@ -21659,9 +19985,7 @@ export default {
         'cr': 'slavina',
         'nl': 'kraan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/molinillo_de_cafe.png',
@@ -21686,9 +20010,7 @@ export default {
         'cr': 'lonac za kavu',
         'nl': 'koffiemolen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/rata.png',
@@ -21713,9 +20035,7 @@ export default {
         'cr': 'štakor',
         'nl': 'rat'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/corro.png',
@@ -21740,9 +20060,7 @@ export default {
         'cr': 'krug',
         'nl': 'kring'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/santa.png',
@@ -21767,9 +20085,7 @@ export default {
         'cr': 'svetac',
         'nl': 'sint'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/tablet.png',
@@ -21794,9 +20110,7 @@ export default {
         'cr': 'tablet',
         'nl': 'tablet'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/correa.png',
@@ -21821,9 +20135,7 @@ export default {
         'cr': 'pojas',
         'nl': 'broekriem '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/adios.png',
@@ -21848,9 +20160,7 @@ export default {
         'cr': 'zbogom',
         'nl': 'doei'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Cenicienta.png',
@@ -21875,9 +20185,7 @@ export default {
         'cr': 'Pepeljuga',
         'nl': 'Assepoester'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/asiento.png',
@@ -21902,9 +20210,7 @@ export default {
         'cr': 'sjedalo',
         'nl': 'zitplaats'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lavavajillas_3.png',
@@ -21929,9 +20235,7 @@ export default {
         'cr': 'stroj za pranje posuđa',
         'nl': 'vaatwasser'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/malo.png',
@@ -21956,9 +20260,7 @@ export default {
         'cr': 'loše',
         'nl': 'slecht'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/siguiente.png',
@@ -21983,9 +20285,7 @@ export default {
         'cr': 'sljedeći',
         'nl': 'volgende'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/latas_de_mejillones.png',
@@ -22010,9 +20310,7 @@ export default {
         'cr': 'limenke dagnji',
         'nl': 'blikken mosselen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/silbato.png',
@@ -22037,9 +20335,7 @@ export default {
         'cr': 'zviždaljka',
         'nl': 'fluitje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/batido.png',
@@ -22064,9 +20360,7 @@ export default {
         'cr': 'mliječni frape',
         'nl': 'milkshake '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cancion_1.png',
@@ -22091,9 +20385,7 @@ export default {
         'cr': 'pjesma',
         'nl': 'liedje'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/molino.png',
@@ -22118,9 +20410,7 @@ export default {
         'cr': 'mlin',
         'nl': 'molen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/revisiones_medicas.png',
@@ -22136,9 +20426,7 @@ export default {
         'ca': 'revisions mÚdiques',
         'nl': 'medische beoordelingen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/hidroterapia.png',
@@ -22163,9 +20451,7 @@ export default {
         'cr': 'hidroterapija',
         'nl': 'hydrotherapie '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/agarrar.png',
@@ -22190,9 +20476,7 @@ export default {
         'cr': 'zgrabiti',
         'nl': 'grijpen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/amigo_1.png',
@@ -22217,9 +20501,7 @@ export default {
         'cr': 'prijatelj',
         'nl': 'vriend'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/implantes_cocleares_1.png',
@@ -22235,9 +20517,7 @@ export default {
         'ca': 'implants coclears',
         'nl': 'cochleaire implantaten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bolos.png',
@@ -22262,9 +20542,7 @@ export default {
         'cr': 'kugle',
         'nl': 'bowling'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pulso_1.png',
@@ -22280,9 +20558,7 @@ export default {
         'ca': 'pols',
         'nl': 'polsslag'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/oposicion.png',
@@ -22307,9 +20583,7 @@ export default {
         'cr': 'opozicija',
         'nl': 'verzet'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cartas.png',
@@ -22334,9 +20608,7 @@ export default {
         'cr': 'igrace karte',
         'nl': 'speelkaarten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/muy_bien.png',
@@ -22361,9 +20633,7 @@ export default {
         'cr': 'vrlo dobro',
         'nl': 'prima!'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/educacion_fisica_25.png',
@@ -22388,9 +20658,7 @@ export default {
         'cr': 'tjelesni odgoj',
         'nl': 'gymles '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/suya.png',
@@ -22415,9 +20683,7 @@ export default {
         'cr': 'njihov',
         'nl': 'van haar'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/educacion_fisica_31.png',
@@ -22442,9 +20708,7 @@ export default {
         'cr': 'tjelesni odgoj',
         'nl': 'gymles '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/economia.png',
@@ -22469,9 +20733,7 @@ export default {
         'cr': 'ekonomija',
         'nl': 'economie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/codera.png',
@@ -22496,9 +20758,7 @@ export default {
         'cr': 'zakrpe na laktovima',
         'nl': 'eleboogversteviging'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/potar.png',
@@ -22523,9 +20783,7 @@ export default {
         'cr': 'povraćati',
         'nl': 'overgeven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/nuestras.png',
@@ -22550,9 +20808,7 @@ export default {
         'cr': 'naša',
         'nl': 'onze'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/viajar_10.png',
@@ -22577,9 +20833,7 @@ export default {
         'cr': 'putovati',
         'nl': 'reizen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/interprete.png',
@@ -22604,9 +20858,7 @@ export default {
         'cr': 'tumač',
         'nl': 'vertaler '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/escamas_1.png',
@@ -22631,9 +20883,7 @@ export default {
         'cr': 'ljuskice na ribi',
         'nl': 'schubbem'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/contrabajos.png',
@@ -22658,9 +20908,7 @@ export default {
         'cr': 'kontrabasovi',
         'nl': 'contrabassen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/lampara_de_aceite.png',
@@ -22685,9 +20933,7 @@ export default {
         'cr': 'uljanica',
         'nl': 'olielamp'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/andar_2.png',
@@ -22712,9 +20958,7 @@ export default {
         'cr': 'hodati',
         'nl': 'de hort op gaan'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/abaco.png',
@@ -22739,9 +20983,7 @@ export default {
         'cr': 'računaljka',
         'nl': 'telraam '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/gato_1.png',
@@ -22752,9 +20994,7 @@ export default {
         'eu': 'katu',
         'pt': 'gato'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/orquidea.png',
@@ -22779,9 +21019,7 @@ export default {
         'cr': 'orhideje',
         'nl': 'orchidee'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/trabajar_1.png',
@@ -22806,9 +21044,7 @@ export default {
         'cr': 'raditi',
         'nl': 'werken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/reptar_1.png',
@@ -22824,9 +21060,7 @@ export default {
         'ca': 'reptar',
         'nl': 'kruipen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bloc.png',
@@ -22841,9 +21075,7 @@ export default {
         'ca': 'bloc',
         'nl': 'schrijfblok'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/abanicar.png',
@@ -22868,9 +21100,7 @@ export default {
         'cr': 'fenirati',
         'nl': 'waaieren'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sediento_1.png',
@@ -22895,9 +21125,7 @@ export default {
         'cr': 'žedan',
         'nl': 'dorstig'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/frutos_secos_4.png',
@@ -22922,9 +21150,7 @@ export default {
         'cr': 'sušeno voće',
         'nl': 'droge vruchten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/adornar_3.png',
@@ -22949,9 +21175,7 @@ export default {
         'cr': 'ukrašavati',
         'nl': 'optuigen '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/bosques_talados.png',
@@ -22976,9 +21200,7 @@ export default {
         'cr': 'sjeći šume',
         'nl': 'gekapte bossen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/seguro_de_salud.png',
@@ -23003,9 +21225,7 @@ export default {
         'cr': 'zdravstveno osiguranje',
         'nl': 'zorgverzekering'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/partido_2.png',
@@ -23030,9 +21250,7 @@ export default {
         'cr': 'igre',
         'nl': 'partij'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/webs.png',
@@ -23057,9 +21275,7 @@ export default {
         'cr': 'web stranice',
         'nl': 'web'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/educacion_fisica_19.png',
@@ -23084,9 +21300,7 @@ export default {
         'cr': 'tjelesni odgoj',
         'nl': 'gymles '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/descolgar.png',
@@ -23111,9 +21325,7 @@ export default {
         'cr': 'skinuti',
         'nl': 'opnemen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/molesto.png',
@@ -23138,9 +21350,7 @@ export default {
         'cr': 'dosadan',
         'nl': 'geïrriteerd '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/atender_4.png',
@@ -23165,9 +21375,7 @@ export default {
         'cr': 'prisustvovati',
         'nl': 'bekommeren om'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/conserjeria.png',
@@ -23192,9 +21400,7 @@ export default {
         'cr': 'recepcija',
         'nl': 'receptie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/asilo_de_ancianos.png',
@@ -23219,9 +21425,7 @@ export default {
         'cr': 'starački dom',
         'nl': 'verzorgingstehuis'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/alfareria.png',
@@ -23246,9 +21450,7 @@ export default {
         'cr': 'lončarija',
         'nl': 'pottenbakkerij'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/pastelero.png',
@@ -23273,9 +21475,7 @@ export default {
         'cr': 'slastičar',
         'nl': 'banketbakker'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/jubilarse_1.png',
@@ -23300,9 +21500,7 @@ export default {
         'cr': 'umiroviti',
         'nl': 'pensioneren '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/limonero.png',
@@ -23327,9 +21525,7 @@ export default {
         'cr': 'stablo limuna',
         'nl': 'citroenboom'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/aperitivos.png',
@@ -23354,9 +21550,7 @@ export default {
         'cr': 'aperitiv',
         'nl': 'aperativen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cumbre.png',
@@ -23381,9 +21575,7 @@ export default {
         'cr': 'vrh',
         'nl': 'bergtop '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/acampada.png',
@@ -23408,9 +21600,7 @@ export default {
         'cr': 'kamp',
         'nl': 'kamp'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/guardia_4.png',
@@ -23435,9 +21625,7 @@ export default {
         'cr': 'stražar',
         'nl': 'Marechaussee '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/necoras.png',
@@ -23453,9 +21641,7 @@ export default {
         'ca': 'nÚcores',
         'nl': 'fluwelen zwemkrabben'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/solicitar_la_parada.png',
@@ -23471,9 +21657,7 @@ export default {
         'ca': 'sol·licitar la parada',
         'nl': 'stopverzoek'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/candelabros.png',
@@ -23498,9 +21682,7 @@ export default {
         'cr': 'svjećnjaci',
         'nl': 'kaarsenstandaard '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/Baleares.png',
@@ -23525,9 +21707,7 @@ export default {
         'cr': 'Baleari',
         'nl': 'De Balearen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sopa_de_carne.png',
@@ -23552,9 +21732,7 @@ export default {
         'cr': 'mesna juha',
         'nl': 'vleessoep'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/informatica.png',
@@ -23579,9 +21757,7 @@ export default {
         'cr': 'računalni tehničar',
         'nl': 'informaticus'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/trasladarse_1.png',
@@ -23606,9 +21782,7 @@ export default {
         'cr': 'premjestiti',
         'nl': 'verhuizen'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/caramelo_1.png',
@@ -23633,9 +21807,7 @@ export default {
         'cr': 'slatkiš',
         'nl': 'zoetigheid'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/ballena.png',
@@ -23660,9 +21832,7 @@ export default {
         'cr': 'kit',
         'nl': 'walvis'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/salon_de_actos_1.png',
@@ -23687,9 +21857,7 @@ export default {
         'cr': 'predavaonica',
         'nl': 'congrszaal'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/renir.png',
@@ -23714,9 +21882,7 @@ export default {
         'cr': 'tvrditi',
         'nl': 'bekvechten '
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/embarazada_1.png',
@@ -23741,9 +21907,7 @@ export default {
         'cr': 'trudna',
         'nl': 'in verwachting'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/oponerse_2.png',
@@ -23768,9 +21932,7 @@ export default {
         'cr': 'protiviti se',
         'nl': 'bezwaar maken'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/sonarse_la_nariz_2.png',
@@ -23795,9 +21957,7 @@ export default {
         'cr': 'ispuhati nos',
         'nl': 'neus snuiten'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/persona_con_movilidad_reducida_6.png',
@@ -23813,9 +21973,7 @@ export default {
         'ca': 'persona amb mobilitat reduïda',
         'nl': 'vrouw met beperkte mobiliteit'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/vida.png',
@@ -23840,9 +21998,7 @@ export default {
         'cr': 'život',
         'nl': 'leven'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/papel_de_aluminio.png',
@@ -23867,9 +22023,7 @@ export default {
         'cr': 'aluminijski papir',
         'nl': 'aluminiumfolie'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     },
     {
       'url': 'https://zenodo.org/record/3979758/files/cepillo_de_dientes.png',
@@ -23894,9 +22048,7 @@ export default {
         'cr': 'četkica za zube',
         'nl': 'tandenborstel'
       },
-      'tags': [
-        'B&W'
-      ]
+      'tags': ['B&W']
     }
   ]
 }

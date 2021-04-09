@@ -12,12 +12,14 @@
  */
 
 const
-  express = require('express'),
-  compression = require('compression')
+  compression = require('compression'),
+  express = require('express')
 
 const
-  ssr = require('../ssr'),
   extension = require('./extension'),
+  ssr = require('../ssr')
+
+const
   app = express(),
   port = process.env.PORT || 3000
 
@@ -77,11 +79,9 @@ app.get('*', (req, res) => {
     if (err) {
       if (err.url) {
         res.redirect(err.url)
-      }
-      else if (err.code === 404) {
+      } else if (err.code === 404) {
         res.status(404).send('404 | Page Not Found')
-      }
-      else {
+      } else {
         // Render Error Page or Redirect
         res.status(500).send('500 | Internal Server Error')
         if (ssr.settings.debug) {
@@ -90,8 +90,7 @@ app.get('*', (req, res) => {
           console.error(err.stack)
         }
       }
-    }
-    else {
+    } else {
       res.send(html)
     }
   })

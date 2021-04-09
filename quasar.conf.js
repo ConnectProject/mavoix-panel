@@ -1,6 +1,8 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
+const {CLIEngine} = require("eslint")
+
 module.exports = function (ctx) {
   return {
     // app boot file (/src/boot)
@@ -11,9 +13,7 @@ module.exports = function (ctx) {
       { path: 'internalComponents', server: false }
     ],
 
-    css: [
-      'app.styl'
-    ],
+    css: ['app.styl'],
 
     extras: [
       // 'ionicons-v4',
@@ -74,14 +74,10 @@ module.exports = function (ctx) {
         'QTooltip'
       ],
 
-      directives: [
-        'Ripple'
-      ],
+      directives: ['Ripple'],
 
       // Quasar plugins
-      plugins: [
-        'Notify'
-      ]
+      plugins: ['Notify']
     },
 
     supportIE: false,
@@ -101,7 +97,7 @@ module.exports = function (ctx) {
           loader: 'eslint-loader',
           exclude: /node_modules/,
           options: {
-            formatter: require('eslint').CLIEngine.getFormatter('stylish')
+            formatter: CLIEngine.getFormatter('stylish')
           }
         })
       },

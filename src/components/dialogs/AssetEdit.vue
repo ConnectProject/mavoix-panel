@@ -11,9 +11,9 @@
           class="q-my-xs"
           :label="$t('assetsManager.assetNameLabel')"
           :value="asset.name"
+          filled
           @keyup.enter="onSave"
           @input="onInputName"
-          filled
         />
       </q-card-section>
       <q-card-actions>
@@ -51,40 +51,51 @@
 export default {
   name: 'DialogAssetEdit',
   computed: {
+
     /**
-     * Return true if the dialog should be opened
+     * @returns {boolean} true if the dialog should be opened
      */
     opened () {
       return this.$store.getters['assetsManager/editing']
     },
+
     /**
-     * Return the asset
+     * @returns {Object} the asset
      */
     asset () {
       return this.$store.getters['assetsManager/editingAsset']
     }
   },
   methods: {
+
     /**
      * Call so set asset's name
+     * @param {string} name new name
+     * @returns {void}
      */
     onInputName (name) {
       this.$store.commit('assetsManager/editingAssetSetName', name)
     },
+
     /**
      * Call to delete the asset
+     * @returns {void}
      */
     onDelete () {
       this.$store.dispatch('assetsManager/destroyEditingAsset')
     },
+
     /**
      * Call to cancel modifications or creation
+     * @returns {void}
      */
     onCancel () {
       this.$store.commit('assetsManager/cancelEdit')
     },
+
     /**
      * Call to save the asset
+     * @returns {void}
      */
     onSave () {
       this.$store.dispatch('assetsManager/saveEditingAsset')

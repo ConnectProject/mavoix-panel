@@ -1,9 +1,10 @@
-import { assetIndex, assetFromModel } from './utils'
+import { assetFromModel, assetIndex } from './utils'
 
 /**
  * Clear assets and set new ones
- * @param {State} state
+ * @param {State} state vuex state
  * @param {{AssetModel}} assetsModels asset models to set
+ * @returns {void}
  */
 export const setAssets = (state, assetsModels) => {
   state.assets = []
@@ -17,8 +18,9 @@ export const setAssets = (state, assetsModels) => {
 
 /**
  * Add an asset
- * @param {State} state
+ * @param {State} state vuex state
  * @param {AssetModel} assetModel asset model to ass
+ * @returns {void}
  */
 export const addAsset = (state, assetModel) => {
   state.assets.unshift(assetFromModel(assetModel))
@@ -26,7 +28,8 @@ export const addAsset = (state, assetModel) => {
 
 /**
  * Remove the asset that's edited
- * @param {State} state
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const removeEditingAsset = (state) => {
   state.assets.splice(state.editingIndex, 1)
@@ -34,8 +37,9 @@ export const removeEditingAsset = (state) => {
 
 /**
  * Update the edited asset's fields
- * @param {State} state
- * @param {AssetModel} assetModel
+ * @param {State} state vuex state
+ * @param {AssetModel} assetModel asset model
+ * @returns {void}
  */
 export const updateEditingAsset = (state, assetModel) => {
   const asset = assetFromModel(assetModel)
@@ -44,8 +48,9 @@ export const updateEditingAsset = (state, assetModel) => {
 
 /**
  * Start editing an asset
- * @param {State} state
+ * @param {State} state vuex state
  * @param {Asset} asset asset to edit
+ * @returns {void}
  */
 export const editAsset = (state, asset) => {
   state.editingIndex = assetIndex(state.assets, asset)
@@ -57,8 +62,9 @@ export const editAsset = (state, asset) => {
 
 /**
  * Set edited asset's name
- * @param {State} state
+ * @param {State} state vuex state
  * @param {String} name new name
+ * @returns {void}
  */
 export const editingAssetSetName = (state, name) => {
   state.editingAsset.name = name
@@ -66,7 +72,8 @@ export const editingAssetSetName = (state, name) => {
 
 /**
  * Cancel editing asset without saving changes
- * @param {State} state
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const cancelEdit = (state) => {
   state.editing = false
@@ -75,7 +82,7 @@ export const cancelEdit = (state) => {
 // /**
 //  * Call selectCallback and close assets manager
 //  *
-//  * @param {State} state
+//  * @param {State} state vuex state
 //  * @param {Asset} asset asset to select
 //  * Never called
 //  */
@@ -88,11 +95,12 @@ export const cancelEdit = (state) => {
 
 /**
  * Open the assets manager
- * @param {State} state
+ * @param {State} state vuex state
  * @param {{Boolean, Function}} {
  *  selectMode: true if open to select an asset, false if to manage
  *  selectCallback: is selectMode is true, call this function when selecting an asset
  * }
+ * @returns {void}
  */
 export const open = (state, { selectMode, selectCallback }) => {
   state.opened = true
@@ -102,7 +110,8 @@ export const open = (state, { selectMode, selectCallback }) => {
 
 /**
  * Close assets manager
- * @param {State} state
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const close = (state) => {
   state.opened = false
@@ -110,8 +119,9 @@ export const close = (state) => {
 
 /**
  * Used to throw an error
- * @param {State} state
- * @param {Error} error is the error to set
+ * @param {State} state vuex state
+ * @param {Error} err is the error to set
+ * @returns {void}
  */
 export const setError = (state, err) => {
   console.error(err)
@@ -120,7 +130,8 @@ export const setError = (state, err) => {
 
 /**
  * Used to reset a thrown error so that it can be thrown again
- * @param {State} state
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const resetError = (state) => {
   state.error = null

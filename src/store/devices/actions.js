@@ -1,10 +1,11 @@
-import Parse from 'parse'
-
 import DeviceUser, { USERNAME_KEY } from '~/models/DeviceUser'
+
+import Parse from 'parse'
 
 /**
  * Load devices
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
+ * @returns {Promise} did the action succeed
  */
 export const loadDevices = ({ commit }) => {
   new Parse.Query(DeviceUser)
@@ -20,8 +21,9 @@ export const loadDevices = ({ commit }) => {
 
 /**
  * Create a new device and open the model to view it
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
  * @param {String} name name of the new device
+ * @returns {Promise} did the action succeed
  */
 export const create = ({ commit }, name) => {
   const deviceUser = DeviceUser.Create(name, localStorage.id)
@@ -39,7 +41,8 @@ export const create = ({ commit }, name) => {
 
 /**
  * Create a new password for the opened device
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
+ * @returns {Promise} did the action succeed
  */
 export const resetActive = ({ commit, getters: { active } }) => {
   new Parse.Query(DeviceUser)
@@ -62,7 +65,8 @@ export const resetActive = ({ commit, getters: { active } }) => {
 
 /**
  * Delete the opened device
- * @param {Context} ctx
+ * @param {Context} ctx context passed vuex
+ * @returns {Promise} did the action succeed
  */
 export const deleteActive = ({ commit, getters: { active } }) => {
   new Parse.Query(DeviceUser)

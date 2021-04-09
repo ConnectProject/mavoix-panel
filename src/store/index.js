@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import assetsManager from './assets-manager'
 import devices from './devices'
+import global from './global'
 import tabEditor from './tab-editor'
 import tabs from './tabs'
-import assetsManager from './assets-manager'
-import global from './global'
 import users from './users'
 
 Vue.use(Vuex)

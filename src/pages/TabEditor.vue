@@ -1,3 +1,4 @@
+<!-- eslint-disable max-lines -->
 <style lang="stylus" scoped>
 .container
   width 100%
@@ -42,8 +43,7 @@
 
 <template>
   <!-- Print nothing if loading -->
-  <div v-if="loading">
-  </div>
+  <div v-if="loading" />
 
   <q-page
     v-else
@@ -51,27 +51,27 @@
     :style="`background: ${tab.hexColor}`"
   >
     <div class="col-2 full-width">
-<!--       <div class="col-2 row justify-center items-center">
+      <!--       <div class="col-2 row justify-center items-center">
 
       </div> -->
       <!-- Items container -->
 
       <draggable
-        tag="div"
         v-model="items"
+        tag="div"
         draggable=".item"
         ghost-class="ghost"
-        class="col-8 full-height full-width row content-start items-start q-gutter-x-md q-gutter-y-md items-container">
+        class="col-8 full-height full-width row content-start items-start q-gutter-x-md q-gutter-y-md items-container"
+      >
         <!-- Items -->
         <q-card
-          class="col-2 item"
           v-for="(item, index) in items"
-          :v-if="!item.deleted"
           :key="index"
+          class="col-2 item"
+          :v-if="!item.deleted"
         >
           <!-- Item's image -->
-          <div class="dropping">
-          </div>
+          <div class="dropping" />
           <q-img
             :ratio="1"
             :src="item.asset.url"
@@ -88,10 +88,14 @@
             </div>
             <!-- Edit button -->
             <div
-              @click="() => onEditItem(item, index)"
               class="absolute fit flex justify-center items-center text-center action-icon-wrapper"
+              @click="() => onEditItem(item, index)"
             >
-              <q-icon name="edit" class="action-icon" size="xl" />
+              <q-icon
+                name="edit"
+                class="action-icon"
+                size="xl"
+              />
             </div>
           </q-img>
           <q-card-actions align="right">
@@ -100,13 +104,15 @@
               left-label
               :label="$t('generic.unavailable')"
               :value="!item.available"
-              @input="() => $store.commit('tabEditor/toggleItemAvailable', item)"/>
+              @input="() => $store.commit('tabEditor/toggleItemAvailable', item)"
+            />
             <!-- Toggle visibility -->
             <q-checkbox
               left-label
               :label="$t('generic.invisible')"
               :value="item.hidden"
-              @input="() => $store.commit('tabEditor/toggleItemHidden', item)"/>
+              @input="() => $store.commit('tabEditor/toggleItemHidden', item)"
+            />
           </q-card-actions>
         </q-card>
       </draggable>
@@ -120,7 +126,7 @@
     >
       <q-toolbar
         style="opacity:1; border-bottom: thin solid rgba(255,255,255,0.7)"
-        :style='{ background: tab.hexColor }'
+        :style="{ background: tab.hexColor }"
         class="row"
       >
         <!-- Name input -->
@@ -128,8 +134,8 @@
           :label="$t('tabEditor.tabNameLabel')"
           class="q-ma-md bg-white col"
           :value="tab.name"
-          @input="setName"
           filled
+          @input="setName"
         />
 
         <!-- HexColor input -->
@@ -137,8 +143,8 @@
           :label="$t('tabEditor.tabColorLabel')"
           class="q-ma-md bg-white col"
           :value="tab.hexColor"
-          @input="setHexColor"
           filled
+          @input="setHexColor"
         >
           <template v-slot:append>
             <q-icon
@@ -153,9 +159,9 @@
                   no-header
                   no-footer
                   :value="tab.hexColor"
-                  @input="setHexColor"
                   inline
                   class="my-picker"
+                  @input="setHexColor"
                 />
               </q-popup-proxy>
             </q-icon>
@@ -166,28 +172,30 @@
           :options="speeds"
           class="q-ma-md bg-white col"
           filled
+          :label="$t('tabEditor.tabSpeed')"
           @input="setSpeed"
-          :label="$t('tabEditor.tabSpeed')" />
+        />
         <q-select
           :value="language"
           :options="options"
           class="q-ma-md bg-white col"
-          @input="setLanguage"
           filled
-          :label="$t('tabEditor.tabLanguage')" />
+          :label="$t('tabEditor.tabLanguage')"
+          @input="setLanguage"
+        />
         <!-- Add item button -->
         <q-btn
           class="q-px-md q-py-md q-ma-md bg-white no-shadow col-3"
           no-caps
           icon-right="photo_library"
           :label="$t('tabEditor.addItemLabel')"
-          @click="onAddItem">
-        </q-btn>
+          @click="onAddItem"
+        />
         <!-- edit language button -->
       </q-toolbar>
     </q-page-sticky>
     <!-- Udo, Redo buttons -->
-<!--     <q-page-sticky position="top-right" :offset="[18, 18]">
+    <!--     <q-page-sticky position="top-right" :offset="[18, 18]">
       <q-btn class="q-mx-xs" fab icon="undo" color="accent" @click="onUndo" :disable="$store.getters['tabEditor/isUndoable']">
         <q-tooltip>
           {{ $t('generic.undo') }}
@@ -201,13 +209,29 @@
     </q-page-sticky> -->
 
     <!-- Delete, Save buttons -->
-    <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn class="q-mx-xs" fab icon="delete" color="negative" @click="deletion = true">
+    <q-page-sticky
+      position="bottom-right"
+      :offset="[18, 18]"
+    >
+      <q-btn
+        class="q-mx-xs"
+        fab
+        icon="delete"
+        color="negative"
+        @click="deletion = true"
+      >
         <q-tooltip>
           {{ $t('generic.delete') }}
         </q-tooltip>
       </q-btn>
-      <q-btn class="q-mx-xs" fab icon="save" size="xl" color="primary" @click="onSave">
+      <q-btn
+        class="q-mx-xs"
+        fab
+        icon="save"
+        size="xl"
+        color="primary"
+        @click="onSave"
+      >
         <q-tooltip>
           {{ $t('generic.save') }}
         </q-tooltip>
@@ -216,7 +240,9 @@
     <q-dialog v-model="deletion">
       <q-card>
         <q-card-section>
-          <div class="text-h6">Supprimer l'onglet</div>
+          <div class="text-h6">
+            Supprimer l'onglet
+          </div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -224,8 +250,18 @@
         </q-card-section>
 
         <q-card-actions align="right">
-          <q-btn flat label="Oui" color="primary" @click="onDelete" />
-          <q-btn flat label="Non" color="primary" @click="deletion = false" />
+          <q-btn
+            flat
+            label="Oui"
+            color="primary"
+            @click="onDelete"
+          />
+          <q-btn
+            flat
+            label="Non"
+            color="primary"
+            @click="deletion = false"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -233,10 +269,10 @@
 </template>
 
 <script>
-import DialogTabItem from '~/components/dialogs/TabItem'
-import { SLUG_KEY } from '../models/Tab'
 import AddAssets from '~/components/AddAssets'
+import DialogTabItem from '~/components/dialogs/TabItem'
 import { QSelect } from 'quasar'
+import { SLUG_KEY } from '../models/Tab'
 
 export default {
   name: 'PageTabEditor',
@@ -244,12 +280,6 @@ export default {
     DialogTabItem,
     AddAssets,
     QSelect
-  },
-  /**
-   * When component mounted load everything
-   */
-  mounted () {
-    this.load()
   },
   data () {
     return {
@@ -261,8 +291,9 @@ export default {
     }
   },
   computed: {
+
     /**
-     * Return the opened tab
+     * @returns {Object} the opened tab
      */
     tab () {
       return this.$store.getters['tabEditor/tab']
@@ -273,8 +304,9 @@ export default {
     language () {
       return this.$store.getters['tabEditor/language']
     },
+
     /**
-     * possible languages
+     * @returns {Object} possible languages
      */
     speeds () {
       return this.$store.getters['tabEditor/speeds']
@@ -282,12 +314,13 @@ export default {
     options () {
       return this.$store.getters['tabEditor/languages']
     },
+
     /**
      * The tab's items
      */
     items: {
       get () {
-        let items = this.$store.getters['tabEditor/items']
+        const items = this.$store.getters['tabEditor/items']
         // let css = ''
         // let that = this
         // here we check if we have loaded the images in css background, we do this for the sake performance and to avoid visual glitch in the implementation of vue-draggable
@@ -307,36 +340,52 @@ export default {
         //     }
         //   }
         // }
+
         return items
       },
       set (values) {
         this.$store.commit('tabEditor/setItemsRaw', values)
       }
     },
+
     /**
-     * Return true if loading
+     * @returns {boolean} true if loading
      */
     loading () {
       return this.$store.getters['tabEditor/loading']
     }
   },
   watch: {
+
     /**
      * When route change load eveyrhing
+     * @returns {void}
      */
-    '$route' (newValue, oldValue) {
+    '$route' () {
       this.load()
       this.$store.dispatch('global/initTTS')
     }
   },
+
+  /**
+   * When component mounted load everything
+   * @returns {void}
+   */
+  mounted () {
+    this.load()
+  },
   methods: {
+
+    // eslint-disable-next-line valid-jsdoc
     /**
      * convert url to base64 data to avoid reloading files
+     * no longer used
+     * @returns {void}
      */
     getBase64Image (imgUrl, callback) {
       var img = new Image()
       // onload fires when the image is fully loadded, and has width and height
-      let that = this
+      const that = this
       img.onload = function () {
         var canvas = document.createElement('canvas')
         canvas.width = img.width
@@ -345,28 +394,34 @@ export default {
         ctx.drawImage(img, 0, 0)
         var dataURL = canvas.toDataURL('image/png')
         // dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, '')
-        that.numberLoaded = that.numberLoaded + 1
+        that.numberLoaded += 1
         callback(dataURL) // the base64 string
       }
       // set attributes and src
       img.setAttribute('crossOrigin', 'anonymous')
       img.src = imgUrl
     },
+
     /**
      * Load tab
+     * @returns {void}
      */
     load () {
       this.$store.dispatch('tabEditor/loadBySlug', this.$route.params.slug)
       this.$nextTick()
     },
+
     /**
      * Call to save the tab
+     * @returns {void}
      */
     onSave () {
       this.$store.dispatch('tabEditor/saveCb', (tab) => {
+
         /* When the tab's name is changed the slugs change to, so redirect to the new url */
         const path = `/tabs/${tab.get(SLUG_KEY)}`
         if (this.$route.path !== path) this.$router.push(path)
+
         /* Toast message */
         this.$q.notify({
           message: `${tab.get('name')} saved`,
@@ -374,25 +429,34 @@ export default {
         })
       })
     },
+
     /**
      * Call to remove tab
+     * @returns {void}
      */
     onDelete () {
       this.$store.dispatch('tabEditor/deleteTab')
       this.deletion = false
+
       /* Go to home */
       this.$router.push({
         name: 'home'
       })
     },
+
     /**
      * Set the tab's name
+     * @param {string} name tab's name
+     * @returns {void}
      */
     setName (name) {
       this.$store.commit('tabEditor/setName', name)
     },
+
     /**
      * Set the tab's color
+     * @param {string} hexColor hex value of the color
+     * @returns {void}
      */
     setHexColor (hexColor) {
       this.$store.commit('tabEditor/setHexColor', hexColor)
@@ -403,16 +467,21 @@ export default {
     setSpeed (speed) {
       this.$store.commit('tabEditor/setSpeed', this.speeds.indexOf(speed))
     },
+
     /**
      * Call to open the item dialog in new item mode
+     * @returns {void}
      */
     onAddItem () {
       // this.$store.commit('tabEditor/openItemDialog', {})
       this.$store.commit('tabEditor/openItemChoice', {})
       this.$store.dispatch('global/initTTS')
     },
+
+    // eslint-disable-next-line valid-jsdoc
     /**
      * Call to open the item dialog in edit item mode
+     * @returns {void}
      */
     onEditItem (item, index) {
       this.$store.commit('tabEditor/openItemDialog', {
@@ -421,14 +490,18 @@ export default {
         data: Object.assign({}, item)
       })
     },
+
     /**
      * Undo
+     * @returns {void}
      */
     onUndo () {
       this.$store.commit('tabEditor/undo')
     },
+
     /**
      * Redo
+     * @returns {void}
      */
     onRedo () {
       this.$store.commit('tabEditor/redo')

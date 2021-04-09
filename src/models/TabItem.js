@@ -29,6 +29,7 @@ export default class TabItemModel extends Parse.Object {
       .set(AVAILABLE_KEY, available) // Is item available
       .set(HIDDEN_KEY, hidden) // Should item be printed
       .set(ORDER_KEY, order) // Priority order of the item
+
     return newTabItem
   }
 

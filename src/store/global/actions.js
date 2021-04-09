@@ -1,8 +1,8 @@
 import Speak from 'speak-tts'
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * Init the text to speech plugin
- * @param {Context} ctx
  */
 export const initTTS = ({ commit, rootState }) => {
   const speech = new Speak()
@@ -12,7 +12,7 @@ export const initTTS = ({ commit, rootState }) => {
   }
   let speed = 1
   if (rootState.tabEditor.tab.language) {
-    speed = rootState.tabEditor.tab.speed
+    ({speed} = rootState.tabEditor.tab)
   }
   console.log(rootState.tabEditor.tab)
   speech.init({
@@ -22,7 +22,8 @@ export const initTTS = ({ commit, rootState }) => {
     'pitch': 1
   }).then(() => {
     commit('setTTS', speech)
-  }).catch((err) => {
-    commit('setError', err)
   })
+    .catch((err) => {
+      commit('setError', err)
+    })
 }

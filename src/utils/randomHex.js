@@ -16,6 +16,7 @@ export default () => {
     const saturation = 0.25
     const x = (255 * (1 - saturation) + o * saturation) | 0
     const s = ('00' + x.toString(16)).slice(-2)
+
     return s
   }).join('')}`
 

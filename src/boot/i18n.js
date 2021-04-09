@@ -4,7 +4,7 @@ import messages from 'src/i18n'
 /*
 ** Initialize internationalization component
 */
-export default async ({ app, Vue }) => {
+export default ({ app, Vue }) => {
   Vue.use(VueI18n)
 
   app.i18n = new VueI18n({

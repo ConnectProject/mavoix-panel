@@ -1,7 +1,9 @@
+/* eslint-disable class-methods-use-this */
 import { itemIndex } from './utils'
 
 /**
- * This class and its children are used to trace actions to undo/redo
+ * This class and its children was used to trace actions to undo/redo
+ * No longer used as this feature was removed
  */
 class Action {
   constructor (from, to) {
@@ -10,7 +12,7 @@ class Action {
   }
 
   whoo () {
-    const from = this.from
+    const {from} = this
 
     this.from = this.to
     this.to = from
@@ -72,6 +74,7 @@ export class ActionSpeed extends Action {
     state.tab.speed = this.to
   }
 }
+
 /**
  * Action that add an item to the tab
  */
@@ -106,6 +109,7 @@ export class ActionUpdateItem extends Action {
   }
 
   _order (state) {
-    state.items.sort((a, b) => a.order < b.order ? -1 : (a.order > b.order ? 1 : 0))
+    // eslint-disable-next-line no-nested-ternary
+    state.items.sort((a, b) => (a.order < b.order ? -1 : (a.order > b.order ? 1 : 0)))
   }
 }

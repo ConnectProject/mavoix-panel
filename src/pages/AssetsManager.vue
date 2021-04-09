@@ -1,3 +1,5 @@
+<!-- eslint-disable max-lines */ -->
+
 <style lang="stylus" scoped>
 .content-start
   padding-left 0px !important
@@ -25,8 +27,8 @@ input[type='file']
 
 <template>
   <q-page
-    class="row content-start"
     v-if="!loading"
+    class="row content-start"
   >
     <!-- Assets -->
     <q-card
@@ -58,8 +60,8 @@ input[type='file']
         </q-btn>
       </div>
       <q-input
-        class="absolute-bottom"
         v-model="asset.name"
+        class="absolute-bottom"
         label="Name"
         style="background-color:rgba(255,255,255,0.7)"
         filled
@@ -93,68 +95,67 @@ input[type='file']
         :ratio="16 / 9"
         :src="asset.url"
         basic
+      />
+      <q-input
+        v-model="asset.names[lang]"
+        class="absolute-bottom"
+        label="Name"
+        style="background-color:rgba(255,255,255,0.7)"
+        filled
+        @keyup.enter="addAsset(asset.names[lang],asset.url)"
       >
-        </q-img>
-        <q-input
-          class="absolute-bottom"
-          v-model="asset.names[lang]"
-          label="Name"
-          style="background-color:rgba(255,255,255,0.7)"
-          filled
-          @keyup.enter="addAsset(asset.names[lang],asset.url)"
-        >
-          <template v-slot:append>
-            <q-btn
-              round
-              dense
-              color="blue"
-              size="m"
-              icon="add"
-              @click="addAsset(asset.names[lang],asset.url)"
-            >
-              <q-tooltip>
-                {{ $t('generic.add') }}
-              </q-tooltip>
-            </q-btn>
-          </template>
-        </q-input>
-      </q-card>
+        <template v-slot:append>
+          <q-btn
+            round
+            dense
+            color="blue"
+            size="m"
+            icon="add"
+            @click="addAsset(asset.names[lang],asset.url)"
+          >
+            <q-tooltip>
+              {{ $t('generic.add') }}
+            </q-tooltip>
+          </q-btn>
+        </template>
+      </q-input>
+    </q-card>
 
-      <!-- Add asset button -->
-      <q-fab
-          class="fixed-bottom-right q-ma-md"
-          direction="up"
-          color="accent"
-        >
+    <!-- Add asset button -->
+    <q-fab
+      class="fixed-bottom-right q-ma-md"
+      direction="up"
+      color="accent"
+    >
       <q-fab-action
         color="primary"
         icon="search"
         @click="activateSearch"
       />
       <q-fab-action
-        @click="$refs.invisibleFileInput.click()"
         color="primary"
         icon="attach_file"
+        @click="$refs.invisibleFileInput.click()"
       />
-<!--           <q-fab-action color="primary" icon="cloud" /> -->
+      <!--           <q-fab-action color="primary" icon="cloud" /> -->
       <q-fab-action
         color="primary"
         icon="camera_alt"
         @click="showCam"
       />
-      </q-fab>
+    </q-fab>
 
-      <!-- Image upload invisible wrapper -->
+    <!-- Image upload invisible wrapper -->
     <div
       v-if="!selectMode"
       class="image-upload-wrapper"
     >
       <input
-        type="file"
         ref="invisibleFileInput"
-        @input="onInputFile"
+        type="file"
         multiple
-      />
+        @input="onInputFile"
+      >
     </div>
 
     <!-- Asset edit dialog -->
@@ -166,11 +167,11 @@ input[type='file']
     >
       <q-toolbar class="bg-white">
         <q-form class="row q-ma-md">
-        <q-input
-          outlined
-          label="Rechercher"
-          v-model="search"
-        >
+          <q-input
+            v-model="search"
+            outlined
+            label="Rechercher"
+          >
             <template v-slot:append>
               <q-icon name="search" />
             </template>
@@ -178,7 +179,6 @@ input[type='file']
         </q-form>
       </q-toolbar>
     </q-page-sticky>
-
   </q-page>
 </template>
 
@@ -193,23 +193,9 @@ export default {
       assetsSpecial: []
     }
   },
-  // components: {
-  //   AssetEdit
-  // },
-  mounted () {
-    this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
-    this.search = ''
-    let lang = 'fr'
-    if (this.tabs[0]?.attributes?.language) {
-      lang = this.tabs[0].attributes.language.substring(0, 2)
-    }
-    this.lang = lang
-    this.$store.dispatch('assetsManager/loadAssets')
-    console.log('mounted')
-  },
   computed: {
     route () {
-      return this.$route['params']['assets']
+      return this.$route.params.assets
     },
     images () {
       return this.$store.getters['global/imagesSelected']
@@ -217,29 +203,33 @@ export default {
     tabs () {
       return this.$store.getters['tabs/tabs']
     },
+
     /**
-     * Return true if the dialog should be opened
+     * @returns {boolean} true if the dialog should be opened
      */
     opened () {
       return this.$store.getters['assetsManager/opened']
     },
+
     /**
-     * Return true if assets are loading
+     * @returns {boolean} true if assets are loading
      */
     loading () {
       return this.$store.getters['assetsManager/loading']
     },
+
     /**
-     * Return all assets
+     * @returns {object} all assets
      */
     assets () {
       return this.$store.getters['assetsManager/all']
     },
     assetsSorted () {
-      return this.$store.getters['assetsManager/all'].filter((elem) => { return (this.search === '' || elem.name.toUpperCase().includes(this.search.toUpperCase())) })
+      return this.$store.getters['assetsManager/all'].filter((elem) => (this.search === '' || elem.name.toUpperCase().includes(this.search.toUpperCase())))
     },
+
     /**
-     * Return true if assets manager opened to select asset, false if its to manage assets
+     * @returns {boolean} true if assets manager opened to select asset, false if its to manage assets
      * (not sure if assets manager can still be used to selectMode)
      */
     selectMode () {
@@ -268,12 +258,26 @@ export default {
       }
     }
   },
+  // components: {
+  //   AssetEdit
+  // },
+  mounted () {
+    this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
+    this.search = ''
+    let lang = 'fr'
+    if (this.tabs[0]?.attributes?.language) {
+      lang = this.tabs[0].attributes.language.substring(0, 2)
+    }
+    this.lang = lang
+    this.$store.dispatch('assetsManager/loadAssets')
+    console.log('mounted')
+  },
   methods: {
     showCam () {
       this.$root.$emit('showCam')
     },
     activateSearch () {
-
+      // do nothing.
     },
     editAsset (asset) {
       this.$store.commit('assetsManager/editAsset', asset)
@@ -289,6 +293,7 @@ export default {
       this.$store.commit('assetsManager/editAsset', asset)
       this.$store.dispatch('assetsManager/destroyEditingAsset')
     },
+
     /**
      * Call to cancel
      * Never called
@@ -302,13 +307,15 @@ export default {
       this.search = ''
       this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
     },
+
     /**
      * When a file has been uploaded create the asset
+     * @returns {void}
      */
     onInputFile ({ target: { files } }) {
       if (files.length > 0) {
-        let length = files.length
-        let promises = Array.from(files).map((file) =>
+        const {length} = files
+        const promises = Array.from(files).map((file) =>
           this.$store.dispatch('assetsManager/uploadFile', file))
         Promise.all(promises).then(res => {
           if (length > 1) {
@@ -316,11 +323,13 @@ export default {
           } else {
             this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
           }
-        }).catch(() =>
-          console.error('Failed to upload files')
-        )
+        })
+          .catch(() =>
+            console.error('Failed to upload files')
+          )
       }
     }
+
     /**
      * When clicking on the asset select it or edit it
      */

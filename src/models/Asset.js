@@ -25,6 +25,7 @@ export default class AssetModel extends Parse.Object {
     if (parseFile) {
       newAssetModel.set(PARSE_FILE_KEY, parseFile) // Asset's parse file
     }
+
     return newAssetModel
   }
 }
