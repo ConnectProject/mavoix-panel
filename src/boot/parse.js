@@ -1,4 +1,3 @@
-
 import AssetModel from '~/models/Asset'
 import DeviceUserModel from '~/models/DeviceUser'
 import Parse from 'parse'
@@ -10,9 +9,8 @@ import TabModel from '~/models/Tab'
 ** Initilize parse client with its models
 */
 export default ({ app, Vue }) => {
-  const { PARSE_APP_ID, PARSE_JS_KEY, PARSE_URL } = process.env
-  Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY)
-  Parse.serverURL = PARSE_URL
+  Parse.initialize(process.env.PARSE_APP_ID, process.env.PARSE_JS_KEY)
+  Parse.serverURL = process.env.PARSE_URL
 
   /* Models */
   Parse.Object.registerSubclass('Tab', TabModel)
@@ -23,4 +21,5 @@ export default ({ app, Vue }) => {
   Parse.User.allowCustomUserClass(true)
   Parse.User.registerSubclass('DeviceUser', DeviceUserModel)
   Parse.User.registerSubclass('ParseUser', ParseUserModel)
+  // throw new Error('error')
 }

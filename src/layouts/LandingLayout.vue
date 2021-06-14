@@ -1,10 +1,3 @@
-<style scoped>
-  .custom_tab {
-    width:120px;
-    min-height:auto !important
-  }
-</style>
-
 <template>
   <q-layout view="lHh lpr lFf">
     <!-- (Optional) The Header -->
@@ -92,7 +85,7 @@
           <!-- Item 2.2 -->
           <div class="col-md-5 col-lg-3 col-xs-12 col-sm-12">
             <q-img
-              src="statics/mavoix.jpg"
+              src="mavoix.jpg"
               contain
               style="max-width:500px;height:90%"
             />
@@ -110,7 +103,7 @@
           <div class="col-md-1 col-lg-3 col-xs-12 col-sm-12" />
           <div class="col-md-5 col-lg-3 col-xs-12 col-sm-12">
             <q-img
-              src="statics/connect.jpg"
+              src="connect.jpg"
               style="width:500px"
             />
           </div>
@@ -177,7 +170,7 @@
           <!-- Item 2.2 -->
           <div class="col-md-5 col-lg-3 col-xs-12 col-sm-12">
             <q-img
-              src="statics/data.svg"
+              src="data.svg"
               style="width:500px"
             />
           </div>
@@ -238,3 +231,10 @@ export default {
   name: 'LayoutLanding'
 }
 </script>
+
+<style scoped>
+  .custom_tab {
+    width:120px;
+    min-height:auto !important
+  }
+</style>
