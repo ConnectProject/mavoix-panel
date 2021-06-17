@@ -28,7 +28,8 @@ export const setImages = (state, obj) => {
     }
     console.log(lang)
     console.log(obj.text)
-    state.imagesSelected = state.images.filter(word => word.names[lang]?.includes(obj.text)).slice(0, 10)
+    state.imagesSelected = state.images.filter(image => image.names[lang]?.filter(name => name.includes(obj.text)).length).slice(0, 20)
+      .map(image => Object.assign(image, { name: image.names[lang].filter(name => name.includes(obj.text))[0] }))
   } else {
     state.imagesSelected = []
   }

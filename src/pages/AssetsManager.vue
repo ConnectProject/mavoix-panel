@@ -1,30 +1,3 @@
-<!-- eslint-disable max-lines */ -->
-
-<style lang="stylus" scoped>
-.content-start
-  padding-left 0px !important
-  padding-top 90px !important // set to avoid that images are hindered by the search form
-.image-upload-wrapper
-  display hidden
-input[type='file']
-  position fixed
-  left 100%
-  top 100%
-.card{
-  max-height 120px
-}
-.rounded-borders{
-  border-radius 4px !important
-}
-.card .erase{
-  opacity 0
-  transition 0.2s
-}
-.card:hover .erase{
-  opacity 1
-}
-</style>
-
 <template>
   <q-page
     v-if="!loading"
@@ -68,7 +41,7 @@ input[type='file']
         @click="editAsset(asset)"
         @keyup.enter="saveAsset(asset.name)"
       >
-        <template v-slot:append>
+        <template #append>
           <q-btn
             round
             dense
@@ -97,21 +70,21 @@ input[type='file']
         basic
       />
       <q-input
-        v-model="asset.names[lang]"
+        v-model="asset.name"
         class="absolute-bottom"
         label="Name"
         style="background-color:rgba(255,255,255,0.7)"
         filled
-        @keyup.enter="addAsset(asset.names[lang],asset.url)"
+        @keyup.enter="addAsset(asset.name,asset.url)"
       >
-        <template v-slot:append>
+        <template #append>
           <q-btn
             round
             dense
             color="blue"
             size="m"
             icon="add"
-            @click="addAsset(asset.names[lang],asset.url)"
+            @click="addAsset(asset.name,asset.url)"
           >
             <q-tooltip>
               {{ $t('generic.add') }}
@@ -172,7 +145,7 @@ input[type='file']
             outlined
             label="Rechercher"
           >
-            <template v-slot:append>
+            <template #append>
               <q-icon name="search" />
             </template>
           </q-input>
@@ -183,6 +156,7 @@ input[type='file']
 </template>
 
 <script>
+/* eslint-disable max-lines */
 // import AssetEdit from '~/components/dialogs/AssetEdit'
 export default {
   name: 'DialogAssetsManager',
@@ -343,3 +317,28 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.content-start
+  padding-left 0px !important
+  padding-top 90px !important // set to avoid that images are hindered by the search form
+.image-upload-wrapper
+  display hidden
+input[type='file']
+  position fixed
+  left 100%
+  top 100%
+.card{
+  max-height 120px
+}
+.rounded-borders{
+  border-radius 4px !important
+}
+.card .erase{
+  opacity 0
+  transition 0.2s
+}
+.card:hover .erase{
+  opacity 1
+}
+</style>
