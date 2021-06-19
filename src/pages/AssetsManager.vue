@@ -298,9 +298,10 @@ export default {
             this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
           }
         })
-          .catch(() =>
-            console.error('Failed to upload files')
-          )
+          .catch((error) => {
+            this.$q.notify({ position: 'top-right', message: 'Error uploading image: ' + error.message, color: 'red' })
+            console.error(error)
+          })
       }
     }
 

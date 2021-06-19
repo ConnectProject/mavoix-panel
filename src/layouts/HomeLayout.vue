@@ -1,4 +1,3 @@
-<!-- eslint-disable max-lines -->
 
 <template>
   <div @dragenter="onDragEnter">
@@ -200,6 +199,7 @@
 </template>
 
 <script>
+/* eslint-disable max-lines */
 import Camera from '~/components/Camera'
 
 /* Dialogs */

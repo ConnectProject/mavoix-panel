@@ -1,16 +1,3 @@
-<style lang="stylus" scoped>
-.card
-  min-width 140px
-  min-height 130px
-.rounded-borders{
-  border-radius 4px !important
-}
-.relative{
-  position relative !important
-}
-
-</style>
-
 <template>
   <q-dialog
     ref="dialog"
@@ -254,6 +241,7 @@ export default {
 
     /**
      * When a file has been uploaded create the asset
+     * Never used
      * @returns {void}
      */
     onInputFile ({ target: { files } }) {
@@ -274,3 +262,15 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.card
+  min-width 140px
+  min-height 130px
+.rounded-borders{
+  border-radius 4px !important
+}
+.relative{
+  position relative !important
+}
+</style>

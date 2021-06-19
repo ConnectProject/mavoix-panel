@@ -1,4 +1,5 @@
 import AssetModel, { NAME_KEY } from '~/models/Asset'
+import Jimp from 'jimp'
 import Parse from 'parse'
 import Unidecode from 'unidecode'
 
@@ -82,12 +83,24 @@ export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editin
  * @param {File} file the file to upload
  */
 
-export const uploadFile = ({ commit }, file) => {
+export const uploadFile = async ({ commit }, file) => {
+  const image = await Jimp.read(await file.arrayBuffer())
+  const maxDim = Math.max(image.bitmap.width, image.bitmap.height)
+  if (maxDim > 512) {
+    if (maxDim === image.bitmap.width) {
+      image.resize(512, Jimp.AUTO)
+    } else {
+      image.resize(Jimp.AUTO, 512)
+    }
+  }
+  const buf = await image.getBufferAsync(Jimp.AUTO)
+  var blob = new Blob([buf])
+
   const name = Unidecode(file.name)
     .replace(/^[^a-z0-9]+/i, '')
     .replace(/[^a-z0-9. \-_]/gi, '_')
 
-  return new Parse.File(name, file)
+  return new Parse.File(name, blob)
     .save()
     .then((newFile) =>
       AssetModel.New(name, newFile, newFile._url, localStorage.getItem('id'))
