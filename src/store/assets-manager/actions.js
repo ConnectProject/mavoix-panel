@@ -96,22 +96,18 @@ export const uploadFile = async ({ commit }, file) => {
   const buf = await image.getBufferAsync(Jimp.AUTO)
   var blob = new Blob([buf])
 
-  const name = Unidecode(file.name)
+  const filename = Unidecode(file.name)
     .replace(/^[^a-z0-9]+/i, '')
     .replace(/[^a-z0-9. \-_]/gi, '_')
 
-  return new Parse.File(name, blob)
+  return new Parse.File(filename, blob)
     .save()
     .then((newFile) =>
-      AssetModel.New(name, newFile, newFile._url, localStorage.getItem('id'))
+      AssetModel.New(filename.replace(/\.[^/.]+$/, ""), newFile, newFile._url, localStorage.getItem('id'))
         .save()
     )
     .then((asset) => {
       commit('addAsset', asset)
-    })
-    .catch((err) => {
-      commit('setError', err)
-      throw err
     })
 }
 
