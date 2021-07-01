@@ -1,11 +1,7 @@
 module.exports = {
   presets: [
     [
-      '@quasar/babel-preset-app', {
-        targets: {
-          node: 'current'
-        }
-      }
+      '@quasar/babel-preset-app'
     ]
   ],
   plugins: [

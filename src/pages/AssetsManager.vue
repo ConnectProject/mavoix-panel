@@ -160,6 +160,9 @@
 // import AssetEdit from '~/components/dialogs/AssetEdit'
 export default {
   name: 'DialogAssetsManager',
+  components: {
+    // AssetEdit
+  },
   data () {
     return {
       search: '',
@@ -232,9 +235,6 @@ export default {
       }
     }
   },
-  // components: {
-  //   AssetEdit
-  // },
   mounted () {
     this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
     this.search = ''
@@ -288,7 +288,7 @@ export default {
      */
     onInputFile ({ target: { files } }) {
       if (files.length > 0) {
-        const {length} = files
+        const { length } = files
         const promises = Array.from(files).map((file) =>
           this.$store.dispatch('assetsManager/uploadFile', file))
         Promise.all(promises).then(res => {
@@ -321,25 +321,27 @@ export default {
 
 <style lang="stylus" scoped>
 .content-start
-  padding-left 0px !important
+  padding-left 0 !important
   padding-top 90px !important // set to avoid that images are hindered by the search form
+
 .image-upload-wrapper
   display hidden
+
 input[type='file']
   position fixed
   left 100%
   top 100%
-.card{
+
+.card
   max-height 120px
-}
-.rounded-borders{
+
+.rounded-borders
   border-radius 4px !important
-}
-.card .erase{
+
+.card .erase
   opacity 0
-  transition 0.2s
-}
-.card:hover .erase{
+  transition .2s
+
+.card:hover .erase
   opacity 1
-}
 </style>

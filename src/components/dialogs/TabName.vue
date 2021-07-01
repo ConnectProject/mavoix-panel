@@ -1,3 +1,5 @@
+<!-- does not seem to be used anymore -->
+
 <template>
   <q-dialog
     :value="opened"

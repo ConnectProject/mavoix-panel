@@ -247,7 +247,7 @@ export default {
     onInputFile ({ target: { files } }) {
       if (files.length > 0) {
         let file = ''
-        const {length} = files
+        const { length } = files
         for (let i = 0; i < files.length; i++) {
           file = files[i]
           this.$store.dispatch('assetsManager/uploadFile', file)
@@ -267,10 +267,10 @@ export default {
 .card
   min-width 140px
   min-height 130px
-.rounded-borders{
+
+.rounded-borders
   border-radius 4px !important
-}
-.relative{
+
+.relative
   position relative !important
-}
 </style>

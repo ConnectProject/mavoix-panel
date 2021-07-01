@@ -1,3 +1,5 @@
+<!-- This component does not seem to be used anywhere -->
+
 <template>
   <q-page-sticky
     position="bottom-right"

@@ -1,19 +1,3 @@
-<style lang="stylus" scoped>
-.image-wrapper
-  opacity 0
-  transition .2s linear
-.image-wrapper:hover
-  opacity 1
-.asset-image
-  opacity 1
-  cursor pointer
-  transition .2s linear
-.asset-image:hover
-  opacity .4
-.action-icon
-  font-size 2em
-</style>
-
 <template>
   <q-dialog
     :value="opened"
@@ -32,7 +16,7 @@
           filled
           @input="onSetName"
         >
-          <template v-slot:after>
+          <template #after>
             <q-btn
               color="accent"
               round
@@ -158,12 +142,12 @@ export default {
      */
     onSubmit () {
       switch (this.mode) {
-      case 'edit':
-        this.$store.commit('tabEditor/updateItem')
-        break
-      case 'new':
-        this.$store.commit('tabEditor/addItem')
-        break
+        case 'edit':
+          this.$store.commit('tabEditor/updateItem')
+          break
+        case 'new':
+          this.$store.commit('tabEditor/addItem')
+          break
       }
       this.onClose()
     },
@@ -210,3 +194,23 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.image-wrapper
+  opacity 0
+  transition .2s linear
+
+.image-wrapper:hover
+  opacity 1
+
+.asset-image
+  opacity 1
+  cursor pointer
+  transition .2s linear
+
+.asset-image:hover
+  opacity .4
+
+.action-icon
+  font-size 2em
+</style>

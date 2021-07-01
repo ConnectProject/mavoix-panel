@@ -1,46 +1,3 @@
-<!-- eslint-disable max-lines -->
-<style lang="stylus" scoped>
-.container
-  width 100%
-.item-img
-  cursor pointer
-  transition .1s linear
-  width: 100%;
-  background-position: center !important
-  background-size: cover !important
-  background-repeat: no-repeat !important
-  transition: background 0.1s
-  background: black
-.item-img:hover
-  opacity 0.4
-.action-icon-wrapper
-  opacity 0
-  transition .2s linear
-.action-icon-wrapper:hover
-  opacity 1
-.action-icon
-  font-size 2em
-.items-container
-  margin-top 24px
-  margin-left 4px
-.holder-container
-  padding-left 0px
-   // for that images are not hindered by the toolbar
-   // as the toolbar dimension is variable, it would be better
-   // to find a more flexible way to achieve this
-  padding-top 6rem
-.dropping
-  display none
-.ghost
-  opacity 0
-  div
-    opacity 0
-    position relative
-    width 100% !important
-    height 100% !important
-
-</style>
-
 <template>
   <!-- Print nothing if loading -->
   <div v-if="loading" />
@@ -78,9 +35,7 @@
             contain
           >
             <!-- :class="'item-img class-'+ item.asset.id" -->
-            <div
-              class="absolute-bottom"
-            >
+            <div class="absolute-bottom">
               <!-- Item's name -->
               <div class="text-center text-subtitle2">
                 {{ item.name }}
@@ -146,7 +101,7 @@
           filled
           @input="setHexColor"
         >
-          <template v-slot:append>
+          <template #append>
             <q-icon
               name="colorize"
               class="cursor-pointer"
@@ -269,6 +224,7 @@
 </template>
 
 <script>
+/* eslint-disable max-lines */
 import AddAssets from '~/components/AddAssets'
 import DialogTabItem from '~/components/dialogs/TabItem'
 import { QSelect } from 'quasar'
@@ -509,3 +465,55 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.container
+  width 100%
+
+.item-img
+  cursor pointer
+  transition .1s linear
+  width 100%
+  background-position center !important
+  background-size cover !important
+  background-repeat no-repeat !important
+  transition background .1s
+  background black
+
+.item-img:hover
+  opacity .4
+
+.action-icon-wrapper
+  opacity 0
+  transition .2s linear
+
+.action-icon-wrapper:hover
+  opacity 1
+
+.action-icon
+  font-size 2em
+
+.items-container
+  margin-top 24px
+  margin-left 4px
+
+.holder-container
+  padding-left 0px
+    // for that images are not hindered by the toolbar
+    // as the toolbar dimension is variable, it would be better
+    // to find a more flexible way to achieve this
+
+  padding-top 6rem
+
+.dropping
+  display none
+
+.ghost
+  opacity 0
+
+  div
+    opacity 0
+    position relative
+    width 100% !important
+    height 100% !important
+</style>

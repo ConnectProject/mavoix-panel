@@ -1,3 +1,5 @@
+// all the devices module is no longer used
+
 export default {
   loading: true, // true if devices are loading
   error: null, // an error

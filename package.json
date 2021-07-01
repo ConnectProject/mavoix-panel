@@ -40,6 +40,7 @@
     "babel-plugin-module-resolver": "^4",
     "eslint": "^7.28.0",
     "eslint-config-naat": "git+https://github.com/neuroanatomy/eslint-config-naat.git",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^7.11.0",
     "eslint-webpack-plugin": "^2.5.4",
     "workbox-webpack-plugin": "^6.1.5"
@@ -50,6 +51,7 @@
     "yarn": ">= 1.6.0"
   },
   "browserslist": [
-    "last 1 version, not dead, ie >= 11"
+    "defaults",
+    "ie >= 11"
   ]
 }

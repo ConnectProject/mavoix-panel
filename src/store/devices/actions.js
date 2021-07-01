@@ -1,3 +1,5 @@
+// all the devices module is no longer used
+
 import DeviceUser, { USERNAME_KEY } from '~/models/DeviceUser'
 
 import Parse from 'parse'

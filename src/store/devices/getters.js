@@ -1,3 +1,5 @@
+// all the devices module is no longer used
+
 /* eslint-disable valid-jsdoc */
 /* eslint-disable no-shadow */
 /**

@@ -1,3 +1,5 @@
+<!-- this vue component does not seem to be used anywhere -->
+
 <template>
   <div
     id="app"
@@ -204,11 +206,10 @@ export default {
 }
 .moving-card {
   opacity: 0.5;
-  background: #F7FAFC;
+  background: #f7fafc;
   border: 1px solid #4299e1;
 }
-.li{
-  display: inline-block
+.li {
+  display: inline-block;
 }
-
 </style>

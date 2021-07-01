@@ -6,7 +6,7 @@ import VueTagsInput from '@johmun/vue-tags-input'
 ** Add project's components globally
 */
 export default ({ Vue }) => {
-  Vue.component('fab', Fab)
-  Vue.component('tags-input', VueTagsInput)
-  Vue.component('draggable', Draggable)
+  Vue.component('Fab', Fab) // never used
+  Vue.component('TagsInput', VueTagsInput) // never used
+  Vue.component('Draggable', Draggable)
 }

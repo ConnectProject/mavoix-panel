@@ -1,3 +1,5 @@
+// all the devices module is no longer used
+
 /**
  * Set devices
  * @param {State} state vuex state

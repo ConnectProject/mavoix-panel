@@ -141,9 +141,7 @@
                 :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
               >
                 <q-item-section>
-                  <q-item-label
-                    style="color:black;text-align:center"
-                  >
+                  <q-item-label style="color:black;text-align:center">
                     {{ tab.get('name') }}
                   </q-item-label>
                 </q-item-section>
@@ -191,9 +189,9 @@
       <!-- <dialog-assets-manager @showCam="isCamera = true" /> -->
       </q-page-container>
 
-      <dialog-tab-name />
-      <dialog-device-name />
-      <dialog-device-invitation />
+      <!-- <dialog-tab-name /> -->
+      <!-- <dialog-device-name /> -->
+      <!-- <dialog-device-invitation /> -->
     </q-layout>
   </div>
 </template>
@@ -205,9 +203,9 @@ import Camera from '~/components/Camera'
 /* Dialogs */
 // import DialogAssetsManager from '~/components/dialogs/AssetsManager'
 
-import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
-import DialogDeviceName from '~/components/dialogs/DeviceName'
-import DialogTabName from '~/components/dialogs/TabName'
+// import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
+// import DialogDeviceName from '~/components/dialogs/DeviceName'
+// import DialogTabName from '~/components/dialogs/TabName'
 
 import ListItemLoading from '~/components/ListItemLoading'
 
@@ -221,10 +219,9 @@ export default {
     QrcodeVue,
     ListItemLoading,
     // DialogAssetsManager,
-    DialogTabName,
-    DialogDeviceName,
-    DialogDeviceInvitation,
-    Camera
+    // DialogTabName,
+    // DialogDeviceName,
+    // DialogDeviceInvitation,
   },
   data () {
     return {
@@ -323,7 +320,7 @@ export default {
     uploadFile ({ target: { files } }) {
       if (files.length > 0) {
         let file = ''
-        const {length} = files
+        const { length } = files
         for (let i = 0; i < files.length; i++) {
           file = files[i]
           this.$store.dispatch('assetsManager/uploadFile', file)
@@ -352,28 +349,27 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.transparent{
-  opacity: 0
-}
-.menu-list .q-item {
-  border-radius: 0 32px 32px 0
+.transparent
+  opacity 0
+
+.menu-list .q-item
+  border-radius 0 32px 32px 0
   margin 1px 1px 0 10px
   color black
-}
-.drag-enter{
+
+.drag-enter
   background red !important
-}
-.dnd{
+
+.dnd
   position fixed
   opacity .95
-}
-.camera{
+
+.camera
   position fixed
-  background-color rgba(0,0,0,0.8)
-}
-.dotted{
+  background-color rgba(0, 0, 0, .8)
+
+.dotted
   border 2px dotted white
   border-radius 8px
-  padding 24px 32px;
-}
+  padding 24px 32px
 </style>
