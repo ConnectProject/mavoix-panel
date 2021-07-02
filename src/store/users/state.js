@@ -4,6 +4,7 @@ export default {
 
   /**
    * Dialog to create new device
+   * Never called, seems to be just a copy/paste from store/devices
    */
   nameDialog: {
     name: '', // the new device name

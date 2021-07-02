@@ -73,6 +73,7 @@ export const closeDialog = (state) => {
 
 /**
  * Open name dialog
+ * Never called
  * @param {State} state vuex state
  * @returns {void}
  */

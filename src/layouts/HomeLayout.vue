@@ -158,7 +158,7 @@
                   <q-icon name="add" />
                 </q-item-section>
               </q-item>
-            <!--
+              <!--
             <q-item clickable v-ripple @click="$store.commit('tabs/openDialog')">
               <q-item-section avatar>
                 <q-icon name="add" />
@@ -186,10 +186,10 @@
 
       <q-page-container>
         <router-view />
-      <!-- <dialog-assets-manager @showCam="isCamera = true" /> -->
+        <!-- <dialog-assets-manager @showCam="isCamera = true" /> -->
       </q-page-container>
 
-      <!-- <dialog-tab-name /> -->
+      <dialog-tab-name />
       <!-- <dialog-device-name /> -->
       <!-- <dialog-device-invitation /> -->
     </q-layout>
@@ -205,7 +205,7 @@ import Camera from '~/components/Camera'
 
 // import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 // import DialogDeviceName from '~/components/dialogs/DeviceName'
-// import DialogTabName from '~/components/dialogs/TabName'
+import DialogTabName from '~/components/dialogs/TabName'
 
 import ListItemLoading from '~/components/ListItemLoading'
 
@@ -219,9 +219,10 @@ export default {
     QrcodeVue,
     ListItemLoading,
     // DialogAssetsManager,
-    // DialogTabName,
+    DialogTabName,
     // DialogDeviceName,
     // DialogDeviceInvitation,
+    Camera
   },
   data () {
     return {
