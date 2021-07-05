@@ -4,13 +4,13 @@
     @show="onShow"
     @before-hide="onBeforeHide"
   >
-    <q-card class="no-margin transparent">
+    <q-card class="card no-margin transparent">
       <div class="absolute">
         <!-- video element -->
         <video
           ref="video"
-          width="480"
-          height="480"
+          :width="width"
+          :height="height"
           autoplay
         />
         <!-- where the image taken will be displayed -->
@@ -18,8 +18,8 @@
           v-if="image"
           class="absolute-top-left"
           :src="image"
-          width="480"
-          height="480"
+          :width="width"
+          :height="height"
         >
       </div>
       <div class="footer column justify-end">
@@ -78,8 +78,8 @@
       <!-- canvas to draw the screenshots -->
       <canvas
         ref="canvas"
-        width="480"
-        height="480"
+        :width="width"
+        :height="height"
       />
     </q-card>
   </q-dialog>
@@ -93,7 +93,9 @@ export default {
     return {
       title: '',
       image: null,
-      showCam: false
+      showCam: false,
+      width: 480,
+      height: 480
     }
   },
   methods: {
@@ -103,7 +105,8 @@ export default {
      * @returns {void}
      */
     capture () {
-      this.$refs.canvas.getContext('2d').drawImage(this.$refs.video, 0, 0, 480, 480)
+      this.$refs.canvas.getContext('2d')
+        .drawImage(this.$refs.video, 0, 0, this.width, this.height)
       this.image = this.$refs.canvas.toDataURL('image/png')
       setTimeout(() => {
         this.$refs.titleImage.focus()
@@ -130,7 +133,6 @@ export default {
      */
     retake () {
       this.image = null
-      this.file = null
       this.title = ''
     },
 
@@ -157,7 +159,16 @@ export default {
 
     onShow () {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: { width: 480, height: 480 } }).then(stream => {
+        const contraints = {
+          video: {
+            width: 480,
+            height: 480
+          }
+        }
+        navigator.mediaDevices.getUserMedia(contraints).then(stream => {
+          const settings = stream.getTracks()[0].getSettings()
+          this.width = settings.width
+          this.height = settings.height
           try {
             this.$refs.video.srcObject = stream
           } catch (error) {
@@ -179,6 +190,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.card
+  max-width unset
+
 .footer
   height 100%
   width 100%
