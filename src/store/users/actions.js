@@ -37,29 +37,26 @@ import ParseUser from '~/models/ParseUser'
  * @param {String} name name of the new device
  */
 
-export const create = ({ commit }, [name, password]) => {
-  ParseUser.Create(name, password)
-    .signUp()
-    .then((model) => {
-      localStorage.id = model._getId()
-      localStorage.username = name
-      localStorage.password = password
-      commit('addAndOpenDevice', { model })
-    })
-    .catch((err) => {
-      commit('setError', err)
-    })
+export const create = async ({ commit }, [name, password]) => {
+  try {
+    const model = await ParseUser.Create(name, password).signUp()
+    localStorage.id = model._getId()
+    localStorage.username = name
+    localStorage.password = password
+    commit('addAndOpenDevice', { model })
+  } catch (err) {
+    commit('setError', err)
+  }
 }
 
-export const connect = ({ commit }, [name, password]) => {
-  ParseUser.logIn(name, password)
-    .then((model) => {
-      localStorage.id = model._getId()
-      localStorage.username = name
-      localStorage.password = password
-      commit('addAndOpenDevice', { model })
-    })
-    .catch((err) => {
-      commit('setError', err)
-    })
+export const connect = async ({ commit }, [name, password]) => {
+  try {
+    const model = await ParseUser.logIn(name, password)
+    localStorage.id = model._getId()
+    localStorage.username = name
+    localStorage.password = password
+    commit('addAndOpenDevice', { model })
+  } catch (err) {
+    commit('setError', err)
+  }
 }
