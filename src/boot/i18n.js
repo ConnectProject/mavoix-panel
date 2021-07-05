@@ -4,6 +4,9 @@ import messages from 'src/i18n'
 /*
 ** Initialize internationalization component
 */
+
+let i18n
+
 export default ({ app, Vue }) => {
   Vue.use(VueI18n)
 
@@ -11,5 +14,9 @@ export default ({ app, Vue }) => {
     locale: 'fr-fr',
     fallbackLocale: 'fr-fr',
     messages
-  })
+  });
+
+  ({ i18n } = app)
 }
+
+export { i18n }

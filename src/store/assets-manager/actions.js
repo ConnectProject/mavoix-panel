@@ -1,7 +1,9 @@
 import AssetModel, { NAME_KEY } from '~/models/Asset'
 import Jimp from 'jimp'
+import { Notify } from 'quasar'
 import Parse from 'parse'
 import Unidecode from 'unidecode'
+import { i18n } from '~/boot/i18n.js'
 
 import { modelFromAsset } from './utils'
 
@@ -78,12 +80,37 @@ export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editin
 }
 
 /**
+ * Upload files and create the assets
+ * @param {Context} ctx context passed vuex
+ * @param {[File]} files array of files to upload
+ */
+
+export const uploadFiles = async ({ commit }, files) => {
+  const { length } = files
+  if (length > 0) {
+    const promises = Array.from(files).map((file) =>
+      uploadFile({ commit }, file))
+    try {
+      await Promise.all(promises)
+      if (length > 1) {
+        Notify.create({ position: 'top-right', message: length + i18n.t('dnd.filesSaved'), color: 'blue' })
+      } else {
+        Notify.create({ position: 'top-right', message: i18n.t('dnd.fileSaved'), color: 'blue' })
+      }
+    } catch (error) {
+      console.error(error)
+      Notify.create({ position: 'top-right', message: 'Error uploading image: ' + error.message, color: 'red' })
+    }
+  }
+}
+
+/**
  * Upload a file and create the asset
  * @param {Context} ctx context passed vuex
  * @param {File} file the file to upload
  */
 
-export const uploadFile = async ({ commit }, file) => {
+const uploadFile = async ({ commit }, file) => {
   const image = await Jimp.read(await file.arrayBuffer())
   const maxDim = Math.max(image.bitmap.width, image.bitmap.height)
   if (maxDim > 512) {
@@ -100,15 +127,9 @@ export const uploadFile = async ({ commit }, file) => {
     .replace(/^[^a-z0-9]+/i, '')
     .replace(/[^a-z0-9. \-_]/gi, '_')
 
-  return new Parse.File(filename, blob)
-    .save()
-    .then((newFile) =>
-      AssetModel.New(filename.replace(/\.[^/.]+$/, ""), newFile, newFile._url, localStorage.getItem('id'))
-        .save()
-    )
-    .then((asset) => {
-      commit('addAsset', asset)
-    })
+  const newFile = await new Parse.File(filename, blob).save()
+  const asset = await AssetModel.New(filename.replace(/\.[^/.]+$/, ""), newFile, newFile._url, localStorage.getItem('id')).save()
+  commit('addAsset', asset)
 }
 
 export const addAsset = ({ commit }, obj) => {

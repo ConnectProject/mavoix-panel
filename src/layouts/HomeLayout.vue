@@ -1,24 +1,11 @@
 
 <template>
   <div @dragenter="onDragEnter">
-    <!-- Camera zone -->
-    <div
-      v-if="isCamera"
-      class="camera z-max text-center row items-center justify-center full-height full-width text-white"
-    >
-      <q-icon
-        name="close"
-        class="q-pa-xl cursor-pointer absolute-top-right"
-        style="font-size: 3em"
-        @click="isCamera = false"
-      />
-      <camera />
-    </div>
 
     <!-- Dropzone -->
     <!-- This Dropzone seems to be never visible
     We should remove this part if we don't use it anymore (or is it a hidden feature?) -->
-    <div
+    <!-- <div
       ref="dnd"
       class="dnd z-max hidden text-center row items-center justify-center full-height full-width bg-black text-white"
     >
@@ -36,7 +23,7 @@
         class="fixed full-height full-width transparent"
         @dragleave="onDragLeave"
       >
-        <!-- full size multiple-files input -->
+        <!- full size multiple-files input ->
         <input
           type="file"
           class="full-height full-width transparent"
@@ -44,7 +31,7 @@
           @input="uploadFile"
         >
       </div>
-    </div>
+    </div> -->
 
     <q-layout view="hHh Lpr lff">
       <!-- Toolbar -->
@@ -186,7 +173,6 @@
 
       <q-page-container>
         <router-view />
-        <!-- <dialog-assets-manager @showCam="isCamera = true" /> -->
       </q-page-container>
 
       <dialog-tab-name />
@@ -198,7 +184,6 @@
 
 <script>
 /* eslint-disable max-lines */
-import Camera from '~/components/Camera'
 
 /* Dialogs */
 // import DialogAssetsManager from '~/components/dialogs/AssetsManager'
@@ -219,15 +204,13 @@ export default {
     QrcodeVue,
     ListItemLoading,
     // DialogAssetsManager,
-    DialogTabName,
+    DialogTabName
     // DialogDeviceName,
-    // DialogDeviceInvitation,
-    Camera
+    // DialogDeviceInvitation
   },
   data () {
     return {
-      dnd: false,
-      isCamera: false,
+      // dnd: false,
       drawerOpen: this.$q.platform.is.desktop
     }
   },
@@ -242,6 +225,7 @@ export default {
 
     /**
      * @returns {Object} all devices
+     * never called
      */
     devices () {
       return this.$store.getters['devices/devices']
@@ -274,7 +258,6 @@ export default {
       this.$store.dispatch('devices/loadDevices')
       this.$store.dispatch('global/initTTS')
     }
-    this.$root.$on('showCam', () => { this.isCamera = true })
   },
   // watch: {
   //   /**
@@ -318,22 +301,22 @@ export default {
      * This function may not be used if the DropZone is not used
      * @returns {void}
      **/
-    uploadFile ({ target: { files } }) {
-      if (files.length > 0) {
-        let file = ''
-        const { length } = files
-        for (let i = 0; i < files.length; i++) {
-          file = files[i]
-          this.$store.dispatch('assetsManager/uploadFile', file)
-        }
-        if (length > 1) {
-          this.$q.notify({ position: 'top-right', message: length + this.$t('dnd.filesSaved'), color: 'blue' })
-        } else {
-          this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
-        }
-      }
-      this.$refs.dnd.classList.add('hidden')
-    },
+    // uploadFile ({ target: { files } }) {
+    //   if (files.length > 0) {
+    //     let file = ''
+    //     const { length } = files
+    //     for (let i = 0; i < files.length; i++) {
+    //       file = files[i]
+    //       this.$store.dispatch('assetsManager/uploadFile', file)
+    //     }
+    //     if (length > 1) {
+    //       this.$q.notify({ position: 'top-right', message: length + this.$t('dnd.filesSaved'), color: 'blue' })
+    //     } else {
+    //       this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
+    //     }
+    //   }
+    //   this.$refs.dnd.classList.add('hidden')
+    // },
 
     /**
      * Go to auth page
@@ -364,10 +347,6 @@ export default {
 .dnd
   position fixed
   opacity .95
-
-.camera
-  position fixed
-  background-color rgba(0, 0, 0, .8)
 
 .dotted
   border 2px dotted white

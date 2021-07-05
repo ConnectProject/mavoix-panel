@@ -3,6 +3,9 @@
     v-if="!loading"
     class="row content-start"
   >
+
+    <camera ref="camera" />
+
     <!-- Assets -->
     <q-card
       v-for="(asset, index) in assetsSorted"
@@ -12,7 +15,7 @@
       <q-img
         v-if="asset.url"
         class="fit rounded-borders"
-        :ratio="16 / 9"
+        ratio="1"
         :src="asset.url"
         contain
         basic
@@ -65,7 +68,7 @@
       <q-img
         v-if="asset.url"
         class="fit rounded-borders"
-        :ratio="16 / 9"
+        ratio="1"
         :src="asset.url"
         basic
       />
@@ -158,16 +161,20 @@
 <script>
 /* eslint-disable max-lines */
 // import AssetEdit from '~/components/dialogs/AssetEdit'
+
+import Camera from '~/components/dialogs/Camera'
 export default {
   name: 'DialogAssetsManager',
   components: {
+    Camera
     // AssetEdit
   },
   data () {
     return {
       search: '',
       lang: 'fr',
-      assetsSpecial: []
+      assetsSpecial: [],
+      icon: true
     }
   },
   computed: {
@@ -248,7 +255,7 @@ export default {
   },
   methods: {
     showCam () {
-      this.$root.$emit('showCam')
+      this.$refs.camera.showCam = true
     },
     activateSearch () {
       // do nothing.
@@ -287,22 +294,7 @@ export default {
      * @returns {void}
      */
     onInputFile ({ target: { files } }) {
-      if (files.length > 0) {
-        const { length } = files
-        const promises = Array.from(files).map((file) =>
-          this.$store.dispatch('assetsManager/uploadFile', file))
-        Promise.all(promises).then(res => {
-          if (length > 1) {
-            this.$q.notify({ position: 'top-right', message: length + this.$t('dnd.filesSaved'), color: 'blue' })
-          } else {
-            this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
-          }
-        })
-          .catch((error) => {
-            this.$q.notify({ position: 'top-right', message: 'Error uploading image: ' + error.message, color: 'red' })
-            console.error(error)
-          })
-      }
+      this.$store.dispatch('assetsManager/uploadFiles', files)
     }
 
     /**
@@ -331,9 +323,6 @@ input[type='file']
   position fixed
   left 100%
   top 100%
-
-.card
-  max-height 120px
 
 .rounded-borders
   border-radius 4px !important

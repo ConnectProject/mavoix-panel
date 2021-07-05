@@ -4,9 +4,6 @@
   </q-page>
 </template>
 
-<style>
-</style>
-
 <script>
 export default {
   name: 'PageHome',
@@ -20,3 +17,6 @@ export default {
   }
 }
 </script>
+
+<style>
+</style>

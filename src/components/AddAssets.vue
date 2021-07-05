@@ -98,6 +98,7 @@ export default {
 
     /**
      * @return {boolean} true if the dialog should be opened
+     * Never used
      */
     opened () {
       return this.$store.getters['tabEditor/itemChoiceOpened']
@@ -244,21 +245,9 @@ export default {
      * Never used
      * @returns {void}
      */
-    onInputFile ({ target: { files } }) {
-      if (files.length > 0) {
-        let file = ''
-        const { length } = files
-        for (let i = 0; i < files.length; i++) {
-          file = files[i]
-          this.$store.dispatch('assetsManager/uploadFile', file)
-        }
-        if (length > 1) {
-          this.$q.notify({ position: 'top-right', message: length + this.$t('dnd.filesSaved'), color: 'blue' })
-        } else {
-          this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
-        }
-      }
-    }
+    // onInputFile ({ target: { files } }) {
+    //   this.$store.dispatch('assetsManager/uploadFiles', files)
+    // }
   }
 }
 </script>
