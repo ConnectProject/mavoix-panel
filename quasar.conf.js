@@ -44,6 +44,7 @@ module.exports = function (ctx) {
       scopeHoisting: true,
       vueRouterMode: 'history',
       env: dotenv.config().parsed,
+      transpileDependencies: ['idb-keyval', 'jimp', 'gifwrap', 'file-type', 'jpeg-js'],
       // vueCompiler: true,
       // gzip: true,
       // analyze: true,

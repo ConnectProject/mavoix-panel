@@ -173,6 +173,7 @@ export default {
             this.$refs.video.srcObject = stream
           } catch (error) {
             // if srcObject is not supported by the browser, use the old way
+            // but mavoix is unlikely to work with old browsers
             this.$refs.video.src = window.URL.createObjectURL(stream)
           }
         })
