@@ -5,7 +5,7 @@
     <!-- Dropzone -->
     <!-- This Dropzone seems to be never visible
     We should remove this part if we don't use it anymore (or is it a hidden feature?) -->
-    <!-- <div
+    <div
       ref="dnd"
       class="dnd z-max hidden text-center row items-center justify-center full-height full-width bg-black text-white"
     >
@@ -23,15 +23,15 @@
         class="fixed full-height full-width transparent"
         @dragleave="onDragLeave"
       >
-        <!- full size multiple-files input ->
+        <!-- full size multiple-files input -->
         <input
           type="file"
           class="full-height full-width transparent"
           multiple
-          @input="uploadFile"
+          @input="uploadFiles"
         >
       </div>
-    </div> -->
+    </div>
 
     <q-layout view="hHh Lpr lff">
       <!-- Toolbar -->
@@ -301,22 +301,10 @@ export default {
      * This function may not be used if the DropZone is not used
      * @returns {void}
      **/
-    // uploadFile ({ target: { files } }) {
-    //   if (files.length > 0) {
-    //     let file = ''
-    //     const { length } = files
-    //     for (let i = 0; i < files.length; i++) {
-    //       file = files[i]
-    //       this.$store.dispatch('assetsManager/uploadFile', file)
-    //     }
-    //     if (length > 1) {
-    //       this.$q.notify({ position: 'top-right', message: length + this.$t('dnd.filesSaved'), color: 'blue' })
-    //     } else {
-    //       this.$q.notify({ position: 'top-right', message: this.$t('dnd.fileSaved'), color: 'blue' })
-    //     }
-    //   }
-    //   this.$refs.dnd.classList.add('hidden')
-    // },
+    uploadFiles ({ target: { files } }) {
+      this.$store.dispatch('assetsManager/uploadFiles', files)
+      this.onDragLeave()
+    },
 
     /**
      * Go to auth page
