@@ -294,7 +294,7 @@ export default {
      * @returns {void}
      */
     onInputFile ({ target: { files } }) {
-      this.$store.dispatch('assetsManager/uploadFiles', files)
+      this.$store.dispatch('assetsManager/uploadFiles', { files })
     }
 
     /**

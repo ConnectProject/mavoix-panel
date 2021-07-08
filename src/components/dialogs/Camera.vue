@@ -4,23 +4,33 @@
     @show="onShow"
     @before-hide="onBeforeHide"
   >
-    <q-card class="card no-margin transparent">
+    <q-card class="card no-margin bg-grey-3">
       <div class="absolute">
         <!-- video element -->
         <video
+          v-show="!image"
           ref="video"
           :width="width"
           :height="height"
           autoplay
         />
         <!-- where the image taken will be displayed -->
-        <img
-          v-if="image"
+        <!-- <img
+          v-show="image"
+          ref="image"
           class="absolute-top-left"
-          :src="image"
+          src="image"
           :width="width"
           :height="height"
-        >
+        > -->
+      </div>
+      <!-- canvas to draw the screenshots -->
+      <div>
+        <canvas
+          ref="canvas"
+          :width="width"
+          :height="height"
+        />
       </div>
       <div class="footer column justify-end">
         <div class="snap">
@@ -75,17 +85,14 @@
           @click="showCam = false"
         />
       </div>
-      <!-- canvas to draw the screenshots -->
-      <canvas
-        ref="canvas"
-        :width="width"
-        :height="height"
-      />
+
     </q-card>
   </q-dialog>
 </template>
 
 <script>
+import 'cropperjs/dist/cropper.css';
+import Cropper from 'cropperjs';
 
 export default {
   name: 'Camera',
@@ -95,7 +102,8 @@ export default {
       image: null,
       showCam: false,
       width: 480,
-      height: 480
+      height: 480,
+      cropper: null
     }
   },
   methods: {
@@ -107,10 +115,12 @@ export default {
     capture () {
       this.$refs.canvas.getContext('2d')
         .drawImage(this.$refs.video, 0, 0, this.width, this.height)
-      this.image = this.$refs.canvas.toDataURL('image/png')
-      setTimeout(() => {
+      // this.image = this.$refs.canvas.toDataURL('image/png')
+      this.image = true
+      this.$nextTick(() => {
         this.$refs.titleImage.focus()
-      }, 20)
+        this.cropper = new Cropper(this.$refs.canvas, {});
+      })
     },
 
     /**
@@ -121,8 +131,9 @@ export default {
       if (this.title === '') {
         this.title = 'sans nom'
       }
-      const file = this.dataToFile(this.image, this.title)
-      this.$store.dispatch('assetsManager/uploadFiles', [file]).then(() => {
+      const image = this.cropper.getCroppedCanvas().toDataURL('image/png')
+      const file = this.dataToFile(image, this.title)
+      this.$store.dispatch('assetsManager/uploadFiles', { files: [file], posNotif: 'center' }).then(() => {
         this.retake()
       })
     },
@@ -134,6 +145,7 @@ export default {
     retake () {
       this.image = null
       this.title = ''
+      this.cropper?.destroy()
     },
 
     /**
@@ -181,6 +193,7 @@ export default {
     },
 
     onBeforeHide () {
+      this.image = null
       this.$refs.video.pause()
       this.$refs.video.src = ''
       this.$refs.video.srcObject.getTracks()[0].stop()
@@ -197,14 +210,14 @@ export default {
 .footer
   height 100%
   width 100%
-  position absolute
+  // position absolute
 
 .actions
   margin 10px
 
-li
-  display inline-block
-
-ul
-  height 56px
+/* Ensure the size of the image fit the container perfectly */
+canvas
+  display block
+  /* This rule is very important, please don't ignore this */
+  max-width 100%
 </style>

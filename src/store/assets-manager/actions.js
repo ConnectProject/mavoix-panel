@@ -85,7 +85,7 @@ export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editin
  * @param {[File]} files array of files to upload
  */
 
-export const uploadFiles = async ({ commit }, files) => {
+export const uploadFiles = async ({ commit }, { files, posNotif = 'top-right' }) => {
   const { length } = files
   if (length > 0) {
     const promises = Array.from(files).map((file) =>
@@ -93,13 +93,15 @@ export const uploadFiles = async ({ commit }, files) => {
     try {
       await Promise.all(promises)
       if (length > 1) {
-        Notify.create({ position: 'top-right', message: length + i18n.t('dnd.filesSaved'), color: 'blue' })
+        Notify.create({ position: posNotif, message: length + i18n.t('dnd.filesSaved'), color: 'blue' })
       } else {
-        Notify.create({ position: 'top-right', message: i18n.t('dnd.fileSaved'), color: 'blue' })
+        Notify.create({
+          position: posNotif, message: i18n.t('dnd.fileSaved'), color: 'blue'
+        })
       }
     } catch (error) {
       console.error(error)
-      Notify.create({ position: 'top-right', message: 'Error uploading image: ' + error.message, color: 'red' })
+      Notify.create({ position: posNotif, message: 'Error uploading image: ' + error.message, color: 'red' })
     }
   }
 }
