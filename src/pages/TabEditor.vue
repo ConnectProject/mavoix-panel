@@ -7,7 +7,7 @@
     class="flex items-stretch q-pa-xl holder-container"
     :style="`background: ${tab.hexColor}`"
   >
-    <div class="col-2 full-width">
+    <div class="full-width">
       <!--       <div class="col-2 row justify-center items-center">
 
       </div> -->
@@ -18,23 +18,22 @@
         tag="div"
         draggable=".item"
         ghost-class="ghost"
-        class="col-8 full-height full-width row content-start items-start q-gutter-x-md q-gutter-y-md items-container"
+        class="full-height full-width row items-start q-gutter-x-md q-gutter-y-md items-container"
       >
         <!-- Items -->
         <q-card
           v-for="(item, index) in items"
           :key="index"
-          class="col-2 item"
+          class="item"
           :v-if="!item.deleted"
         >
           <!-- Item's image -->
-          <div class="dropping" />
           <q-img
             :ratio="1"
+            class="item-img"
             :src="item.asset.url"
             contain
           >
-            <!-- :class="'item-img class-'+ item.asset.id" -->
             <div class="absolute-bottom">
               <!-- Item's name -->
               <div class="text-center text-subtitle2">
@@ -73,7 +72,7 @@
       </draggable>
     </div>
     <dialog-tab-item />
-    <add-assets />
+    <dialog-item-choice ref="itemChoice" />
 
     <q-page-sticky
       expand
@@ -225,7 +224,7 @@
 
 <script>
 /* eslint-disable max-lines */
-import AddAssets from '~/components/AddAssets'
+import DialogItemChoice from '~/components/dialogs/ItemChoice'
 import DialogTabItem from '~/components/dialogs/TabItem'
 import { QSelect } from 'quasar'
 import { SLUG_KEY } from '../models/Tab'
@@ -234,7 +233,7 @@ export default {
   name: 'PageTabEditor',
   components: {
     DialogTabItem,
-    AddAssets,
+    DialogItemChoice,
     QSelect
   },
   data () {
@@ -364,7 +363,7 @@ export default {
      */
     load () {
       this.$store.dispatch('tabEditor/loadBySlug', this.$route.params.slug)
-      this.$nextTick()
+      // this.$nextTick()
     },
 
     /**
@@ -429,9 +428,10 @@ export default {
      * @returns {void}
      */
     onAddItem () {
+      this.$refs.itemChoice.opened = true
       // this.$store.commit('tabEditor/openItemDialog', {})
-      this.$store.commit('tabEditor/openItemChoice', {})
-      this.$store.dispatch('global/initTTS')
+      // this.$store.commit('tabEditor/openItemChoice', {})
+      // this.$store.dispatch('global/initTTS')
     },
 
     // eslint-disable-next-line valid-jsdoc
@@ -473,15 +473,9 @@ export default {
 .item-img
   cursor pointer
   transition .1s linear
-  width 100%
-  background-position center !important
-  background-size cover !important
-  background-repeat no-repeat !important
-  transition background .1s
-  background black
 
 .item-img:hover
-  opacity .4
+  opacity .7
 
 .action-icon-wrapper
   opacity 0
@@ -505,15 +499,14 @@ export default {
 
   padding-top 6rem
 
-.dropping
-  display none
-
 .ghost
   opacity 0
 
+/*
   div
     opacity 0
     position relative
     width 100% !important
     height 100% !important
+*/
 </style>

@@ -32,25 +32,26 @@
         <!-- Asset input (flat button or button image) -->
         <!-- Not clear when the item is not an asset -->
         <!-- (maybe it is never the case, was the case before when we could use this to add a new image) -->
-        <q-btn
+        <!-- <q-btn
           v-if="!item.asset"
           :label="$t('tabEditor.itemDialog.selectAssetLabel')"
           color="accent"
           @click="onSetAsset"
-        />
+        /> -->
+        <!-- v-else -->
+        <!-- @click="onSetAsset" -->
         <q-img
-          v-else
+          v-if="item.asset"
           class="asset-image"
           :src="item.asset.url"
-          @click="onSetAsset"
         >
-          <div class="absolute fit flex justify-center items-center text-center image-wrapper">
+          <!-- <div class="absolute fit flex justify-center items-center text-center image-wrapper">
             <q-icon
               name="edit"
               class="action-icon"
               size="xl"
             />
-          </div>
+          </div> -->
         </q-img>
       </q-card-section>
 
@@ -174,14 +175,14 @@ export default {
      * Called when we click on the pencil when the image is opened, but no longer do anything
      * @returns {void}
      */
-    onSetAsset () {
-      this.$store.dispatch('assetsManager/openAndLoad', {
-        selectMode: true,
-        selectCallback: (asset) => {
-          this.$store.commit('tabEditor/setItemDialogAsset', asset)
-        }
-      })
-    },
+    // onSetAsset () {
+    //   this.$store.dispatch('assetsManager/openAndLoad', {
+    //     selectMode: true,
+    //     selectCallback: (asset) => {
+    //       this.$store.commit('tabEditor/setItemDialogAsset', asset)
+    //     }
+    //   })
+    // },
 
     /**
      * Call to set the item's name
@@ -196,21 +197,21 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.image-wrapper
-  opacity 0
-  transition .2s linear
+// .image-wrapper
+//   opacity 0
+//   transition .2s linear
 
-.image-wrapper:hover
-  opacity 1
+// .image-wrapper:hover
+//   opacity 1
 
-.asset-image
-  opacity 1
-  cursor pointer
-  transition .2s linear
+// .asset-image
+//   opacity 1
+//   cursor pointer
+//   transition .2s linear
 
-.asset-image:hover
-  opacity .4
+// .asset-image:hover
+//   opacity .4
 
-.action-icon
-  font-size 2em
+// .action-icon
+//   font-size 2em
 </style>

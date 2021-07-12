@@ -1,105 +1,138 @@
 <template>
   <q-page
     v-if="!loading"
-    class="row content-start"
+    class="content-start"
   >
 
     <camera ref="camera" />
 
-    <!-- Assets -->
-    <q-card
-      v-for="(asset, index) in assetsSorted"
-      :key="index"
-      class="card col-2 q-ma-md"
-    >
-      <q-img
-        v-if="asset.url"
-        class="fit rounded-borders"
-        ratio="1"
-        :src="asset.url"
-        contain
-        basic
-      />
-      <div class="erase absolute-right q-mt-sm q-mr-sm">
-        <q-btn
-          round
-          class="q-mr-xs"
-          dense
-          color="red"
-          size="q-pa-sm"
-          icon="delete"
-          @click="eraseAsset(asset)"
+    <!-- Search form -->
+    <!-- <q-page-sticky
+      expand
+      position="top"
+    > -->
+    <q-toolbar class="bg-white">
+      <q-form class="row q-ma-md">
+        <q-input
+          v-model="search"
+          outlined
+          label="Rechercher"
         >
-          <q-tooltip>
-            {{ $t('generic.delete') }}
-          </q-tooltip>
-        </q-btn>
-      </div>
-      <q-input
-        v-model="asset.name"
-        class="absolute-bottom"
-        label="Name"
-        style="background-color:rgba(255,255,255,0.7)"
-        filled
-        @click="editAsset(asset)"
-        @keyup.enter="saveAsset(asset.name)"
+          <template #append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </q-form>
+    </q-toolbar>
+    <!-- </q-page-sticky> -->
+    <!-- Assets -->
+    <div class="row">
+      <q-card
+        v-for="(asset, index) in assetsSorted"
+        :key="index"
+        class="card col-2 q-ma-md"
       >
-        <template #append>
+        <q-img
+          v-if="asset.url"
+          class="fit rounded-borders"
+          :class="selectMode?'cursor-pointer':''"
+          ratio="1"
+          :src="asset.url"
+          contain
+          basic
+          @click="toggleSelect(asset)"
+        />
+        <div
+          v-if="selectMode"
+          class="absolute-left q-mt-sm q-mr-sm"
+        >
+          <q-checkbox
+            v-model="selectedAssets"
+            :val="asset.id"
+          />
+        </div>
+        <div class="erase absolute-right q-mt-sm q-mr-sm">
           <q-btn
             round
+            class="q-mr-xs"
             dense
-            color="blue"
-            size="m"
-            icon="save"
-            @click="saveAsset(asset.name)"
+            color="red"
+            size="q-pa-sm"
+            icon="delete"
+            @click="eraseAsset(asset)"
           >
             <q-tooltip>
-              {{ $t('generic.save') }}
+              {{ $t('generic.delete') }}
             </q-tooltip>
           </q-btn>
-        </template>
-      </q-input>
-    </q-card>
-    <q-card
-      v-for="(asset, index) in images"
-      :key="'x_' + index"
-      class="card col-2 q-ma-md"
-    >
-      <q-img
-        v-if="asset.url"
-        class="fit rounded-borders"
-        ratio="1"
-        :src="asset.url"
-        basic
-      />
-      <q-input
-        v-model="asset.name"
-        class="absolute-bottom"
-        label="Name"
-        style="background-color:rgba(255,255,255,0.7)"
-        filled
-        @keyup.enter="addAsset(asset.name,asset.url)"
+        </div>
+        <q-input
+          v-model="asset.name"
+          class="absolute-bottom"
+          label="Name"
+          style="background-color:rgba(255,255,255,0.7)"
+          filled
+          @click="editAsset(asset)"
+          @keyup.enter="saveAsset(asset.name)"
+        >
+          <template #append>
+            <q-btn
+              round
+              dense
+              color="blue"
+              size="m"
+              icon="save"
+              @click="saveAsset(asset.name)"
+            >
+              <q-tooltip>
+                {{ $t('generic.save') }}
+              </q-tooltip>
+            </q-btn>
+          </template>
+        </q-input>
+      </q-card>
+      <q-card
+        v-for="(asset, index) in images"
+        :key="'x_' + index"
+        class="card col-2 q-ma-md"
       >
-        <template #append>
-          <q-btn
-            round
-            dense
-            color="blue"
-            size="m"
-            icon="add"
-            @click="addAsset(asset.name,asset.url)"
-          >
-            <q-tooltip>
-              {{ $t('generic.add') }}
-            </q-tooltip>
-          </q-btn>
-        </template>
-      </q-input>
-    </q-card>
+        <q-img
+          v-if="asset.url"
+          class="fit rounded-borders"
+          ratio="1"
+          :src="asset.url"
+          basic
+        />
+        <q-input
+          v-model="asset.name"
+          class="absolute-bottom"
+          label="Name"
+          style="background-color:rgba(255,255,255,0.7)"
+          filled
+          @keyup.enter="addAsset(asset.name,asset.url)"
+        >
+          <template #append>
+            <q-btn
+              round
+              dense
+              color="blue"
+              size="m"
+              icon="add"
+              @click="addAsset(asset.name,asset.url)"
+            >
+              <q-tooltip>
+                {{ $t('generic.add') }}
+              </q-tooltip>
+            </q-btn>
+          </template>
+        </q-input>
+      </q-card>
+    </div>
 
     <!-- Add asset button -->
     <q-fab
       class="fixed-bottom-right q-ma-md"
+      :style="selectMode?'margin-bottom: 90px; margin-right: 50px':''"
       direction="up"
       color="accent"
     >
@@ -122,10 +155,7 @@
     </q-fab>
 
     <!-- Image upload invisible wrapper -->
-    <div
-      v-if="!selectMode"
-      class="image-upload-wrapper"
-    >
+    <div class="image-upload-wrapper">
       <input
         ref="invisibleFileInput"
         type="file"
@@ -135,46 +165,29 @@
     </div>
 
     <!-- Asset edit dialog -->
-    <!-- <asset-edit v-if="!selectMode" /> -->
-    <!-- Search form -->
-    <q-page-sticky
-      expand
-      position="top"
-    >
-      <q-toolbar class="bg-white">
-        <q-form class="row q-ma-md">
-          <q-input
-            v-model="search"
-            outlined
-            label="Rechercher"
-          >
-            <template #append>
-              <q-icon name="search" />
-            </template>
-          </q-input>
-        </q-form>
-      </q-toolbar>
-    </q-page-sticky>
   </q-page>
 </template>
 
 <script>
 /* eslint-disable max-lines */
 // import AssetEdit from '~/components/dialogs/AssetEdit'
-
 import Camera from '~/components/dialogs/Camera'
+
 export default {
-  name: 'DialogAssetsManager',
+  name: 'PageAssetsManager',
   components: {
     Camera
     // AssetEdit
+  },
+  props: {
+    selectMode: Boolean
   },
   data () {
     return {
       search: '',
       lang: 'fr',
-      assetsSpecial: [],
-      icon: true
+      icon: true,
+      selectedAssets: []
     }
   },
   computed: {
@@ -191,9 +204,9 @@ export default {
     /**
      * @returns {boolean} true if the dialog should be opened
      */
-    opened () {
-      return this.$store.getters['assetsManager/opened']
-    },
+    // opened () {
+    //   return this.$store.getters['assetsManager/opened']
+    // },
 
     /**
      * @returns {boolean} true if assets are loading
@@ -216,21 +229,21 @@ export default {
      * @returns {boolean} true if assets manager opened to select asset, false if its to manage assets
      * (not sure if assets manager can still be used to selectMode)
      */
-    selectMode () {
-      return this.$store.getters['assetsManager/selectMode']
-    },
+    // selectMode () {
+    //   return this.$store.getters['assetsManager/selectMode']
+    // },
     error () {
       return this.$store.getters['assetsManager/error']
     }
   },
   watch: {
-    tabs (to, from) {
-      let lang = 'fr'
-      if (this.tabs[0]?.attributes?.language) {
-        lang = this.tabs[0].attributes.language.substring(0, 2)
-      }
-      this.lang = lang
-    },
+    // tabs (to, from) {
+    //   let lang = 'fr'
+    //   if (this.tabs[0]?.attributes?.language) {
+    //     lang = this.tabs[0].attributes.language.substring(0, 2)
+    //   }
+    //   this.lang = lang
+    // },
     search (to, from) {
       console.log(this.lang)
       this.$store.commit('global/setImages', { 'text': to, 'language': this.lang })
@@ -243,17 +256,27 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
-    this.search = ''
+    // this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
+    // this.search = ''
     let lang = 'fr'
     if (this.tabs[0]?.attributes?.language) {
       lang = this.tabs[0].attributes.language.substring(0, 2)
     }
     this.lang = lang
-    this.$store.dispatch('assetsManager/loadAssets')
+    // this.$store.dispatch('assetsManager/loadAssets')
     console.log('mounted')
   },
   methods: {
+    toggleSelect (asset) {
+      if (this.selectMode) {
+        const index = this.selectedAssets.indexOf(asset.id);
+        if (index === -1) {
+          this.selectedAssets.push(asset.id)
+        } else {
+          this.selectedAssets.splice(index, 1);
+        }
+      }
+    },
     showCam () {
       this.$refs.camera.showCam = true
     },
@@ -312,10 +335,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.content-start
-  padding-left 0 !important
-  padding-top 90px !important // set to avoid that images are hindered by the search form
-
+// .content-start
+// padding-left 0 !important
+// padding-top 90px !important // set to avoid that images are hindered by the search form
 .image-upload-wrapper
   display hidden
 

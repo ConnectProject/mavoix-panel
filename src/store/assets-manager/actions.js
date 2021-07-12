@@ -16,10 +16,10 @@ import { modelFromAsset } from './utils'
  * }
  * @returns {void}
  */
-export const openAndLoad = ({ commit, dispatch }, { selectMode = false, selectCallback }) => {
-  commit('open', { selectMode, selectCallback })
-  dispatch('loadAssets')
-}
+// export const openAndLoad = ({ commit, dispatch }, { selectMode = false, selectCallback }) => {
+//   commit('open', { selectMode, selectCallback })
+//   dispatch('loadAssets')
+// }
 
 /**
  * Load every assets for the user

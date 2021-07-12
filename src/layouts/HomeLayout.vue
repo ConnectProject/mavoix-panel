@@ -255,6 +255,7 @@ export default {
       })
     } else {
       this.$store.dispatch('tabs/loadTabs')
+      this.$store.dispatch('assetsManager/loadAssets')
       this.$store.dispatch('devices/loadDevices')
       this.$store.dispatch('global/initTTS')
     }

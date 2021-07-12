@@ -84,6 +84,7 @@ export const openNameDialog = (state) => {
 
 /**
  * Close name dialog
+ * Never called
  * @param {State} state vuex state
  * @returns {void}
  */
@@ -93,6 +94,7 @@ export const closeNameDialog = (state) => {
 
 /**
  * Set name dialog's name
+ * Never called
  * @param {State} state vuex state
  * @param {String} name the new name
  * @returns {void}

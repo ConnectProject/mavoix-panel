@@ -4,7 +4,7 @@
  * Return true if asset's manager is open
  * @param {State} state vuex state
  */
-export const opened = ({ opened }) => opened
+// export const opened = ({ opened }) => opened
 
 /**
  * Return true if asset's manager is loading assets
@@ -34,6 +34,6 @@ export const editing = ({ editing }) => editing
  * Return true if asset's manager is open to select an asset, false if is open to manage assets
  * @param {State} state vuex state
  */
-export const selectMode = ({ selectMode }) => selectMode
+// export const selectMode = ({ selectMode }) => selectMode
 
 export const error = ({ error }) => error

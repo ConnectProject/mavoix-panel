@@ -102,11 +102,11 @@ export const cancelEdit = (state) => {
  * }
  * @returns {void}
  */
-export const open = (state, { selectMode, selectCallback }) => {
-  state.opened = true
-  state.selectMode = selectMode
-  state.selectCallback = selectCallback
-}
+// export const open = (state, { selectMode, selectCallback }) => {
+//   state.opened = true
+//   state.selectMode = selectMode
+//   state.selectCallback = selectCallback
+// }
 
 /**
  * Close assets manager
