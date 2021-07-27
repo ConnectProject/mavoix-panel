@@ -3,8 +3,7 @@
   <div @dragenter="onDragEnter">
 
     <!-- Dropzone -->
-    <!-- This Dropzone seems to be never visible
-    We should remove this part if we don't use it anymore (or is it a hidden feature?) -->
+    <!-- Image drag & drop hidden feature -->
     <div
       ref="dnd"
       class="dnd z-max hidden text-center row items-center justify-center full-height full-width bg-black text-white"
@@ -118,17 +117,20 @@
                 :key="index"
                 v-ripple
                 :style="{
-                  color: 'white',
+                  color: getTextColor(tab.get('hexColor')),
                   'border-radius':' 32px 0 0 32px',
                   background: tab.get('hexColor'),
-                  marginRight:(tab.get('name')===selectedTab.name)?0:'1px',
-                  marginLeft:(tab.get('name')===selectedTab.name)?'5px':'20px'
+                  marginRight:(tab.get('name')===selectedTab)?0:'1px',
+                  marginLeft:(tab.get('name')===selectedTab)?'5px':'20px'
                 }"
                 clickable
                 :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
               >
+                <q-item-section avatar>
+                  <q-icon name="category" />
+                </q-item-section>
                 <q-item-section>
-                  <q-item-label style="color:black;text-align:center">
+                  <q-item-label>
                     {{ tab.get('name') }}
                   </q-item-label>
                 </q-item-section>
@@ -238,7 +240,8 @@ export default {
       return this.$store.getters['tabs/tabs']
     },
     selectedTab () {
-      return this.$store.getters['tabEditor/tab']
+      return this.$route.params.slug
+      // return this.$store.getters['tabEditor/tab']
     }
   },
 
@@ -303,7 +306,7 @@ export default {
      * @returns {void}
      **/
     uploadFiles ({ target: { files } }) {
-      this.$store.dispatch('assetsManager/uploadFiles', files)
+      this.$store.dispatch('assetsManager/uploadFiles', { files })
       this.onDragLeave()
     },
 
@@ -316,6 +319,34 @@ export default {
       this.$router.push({
         name: 'auth'
       })
+    },
+
+    /**
+     * Get text color given background color
+     * https://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black
+     * @param {string} bgColor background color
+     * @param {string} lightColor light text color
+     * @param {string} darkColor dark text color
+     * @returns {string} text color
+     **/
+    getTextColor (bgColor, lightColor = '#FFFFFF', darkColor = '#000000') {
+
+      const getLuminance = function (hexColor) {
+        var color = (hexColor.charAt(0) === '#') ? hexColor.substring(1, 7) : hexColor
+        var r = parseInt(color.substring(0, 2), 16) // hexToR
+        var g = parseInt(color.substring(2, 4), 16) // hexToG
+        var b = parseInt(color.substring(4, 6), 16) // hexToB
+        var uicolors = [r / 255, g / 255, b / 255]
+        var c = uicolors.map(col => col <= 0.03928 ? col / 12.92 : ((col + 0.055) / 1.055) ** 2.4)
+
+        return (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2]);
+      }
+
+      var L = getLuminance(bgColor)
+      var L1 = getLuminance(lightColor)
+      var L2 = getLuminance(darkColor)
+
+      return (L > Math.sqrt((L1 + 0.05) * (L2 + 0.05)) - 0.05) ? darkColor : lightColor;
     }
   }
 }
