@@ -29,7 +29,7 @@
           <q-input
             rounded
             outlined
-            disable
+            readonly
             class="fit"
             :input-style="{ textAlign: 'center' }"
             :value="code"
@@ -97,10 +97,10 @@ export default {
     },
 
     /**
-     * @returns {string} the code (in the form name:password)
+     * @returns {string} the code (in the form username:password)
      */
     code () {
-      return `${this.device.name}:${this.device.password}`
+      return `${this.device.username}:${this.device.password}`
     }
   },
   methods: {

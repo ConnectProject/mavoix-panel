@@ -8,6 +8,7 @@ import {
 } from '~/models/TabItem'
 import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
 import Parse from 'parse'
+import getCurrentUser from '~/utils/getCurrentUser'
 
 /**
  * Set something in the tab from its key
@@ -18,14 +19,14 @@ import Parse from 'parse'
  */
 export const changeByKey = (state, key, newValue) => {
   switch (key) {
-  case NAME_KEY:
-    state.tab.name = newValue
-    break
-  case HEX_COLOR_KEY:
-    state.tab.hexColor = newValue
-    break
-  default:
-    break
+    case NAME_KEY:
+      state.tab.name = newValue
+      break
+    case HEX_COLOR_KEY:
+      state.tab.hexColor = newValue
+      break
+    default:
+      break
   }
 }
 
@@ -48,7 +49,7 @@ export const modelToTab = (tabModel) => ({
   hexColor: tabModel.get(HEX_COLOR_KEY),
   speed: tabModel.get(SPEED_KEY),
   language: tabModel.get(LANGUAGE_KEY),
-  user: localStorage.id
+  user: getCurrentUser()
 })
 
 /**
@@ -58,7 +59,7 @@ export const modelToTab = (tabModel) => ({
  */
 export const tabToModel = (tab) => new Parse.Query(TabModel)
   .equalTo(SLUG_KEY, tab.slug)
-  .equalTo('user', localStorage.id)
+  .equalTo('user', getCurrentUser())
   .first()
 
 /**

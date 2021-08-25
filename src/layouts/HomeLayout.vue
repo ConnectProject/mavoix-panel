@@ -147,16 +147,6 @@
                   <q-icon name="add" />
                 </q-item-section>
               </q-item>
-              <!--
-            <q-item clickable v-ripple @click="$store.commit('tabs/openDialog')">
-              <q-item-section avatar>
-                <q-icon name="add" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>{{ $t('navDrawer.addTab') }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            -->
             </div>
 
             <!-- Devices -->
@@ -164,11 +154,49 @@
               header
               class="text-white"
             >
-              {{ $t('navDrawer.devices') }}
-            </q-item-label>
-            <center>
-              <qrcode-vue :value="code" />
-            </center>
+              {{ $t('navDrawer.devices') }}</q-item-label>
+            <!-- If the query is loading -->
+            <list-item-loading v-if="$store.state.devices.loading" />
+            <!-- If the query has returned its result -->
+            <div v-else>
+              <!-- Render fetched devices buttons -->
+              <q-item
+                v-for="(device, index) in devices"
+                :key="index"
+                v-ripple
+                :style="{
+                  color: 'black',
+                  'border-radius':' 32px 0 0 32px',
+                  marginRight:'1px',
+                  marginLeft:'20px'
+                }"
+                class="bg-grey-4"
+                clickable
+                @click="$store.commit('devices/openDialog', index)"
+              >
+                <q-item-section avatar>
+                  <q-icon name="devices_other" />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label>{{ device.deviceName }}</q-item-label>
+                </q-item-section>
+              </q-item>
+
+              <!-- Click to add a device -->
+              <q-item
+                v-ripple
+                style="margin-left:150px;border-radius:32px 0 0 32px;background:white"
+                clickable
+                @click="$store.commit('devices/openNameDialog')"
+              >
+                <q-item-section avatar>
+                  <q-icon name="add" />
+                </q-item-section>
+                <!-- <q-item-section>
+                  <q-item-label>{{ $t('navDrawer.addDevice') }}</q-item-label>
+                </q-item-section> -->
+              </q-item>
+            </div>
           </q-list>
         </q-scroll-area>
       </q-drawer>
@@ -178,8 +206,8 @@
       </q-page-container>
 
       <dialog-tab-name />
-      <!-- <dialog-device-name /> -->
-      <!-- <dialog-device-invitation /> -->
+      <dialog-device-name />
+      <dialog-device-invitation />
     </q-layout>
   </div>
 </template>
@@ -190,25 +218,25 @@
 /* Dialogs */
 // import DialogAssetsManager from '~/components/dialogs/AssetsManager'
 
-// import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
-// import DialogDeviceName from '~/components/dialogs/DeviceName'
+import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
+import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogTabName from '~/components/dialogs/TabName'
 
 import ListItemLoading from '~/components/ListItemLoading'
 
-import QrcodeVue from 'qrcode.vue'
+import Parse from 'parse'
 
-console.log('id:')
-console.log(localStorage.id)
+// import QrcodeVue from 'qrcode.vue'
+
 export default {
   name: 'LayoutHome',
   components: {
-    QrcodeVue,
+    // QrcodeVue,
     ListItemLoading,
     // DialogAssetsManager,
-    DialogTabName
-    // DialogDeviceName,
-    // DialogDeviceInvitation
+    DialogTabName,
+    DialogDeviceName,
+    DialogDeviceInvitation
   },
   data () {
     return {
@@ -217,13 +245,13 @@ export default {
     }
   },
   computed: {
-    code () {
-      return localStorage.getItem('username') + ':' +
-        localStorage.getItem('password')
-    },
-    users () {
-      return this.$store.getters['users/users']
-    },
+    // code () {
+    //   return localStorage.getItem('username') + ':' +
+    //     localStorage.getItem('password')
+    // },
+    // users () {
+    //   return this.$store.getters['users/users']
+    // },
 
     /**
      * @returns {Object} all devices
@@ -252,7 +280,7 @@ export default {
    * @returns {void}
    */
   mounted () {
-    if (!localStorage.getItem('id')) {
+    if (!Parse.User.current()) {
       this.$router.push({
         name: 'auth'
       })
@@ -315,7 +343,7 @@ export default {
      * @returns {void}
      **/
     onLogout () {
-      localStorage.clear()
+      // localStorage.clear()
       this.$router.push({
         name: 'auth'
       })

@@ -1,6 +1,7 @@
 import Parse from 'parse'
 
 import TabModel from '~/models/Tab'
+import getCurrentUser from '~/utils/getCurrentUser'
 
 /**
  * Load tabs
@@ -10,7 +11,7 @@ import TabModel from '~/models/Tab'
 export const loadTabs = ({ commit }) => {
   console.log('load tabs')
   new Parse.Query(TabModel)
-    .equalTo('user', localStorage.id)
+    .equalTo('user', getCurrentUser())
     .find()
     .then((tabs) => {
       commit('setTabs', tabs)
@@ -30,7 +31,7 @@ export const loadTabs = ({ commit }) => {
  * @returns {Promise} did the action succeed
  */
 export const createTabCb = ({ commit }, { name, callback }) => {
-  TabModel.Create(name, localStorage.id)
+  TabModel.Create(name, getCurrentUser())
     .save()
     .then((tab) => {
       if (tab) {
@@ -54,7 +55,7 @@ export const createTabCb = ({ commit }, { name, callback }) => {
  * @returns {Promise} did the action succeed
  */
 export const deleteTabCb = ({ commit }, { tab, callback }) => {
-  const {id} = tab
+  const { id } = tab
 
   tab.destroy()
     .then(() => {

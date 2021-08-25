@@ -1,33 +1,34 @@
-/**
- * Set users
- * @param {State} state vuex state
- * @param {[DeviceUserModel]} deviceModels users to load
- * @returns {void}
- */
-export const setDevices = (state, deviceModels) => {
-  state.devices = deviceModels.map((model) => ({
-    name: model.getUsername(),
-    password: ''
-  }))
-  state.loading = false
-}
+// /**
+//  * Set users
+//  * does not seem to be used
+//  * @param {State} state vuex state
+//  * @param {[DeviceUserModel]} deviceModels users to load
+//  * @returns {void}
+//  */
+// export const setDevices = (state, deviceModels) => {
+//   state.devices = deviceModels.map((model) => ({
+//     name: model.getUsername(),
+//     password: ''
+//   }))
+//   state.loading = false
+// }
 
-/**
- * Add a device and open the modal to view it
- * @param {State} state vuex state
- * @param {{ DeviceUserModel, String }} {
- *   model: the device to add and open
- *   password: the password of the new device
- * }
- * @returns {void}
- */
-export const addAndOpenDevice = (state, { model }) => {
-  state.user.name = model.getUsername()
-  state.user.id = model._getId()
-  localStorage.id = model._getId()
-  state.isConnected = !state.isConnected
-  console.log(state.user)
-}
+// /**
+//  * Add a device and open the modal to view it
+//  * @param {State} state vuex state
+//  * @param {{ DeviceUserModel, String }} {
+//  *   model: the device to add and open
+//  *   password: the password of the new device
+//  * }
+//  * @returns {void}
+//  */
+// export const addAndOpenDevice = (state, { model }) => {
+//   state.user.name = model.getUsername()
+//   state.user.id = model._getId()
+//   // localStorage.id = model._getId()
+//   state.isConnected = true
+//   console.log(state.user)
+// }
 
 /**
  * Set the password of the opened device
@@ -51,16 +52,17 @@ export const removeActive = (state) => {
   closeDialog(state)
 }
 
-/**
- * Open a device with its index
- * @param {State} state vuex state
- * @param {Number} index position of the device to open
- * @returns {void}
- */
-export const openDialog = (state, index) => {
-  state.dialog.index = index
-  state.dialog.opened = true
-}
+// does not seem to be used
+// /**
+//  * Open a device with its index
+//  * @param {State} state vuex state
+//  * @param {Number} index position of the device to open
+//  * @returns {void}
+//  */
+// export const openDialog = (state, index) => {
+//   state.dialog.index = index
+//   state.dialog.opened = true
+// }
 
 /**
  * Close the device dialog

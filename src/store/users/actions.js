@@ -37,25 +37,31 @@ import ParseUser from '~/models/ParseUser'
  * @param {String} name name of the new device
  */
 
-export const create = async ({ commit }, [name, password]) => {
+export const create = async function ({ commit }, [name, password]) {
   try {
-    const model = await ParseUser.Create(name, password).signUp()
-    localStorage.id = model._getId()
-    localStorage.username = name
-    localStorage.password = password
-    commit('addAndOpenDevice', { model })
+    await ParseUser.Create(name, password).signUp()
+    // const model = await ParseUser.Create(name, password).signUp()
+    // localStorage.id = model._getId()
+    // localStorage.username = name
+    // localStorage.password = password
+    // eslint-disable-next-line no-invalid-this
+    this.$router.push({ name: 'home' })
+    // commit('addAndOpenDevice', { model })
   } catch (err) {
     commit('setError', err)
   }
 }
 
-export const connect = async ({ commit }, [name, password]) => {
+export const connect = async function ({ commit }, [name, password]) {
   try {
-    const model = await ParseUser.logIn(name, password)
-    localStorage.id = model._getId()
-    localStorage.username = name
-    localStorage.password = password
-    commit('addAndOpenDevice', { model })
+    await ParseUser.logIn(name, password)
+    // const model = await ParseUser.logIn(name, password)
+    // localStorage.id = model._getId()
+    // localStorage.username = name
+    // localStorage.password = password
+    // eslint-disable-next-line no-invalid-this
+    this.$router.push({ name: 'home' })
+    // commit('addAndOpenDevice', { model })
   } catch (err) {
     commit('setError', err)
   }

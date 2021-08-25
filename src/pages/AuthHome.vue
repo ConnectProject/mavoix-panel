@@ -59,11 +59,11 @@ export default {
     }
   },
   watch: {
-    isConnected () {
-      this.$router.push({
-        name: 'home'
-      })
-    },
+    // isConnected () {
+    //   this.$router.push({
+    //     name: 'home'
+    //   })
+    // },
     error (newVal) {
       if (newVal) {
         this.$q.notify({ position: 'top-right', message: newVal, color: 'red' })

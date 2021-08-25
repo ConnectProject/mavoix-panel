@@ -9,7 +9,7 @@
 export const setDevices = (state, deviceModels) => {
   state.devices = deviceModels.map((model) => ({
     deviceName: model.get('deviceName'),
-    name: model.getUsername(),
+    username: model.getUsername(),
     password: ''
   }))
   state.loading = false
@@ -24,10 +24,10 @@ export const setDevices = (state, deviceModels) => {
  * @returns {void}
  * }
  */
-export const addAndOpenDevice = (state, { model, password }) => {
+export const addAndOpenDevice = (state, { deviceUser, password }) => {
   state.devices.push({
-    deviceName: model.get('deviceName'),
-    name: model.getUsername(),
+    deviceName: deviceUser.get('deviceName'),
+    username: deviceUser.getUsername(),
     password: password
   })
   closeNameDialog(state)
