@@ -3,7 +3,7 @@ import Jimp from 'jimp'
 import { Notify } from 'quasar'
 import Parse from 'parse'
 import Unidecode from 'unidecode'
-import getCurrentUser from '~/utils/getCurrentUser'
+import getCurrentUserId from '~/utils/getCurrentUserId'
 import { i18n } from '~/boot/i18n.js'
 
 import { modelFromAsset } from './utils'
@@ -29,7 +29,7 @@ import { modelFromAsset } from './utils'
  */
 export const loadAssets = ({ commit }) => {
   new Parse.Query(AssetModel)
-    .equalTo('user', getCurrentUser())
+    .equalTo('user', getCurrentUserId())
     .find()
     .then((assets) => {
       console.log(assets)
@@ -131,12 +131,12 @@ const uploadFile = async ({ commit }, file) => {
     .replace(/[^a-z0-9. \-_]/gi, '_')
 
   const newFile = await new Parse.File(filename, blob).save()
-  const asset = await AssetModel.New(filename.replace(/\.[^/.]+$/, ""), newFile, newFile._url, getCurrentUser()).save()
+  const asset = await AssetModel.New(filename.replace(/\.[^/.]+$/, ""), newFile, newFile._url, getCurrentUserId()).save()
   commit('addAsset', asset)
 }
 
 export const addAsset = ({ commit }, obj) => {
-  AssetModel.New(obj.name, false, obj.url, getCurrentUser())
+  AssetModel.New(obj.name, false, obj.url, getCurrentUserId())
     .save()
     .then((asset) => {
       console.log(asset)

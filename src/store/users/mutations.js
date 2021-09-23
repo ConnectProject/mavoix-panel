@@ -1,108 +1,20 @@
 // /**
-//  * Set users
-//  * does not seem to be used
+//  * Set current user to the store
 //  * @param {State} state vuex state
-//  * @param {[DeviceUserModel]} deviceModels users to load
-//  * @returns {void}
-//  */
-// export const setDevices = (state, deviceModels) => {
-//   state.devices = deviceModels.map((model) => ({
-//     name: model.getUsername(),
-//     password: ''
-//   }))
-//   state.loading = false
-// }
-
-// /**
-//  * Add a device and open the modal to view it
-//  * @param {State} state vuex state
-//  * @param {{ DeviceUserModel, String }} {
-//  *   model: the device to add and open
-//  *   password: the password of the new device
+//  * @param {{ ParseUser }} {
+//  *   user: the connected user
 //  * }
 //  * @returns {void}
 //  */
-// export const addAndOpenDevice = (state, { model }) => {
-//   state.user.name = model.getUsername()
-//   state.user.id = model._getId()
-//   // localStorage.id = model._getId()
-//   state.isConnected = true
-//   console.log(state.user)
+// export const setUser = (state, { user }) => {
+//   state.user.name = user.getUsername()
+//   state.user.id = user.id
+//   // state.isConnected = true
 // }
 
-/**
- * Set the password of the opened device
- * @param {State} state vuex state
- * @param {String} password new password
- * @returns {void}
- */
-export const updateActivePassword = (state, password) => {
-  state.users[state.dialog.index].password = password
-
-  console.log(state.users)
-}
-
-/**
- * Remove the opened device
- * @param {State} state vuex state
- * @returns {void}
- */
-export const removeActive = (state) => {
-  state.users.splice(state.dialog.index, 1)
-  closeDialog(state)
-}
-
-// does not seem to be used
-// /**
-//  * Open a device with its index
-//  * @param {State} state vuex state
-//  * @param {Number} index position of the device to open
-//  * @returns {void}
-//  */
-// export const openDialog = (state, index) => {
-//   state.dialog.index = index
-//   state.dialog.opened = true
-// }
-
-/**
- * Close the device dialog
- * @param {State} state vuex state
- * @returns {void}
- */
-export const closeDialog = (state) => {
-  state.dialog.opened = false
-}
-
-/**
- * Open name dialog
- * Never called
- * @param {State} state vuex state
- * @returns {void}
- */
-export const openNameDialog = (state) => {
-  state.nameDialog.name = ''
-  state.nameDialog.opened = true
-}
-
-/**
- * Close name dialog
- * Never called
- * @param {State} state vuex state
- * @returns {void}
- */
-export const closeNameDialog = (state) => {
-  state.nameDialog.opened = false
-}
-
-/**
- * Set name dialog's name
- * Never called
- * @param {State} state vuex state
- * @param {String} name the new name
- * @returns {void}
- */
-export const setNameDialog = (state, name) => {
-  state.nameDialog.name = name
+export const setConnectUserId = function (state, connectUserId) {
+  state.connectUserId = connectUserId
+  state.loading = false
 }
 
 /**
@@ -114,7 +26,6 @@ export const setNameDialog = (state, name) => {
 export const setError = (state, err) => {
   console.error(err.message)
   state.error = err.message
-  state.loading = false
 }
 
 /**

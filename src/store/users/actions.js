@@ -1,4 +1,4 @@
-// import Parse from 'parse'
+import Parse from 'parse'
 import ParseUser from '~/models/ParseUser'
 
 /**
@@ -40,28 +40,29 @@ import ParseUser from '~/models/ParseUser'
 export const create = async function ({ commit }, [name, password]) {
   try {
     await ParseUser.Create(name, password).signUp()
-    // const model = await ParseUser.Create(name, password).signUp()
-    // localStorage.id = model._getId()
-    // localStorage.username = name
-    // localStorage.password = password
+    // commit('setUser', { user })
     // eslint-disable-next-line no-invalid-this
     this.$router.push({ name: 'home' })
-    // commit('addAndOpenDevice', { model })
   } catch (err) {
     commit('setError', err)
   }
 }
 
-export const connect = async function ({ commit }, [name, password]) {
+export const connect = async function ({ commit, dispatch }, [name, password]) {
   try {
     await ParseUser.logIn(name, password)
-    // const model = await ParseUser.logIn(name, password)
-    // localStorage.id = model._getId()
-    // localStorage.username = name
-    // localStorage.password = password
+    // commit('setUser', { user })
     // eslint-disable-next-line no-invalid-this
     this.$router.push({ name: 'home' })
-    // commit('addAndOpenDevice', { model })
+  } catch (err) {
+    commit('setError', err)
+  }
+}
+
+export const loadConnectUserId = async function({commit}) {
+  try {
+    const {connectUserId} = await Parse.Cloud.run("getConnectToken")
+    commit('setConnectUserId', connectUserId)
   } catch (err) {
     commit('setError', err)
   }

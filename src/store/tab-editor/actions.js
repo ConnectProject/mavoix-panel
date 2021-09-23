@@ -11,7 +11,7 @@ import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } 
 
 import Parse from 'parse'
 
-import getCurrentUser from '~/utils/getCurrentUser'
+import getCurrentUserId from '~/utils/getCurrentUserId'
 import slugify from '~/utils/slugify'
 import { tabToModel } from './utils'
 
@@ -24,7 +24,7 @@ import { tabToModel } from './utils'
 export const loadBySlug = ({ commit, dispatch }, slug) => {
   new Parse.Query(TabModel)
     .equalTo(SLUG_KEY, slug)
-    .equalTo('user', getCurrentUser())
+    .equalTo('user', getCurrentUserId())
     .first()
     .then((tabModel) => {
       commit('setTab', tabModel)

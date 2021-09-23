@@ -8,6 +8,12 @@
       <q-toolbar>
         <q-space />
         <q-tabs shrink>
+          <q-route-tab
+            class="q-mr-sm q-py-xs custom_tab"
+            no-caps
+            :to="{name: 'home'}"
+            label="MaVoix Panel"
+          />
           <a
             href="https://mavoix.connect-project.io/app/"
             style="color: inherit; text-decoration: none"
@@ -15,26 +21,20 @@
             <q-tab
               class="q-mr-sm q-py-xs custom_tab"
               no-caps
-              label="MaVoix"
+              label="MaVoix App"
             />
           </a>
-          <q-tab
-            class="q-mr-sm q-py-xs custom_tab"
-            no-caps
-            onclick="alert('Go to about')"
-            label="About Us"
-          />
           <q-tab
             class="q-mr-sm q-py-xs custom_tab"
             no-caps
             onclick="alert('Go to doc')"
             label="Documentation"
           />
-          <q-route-tab
+          <q-tab
             class="q-mr-sm q-py-xs custom_tab"
             no-caps
-            :to="{name: 'auth'}"
-            label="Sign In"
+            onclick="alert('Go to about')"
+            label="About Us"
           />
         </q-tabs>
       </q-toolbar>
@@ -233,8 +233,8 @@ export default {
 </script>
 
 <style scoped>
-  .custom_tab {
-    width:120px;
-    min-height:auto !important
-  }
+.custom_tab {
+  width: 120px;
+  min-height: auto !important;
+}
 </style>

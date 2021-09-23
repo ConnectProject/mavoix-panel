@@ -1,7 +1,7 @@
 import Parse from 'parse'
 
 import TabModel from '~/models/Tab'
-import getCurrentUser from '~/utils/getCurrentUser'
+import getCurrentUserId from '~/utils/getCurrentUserId'
 
 /**
  * Load tabs
@@ -11,7 +11,7 @@ import getCurrentUser from '~/utils/getCurrentUser'
 export const loadTabs = ({ commit }) => {
   console.log('load tabs')
   new Parse.Query(TabModel)
-    .equalTo('user', getCurrentUser())
+    .equalTo('user', getCurrentUserId())
     .find()
     .then((tabs) => {
       commit('setTabs', tabs)
@@ -31,7 +31,7 @@ export const loadTabs = ({ commit }) => {
  * @returns {Promise} did the action succeed
  */
 export const createTabCb = ({ commit }, { name, callback }) => {
-  TabModel.Create(name, getCurrentUser())
+  TabModel.Create(name, getCurrentUserId())
     .save()
     .then((tab) => {
       if (tab) {

@@ -51,9 +51,9 @@ export default {
     // users () {
     //   return this.$store.getters['users/users']
     // },
-    isConnected () {
-      return this.$store.getters['users/isConnected']
-    },
+    // isConnected () {
+    //   return this.$store.getters['users/isConnected']
+    // },
     error () {
       return this.$store.getters['users/error']
     }

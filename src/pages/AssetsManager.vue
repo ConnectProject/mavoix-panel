@@ -3,7 +3,6 @@
     v-if="!loading"
     class="content-start"
   >
-
     <camera ref="camera" />
 
     <!-- Search form -->
@@ -269,11 +268,11 @@ export default {
   methods: {
     toggleSelect (asset) {
       if (this.selectMode) {
-        const index = this.selectedAssets.indexOf(asset.id);
+        const index = this.selectedAssets.indexOf(asset.id)
         if (index === -1) {
           this.selectedAssets.push(asset.id)
         } else {
-          this.selectedAssets.splice(index, 1);
+          this.selectedAssets.splice(index, 1)
         }
       }
     },

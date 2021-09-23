@@ -1,7 +1,6 @@
 
 <template>
   <div @dragenter="onDragEnter">
-
     <!-- Dropzone -->
     <!-- Image drag & drop hidden feature -->
     <div
@@ -39,14 +38,21 @@
           <q-toolbar-title>{{ $t('appTitle') }}</q-toolbar-title>
           <q-btn
             onclick="alert('Go to doc')"
+            title="Documentation"
             flat
             icon="help"
           />
-          <q-btn
-            onclick="alert('Go to project\'s GitHub')"
-            flat
-            icon="fab fa-github"
-          />
+          <a
+            href="https://github.com/ConnectProject/mavoix-panel"
+            title="Project's GitHub"
+            style="color: inherit; text-decoration: none"
+            target="_blank"
+          >
+            <q-btn
+              flat
+              icon="fab fa-github"
+            />
+          </a>
           <q-btn
             flat
             no-caps
@@ -154,7 +160,8 @@
               header
               class="text-white"
             >
-              {{ $t('navDrawer.devices') }}</q-item-label>
+              {{ $t('navDrawer.devices') }}
+            </q-item-label>
             <!-- If the query is loading -->
             <list-item-loading v-if="$store.state.devices.loading" />
             <!-- If the query has returned its result -->
@@ -273,6 +280,14 @@ export default {
     }
   },
 
+  beforeCreate () {
+    if (!Parse.User.current()) {
+      this.$router.replace({
+        name: 'auth'
+      })
+    }
+  },
+
   /**
    * Load tabs
    * Load devices
@@ -280,15 +295,12 @@ export default {
    * @returns {void}
    */
   mounted () {
-    if (!Parse.User.current()) {
-      this.$router.push({
-        name: 'auth'
-      })
-    } else {
+    if (Parse.User.current()) {
       this.$store.dispatch('tabs/loadTabs')
       this.$store.dispatch('assetsManager/loadAssets')
       this.$store.dispatch('devices/loadDevices')
       this.$store.dispatch('global/initTTS')
+      this.$store.dispatch('users/loadConnectUserId')
     }
   },
   // watch: {
@@ -343,9 +355,11 @@ export default {
      * @returns {void}
      **/
     onLogout () {
-      // localStorage.clear()
+      // reset vuex store
+      this.$store.commit('reset')
+      Parse.User.logOut()
       this.$router.push({
-        name: 'auth'
+        path: '/'
       })
     },
 
@@ -365,16 +379,16 @@ export default {
         var g = parseInt(color.substring(2, 4), 16) // hexToG
         var b = parseInt(color.substring(4, 6), 16) // hexToB
         var uicolors = [r / 255, g / 255, b / 255]
-        var c = uicolors.map(col => col <= 0.03928 ? col / 12.92 : ((col + 0.055) / 1.055) ** 2.4)
+        var c = uicolors.map(col => (col <= 0.03928 ? col / 12.92 : ((col + 0.055) / 1.055) ** 2.4))
 
-        return (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2]);
+        return (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2])
       }
 
       var L = getLuminance(bgColor)
       var L1 = getLuminance(lightColor)
       var L2 = getLuminance(darkColor)
 
-      return (L > Math.sqrt((L1 + 0.05) * (L2 + 0.05)) - 0.05) ? darkColor : lightColor;
+      return (L > Math.sqrt((L1 + 0.05) * (L2 + 0.05)) - 0.05) ? darkColor : lightColor
     }
   }
 }

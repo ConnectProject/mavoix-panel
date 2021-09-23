@@ -2,7 +2,7 @@
 
 import DeviceUser from '~/models/DeviceUser'
 import Parse from 'parse'
-import getCurrentUser from '~/utils/getCurrentUser'
+import getCurrentUserId from '~/utils/getCurrentUserId'
 
 /**
  * Load devices
@@ -11,8 +11,11 @@ import getCurrentUser from '~/utils/getCurrentUser'
  */
 export const loadDevices = ({ commit }) => {
 
+  new Parse.Query(DeviceUser).find()
+    .then((users) => console.log(users))
+
   new Parse.Query(DeviceUser)
-    .equalTo('linkedAccount', getCurrentUser())
+    .equalTo('linkedAccount', getCurrentUserId())
     .find()
     .then((users) => {
       commit('setDevices', users)
@@ -31,7 +34,7 @@ export const loadDevices = ({ commit }) => {
 export const create = async ({ commit }, name) => {
   const sessionToken = Parse.User.current().getSessionToken()
   try {
-    const deviceUser = DeviceUser.Create(name, getCurrentUser())
+    const deviceUser = DeviceUser.Create(name, getCurrentUserId())
     const password = deviceUser.get('password')
     await deviceUser.signUp()
     Parse.User.become(sessionToken)
