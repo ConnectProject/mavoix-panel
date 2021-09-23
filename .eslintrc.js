@@ -15,8 +15,7 @@ module.exports = {
     // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
     'plugin:vue/recommended',
     '@vue/standard',
-    'naat',
-    'prettier'
+    'naat'
   ],
 
   // required to lint *.vue files
