@@ -16,6 +16,6 @@
 > `npm install -g @quasar/cli`
 
 ## Running
-> `quasar dev -m ssr`
+> `quasar dev`
 
 ## Enjoy
