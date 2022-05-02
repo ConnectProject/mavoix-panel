@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     authorizeUri() {
-      return `${process.env.CONNECT_URL}/authorize?client_id=${process.env.CONNECT_CLIENT_ID}&redirect_uri=${this.redirectUri}`
+      return `${process.env.CONNECT_URL}/authorize?client_id=${process.env.CONNECT_CLIENT_ID}&redirect_uri=${this.redirectUri}&response_type=code`
     },
     username() {
       return Parse.User.current()?.getUsername()
