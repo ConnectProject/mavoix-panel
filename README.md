@@ -12,6 +12,8 @@
 3. Load environment variables
 > To load environment variables you can copy `.env.example` to a file called `.env` and set the variables to match the api.
 
+5. Add the redirect URI http://localhost:9000/home to your connect app to be able to connect with the OAuth workflow.
+
 4. Install Quasar CLI
 > `npm install -g @quasar/cli`
 

@@ -60,7 +60,7 @@ export default {
     }
   },
   created () {
-    const authorizationCode = this.$router.currentRoute.query.authorization_code
+    const authorizationCode = this.$router.currentRoute.query.code
     if (authorizationCode) {
       const params = {authorizationCode, redirectUri: this.redirectUri}
       Parse.Cloud.run("linkWithConnect", params).then(({connectUserId}) => {
