@@ -45,18 +45,15 @@ export const loadAssets = ({ commit }) => {
  * @param {Context} ctx context passed vuex
  * @returns {Promise} did the action succeed
  */
-export const destroyEditingAsset = ({ commit, state: { assets, editingIndex } }) => {
-  modelFromAsset(assets[editingIndex])
-    .then((assetModel) =>
-      assetModel.destroy()
-    )
-    .then(() => {
-      commit('removeEditingAsset')
-      commit('cancelEdit')
-    })
-    .catch((err) => {
-      commit('setError', err)
-    })
+export const destroyEditingAsset = async ({ commit, state: { assets, editingIndex } }) => {
+  try {
+    const assetModel = await modelFromAsset(assets[editingIndex])
+    await assetModel.destroy()
+    commit('removeEditingAsset')
+    commit('cancelEdit')
+  } catch(err) {
+    commit('setError', err)
+  }
 }
 
 /**
@@ -64,20 +61,17 @@ export const destroyEditingAsset = ({ commit, state: { assets, editingIndex } })
  * @param {Context} ctx context passed vuex
  * @returns {Promise} did the action succeed
  */
-export const saveEditingAsset = ({ commit, state: { assets, editingIndex, editingAsset } }) => {
-  modelFromAsset(assets[editingIndex])
-    .then((assetModel) => {
-      assetModel.set(NAME_KEY, editingAsset.name)
+export const saveEditingAsset = async ({ commit, state: { assets, editingIndex, editingAsset } }) => {
+  try {
+    const assetModel = await modelFromAsset(assets[editingIndex])
+    assetModel.set(NAME_KEY, editingAsset.name)
+    await assetModel.save()
+    commit('updateEditingAsset', assetModel)
+    commit('cancelEdit')
 
-      return assetModel.save()
-    })
-    .then((assetModel) => {
-      commit('updateEditingAsset', assetModel)
-      commit('cancelEdit')
-    })
-    .catch((err) => {
-      commit('setError', err)
-    })
+  } catch (err) {
+    commit('setError', err)
+  }
 }
 
 /**

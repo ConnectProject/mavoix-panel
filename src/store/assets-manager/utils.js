@@ -18,8 +18,8 @@ export const assetFromModel = (assetModel) => {
   const parseFile = assetModel.get(PARSE_FILE_KEY)
   // update asset url if asset is a Parse file
   const url = parseFile
-    // ? parseFile.url()
-    ? `${Parse.serverURL}/files/${Parse.applicationId}/${parseFile._name}`
+    ? parseFile.url()
+    // ? `${Parse.serverURL}/files/${Parse.applicationId}/${parseFile._name}`
     : assetModel.get(URL_KEY)
 
   return {
@@ -36,5 +36,4 @@ export const assetFromModel = (assetModel) => {
  * @returns {AssetModel} the asset model
  */
 export const modelFromAsset = (asset) => new Parse.Query(AssetModel)
-  .equalTo(PARSE_FILE_KEY, asset.file)
-  .first()
+  .get(asset.id)

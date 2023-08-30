@@ -8,6 +8,7 @@ import {
 } from '~/models/TabItem'
 import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
 import Parse from 'parse'
+import {assetFromModel} from '../assets-manager/utils'
 import getCurrentUserId from '~/utils/getCurrentUserId'
 
 /**
@@ -68,16 +69,11 @@ export const tabToModel = (tab) => new Parse.Query(TabModel)
  * @returns {ItemTab} the transformed item tab
  */
 export const itemModelToItem = (itemModel) => {
-  var asset = itemModel.get(ITEM_ASSET_KEY)
-  const parseFile = asset.file
-  // update asset url if asset is a Parse file
-  if (parseFile) {
-    asset.url = `${Parse.serverURL}/files/${Parse.applicationId}/${parseFile._name}`
-  }
+  const asset = assetFromModel(itemModel.get(ITEM_ASSET_KEY))
 
   return {
     name: itemModel.get(ITEM_NAME_KEY),
-    asset: asset,
+    asset,
     key: itemModel.get(ITEM_KEY_KEY),
     available: itemModel.get(ITEM_AVAILABLE_KEY),
     hidden: itemModel.get(ITEM_HIDDEN_KEY),
