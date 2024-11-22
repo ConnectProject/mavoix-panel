@@ -3,7 +3,7 @@
     <q-header class="bg-grey text-white">
       <q-toolbar>
         <q-toolbar-title>
-          Ma Voix
+          MaVoix
         </q-toolbar-title>
       </q-toolbar>
     </q-header>

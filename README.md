@@ -1,4 +1,4 @@
-# Ma Voix -- Panel
+# MaVoix -- Panel
 
 ## Preparation
 

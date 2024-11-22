@@ -29,7 +29,7 @@
           class="q-ma-md cursor-pointer"
           @click="isConnexion = !isConnexion"
         >
-          <small>{{ isConnexion ? 'incription' : 'connexion' }}</small>
+          <small>{{ isConnexion ? 'inscription' : 'connexion' }}</small>
         </div>
       </q-form>
     </q-card>

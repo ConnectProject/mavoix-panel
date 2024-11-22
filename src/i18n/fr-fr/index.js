@@ -1,5 +1,5 @@
 export default {
-  appTitle: 'Ma Voix',
+  appTitle: 'MaVoix',
   logoutLabel: 'Déconnexion',
   navDrawer: {
     home: 'Accueil',
