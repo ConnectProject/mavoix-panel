@@ -5,9 +5,10 @@ import ParseUserModel from '~/models/ParseUser'
 import TabItemModel from '~/models/TabItem'
 import TabModel from '~/models/Tab'
 
-/*
-** Initilize parse client with its models
-*/
+/**
+ * Initialize parse client with its models
+ * @returns {void}
+ */
 export default ({ app, Vue }) => {
   Parse.initialize(process.env.PARSE_APP_ID, process.env.PARSE_JS_KEY)
   Parse.serverURL = process.env.PARSE_URL

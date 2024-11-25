@@ -71,6 +71,7 @@
         </q-card>
       </draggable>
     </div>
+
     <dialog-tab-item />
     <dialog-item-choice ref="itemChoice" />
 
