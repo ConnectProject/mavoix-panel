@@ -15,7 +15,7 @@ module.exports = function (ctx) {
       { path: 'internalComponents', server: false }
     ],
 
-    css: ['app.styl'],
+    css: ['app.styl', "app.css"],
 
     extras: [
       // 'ionicons-v4',

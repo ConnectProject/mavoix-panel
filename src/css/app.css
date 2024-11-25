@@ -1,0 +1,67 @@
+/* Global styles */
+/* ----------------------------------------- */
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat'), url('https://fonts.cdnfonts.com/s/14883/Montserrat-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Neuton';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Neuton'), url('https://fonts.cdnfonts.com/s/15576/Neuton-Regular.woff') format('woff');
+}
+
+/* ----------------------------------------- */
+
+:root {
+  --brown: #B8A695;
+  --green: #A4CDC9;
+  --grey: #B0B0B0;
+  --light-green: #DCECEC;
+  --pink: #EFDEE4;
+  --red: #EB9695;
+  --yellow: #F8D89F;
+  --white: #FFFFFF;
+
+  --title-font: 'Neuton', sans-serif;
+  --text-font: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--text-font);
+}
+
+h1 {
+  font-family: var(--title-font);
+}
+
+input {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--grey);
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  background-color: var(--green);
+  border-radius: 8px;
+  border: 1px solid var(--green);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 8px;
+  padding: 8px;
+}
