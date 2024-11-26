@@ -9,14 +9,14 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
-  src: local('Montserrat'), url('https://fonts.cdnfonts.com/s/14883/Montserrat-Regular.woff') format('woff');
+  src: local('Montserrat'), url('./fonts/Montserrat-Regular.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Neuton';
   font-style: normal;
   font-weight: 400;
-  src: local('Neuton'), url('https://fonts.cdnfonts.com/s/15576/Neuton-Regular.woff') format('woff');
+  src: local('Neuton'), url('./fonts/Neuton-Regular.woff') format('woff');
 }
 
 /* ----------------------------------------- */
