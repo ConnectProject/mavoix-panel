@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <div>
-      <h3> Bienvenue sur MaVoix {{ username }}</h3>
+      <h3>Bienvenue sur MaVoix {{ username }}</h3>
 
       <!-- If the query is loading -->
       <list-item-loading v-if="$store.state.users.loading" />
