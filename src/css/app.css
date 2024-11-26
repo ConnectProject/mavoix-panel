@@ -1,6 +1,10 @@
 /* Global styles */
 /* ----------------------------------------- */
 
+@import '../../node_modules/modern-normalize/modern-normalize.css';
+
+/* ----------------------------------------- */
+
 @font-face {
   font-family: 'Montserrat';
   font-style: normal;
