@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  name: 'PageAuthHome',
+  name: 'LoginPage',
   data() {
     return {
       email: '',
@@ -102,6 +102,7 @@ h1 {
   font-size: 64px;
   letter-spacing: 8px;
   margin: 0;
+  font-weight: bold;
 }
 
 h1 .red {
