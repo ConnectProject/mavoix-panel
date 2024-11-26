@@ -5,7 +5,6 @@
         <q-toolbar-title>
           MaVoix
         </q-toolbar-title>
-        <list-item-loading v-if="$store.state.users.loading" />
       </q-toolbar>
     </q-header>
 

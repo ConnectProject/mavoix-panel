@@ -283,7 +283,7 @@ export default {
   beforeCreate () {
     if (!Parse.User.current()) {
       this.$router.replace({
-        name: 'auth'
+        name: 'LoginPage'
       })
     }
   },

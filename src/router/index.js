@@ -23,7 +23,7 @@ export default function (/* { store, ssrContext } */) {
   })
   // Seems to do nothing and end up with an uncaught promise
   // Router.push({
-  //   name: 'auth'
+  //   name: 'LoginPage'
   // })
 
   return Router

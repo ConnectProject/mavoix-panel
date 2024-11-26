@@ -1,40 +1,49 @@
 <template>
-  <q-page class="login">
+  <q-page class="register">
     <img class="mavoix" src="/mavoix.png" alt="">
 
-    <section class="login-card">
+    <section class="register-card">
       <h1>
-        <span class="red">L</span>
-        <span class="yellow">O</span>
+        <span class="red">R</span>
+        <span class="yellow">E</span>
         <span class="green">G</span>
         <span class="grey">I</span>
-        <span class="brown">N</span>
+        <span class="brown">S</span>
+        <span class="red">T</span>
+        <span class="yellow">E</span>
+        <span class="green">R</span>
       </h1>
 
-      <form class="login-form" @keyup.enter="createUser()">
-        <label for="login-email">Email</label>
+      <form class="register-form" @keyup.enter="createUser()">
+        <label for="register-email">Email</label>
         <input
           v-model="email"
-          id="login-email"
+          id="register-email"
           type="email">
 
-        <label for="login-password">Password</label>
+        <label for="register-password">Choose a password</label>
         <input
           v-model="password"
-          id="login-password"
+          id="register-password"
+          type="password">
+
+        <label for="register-password-again">Enter your password again</label>
+        <input
+          v-model="passwordAgain"
+          id="register-password-again"
           type="password">
 
         <button
           type="button"
           @click="createUser()">
-          LOG IN
+          REGISTER
         </button>
       </form>
 
       <div>
-        <span>You don't have any account ? </span>
-        <router-link :to="{ name: 'RegisterPage' }">
-          Register
+        <span>You already have an account ? </span>
+        <router-link :to="{ name: 'LoginPage' }">
+          Log in
         </router-link>
       </div>
     </section>
@@ -43,12 +52,12 @@
 
 <script>
 export default {
-  name: 'LoginPage',
+  name: 'RegisterPage',
   data() {
     return {
       email: '',
       password: '',
-      isConnexion: true
+      passwordAgain: ''
     }
   },
   computed: {
@@ -66,10 +75,14 @@ export default {
   },
   methods: {
     createUser() {
-      if (this.isConnexion) {
-        this.$store.dispatch('users/connect', [this.email, this.password])
-      } else {
+      if (this.password === this.passwordAgain) {
         this.$store.dispatch('users/create', [this.email, this.password])
+      } else {
+        this.$q.notify({
+          position: 'top-right',
+          message: 'Passwords must be identical',
+          color: 'red'
+        })
       }
     }
   }
@@ -77,9 +90,9 @@ export default {
 </script>
 
 <style scoped>
-.login {
+.register {
   align-items: center;
-  background: linear-gradient(180deg, var(--white) 50%, var(--pink) 100%);
+  background: linear-gradient(180deg, var(--white) 50%, var(--yellow) 100%);
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
@@ -89,7 +102,7 @@ export default {
   height: 600px;
 }
 
-.login-card {
+.register-card {
   align-items: center;
   background-color: var(--white);
   border-radius: 20px;
@@ -127,11 +140,15 @@ h1 .brown {
   color: var(--brown);
 }
 
-.login-form {
+.register-form {
   display: flex;
   flex-flow: column wrap;
   gap: 8px;
   width: 400px;
+}
+
+input:invalid {
+  border-color: var(--red);
 }
 
 a {
