@@ -1,11 +1,7 @@
 <template>
   <q-layout view="lHh lpr lFf">
     <!-- (Optional) The Header -->
-    <q-header
-      class="q-py-sm"
-      style="background-color:white; color:grey"
-    >
-      <q-toolbar>
+    <!-- <q-toolbar>
         <q-space />
         <q-tabs shrink>
           <q-route-tab
@@ -37,7 +33,16 @@
             label="About Us"
           />
         </q-tabs>
-      </q-toolbar>
+      </q-toolbar> -->
+    <q-header>
+      <h1>MaVoix</h1>
+
+      <nav>
+        <router-link :to="{ name: 'home' }">MAVOIX PANEL</router-link>
+        <a href="https://mavoix.connect-project.io/app">THE APPLICATION</a>
+        <router-link>DOCUMENTATION</router-link>
+        <router-link>ABOUT US</router-link>
+      </nav>
     </q-header>
 
     <q-page-container>

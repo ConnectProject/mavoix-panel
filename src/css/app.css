@@ -30,17 +30,29 @@
   --red: #EB9695;
   --yellow: #F8D89F;
   --white: #FFFFFF;
+  --black: #252525;
 
   --title-font: 'Neuton', sans-serif;
   --text-font: 'Montserrat', sans-serif;
+
+  --spacing: 16px;
+  --spacing-tight: 8px;
+  --spacing-large: 32px;
+}
+
+html,
+body,
+#app {
+  min-height: 100vh;
 }
 
 body {
   font-family: var(--text-font);
 }
 
-h1 {
+h1,h2,h3,h4,h5,h6 {
   font-family: var(--title-font);
+  letter-spacing: 0.05em;
 }
 
 input {
