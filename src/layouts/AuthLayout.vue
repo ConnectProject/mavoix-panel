@@ -13,6 +13,14 @@
     </q-page-container>
 
     <q-footer>
+      <a href="https://www.google.fr/maps/place/Institut+Pasteur/@48.8403549,2.3090896,17z/data=!3m1!4b1!4m5!3m4!1s0x47e670376abf4b5b:0xe831277d10f68655!8m2!3d48.8403549!4d2.3112783">
+        <img
+          class="pasteur-location"
+          src="/institut-pasteur-location.png"
+          alt="Go to the Institut Pasteur location on Google Maps"
+        >
+      </a>
+
       <address>
         <a href="https://www.pasteur.fr">
           <img
@@ -62,10 +70,11 @@ export default {
   text-transform: uppercase;
   font-weight: bold;
   padding: 16px;
+}
 
-  &::before {
-    content: url(/institut-pasteur-location.png);
-  }
+.pasteur-location {
+  border: 2px solid var(--red);
+  border-radius: 50%;
 }
 
 address {
@@ -75,7 +84,7 @@ address {
 
 ul {
   list-style: none;
-  border-left: 2px solid  var(--red);
+  border-left: 2px solid var(--red);
 }
 
 li {
