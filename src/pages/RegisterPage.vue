@@ -14,13 +14,13 @@
           id="register-email"
           type="email">
 
-        <label for="register-password">Choose a password</label>
+        <label for="register-password">Choisissez un mot de passe</label>
         <input
           v-model="password"
           id="register-password"
           type="password">
 
-        <label for="register-password-again">Enter your password again</label>
+        <label for="register-password-again">Confirmez le mot de de passe</label>
         <input
           v-model="passwordAgain"
           id="register-password-again"
@@ -29,14 +29,14 @@
         <button
           type="button"
           @click="createUser()">
-          REGISTER
+          INSCRIPTION
         </button>
       </form>
 
       <div>
-        <span>You already have an account ? </span>
+        <span>Vous avez déjà un compte ? </span>
         <router-link :to="{ name: 'LoginPage' }">
-          Log in
+          Connexion
         </router-link>
       </div>
     </section>

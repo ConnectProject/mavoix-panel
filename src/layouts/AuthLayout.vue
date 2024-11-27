@@ -4,10 +4,10 @@
       <a class="title-link" href="/">MaVoix</a>
 
       <nav class="nav-links">
-        <router-link :to="{ name: 'home' }">MAVOIX PANEL</router-link>
-        <a href="https://mavoix.connect-project.io/app">THE APPLICATION</a>
+        <router-link :to="{ name: 'home' }">SE CONNECTER</router-link>
+        <a href="https://mavoix.connect-project.io/app">L'IMAGIER</a>
         <router-link :to="{ name: 'LandingPage' }">DOCUMENTATION</router-link>
-        <router-link :to="{ name: 'LandingPage' }">ABOUT US</router-link>
+        <router-link :to="{ name: 'LandingPage' }">À PROPOS</router-link>
       </nav>
     </q-header>
 

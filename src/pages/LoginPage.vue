@@ -14,7 +14,7 @@
           id="login-email"
           type="email">
 
-        <label for="login-password">Password</label>
+        <label for="login-password">Mot de passe</label>
         <input
           v-model="password"
           id="login-password"
@@ -23,14 +23,14 @@
         <button
           type="button"
           @click="createUser()">
-          LOG IN
+          SE CONNECTER
         </button>
       </form>
 
       <div>
-        <span>You don't have any account ? </span>
+        <span>Vous n'avez pas de compte ? </span>
         <router-link :to="{ name: 'RegisterPage' }">
-          Register
+          Inscription
         </router-link>
       </div>
     </section>
@@ -103,29 +103,9 @@ export default {
 
 h1 {
   font-size: 64px;
+  font-weight: bold;
   letter-spacing: 8px;
   margin: 0;
-  font-weight: bold;
-}
-
-h1 .red {
-  color: var(--red);
-}
-
-h1 .yellow {
-  color: var(--yellow);
-}
-
-h1 .green {
-  color: var(--green);
-}
-
-h1 .grey {
-  color: var(--grey);
-}
-
-h1 .brown {
-  color: var(--brown);
 }
 
 .login-form {

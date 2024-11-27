@@ -4,10 +4,10 @@
       <a class="title-link" href="/">MaVoix</a>
 
       <nav class="nav-links">
-        <router-link :to="{ name: 'home' }">MAVOIX PANEL</router-link>
-        <a href="https://mavoix.connect-project.io/app">THE APPLICATION</a>
+        <router-link :to="{ name: 'home' }">SE CONNECTER</router-link>
+        <a href="https://mavoix.connect-project.io/app">L'IMAGIER</a>
         <router-link :to="{ name: 'LandingPage' }">DOCUMENTATION</router-link>
-        <router-link :to="{ name: 'LandingPage' }">ABOUT US</router-link>
+        <router-link :to="{ name: 'LandingPage' }">À PROPOS</router-link>
       </nav>
     </header>
 
@@ -16,7 +16,7 @@
         <div class="section-text">
           <h2>MaVoix</h2>
           <p>
-            MaVoix is an open source application enabling non-verbal persons to communicate using images.<br>MaVoix is integrated with Connect, an open database for sharing public, anonymous data among assistive applications. Using MaVoix we work together to make image-based communication better.
+            MaVoix est une application open source permettant aux personnes non verbales de communiquer à l'aide d'images.<br>MaVoix est intégré à Connect, une base de données ouverte permettant de partager des données publiques et anonymes entre les applications d'assistance.<br>Grâce à MaVoix, nous travaillons ensemble pour améliorer la communication par l'image.
           </p>
         </div>
         <img
@@ -33,7 +33,7 @@
         <div class="section-text">
           <h2>Sharing is caring</h2>
           <p>
-            MaVoix is an open source application enabling non-verbal persons to communicate using images.<br>MaVoix is integrated with Connect, an open database for sharing public, anonymous data among assistive applications. Using MaVoix we work together to make image-based communication better.
+            MaVoix est une application open source permettant aux personnes non verbales de communiquer à l'aide d'images.<br>MaVoix est intégré à Connect, une base de données ouverte permettant de partager des données publiques et anonymes entre les applications d'assistance.<br>Grâce à MaVoix, nous travaillons ensemble pour améliorer la communication par l'image.
           </p>
         </div>
       </section>
@@ -42,7 +42,7 @@
         <div class="section-text">
           <h2>Data for insight</h2>
           <p>
-            MaVoix is an open source application enabling non-verbal persons to communicate using images.<br>MaVoix is integrated with Connect, an open database for sharing public, anonymous data among assistive applications. Using MaVoix we work together to make image-based communication better.
+            MaVoix est une application open source permettant aux personnes non verbales de communiquer à l'aide d'images.<br>MaVoix est intégré à Connect, une base de données ouverte permettant de partager des données publiques et anonymes entre les applications d'assistance.<br>Grâce à MaVoix, nous travaillons ensemble pour améliorer la communication par l'image.
           </p>
         </div>
         <img
