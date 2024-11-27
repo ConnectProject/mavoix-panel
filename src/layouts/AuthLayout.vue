@@ -1,11 +1,14 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header class="bg-grey text-white">
-      <q-toolbar>
-        <q-toolbar-title>
-          MaVoix
-        </q-toolbar-title>
-      </q-toolbar>
+    <q-header>
+      <a class="title-link" href="/">MaVoix</a>
+
+      <nav class="nav-links">
+        <router-link :to="{ name: 'home' }">MAVOIX PANEL</router-link>
+        <a href="https://mavoix.connect-project.io/app">THE APPLICATION</a>
+        <router-link :to="{ name: 'LandingPage' }">DOCUMENTATION</router-link>
+        <router-link :to="{ name: 'LandingPage' }">ABOUT US</router-link>
+      </nav>
     </q-header>
 
     <q-page-container>
@@ -62,7 +65,36 @@ export default {
 </script>
 
 <style scoped>
-.q-footer {
+header {
+  background-color: var(--white);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--grey);
+}
+
+.title-link {
+  color: var(--black);
+  font-size: 32px;
+  font-family: var(--title-font);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--spacing-large);
+  font-weight: bold;
+}
+
+.nav-links a {
+  color: var(--black);
+  letter-spacing: 1px;
+}
+
+footer {
   background-color: var(--green);
   display: flex;
   align-items: center;
