@@ -4,14 +4,7 @@
 
     <section class="register-card">
       <h1>
-        <span class="red">R</span>
-        <span class="yellow">E</span>
-        <span class="green">G</span>
-        <span class="grey">I</span>
-        <span class="brown">S</span>
-        <span class="red">T</span>
-        <span class="yellow">E</span>
-        <span class="green">R</span>
+        <colored-text text="INSCRIPTION"></colored-text>
       </h1>
 
       <form class="register-form" @keyup.enter="createUser()">
@@ -51,8 +44,13 @@
 </template>
 
 <script>
+import ColoredText from "../components/ColoredText"
+
 export default {
   name: 'RegisterPage',
+  components: {
+    ColoredText
+  },
   data() {
     return {
       email: '',

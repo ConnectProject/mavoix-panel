@@ -1,0 +1,38 @@
+<template>
+  <span>
+    <span class="colored-letter" v-for="letter in text">{{ letter }}</span>
+  </span>
+</template>
+
+<script>
+export default {
+  name: 'ColoredText',
+  props: ['text']
+}
+</script>
+
+<style scoped>
+.colored-letter:nth-child(5n-4) {
+  color: var(--red);
+}
+
+.colored-letter:nth-child(5n-4) {
+  color: var(--red);
+}
+
+.colored-letter:nth-child(5n-3) {
+  color: var(--yellow);
+}
+
+.colored-letter:nth-child(5n-2) {
+  color: var(--green);
+}
+
+.colored-letter:nth-child(5n-1) {
+  color: var(--grey);
+}
+
+.colored-letter:nth-child(5n) {
+  color: var(--brown);
+}
+</style>

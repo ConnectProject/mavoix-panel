@@ -4,11 +4,7 @@
 
     <section class="login-card">
       <h1>
-        <span class="red">L</span>
-        <span class="yellow">O</span>
-        <span class="green">G</span>
-        <span class="grey">I</span>
-        <span class="brown">N</span>
+        <colored-text text="CONNEXION"/>
       </h1>
 
       <form class="login-form" @keyup.enter="createUser()">
@@ -42,8 +38,13 @@
 </template>
 
 <script>
+import ColoredText from "../components/ColoredText"
+
 export default {
   name: 'LoginPage',
+  components: {
+    ColoredText
+  },
   data() {
     return {
       email: '',
