@@ -25,6 +25,8 @@
           alt="Logo of MaVoix">
       </section>
 
+      <hr>
+
       <section>
         <img
           class="connect-img"
@@ -37,6 +39,8 @@
           </p>
         </div>
       </section>
+
+      <hr>
 
       <section>
         <div class="section-text">

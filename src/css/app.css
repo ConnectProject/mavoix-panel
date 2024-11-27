@@ -50,7 +50,12 @@ body {
   font-family: var(--text-font);
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--title-font);
   letter-spacing: 0.05em;
 }
@@ -80,4 +85,10 @@ button {
   font-weight: bold;
   margin-top: 8px;
   padding: 8px;
+}
+
+hr {
+  background-image: url("/separator.png");
+  height: 20px;
+  border: none;
 }
