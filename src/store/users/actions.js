@@ -42,7 +42,7 @@ export const create = async function ({ commit }, [name, password]) {
     await ParseUser.Create(name, password).signUp()
     // commit('setUser', { user })
     // eslint-disable-next-line no-invalid-this
-    this.$router.push({ name: 'home' })
+    this.$router.push({ name: 'HomePage' })
   } catch (err) {
     commit('setError', err)
   }
@@ -53,7 +53,7 @@ export const connect = async function ({ commit, dispatch }, [name, password]) {
     await ParseUser.logIn(name, password)
     // commit('setUser', { user })
     // eslint-disable-next-line no-invalid-this
-    this.$router.push({ name: 'home' })
+    this.$router.push({ name: 'HomePage' })
   } catch (err) {
     commit('setError', err)
   }

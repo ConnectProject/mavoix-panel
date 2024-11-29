@@ -4,7 +4,7 @@
       <a class="title-link" href="/">MaVoix</a>
 
       <nav class="nav-links">
-        <router-link :to="{ name: 'home' }">SE CONNECTER</router-link>
+        <router-link :to="{ name: 'HomePage' }">SE CONNECTER</router-link>
         <a href="https://mavoix.connect-project.io/app">L'IMAGIER</a>
         <router-link :to="{ name: 'LandingPage' }">DOCUMENTATION</router-link>
         <router-link :to="{ name: 'LandingPage' }">À PROPOS</router-link>

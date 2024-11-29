@@ -396,7 +396,7 @@ export default {
 
       /* Go to home */
       this.$router.push({
-        name: 'home'
+        name: 'HomePage'
       })
     },
 

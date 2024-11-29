@@ -7,7 +7,7 @@
           <q-route-tab
             class="q-mr-sm q-py-xs custom_tab"
             no-caps
-            :to="{name: 'home'}"
+            :to="{name: 'HomePage'}"
             label="MaVoix Panel"
           />
           <a
@@ -38,7 +38,7 @@
       <h1>MaVoix</h1>
 
       <nav>
-        <router-link :to="{ name: 'home' }">MAVOIX PANEL</router-link>
+        <router-link :to="{ name: 'HomePage' }">MAVOIX PANEL</router-link>
         <a href="https://mavoix.connect-project.io/app">THE APPLICATION</a>
         <router-link>DOCUMENTATION</router-link>
         <router-link>ABOUT US</router-link>

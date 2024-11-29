@@ -1,18 +1,19 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout>
     <q-header>
       <a class="title-link" href="/">MaVoix</a>
 
       <nav class="nav-links">
-        <router-link :to="{ name: 'HomePage' }">SE CONNECTER</router-link>
-        <a href="https://mavoix.connect-project.io/app">L'IMAGIER</a>
-        <router-link :to="{ name: 'LandingPage' }">DOCUMENTATION</router-link>
-        <router-link :to="{ name: 'LandingPage' }">À PROPOS</router-link>
+        <button type="button" @click="logout()">
+          SE DÉCONNECTER
+        </button>
       </nav>
     </q-header>
 
     <q-page-container>
-      <router-view />
+      <main>
+        <router-view />
+      </main>
     </q-page-container>
 
     <q-footer>
@@ -20,8 +21,7 @@
         <img
           class="pasteur-location"
           src="/institut-pasteur-location.png"
-          alt="Go to the Institut Pasteur location on Google Maps"
-        >
+          alt="Go to the Institut Pasteur location on Google Maps">
       </a>
 
       <address>
@@ -59,8 +59,27 @@
 </template>
 
 <script>
+import Parse from 'parse'
+
 export default {
-  name: 'LayoutAuth'
+  name: 'MainLayout',
+  beforeCreate () {
+    if (!Parse.User.current()) {
+      this.$router.replace({
+        name: 'LoginPage'
+      })
+    }
+  },
+  methods: {
+    logout() {
+      // Reset vuex store
+      this.$store.commit('reset')
+      Parse.User.logOut()
+      this.$router.push({
+        name: 'LoginPage'
+      })
+    },
+  }
 }
 </script>
 
@@ -92,6 +111,17 @@ header {
 .nav-links a {
   color: var(--black);
   letter-spacing: 1px;
+}
+
+.nav-links button {
+  color: var(--black);
+  letter-spacing: 1px;
+  background: none;
+  border: none;
+}
+
+main {
+  padding: var(--spacing);
 }
 
 footer {

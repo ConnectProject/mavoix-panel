@@ -21,21 +21,32 @@ const routes = [
     ]
   },
   {
-    name: 'base',
     path: '/',
-    component: () => import('~/layouts/HomeLayout.vue'),
+    component: () => import('~/layouts/MainLayout.vue'),
     children: [
-
-      /* Homepage */
-      { name: 'home', path: '/home', component: () => import('~/pages/Home.vue') },
-
-      /* Tab editor */
-      { name: 'tab', path: '/tabs/:slug', component: () => import('~/pages/TabEditor.vue') },
-
-      /* Asset editor */
-      { name: 'assets', path: '/assets', component: () => import('~/pages/AssetsManager.vue') }
+      {
+        name: 'HomePage',
+        path: 'home',
+        component: () => import('~/pages/HomePage.vue')
+      }
     ]
   }
+  // {
+  //   name: 'base',
+  //   path: '/',
+  //   component: () => import('~/layouts/HomeLayout.vue'),
+  //   children: [
+
+  //     /* Homepage */
+  //     { name: 'HomePage', path: '/home', component: () => import('~/pages/Home.vue') },
+
+  //     /* Tab editor */
+  //     { name: 'tab', path: '/tabs/:slug', component: () => import('~/pages/TabEditor.vue') },
+
+  //     /* Asset editor */
+  //     { name: 'assets', path: '/assets', component: () => import('~/pages/AssetsManager.vue') }
+  //   ]
+  // }
 ]
 
 // Always leave this as last one

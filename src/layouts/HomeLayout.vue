@@ -1,4 +1,3 @@
-
 <template>
   <div @dragenter="onDragEnter">
     <!-- Dropzone -->
@@ -83,7 +82,7 @@
               v-ripple
               clickable
               class="text-white"
-              :to="{ name: 'home' }"
+              :to="{ name: 'HomePage' }"
             >
               <q-item-section avatar>
                 <q-icon name="home" />
