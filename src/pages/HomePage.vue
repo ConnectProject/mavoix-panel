@@ -6,7 +6,7 @@
     </h1>
 
     <section>
-      <h2 class="section-title">Your tabs ({{ tabs.length }}) : </h2>
+      <h2 class="section-title">Vos onglets ({{ tabs.length }}) : </h2>
       <div class="cards-list">
         <div
           class="card"
@@ -18,7 +18,7 @@
     </section>
 
     <section>
-      <h2 class="section-title">Your devices ({{ devices.length }}) : </h2>
+      <h2 class="section-title">Vos appareils ({{ devices.length }}) : </h2>
       <div class="cards-list">
         <div
           class="device-card"

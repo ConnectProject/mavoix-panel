@@ -6,8 +6,8 @@
       <nav class="nav-links">
         <router-link :to="{ name: 'HomePage' }">ACCUEIL</router-link>
         <router-link :to="{ name: 'ImageGalleryPage' }">GALERIE D'IMAGES</router-link>
-        <router-link :to="{ name: 'HomePage' }">DEVICES</router-link>
-        <router-link :to="{ name: 'HomePage' }">TABS</router-link>
+        <router-link :to="{ name: 'HomePage' }">APPAREILS</router-link>
+        <router-link :to="{ name: 'HomePage' }">ONGLETS</router-link>
       </nav>
 
       <button class="logout-button" type="button" @click="logout()">
