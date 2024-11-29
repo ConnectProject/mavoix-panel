@@ -4,10 +4,15 @@
       <a class="title-link" href="/">MaVoix</a>
 
       <nav class="nav-links">
-        <button type="button" @click="logout()">
-          SE DÉCONNECTER
-        </button>
+        <router-link :to="{ name: 'HomePage' }">ACCUEIL</router-link>
+        <router-link :to="{ name: 'ImageGalleryPage' }">GALERIE D'IMAGES</router-link>
+        <router-link :to="{ name: 'HomePage' }">DEVICES</router-link>
+        <router-link :to="{ name: 'HomePage' }">TABS</router-link>
       </nav>
+
+      <button class="logout-button" type="button" @click="logout()">
+        SE DÉCONNECTER
+      </button>
     </q-header>
 
     <q-page-container>
@@ -63,7 +68,7 @@ import Parse from 'parse'
 
 export default {
   name: 'MainLayout',
-  beforeCreate () {
+  beforeCreate() {
     if (!Parse.User.current()) {
       this.$router.replace({
         name: 'LoginPage'
@@ -113,7 +118,7 @@ header {
   letter-spacing: 1px;
 }
 
-.nav-links button {
+.logout-button {
   color: var(--black);
   letter-spacing: 1px;
   background: none;
