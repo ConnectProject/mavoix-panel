@@ -49,7 +49,6 @@ export default {
   mounted() {
     if (Parse.User.current()) {
       this.$store.dispatch('tabs/loadTabs')
-      this.$store.dispatch('assetsManager/loadAssets')
       this.$store.dispatch('devices/loadDevices')
       this.$store.dispatch('global/initTTS')
       this.$store.dispatch('users/loadConnectUserId')
@@ -71,10 +70,6 @@ export default {
   align-items: center;
   margin: var(--spacing);
   gap: var(--spacing);
-}
-
-.page-title span {
-  font-size: 36px;
 }
 
 .page-title small {

@@ -62,6 +62,10 @@ h6 {
   line-height: initial;
 }
 
+h1 {
+  font-size: 36px;
+}
+
 input {
   padding: 8px;
   font-size: 16px;
