@@ -1,9 +1,11 @@
 <template>
   <section class="home-page">
-    <h1 class="page-title">
-      <span>Bienvenue sur MaVoix</span>
-      <small>{{ username }}</small>
-    </h1>
+    <header class="page-header">
+      <h1 class="page-title">
+        <span>Bienvenue sur MaVoix</span>
+        <small>{{ username }}</small>
+      </h1>
+    </header>
 
     <section>
       <h2 class="section-title">Vos onglets ({{ tabs.length }}) : </h2>
@@ -62,6 +64,19 @@ export default {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+
+  &::before {
+    content: url("/home-image-left.png");
+  }
+
+  &::after {
+    content: url("/home-image-right.png");
+  }
 }
 
 .page-title {
