@@ -33,6 +33,11 @@ const routes = [
         name: 'ImageGalleryPage',
         path: 'gallery',
         component: () => import('~/pages/ImageGalleryPage.vue')
+      },
+      {
+        name: 'AddImagePage',
+        path: 'gallery/add',
+        component: () => import('~/pages/AddImagePage.vue')
       }
     ]
   }

@@ -12,6 +12,10 @@
         id="search-images"
         type="search"
         v-model="imageFilter">
+      <span>ou</span>
+      <router-link :to="{ name: 'AddImagePage'}" class="button-link">
+        AJOUTER UNE NOUVELLE IMAGE
+      </router-link>
     </section>
 
     <section class="images-section">
@@ -49,7 +53,6 @@ export default {
       return this.images.filter(image => {
         const keyword = this.normalizeString(this.imageFilter)
         const imageName = this.normalizeString(image.name)
-
         return imageName.includes(keyword)
       })
     }
