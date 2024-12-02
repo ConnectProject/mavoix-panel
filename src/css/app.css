@@ -44,6 +44,7 @@ html,
 body,
 #app {
   min-height: 100vh;
+  line-height: 1.15;
 }
 
 body {
@@ -81,7 +82,8 @@ a {
   }
 }
 
-button {
+button,
+.button-link {
   background-color: var(--green);
   border-radius: 8px;
   border: 1px solid var(--green);
@@ -90,6 +92,10 @@ button {
   font-size: 16px;
   font-weight: bold;
   padding: 8px;
+}
+
+.button-link:hover {
+  text-decoration: none;
 }
 
 hr {

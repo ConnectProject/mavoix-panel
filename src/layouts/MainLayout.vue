@@ -147,6 +147,11 @@ footer {
 address {
   display: flex;
   flex-flow: column wrap;
+  font-style: normal;
+}
+
+address * {
+  margin-bottom: 4px;
 }
 
 ul {
@@ -155,7 +160,7 @@ ul {
 }
 
 li {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 a {
