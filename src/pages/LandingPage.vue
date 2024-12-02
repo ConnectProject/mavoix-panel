@@ -33,7 +33,7 @@
           src="/connect-db.png"
           alt="Logo of MaVoix">
         <div class="section-text">
-          <h2>Sharing is caring</h2>
+          <h2>Partager, c'est prendre soin</h2>
           <p>
             MaVoix est une application open source permettant aux personnes non verbales de communiquer à l'aide d'images.<br>MaVoix est intégré à Connect, une base de données ouverte permettant de partager des données publiques et anonymes entre les applications d'assistance.<br>Grâce à MaVoix, nous travaillons ensemble pour améliorer la communication par l'image.
           </p>
@@ -44,7 +44,7 @@
 
       <section>
         <div class="section-text">
-          <h2>Data for insight</h2>
+          <h2>Des données pour mieux comprendre</h2>
           <p>
             MaVoix est une application open source permettant aux personnes non verbales de communiquer à l'aide d'images.<br>MaVoix est intégré à Connect, une base de données ouverte permettant de partager des données publiques et anonymes entre les applications d'assistance.<br>Grâce à MaVoix, nous travaillons ensemble pour améliorer la communication par l'image.
           </p>
