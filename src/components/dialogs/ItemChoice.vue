@@ -66,7 +66,7 @@ export default {
   computed: {
     route () {
       return this.$route.params.assets
-    },
+    }
 
     /**
      * @return {boolean} true if the dialog should be opened
@@ -185,7 +185,7 @@ export default {
       )
       this.$store.commit('tabEditor/pushItems', this.assetsToAdd)
       this.close()
-    },
+    }
 
     /**
      * Call to hide the dialog

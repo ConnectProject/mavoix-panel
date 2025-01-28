@@ -38,7 +38,9 @@
       <h1>MaVoix</h1>
 
       <nav>
-        <router-link :to="{ name: 'HomePage' }">MAVOIX PANEL</router-link>
+        <router-link :to="{ name: 'HomePage' }">
+          MAVOIX PANEL
+        </router-link>
         <a href="https://mavoix.connect-project.io/app">THE APPLICATION</a>
         <router-link>DOCUMENTATION</router-link>
         <router-link>ABOUT US</router-link>

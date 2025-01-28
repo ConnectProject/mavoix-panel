@@ -10,9 +10,24 @@
       <h2>Créer une nouvelle image :</h2>
 
       <div class="actions">
-        <button class="picture-action" type="button">Prendre une photo</button>
-        <button class="import-action" type="button">Importer une image</button>
-        <button class="search-action" type="button">Chercher dans les images d'Arasaac</button>
+        <button
+          class="picture-action"
+          type="button"
+        >
+          Prendre une photo
+        </button>
+        <button
+          class="import-action"
+          type="button"
+        >
+          Importer une image
+        </button>
+        <button
+          class="search-action"
+          type="button"
+        >
+          Chercher dans les images d'Arasaac
+        </button>
       </div>
     </section>
   </section>

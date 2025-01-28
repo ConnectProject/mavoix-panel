@@ -8,23 +8,29 @@
     </header>
 
     <section>
-      <h2 class="section-title">Vos onglets ({{ tabs.length }}) : </h2>
+      <h2 class="section-title">
+        Vos onglets ({{ tabs.length }}) :
+      </h2>
       <div class="cards-list">
         <div
-          class="card"
           v-for="tab in tabs"
-          :style="{ 'background-color': tab.attributes.hexColor }">
+          class="card"
+          :style="{ 'background-color': tab.attributes.hexColor }"
+        >
           <h3>{{ tab.attributes.name }}</h3>
         </div>
       </div>
     </section>
 
     <section>
-      <h2 class="section-title">Vos appareils ({{ devices.length }}) : </h2>
+      <h2 class="section-title">
+        Vos appareils ({{ devices.length }}) :
+      </h2>
       <div class="cards-list">
         <div
+          v-for="device in devices"
           class="device-card"
-          v-for="device in devices">
+        >
           {{ device.deviceName }}
         </div>
       </div>

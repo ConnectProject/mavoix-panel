@@ -1,6 +1,9 @@
 <template>
   <span>
-    <span class="colored-letter" v-for="letter in text">{{ letter }}</span>
+    <span
+      v-for="letter in text"
+      class="colored-letter"
+    >{{ letter }}</span>
   </span>
 </template>
 

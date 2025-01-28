@@ -85,14 +85,13 @@
           @click="showCam = false"
         />
       </div>
-
     </q-card>
   </q-dialog>
 </template>
 
 <script>
-import 'cropperjs/dist/cropper.css';
-import Cropper from 'cropperjs';
+import 'cropperjs/dist/cropper.css'
+import Cropper from 'cropperjs'
 
 export default {
   name: 'Camera',
@@ -119,7 +118,7 @@ export default {
       this.image = true
       this.$nextTick(() => {
         this.$refs.titleImage.focus()
-        this.cropper = new Cropper(this.$refs.canvas, {});
+        this.cropper = new Cropper(this.$refs.canvas, {})
       })
     },
 
@@ -197,7 +196,7 @@ export default {
       this.$refs.video.pause()
       this.$refs.video.src = ''
       this.$refs.video.srcObject.getTracks()[0].stop()
-    },
+    }
   }
 }
 

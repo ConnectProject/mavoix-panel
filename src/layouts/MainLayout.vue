@@ -1,16 +1,31 @@
 <template>
   <q-layout>
     <q-header>
-      <a class="title-link" href="/">MaVoix</a>
+      <a
+        class="title-link"
+        href="/"
+      >MaVoix</a>
 
       <nav class="nav-links">
-        <router-link :to="{ name: 'HomePage' }">ACCUEIL</router-link>
-        <router-link :to="{ name: 'ImageGalleryPage' }">GALERIE D'IMAGES</router-link>
-        <router-link :to="{ name: 'HomePage' }">APPAREILS</router-link>
-        <router-link :to="{ name: 'HomePage' }">ONGLETS</router-link>
+        <router-link :to="{ name: 'HomePage' }">
+          ACCUEIL
+        </router-link>
+        <router-link :to="{ name: 'ImageGalleryPage' }">
+          GALERIE D'IMAGES
+        </router-link>
+        <router-link :to="{ name: 'HomePage' }">
+          APPAREILS
+        </router-link>
+        <router-link :to="{ name: 'HomePage' }">
+          ONGLETS
+        </router-link>
       </nav>
 
-      <button class="logout-button" type="button" @click="logout()">
+      <button
+        class="logout-button"
+        type="button"
+        @click="logout()"
+      >
         SE DÉCONNECTER
       </button>
     </q-header>
@@ -26,7 +41,8 @@
         <img
           class="pasteur-location"
           src="/institut-pasteur-location.png"
-          alt="Go to the Institut Pasteur location on Google Maps">
+          alt="Go to the Institut Pasteur location on Google Maps"
+        >
       </a>
 
       <address>
@@ -35,7 +51,8 @@
             src="/institut-pasteur-logo.webp"
             width="143"
             height="39"
-            alt="The logo of the Institut Pasteur">
+            alt="The logo of the Institut Pasteur"
+          >
         </a>
         <a href="https://www.google.fr/maps/place/Institut+Pasteur/@48.8403549,2.3090896,17z/data=!3m1!4b1!4m5!3m4!1s0x47e670376abf4b5b:0xe831277d10f68655!8m2!3d48.8403549!4d2.3112783">
           25-28 Rue du Dr Roux, <br>
@@ -83,7 +100,7 @@ export default {
       this.$router.push({
         name: 'LoginPage'
       })
-    },
+    }
   }
 }
 </script>

@@ -1,28 +1,38 @@
 <template>
   <q-page class="login">
-    <img class="mavoix" src="/mavoix.png" alt="">
+    <img
+      class="mavoix"
+      src="/mavoix.png"
+      alt=""
+    >
 
     <section class="login-card">
       <h1>
-        <colored-text text="CONNEXION"/>
+        <colored-text text="CONNEXION" />
       </h1>
 
-      <form class="login-form" @keyup.enter="createUser()">
+      <form
+        class="login-form"
+        @keyup.enter="createUser()"
+      >
         <label for="login-email">Email</label>
         <input
-          v-model="email"
           id="login-email"
-          type="email">
+          v-model="email"
+          type="email"
+        >
 
         <label for="login-password">Mot de passe</label>
         <input
-          v-model="password"
           id="login-password"
-          type="password">
+          v-model="password"
+          type="password"
+        >
 
         <button
           type="button"
-          @click="createUser()">
+          @click="createUser()"
+        >
           SE CONNECTER
         </button>
       </form>

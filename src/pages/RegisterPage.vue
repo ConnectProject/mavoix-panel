@@ -1,34 +1,45 @@
 <template>
   <q-page class="register">
-    <img class="mavoix" src="/mavoix.png" alt="">
+    <img
+      class="mavoix"
+      src="/mavoix.png"
+      alt=""
+    >
 
     <section class="register-card">
       <h1>
-        <colored-text text="INSCRIPTION"></colored-text>
+        <colored-text text="INSCRIPTION" />
       </h1>
 
-      <form class="register-form" @keyup.enter="createUser()">
+      <form
+        class="register-form"
+        @keyup.enter="createUser()"
+      >
         <label for="register-email">Email</label>
         <input
-          v-model="email"
           id="register-email"
-          type="email">
+          v-model="email"
+          type="email"
+        >
 
         <label for="register-password">Choisissez un mot de passe</label>
         <input
-          v-model="password"
           id="register-password"
-          type="password">
+          v-model="password"
+          type="password"
+        >
 
         <label for="register-password-again">Confirmez le mot de de passe</label>
         <input
-          v-model="passwordAgain"
           id="register-password-again"
-          type="password">
+          v-model="passwordAgain"
+          type="password"
+        >
 
         <button
           type="button"
-          @click="createUser()">
+          @click="createUser()"
+        >
           INSCRIPTION
         </button>
       </form>

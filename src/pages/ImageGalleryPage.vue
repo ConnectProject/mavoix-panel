@@ -10,10 +10,14 @@
       <label for="search-images">Cherchez dans vos images :</label>
       <input
         id="search-images"
+        v-model="imageFilter"
         type="search"
-        v-model="imageFilter">
+      >
       <span>ou</span>
-      <router-link :to="{ name: 'AddImagePage'}" class="button-link">
+      <router-link
+        :to="{ name: 'AddImagePage'}"
+        class="button-link"
+      >
         AJOUTER UNE NOUVELLE IMAGE
       </router-link>
     </section>
@@ -21,8 +25,14 @@
     <section class="images-section">
       <h2>Explorez vos images : </h2>
       <div class="cards">
-        <div class="image-card" v-for="image in filteredImages">
-          <img :src="image.url" alt="">
+        <div
+          v-for="image in filteredImages"
+          class="image-card"
+        >
+          <img
+            :src="image.url"
+            alt=""
+          >
           <div>{{ image.name }}</div>
         </div>
       </div>
@@ -40,11 +50,6 @@ export default {
       imageFilter: ''
     }
   },
-  mounted() {
-    if (Parse.User.current()) {
-      this.$store.dispatch('assetsManager/loadAssets')
-    }
-  },
   computed: {
     images() {
       return this.$store.getters['assetsManager/all']
@@ -53,11 +58,18 @@ export default {
       return this.images.filter(image => {
         const keyword = this.normalizeString(this.imageFilter)
         const imageName = this.normalizeString(image.name)
+
         return imageName.includes(keyword)
       })
     }
   },
+  mounted() {
+    if (Parse.User.current()) {
+      this.$store.dispatch('assetsManager/loadAssets')
+    }
+  },
   methods: {
+
     /**
      * Make a string lowercase remove diacritics.
      * It is used to provide a case-insensitive and
@@ -69,7 +81,7 @@ export default {
       return str
         .normalize("NFD") // Normalize the unicode chain to extract diacritics
         .replace(/[\u0300-\u036f]/g, "") // Remove diacritic characters
-        .toLowerCase();
+        .toLowerCase()
     }
   }
 }
