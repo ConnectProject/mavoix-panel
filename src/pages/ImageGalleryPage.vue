@@ -27,6 +27,7 @@
       <div class="cards">
         <div
           v-for="image in filteredImages"
+          :key="image.id"
           class="image-card"
         >
           <img

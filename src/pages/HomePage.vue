@@ -14,6 +14,7 @@
       <div class="cards-list">
         <div
           v-for="tab in tabs"
+          :key="tab.id"
           class="card"
           :style="{ 'background-color': tab.attributes.hexColor }"
         >
@@ -29,6 +30,7 @@
       <div class="cards-list">
         <div
           v-for="device in devices"
+          :key="device.deviceName"
           class="device-card"
         >
           {{ device.deviceName }}

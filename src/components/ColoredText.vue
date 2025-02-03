@@ -1,7 +1,8 @@
 <template>
   <span>
     <span
-      v-for="letter in text"
+      v-for="(letter, index) in text"
+      :key="index"
       class="colored-letter"
     >{{ letter }}</span>
   </span>
@@ -10,7 +11,12 @@
 <script>
 export default {
   name: 'ColoredText',
-  props: ['text']
+  props: {
+    text: {
+      default: '',
+      type: String
+    }
+  }
 }
 </script>
 
