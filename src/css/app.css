@@ -74,6 +74,10 @@ input {
   border: 1px solid var(--grey);
 }
 
+input[type=file] {
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
 

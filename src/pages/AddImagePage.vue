@@ -13,29 +13,50 @@
         <button
           class="picture-action"
           type="button"
+          @click="component = 'addImagePicture'"
         >
           Prendre une photo
         </button>
         <button
           class="import-action"
           type="button"
+          @click="component = 'addImageImport'"
         >
           Importer une image
         </button>
         <button
           class="search-action"
           type="button"
+          @click="component = 'addImageArassac'"
         >
           Chercher dans les images d'Arasaac
         </button>
       </div>
     </section>
+
+    <section class="add-image-section">
+      <Component :is="component" />
+    </section>
   </section>
 </template>
 
 <script>
+import AddImageArassac from '../components/AddImageArassac.vue'
+import AddImageImport from '../components/AddImageImport.vue'
+import AddImagePicture from '../components/AddImagePicture.vue'
+
 export default {
-  name: 'AddImagePage'
+  name: 'AddImagePage',
+  components: {
+    AddImageArassac,
+    AddImageImport,
+    AddImagePicture
+  },
+  data() {
+    return {
+      component: 'addImageImport'
+    }
+  }
 }
 </script>
 
@@ -49,6 +70,10 @@ section h2 {
   text-align: center;
 }
 
+.add-image-section {
+  margin: var(--spacing);
+}
+
 .actions {
   display: flex;
   flex-flow: row wrap;
@@ -60,9 +85,11 @@ section h2 {
   background-color: var(--red);
   border-color: var(--red);
 }
+
 .import-action {
   background-color: var(--yellow);
   border-color: var(--yellow);
 }
+
 .search-action {}
 </style>
