@@ -161,6 +161,10 @@ section {
   font-size: 18px;
 }
 
+.section-text p {
+  line-height: 1.5;
+}
+
 .mavoix-img {
   height: 600px;
 }
