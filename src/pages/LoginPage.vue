@@ -121,7 +121,7 @@ h1 {
 .login-form {
   display: flex;
   flex-flow: column wrap;
-  gap: 8px;
+  gap: 16px;
   width: 400px;
 }
 
