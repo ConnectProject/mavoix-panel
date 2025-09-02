@@ -4,12 +4,14 @@
 
 1. Prepare the API
 
-> Go to <https://github.com/ConnectProject/mavoix-api>
+Go to <https://github.com/ConnectProject/mavoix-api>
 
 2. Prepare the repo
 
-> `git clone https://github.com/ConnectProject/mavoix-panel.git`
-> `npm install`
+```sh
+git clone https://github.com/ConnectProject/mavoix-panel.git
+npm install
+```
 
 3. Load environment variables
 
@@ -17,12 +19,14 @@
 
 4. Add the redirect URI <http://localhost:9000/home> to your connect app to be able to connect with the OAuth workflow.
 
-5. Install Quasar CLI
+## Start in dev mode
 
-> `npm install -g @quasar/cli`
+```sh
+npm run dev
+```
 
-## Running
+## About this branch
 
-> `quasar dev`
+Updating to quasar 2 was too cumbersome so this branch was created, with native Vue 3 to implement the new design.
 
-## Enjoy
+Nothing was modified outside of this branch, so it can be freely updated, recycled or discarded without affecting the original application.
