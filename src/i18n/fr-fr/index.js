@@ -39,6 +39,20 @@ export default {
       headingEdit: 'Editer une image',
       nameLabel: 'Nom',
       selectAssetLabel: 'Sélectionner une image'
+    },
+    itemMenu: {
+      title: 'Editer l\'image',
+      deleteImage: 'Supprimer l\'image',
+      renameImage: 'Renommer l\'image',
+      makeUnavailable: 'Rendre le picto Indisponible',
+      makeInvisible: 'Rendre le picto Invisible'
+    },
+    deletePicto: {
+      title: 'Supprimer le picto',
+      message: 'Vous êtes sûr de vouloir supprimer le picto sur cet onglet ?',
+      no: 'Non',
+      yes: 'Oui',
+      dontAskAgain: 'Ne me demander pas la prochaine fois'
     }
   },
   deviceDialogs: {
@@ -52,6 +66,15 @@ export default {
   },
   newTabDialog: {
     heading: 'Choisissez un nom pour votre nouvel onglet !'
+  },
+  tabSettings: {
+    createTitle: 'Création d\'un nouvel onglet',
+    editTitle: 'Paramètres de l\'onglet',
+    tabName: 'Nom de l\'onglet',
+    backgroundColor: 'Couleur de fond',
+    selectedColor: 'Couleur choisie',
+    icon: 'Icône',
+    createButton: 'Créer l\'onglet'
   },
   generic: {
     close: 'Fermer',

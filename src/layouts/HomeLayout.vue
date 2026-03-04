@@ -31,188 +31,75 @@
       </div>
     </div>
 
-    <q-layout view="hHh Lpr lff">
+    <q-layout view="hHh Lpr lFf">
       <!-- Toolbar -->
-      <q-header style="background:grey">
-        <q-toolbar style="height:75px">
-          <q-toolbar-title>{{ $t('appTitle') }}</q-toolbar-title>
-          <q-btn
-            onclick="alert('Go to doc')"
-            title="Documentation"
-            flat
-            icon="help"
-          />
-          <a
-            href="https://github.com/ConnectProject/mavoix-panel"
-            title="Project's GitHub"
-            style="color: inherit; text-decoration: none"
-            target="_blank"
-          >
-            <q-btn
-              flat
-              icon="fab fa-github"
-            />
-          </a>
-          <q-btn
-            flat
-            no-caps
-            @click="onLogout"
-          >
-            {{ $t('logoutLabel') }}
+      <q-header elevated class="bg-white text-black">
+        <!-- Top Navigation Bar -->
+        <q-toolbar class="bg-white" style="height: 64px;">
+          <q-toolbar-title>Ma Voix</q-toolbar-title>
+
+          <q-btn flat :label="$t('navDrawer.home')" :to="{ name: 'home' }" />
+          <q-btn flat :label="$t('navDrawer.tabs')" :to="{ name: 'home' }" />
+          <q-btn flat :label="$t('navDrawer.assetsManager')" :to="{ name: 'assets' }" />
+
+          <q-btn flat :label="$t('navDrawer.devices')" @click="devicesMenuOpen = !devicesMenuOpen">
+            <q-icon name="devices_other" class="q-mr-xs" />
+            <q-menu v-model="devicesMenuOpen" anchor="bottom left" self="top left">
+              <q-list style="min-width: 200px;">
+                <list-item-loading v-if="$store.state.devices.loading" />
+                <template v-else>
+                  <q-item
+                    v-for="(device, index) in devices"
+                    :key="index"
+                    v-ripple
+                    clickable
+                    @click="$store.commit('devices/openDialog', index); devicesMenuOpen = false"
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="devices_other" />
+                    </q-item-section>
+                    <q-item-section>{{ device.deviceName }}</q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item
+                    v-ripple
+                    clickable
+                    @click="$store.commit('devices/openNameDialog'); devicesMenuOpen = false"
+                  >
+                    <q-item-section avatar>
+                      <q-icon name="add" />
+                    </q-item-section>
+                    <q-item-section>{{ $t('navDrawer.addDevice') }}</q-item-section>
+                  </q-item>
+                </template>
+              </q-list>
+            </q-menu>
           </q-btn>
+
+          <q-space />
+
+          <q-btn flat icon="logout" @click="onLogout" />
         </q-toolbar>
+
+        <TopTabBar />
       </q-header>
-
-      <!-- Navigation drawer -->
-      <q-drawer
-        v-model="drawerOpen"
-        :width="200"
-        :breakpoint="500"
-        show-if-abovebordered
-      >
-        <q-scroll-area
-          style="background:grey"
-          class="fit"
-        >
-          <q-list
-            padding
-            class="menu-list"
-          >
-            <!-- Home -->
-            <q-item
-              v-ripple
-              clickable
-              class="text-white"
-              :to="{ name: 'home' }"
-            >
-              <q-item-section avatar>
-                <q-icon name="home" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>{{ $t('navDrawer.home') }}</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item
-              v-ripple
-              clickable
-              class="text-white"
-              :to="{ name: 'assets' }"
-            >
-              <q-item-section avatar>
-                <q-icon name="photo_library" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>{{ $t('navDrawer.assetsManager') }}</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <!-- Tabs -->
-            <q-item-label
-              header
-              class="text-white"
-            >
-              {{ $t('navDrawer.tabs') }}
-            </q-item-label>
-            <!-- If the query is loading -->
-            <list-item-loading v-if="$store.state.tabs.loading" />
-            <div v-else>
-              <!-- Render fetched tab buttons -->
-              <q-item
-                v-for="(tab, index) in tabs"
-                :key="index"
-                v-ripple
-                :style="{
-                  color: getTextColor(tab.get('hexColor')),
-                  'border-radius':' 32px 0 0 32px',
-                  background: tab.get('hexColor'),
-                  marginRight:(tab.get('name')===selectedTab)?0:'1px',
-                  marginLeft:(tab.get('name')===selectedTab)?'5px':'20px'
-                }"
-                clickable
-                :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
-              >
-                <q-item-section avatar>
-                  <q-icon name="category" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label>
-                    {{ tab.get('name') }}
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <!-- Click to add a tab -->
-              <q-item
-                v-ripple
-                style="margin-left:150px;border-radius:32px 0 0 32px;background:white"
-                clickable
-                @click="$store.commit('tabs/openDialog')"
-              >
-                <q-item-section avatar>
-                  <q-icon name="add" />
-                </q-item-section>
-              </q-item>
-            </div>
-
-            <!-- Devices -->
-            <q-item-label
-              header
-              class="text-white"
-            >
-              {{ $t('navDrawer.devices') }}
-            </q-item-label>
-            <!-- If the query is loading -->
-            <list-item-loading v-if="$store.state.devices.loading" />
-            <!-- If the query has returned its result -->
-            <div v-else>
-              <!-- Render fetched devices buttons -->
-              <q-item
-                v-for="(device, index) in devices"
-                :key="index"
-                v-ripple
-                :style="{
-                  color: 'black',
-                  'border-radius':' 32px 0 0 32px',
-                  marginRight:'1px',
-                  marginLeft:'20px'
-                }"
-                class="bg-grey-4"
-                clickable
-                @click="$store.commit('devices/openDialog', index)"
-              >
-                <q-item-section avatar>
-                  <q-icon name="devices_other" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label>{{ device.deviceName }}</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <!-- Click to add a device -->
-              <q-item
-                v-ripple
-                style="margin-left:150px;border-radius:32px 0 0 32px;background:white"
-                clickable
-                @click="$store.commit('devices/openNameDialog')"
-              >
-                <q-item-section avatar>
-                  <q-icon name="add" />
-                </q-item-section>
-                <!-- <q-item-section>
-                  <q-item-label>{{ $t('navDrawer.addDevice') }}</q-item-label>
-                </q-item-section> -->
-              </q-item>
-            </div>
-          </q-list>
-        </q-scroll-area>
-      </q-drawer>
 
       <q-page-container>
         <router-view />
       </q-page-container>
 
-      <dialog-tab-name />
+      <!-- Create tab: opened when tabs/openDialog sets tabs.dialogOpen = true; value bound to getter tabs/dialogOpened -->
+      <dialog-tab-settings
+        :value="$store.getters['tabs/dialogOpened']"
+        mode="create"
+        @input="v => !v && $store.commit('tabs/closeDialog')"
+      />
+      <dialog-tab-settings
+        :value="$store.getters['tabs/editDialogOpened']"
+        :tab="$store.getters['tabs/editTab']"
+        mode="edit"
+        @input="v => !v && $store.commit('tabs/closeEditDialog')"
+      />
       <dialog-device-name />
       <dialog-device-invitation />
     </q-layout>
@@ -227,9 +114,11 @@
 
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 import DialogDeviceName from '~/components/dialogs/DeviceName'
-import DialogTabName from '~/components/dialogs/TabName'
+import DialogTabSettings from '~/components/dialogs/TabSettings'
 
 import ListItemLoading from '~/components/ListItemLoading'
+
+import TopTabBar from '~/components/navs/TopTabBar.vue'
 
 import Parse from 'parse'
 
@@ -241,42 +130,22 @@ export default {
     // QrcodeVue,
     ListItemLoading,
     // DialogAssetsManager,
-    DialogTabName,
+    DialogTabSettings,
     DialogDeviceName,
-    DialogDeviceInvitation
+    DialogDeviceInvitation,
+    TopTabBar
   },
   data () {
     return {
-      // dnd: false,
-      drawerOpen: this.$q.platform.is.desktop
+      devicesMenuOpen: false
     }
   },
   computed: {
-    // code () {
-    //   return localStorage.getItem('username') + ':' +
-    //     localStorage.getItem('password')
-    // },
-    // users () {
-    //   return this.$store.getters['users/users']
-    // },
-
     /**
-     * @returns {Object} all devices
-     * never called
+     * @returns {Object[]} all devices
      */
     devices () {
       return this.$store.getters['devices/devices']
-    },
-
-    /**
-     * @returns {Object} all tabs
-     */
-    tabs () {
-      return this.$store.getters['tabs/tabs']
-    },
-    selectedTab () {
-      return this.$route.params.slug
-      // return this.$store.getters['tabEditor/tab']
     }
   },
 
@@ -361,57 +230,28 @@ export default {
       this.$router.push({
         path: '/'
       })
-    },
-
-    /**
-     * Get text color given background color
-     * https://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black
-     * @param {string} bgColor background color
-     * @param {string} lightColor light text color
-     * @param {string} darkColor dark text color
-     * @returns {string} text color
-     **/
-    getTextColor (bgColor, lightColor = '#FFFFFF', darkColor = '#000000') {
-
-      const getLuminance = function (hexColor) {
-        var color = (hexColor.charAt(0) === '#') ? hexColor.substring(1, 7) : hexColor
-        var r = parseInt(color.substring(0, 2), 16) // hexToR
-        var g = parseInt(color.substring(2, 4), 16) // hexToG
-        var b = parseInt(color.substring(4, 6), 16) // hexToB
-        var uicolors = [r / 255, g / 255, b / 255]
-        var c = uicolors.map(col => (col <= 0.03928 ? col / 12.92 : ((col + 0.055) / 1.055) ** 2.4))
-
-        return (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2])
-      }
-
-      var L = getLuminance(bgColor)
-      var L1 = getLuminance(lightColor)
-      var L2 = getLuminance(darkColor)
-
-      return (L > Math.sqrt((L1 + 0.05) * (L2 + 0.05)) - 0.05) ? darkColor : lightColor
     }
   }
 }
 </script>
 
-<style lang="stylus" scoped>
-.transparent
-  opacity 0
+<style scoped>
+.transparent {
+  opacity: 0;
+}
 
-.menu-list .q-item
-  border-radius 0 32px 32px 0
-  margin 1px 1px 0 10px
-  color black
+.drag-enter {
+  background: red !important;
+}
 
-.drag-enter
-  background red !important
+.dnd {
+  position: fixed;
+  opacity: 0.95;
+}
 
-.dnd
-  position fixed
-  opacity .95
-
-.dotted
-  border 2px dotted white
-  border-radius 8px
-  padding 24px 32px
+.dotted {
+  border: 2px dotted white;
+  border-radius: 8px;
+  padding: 24px 32px;
+}
 </style>

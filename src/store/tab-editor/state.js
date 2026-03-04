@@ -6,9 +6,13 @@ export const getDefaultState = () => ({
     slug: '', // the slug of the tab (name formatted as url)
     name: '', // the name of the tab
     hexColor: '', // the color of the tab
+    icon: '', // optional icon name for the tab
     speed: '',
     language: ''
   },
+
+  /** Parse Tab model for the current tab (so TabSettings can use updateTabCb when editing from page) */
+  tabModel: null,
 
   items: [], // items of the tab
   selectedItems: [], // list of items selected to be added to a tab

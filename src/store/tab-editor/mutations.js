@@ -2,25 +2,15 @@ import { ActionHexColor, ActionLanguage, ActionName, ActionNewItem, ActionSpeed,
 import { itemIndex, itemModelToItem, modelToTab } from './utils'
 import { getDefaultState } from './state'
 
-/**
- * Set the tab used by the Tab Editor
- * @param {State} state namespaced state.
- * @param {TabModel} tabModel the parse model of the tab.
- * @returns {void}
- */
 export const setTab = (state, tabModel) => {
+  state.tabModel = tabModel
   state.tab = modelToTab(tabModel)
   state.speed = state.speeds[state.speedsCodes.indexOf(state.tab.speed)]
   state.language = state.languages[state.languagesCodes.indexOf(state.tab.language)]
   state.loading = false
+  state.error = null
 }
 
-/**
- * Set the name of the tab
- * @param {State} state namespaced state.
- * @param {String} name new value.
- * @return {void}
- */
 export const setName = (state, name) => {
   undoStackPushDo(state, new ActionName(state.tab.name, name))
 }
@@ -33,6 +23,16 @@ export const setName = (state, name) => {
  */
 export const setHexColor = (state, hexColor) => {
   undoStackPushDo(state, new ActionHexColor(state.tab.hexColor, hexColor))
+}
+
+/**
+ * Set the icon of the tab
+ * @param {State} state namespaced state.
+ * @param {String} icon new value.
+ * @return {void}
+ */
+export const setIcon = (state, icon) => {
+  state.tab.icon = icon || ''
 }
 
 export const setLanguage = (state, indexLanguage) => {
@@ -185,15 +185,25 @@ export const openLanguageChoice = (state) => {
 // }
 
 /**
- * Remove the item loaded in the dialog for the list of items
+ * Remove the item at the given index (used by delete confirmation and by item dialog).
  * @param {State} state vuex state
- * @return {void}
+ * @param {number} index index of the item to remove
+ * @returns {void}
+ */
+export const removeItemAtIndex = (state, index) => {
+  if (index < 0 || index >= state.items.length) return
+  state.deletedItems.push(state.items[index])
+  state.items.splice(index, 1)
+}
+
+/**
+ * Remove the item loaded in the dialog for the list of items.
+ * @param {State} state vuex state
+ * @returns {void}
  */
 export const removeItemDialog = (state) => {
   const index = itemIndex(state, state.itemDialog.data)
-
-  state.deletedItems.push(state.items[index])
-  state.items.splice(index, 1)
+  removeItemAtIndex(state, index)
 }
 
 /**
@@ -207,19 +217,17 @@ export const setItemDialogAsset = (state, asset) => {
 }
 
 /**
- * Define a new name for the edited item
  * @param {State} state vuex state
  * @param {String} name new name
- * @return {void}
+ * @returns {void}
  */
 export const setItemDialogName = (state, name) => {
   state.itemDialog.data.name = name
 }
 
 /**
- * Close the item dialog and reset its properties
  * @param {State} state vuex state
- * @return {void}
+ * @returns {void}
  */
 export const closeItemDialog = (state) => {
   state.itemDialog.opened = false
@@ -240,9 +248,8 @@ export const undoStackPushDo = (state, action) => {
 }
 
 /**
- * Undo
  * @param {State} state vuex state
- * @return {void}
+ * @returns {void}
  */
 export const undo = (state) => {
   const action = state.undoStack.pop()
@@ -251,9 +258,8 @@ export const undo = (state) => {
 }
 
 /**
- * Redo
  * @param {State} state vuex state
- * @return {void}
+ * @returns {void}
  */
 export const redo = (state) => {
   const action = state.redoStack.pop()
@@ -262,19 +268,26 @@ export const redo = (state) => {
 }
 
 /**
- * Reset state
  * @param {State} state vuex state
- * @return {void}
+ * @returns {void}
  */
 export const clearState = (state) => {
   Object.assign(state, getDefaultState())
 }
 
 /**
- * Used to throw an error
+ * Clear deletedItems after a successful save
+ * @param {State} state vuex state
+ * @returns {void}
+ */
+export const clearDeletedItems = (state) => {
+  state.deletedItems = []
+}
+
+/**
  * @param {State} state vuex state
  * @param {Error} err is the error to set
- * @return {void}
+ * @returns {void}
  */
 export const setError = (state, err) => {
   state.error = err

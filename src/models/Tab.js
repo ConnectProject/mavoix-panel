@@ -9,6 +9,7 @@ export const SLUG_KEY = 'slug'
 export const SPEED_KEY = 'speed'
 export const LANGUAGE_KEY = 'language'
 export const USER_KEY = 'user'
+export const ICON_KEY = 'icon'
 
 /*
 ** Represents a tab.
@@ -18,7 +19,7 @@ export default class TabModel extends Parse.Object {
     super('Tab')
   }
 
-  static New (name, hexColor, speed, language, user) {
+  static New (name, hexColor, speed, language, user, icon = null) {
     const newTab = new TabModel()
 
     newTab
@@ -28,11 +29,18 @@ export default class TabModel extends Parse.Object {
       .set(USER_KEY, user) // Tab's user id
       .set(HEX_COLOR_KEY, hexColor) // Tab's color
       .set(SLUG_KEY, slugify(name)) // Tab's slug (http://exemple.com/tabs/{slug})
+    if (icon !== null && typeof icon !== 'undefined' && icon !== '') {
+      newTab.set(ICON_KEY, icon)
+    }
 
     return newTab
   }
 
-  static Create (name, user) {
-    return TabModel.New(name, randomHex(), 1.0, 'fr_FR', user)
+  static Create (name, user, options = {}) {
+    const hexColor = options.hexColor !== null && typeof options.hexColor !== 'undefined' ? options.hexColor : randomHex()
+    const icon = options.icon !== null && typeof options.icon !== 'undefined' ? options.icon : null
+    const tab = TabModel.New(name, hexColor, 1.0, 'fr_FR', user, icon)
+
+    return tab
   }
 }

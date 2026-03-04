@@ -75,3 +75,9 @@ export const tabModel = ({ tabModel }) => tabModel
  * @param {State} state vuex state
  */
 export const loading = ({ loading }) => loading
+
+/**
+ * Return the last error
+ * @param {State} state vuex state
+ */
+export const error = ({ error }) => error

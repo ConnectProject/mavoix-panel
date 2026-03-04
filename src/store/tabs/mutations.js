@@ -48,6 +48,27 @@ export const closeDialog = (state) => {
 }
 
 /**
+ * Open the edit tab dialog (from tab bar)
+ * @param {State} state vuex state
+ * @param {TabModel} tab Parse tab model to edit
+ * @returns {void}
+ */
+export const openEditDialog = (state, tab) => {
+  state.editTab = tab
+  state.editDialogOpen = true
+}
+
+/**
+ * Close the edit tab dialog
+ * @param {State} state vuex state
+ * @returns {void}
+ */
+export const closeEditDialog = (state) => {
+  state.editDialogOpen = false
+  state.editTab = null
+}
+
+/**
  * Used to throw an error
  * @param {State} state vuex state
  * @param {Error} err is the error to set

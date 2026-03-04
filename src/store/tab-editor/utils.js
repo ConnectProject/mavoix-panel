@@ -6,7 +6,7 @@ import {
   NAME_KEY as ITEM_NAME_KEY,
   ORDER_KEY as ITEM_ORDER_KEY
 } from '~/models/TabItem'
-import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
+import TabModel, { HEX_COLOR_KEY, ICON_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
 import Parse from 'parse'
 import {assetFromModel} from '../assets-manager/utils'
 import getCurrentUserId from '~/utils/getCurrentUserId'
@@ -40,18 +40,36 @@ export const changeByKey = (state, key, newValue) => {
 export const itemIndex = (state, pItem) => state.items.findIndex((item) => item.name === pItem.name)
 
 /**
+ * Normalize hex color to always include # for CSS and consistency
+ * @param {string} hex raw value from store or backend
+ * @returns {string} hex with leading #
+ */
+export const normalizeHexColor = (hex) => {
+  if (hex === null || typeof hex === 'undefined' || typeof hex !== 'string') return ''
+  const h = hex.trim()
+  if (!h) return ''
+
+  return h.startsWith('#') ? h : '#' + h
+}
+
+/**
  * Transform a model into an object
  * @param {TabModel} tabModel the model to transform
  * @returns {Tab} the transformed object
  */
-export const modelToTab = (tabModel) => ({
-  slug: tabModel.get(SLUG_KEY),
-  name: tabModel.get(NAME_KEY),
-  hexColor: tabModel.get(HEX_COLOR_KEY),
-  speed: tabModel.get(SPEED_KEY),
-  language: tabModel.get(LANGUAGE_KEY),
-  user: getCurrentUserId()
-})
+export const modelToTab = (tabModel) => {
+  const rawHex = tabModel.get(HEX_COLOR_KEY)
+
+  return {
+    slug: tabModel.get(SLUG_KEY),
+    name: tabModel.get(NAME_KEY),
+    hexColor: normalizeHexColor(rawHex) || '#cccccc',
+    speed: tabModel.get(SPEED_KEY),
+    language: tabModel.get(LANGUAGE_KEY),
+    icon: tabModel.get(ICON_KEY) || '',
+    user: getCurrentUserId()
+  }
+}
 
 /**
  * Retrive a tab's model from its object

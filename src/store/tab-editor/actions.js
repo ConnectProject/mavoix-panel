@@ -1,3 +1,20 @@
+/* eslint-disable sort-imports -- mixed default+named imports conflict with memberSyntaxSortOrder */
+import {
+  modelFromAsset
+} from '../assets-manager/utils'
+import {
+  normalizeHexColor,
+  tabToModel
+} from './utils'
+import Parse from 'parse'
+import TabModel, {
+  HEX_COLOR_KEY,
+  ICON_KEY,
+  LANGUAGE_KEY,
+  NAME_KEY,
+  SLUG_KEY,
+  SPEED_KEY
+} from '~/models/Tab'
 import TabItemModel, {
   ASSET_KEY as ITEM_ASSET_KEY,
   AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
@@ -7,14 +24,91 @@ import TabItemModel, {
   ORDER_KEY as ITEM_ORDER_KEY,
   TAB_KEY as ITEM_TAB_KEY
 } from '~/models/TabItem'
-import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
-
-import Parse from 'parse'
-
 import getCurrentUserId from '~/utils/getCurrentUserId'
-import { modelFromAsset } from '../assets-manager/utils'
 import slugify from '~/utils/slugify'
-import { tabToModel } from './utils'
+
+/**
+ * Save a single tab item (new or update)
+ * @param {Object} item item object
+ * @param {Object} tabModel Parse tab model
+ * @returns {Promise<Parse.Object>} saved item model
+ */
+const saveTabItem = async (item, tabModel) => {
+  const assetModel = await modelFromAsset(item.asset)
+  if (!item.key) {
+    return TabItemModel.Create(item.name, assetModel, tabModel, item.hidden, item.available, item.order).save()
+  }
+  const itemModel = await new Parse.Query(TabItemModel)
+    .equalTo(ITEM_TAB_KEY, tabModel)
+    .equalTo(ITEM_KEY_KEY, item.key)
+    .first()
+  itemModel.set(ITEM_NAME_KEY, item.name)
+  itemModel.set(ITEM_ASSET_KEY, assetModel)
+  itemModel.set(ITEM_HIDDEN_KEY, item.hidden)
+  itemModel.set(ITEM_AVAILABLE_KEY, item.available)
+  itemModel.set(ITEM_ORDER_KEY, item.order)
+
+  return itemModel.save()
+}
+
+/**
+ * Apply tab fields to tab model and collect save + delete promises
+ * @param {Parse.Object} tabModel tab Parse model
+ * @param {Object} tab tab state object
+ * @param {Object[]} deletedItems deleted items
+ * @returns {Promise[]} array of promises (tab save + item destroys)
+ */
+const applyTabAndScheduleDeletes = (tabModel, tab, deletedItems) => {
+  const hexColor = normalizeHexColor(tab.hexColor) || '#cccccc'
+  tabModel.set(NAME_KEY, tab.name)
+  tabModel.set(HEX_COLOR_KEY, hexColor)
+  tabModel.set(SLUG_KEY, slugify(tab.name))
+  tabModel.set(SPEED_KEY, tab.speed)
+  tabModel.set(LANGUAGE_KEY, tab.language)
+  if (tab.icon !== null && typeof tab.icon !== 'undefined' && tab.icon !== '') {
+    tabModel.set(ICON_KEY, tab.icon)
+  } else {
+    tabModel.unset(ICON_KEY)
+  }
+  const promises = [tabModel.save()]
+  deletedItems.forEach((item) => {
+    if (item.key) {
+      promises.push(new Parse.Query(TabItemModel)
+        .equalTo(ITEM_TAB_KEY, tabModel)
+        .equalTo(ITEM_KEY_KEY, item.key)
+        .first()
+        .then((itemModel) => itemModel && itemModel.destroy()))
+    }
+  })
+
+  return promises
+}
+
+/**
+ * Persist tab name/color/icon from TabSettings (edit from Tab Editor page).
+ * Fetches the Parse tab by current slug, updates and saves, then refreshes tab-editor and tabs list.
+ * @param {Context} ctx context passed vuex
+ * @param {{ name: string, hexColor: string, icon: string }} payload form values from TabSettings
+ * @returns {Promise<void>} resolves when tab is saved and stores refreshed
+ */
+export const persistTabSettings = async ({ commit, getters, dispatch }, { name, hexColor, icon }) => {
+  const { tab } = getters
+  const tabModel = await tabToModel(tab)
+  const normalizedColor = normalizeHexColor(hexColor) || '#cccccc'
+
+  tabModel.set(NAME_KEY, name)
+  tabModel.set(HEX_COLOR_KEY, normalizedColor)
+  tabModel.set(SLUG_KEY, slugify(name))
+  if (icon !== null && typeof icon !== 'undefined' && icon !== '') {
+    tabModel.set(ICON_KEY, icon)
+  } else {
+    tabModel.unset(ICON_KEY)
+  }
+
+  await tabModel.save()
+  commit('setTab', tabModel)
+  await dispatch('tabs/loadTabs', null, { root: true })
+}
 
 /**
  * Load a tab with its slug
@@ -66,60 +160,19 @@ export const fetchItems = ({ commit, getters: { tab } }) => {
 export const saveCb = async ({ commit, dispatch, getters: { tab, items, deletedItems } }, callback) => {
   try {
     const tabModel = await tabToModel(tab)
-    const promises = []
+    const saveAndDeletePromises = applyTabAndScheduleDeletes(tabModel, tab, deletedItems)
 
-    /**
-       * Save basic changes
-       */
-    tabModel.set(NAME_KEY, tab.name)
-    tabModel.set(HEX_COLOR_KEY, tab.hexColor)
-    tabModel.set(SLUG_KEY, slugify(tab.name))
-    tabModel.set(SPEED_KEY, tab.speed)
-    tabModel.set(LANGUAGE_KEY, tab.language)
+    await Promise.all(saveAndDeletePromises)
+    await Promise.all(items.map((item) => saveTabItem(item, tabModel)))
 
-    /* Save the tabmodel */
-    promises.push(tabModel.save())
+    /* Update tab editor from saved model so new color/name show immediately
+       and persist when navigating away and back (no refetch needed) */
+    commit('setTab', tabModel)
+    commit('clearDeletedItems')
+    await dispatch('fetchItems')
+    await dispatch('tabs/loadTabs', null, { root: true })
 
-    /* Delete removed items */
-    deletedItems.forEach((item) => {
-      if (item.key) {
-        promises.push(new Parse.Query(TabItemModel)
-          .equalTo(ITEM_TAB_KEY, tabModel)
-          .equalTo(ITEM_KEY_KEY, item.key)
-          .first()
-          .then((itemModel) => itemModel.destroy()))
-      }
-    })
-
-    /* Save items */
-    await Promise.all(items.map(async (item) => {
-      const assetModel = await modelFromAsset(item.asset)
-      if (!item.key) {
-
-        /* Save item as new item */
-        return TabItemModel.Create(item.name, assetModel, tabModel, item.hidden, item.available, item.order).save()
-      }
-
-      /* Update item if existing */
-      const itemModel = await new Parse.Query(TabItemModel)
-        .equalTo(ITEM_TAB_KEY, tabModel)
-        .equalTo(ITEM_KEY_KEY, item.key)
-        .first()
-      itemModel.set(ITEM_NAME_KEY, item.name)
-      itemModel.set(ITEM_ASSET_KEY, assetModel)
-      itemModel.set(ITEM_HIDDEN_KEY, item.hidden)
-      itemModel.set(ITEM_AVAILABLE_KEY, item.available)
-      itemModel.set(ITEM_ORDER_KEY, item.order)
-
-      return itemModel.save()
-
-    }))
-    commit('clearState')
-
-    return Promise.all([
-      dispatch('loadBySlug', tabModel.get(SLUG_KEY)),
-      callback(tabModel)
-    ])
+    return callback(tabModel)
   } catch (err) {
     commit('setError', err)
   }
