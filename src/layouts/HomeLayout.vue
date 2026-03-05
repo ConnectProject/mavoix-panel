@@ -244,7 +244,6 @@ import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogTabName from '~/components/dialogs/TabName'
 import DialogTabSettings from '~/components/dialogs/TabSettings'
-
 import ListItemLoading from '~/components/ListItemLoading'
 
 // import QrcodeVue from 'qrcode.vue'
@@ -387,8 +386,7 @@ export default {
      * @returns {string} text color
      **/
     getTextColor (bgColor, lightColor = '#FFFFFF', darkColor = '#000000') {
-
-      if(!bgColor) return darkColor
+      if (!bgColor) return darkColor
 
       const getLuminance = function (hexColor) {
         const color = (hexColor.charAt(0) === '#') ? hexColor.substring(1, 7) : hexColor
@@ -408,11 +406,11 @@ export default {
       return (L > Math.sqrt((L1 + 0.05) * (L2 + 0.05)) - 0.05) ? darkColor : lightColor
     },
 
-    openCreateTabDialog() {
+    openCreateTabDialog () {
       this.$store.commit('tabs/openCreateTabDialog')
     },
 
-    closeCreateTabDialog() {
+    closeCreateTabDialog () {
       this.$store.commit('tabs/closeCreateTabDialog')
     }
   }

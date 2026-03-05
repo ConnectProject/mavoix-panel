@@ -14,11 +14,11 @@ export const ICON_KEY = 'icon'
 ** Represents a tab.
 */
 export default class TabModel extends Parse.Object {
-  constructor() {
+  constructor () {
     super('Tab')
   }
 
-  static New(name, hexColor, speed, language, user, icon = null) {
+  static New (name, hexColor, speed, language, user, icon = null) {
     const newTab = new TabModel()
 
     newTab
@@ -33,11 +33,11 @@ export default class TabModel extends Parse.Object {
     return newTab
   }
 
-  static Create(name, user, hexColor, icon = null) {
+  static Create (name, user, hexColor, icon = null) {
     return TabModel.New(name, hexColor, 1.0, 'fr_FR', user, icon)
   }
 
-  static Update(tab, name, hexColor, icon = null) {
+  static Update (tab, name, hexColor, icon = null) {
     tab.set(NAME_KEY, name)
     tab.set(SLUG_KEY, slugify(name))
     tab.set(HEX_COLOR_KEY, hexColor)

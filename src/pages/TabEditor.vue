@@ -176,13 +176,11 @@
 
 <script>
 /* eslint-disable max-lines */
-import DialogItemChoice from '~/components/dialogs/ItemChoice'
-import DialogTabItem from '~/components/dialogs/TabItem'
-import DialogTabSettings from '~/components/dialogs/TabSettings'
 import { SLUG_KEY } from '../models/Tab'
 
 import DialogItemChoice from '~/components/dialogs/ItemChoice'
 import DialogTabItem from '~/components/dialogs/TabItem'
+import DialogTabSettings from '~/components/dialogs/TabSettings'
 
 export default {
   name: 'PageTabEditor',
@@ -428,11 +426,11 @@ export default {
       this.$store.commit('tabEditor/redo')
     },
 
-    openTabSettings() {
+    openTabSettings () {
       this.$store.commit('tabEditor/openTabSettings')
     },
 
-    closeTabSettings() {
+    closeTabSettings () {
       this.$store.commit('tabEditor/closeTabSettings')
     }
   }

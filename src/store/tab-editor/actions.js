@@ -4,7 +4,7 @@ import { modelFromAsset } from '../assets-manager/utils'
 
 import { tabToModel } from './utils'
 
-import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
+import TabModel, { HEX_COLOR_KEY, ICON_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
 import TabItemModel, {
   ASSET_KEY as ITEM_ASSET_KEY,
   AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
@@ -14,10 +14,6 @@ import TabItemModel, {
   ORDER_KEY as ITEM_ORDER_KEY,
   TAB_KEY as ITEM_TAB_KEY
 } from '~/models/TabItem'
-import TabModel, { HEX_COLOR_KEY, ICON_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
-
-import Parse from 'parse'
-
 import getCurrentUserId from '~/utils/getCurrentUserId'
 import slugify from '~/utils/slugify'
 
@@ -165,7 +161,10 @@ export const updateTab = async ({ commit, getters: { tab } }, { name, hexColor, 
     // update the tabs list state in sidebar too
     commit('tabs/updateTab', tabModel, { root: true })
 
-    if (callback) return callback(tabModel)
+    if (callback) {
+      // eslint-disable-next-line callback-return
+      callback(tabModel)
+    }
   } catch (err) {
     commit('setError', err)
   }
