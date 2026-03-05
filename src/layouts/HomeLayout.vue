@@ -162,10 +162,10 @@
               </q-item>
             </div>
 
-            <dialog-tab-settings 
+            <dialog-tab-settings
               :value="$store.getters['tabs/createTabDialogOpened']"
-              @input="v => !v && closeCreateTabDialog()"
               :mode="'create'"
+              @input="v => !v && closeCreateTabDialog()"
             />
 
             <!-- Devices -->

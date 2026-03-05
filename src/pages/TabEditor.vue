@@ -79,10 +79,9 @@
       position="top"
     >
       <q-toolbar
-        class="row items-center toolbar-no-border toolbar-with-padding"        
+        class="row items-center toolbar-no-border toolbar-with-padding"
         :style="{ background: tab.hexColor }"
       >
-        
         <!-- Add item button -->
         <q-btn
           class="q-ml-md add-images-btn"
@@ -108,11 +107,11 @@
       </q-toolbar>
     </q-page-sticky>
 
-    <dialog-tab-settings 
+    <dialog-tab-settings
       :value="$store.getters['tabEditor/tabSettingsDialogOpened']"
-      @input="v => !v && closeTabSettings()"
       :mode="'edit'"
       :tab="tab"
+      @input="v => !v && closeTabSettings()"
     />
 
     <!-- Delete, Save buttons -->
@@ -177,11 +176,10 @@
 
 <script>
 /* eslint-disable max-lines */
-import { QSelect } from 'quasar';
-import DialogItemChoice from '~/components/dialogs/ItemChoice';
-import DialogTabItem from '~/components/dialogs/TabItem';
-import { SLUG_KEY } from '../models/Tab';
-import DialogTabSettings from '~/components/dialogs/TabSettings';
+import DialogItemChoice from '~/components/dialogs/ItemChoice'
+import DialogTabItem from '~/components/dialogs/TabItem'
+import DialogTabSettings from '~/components/dialogs/TabSettings'
+import { SLUG_KEY } from '../models/Tab'
 
 import DialogItemChoice from '~/components/dialogs/ItemChoice'
 import DialogTabItem from '~/components/dialogs/TabItem'
@@ -191,8 +189,7 @@ export default {
   components: {
     DialogTabItem,
     DialogItemChoice,
-    DialogTabSettings,
-    QSelect
+    DialogTabSettings
   },
   data () {
     return {
