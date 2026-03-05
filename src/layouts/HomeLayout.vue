@@ -147,13 +147,19 @@
                 v-ripple
                 style="margin-left:150px;border-radius:32px 0 0 32px;background:white"
                 clickable
-                @click="$store.commit('tabs/openDialog')"
+                @click="openCreateTabDialog"
               >
                 <q-item-section avatar>
                   <q-icon name="add" />
                 </q-item-section>
               </q-item>
             </div>
+
+            <dialog-tab-settings 
+              :value="$store.getters['tabs/createTabDialogOpened']"
+              @input="v => !v && closeCreateTabDialog()"
+              :mode="'create'"
+            />
 
             <!-- Devices -->
             <q-item-label
@@ -228,6 +234,7 @@
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogTabName from '~/components/dialogs/TabName'
+import DialogTabSettings from '~/components/dialogs/TabSettings'
 
 import ListItemLoading from '~/components/ListItemLoading'
 
@@ -243,7 +250,8 @@ export default {
     // DialogAssetsManager,
     DialogTabName,
     DialogDeviceName,
-    DialogDeviceInvitation
+    DialogDeviceInvitation,
+    DialogTabSettings
   },
   data () {
     return {
@@ -391,6 +399,14 @@ export default {
       var L2 = getLuminance(darkColor)
 
       return (L > Math.sqrt((L1 + 0.05) * (L2 + 0.05)) - 0.05) ? darkColor : lightColor
+    },
+
+    openCreateTabDialog() {
+      this.$store.commit('tabs/openCreateTabDialog')
+    },
+
+    closeCreateTabDialog() {
+      this.$store.commit('tabs/closeCreateTabDialog')
     }
   }
 }

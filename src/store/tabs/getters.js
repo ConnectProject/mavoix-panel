@@ -11,3 +11,5 @@ export const tabs = ({ tabs }) => tabs
  * @param {State} state vuex state
  */
 export const dialogOpened = ({ dialogOpen }) => dialogOpen
+
+export const createTabDialogOpened = ({ createTabDialogOpened }) => createTabDialogOpened

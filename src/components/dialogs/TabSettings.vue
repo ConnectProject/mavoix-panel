@@ -118,19 +118,24 @@ export default {
     },
 
     props: {
+        value: {
+            type: Boolean,
+            required: true
+        },
+
         mode: {
             type: String,
             required: true
         },
         tab: {
             type: Object,
-            required: true
+            required: false
         }
     },
 
     computed: {
         opened() {
-            return this.$store.getters['tabEditor/tabSettingsDialogOpened']
+            return this.value // tab editor passes :value="$store.getters['tabEditor/tabSettingsDialogOpened']" and Home layout passes :value="$store.getters['tabs/createTabDialogOpened']"
         }
     },
 
@@ -152,9 +157,13 @@ export default {
                 this.$store.dispatch('tabs/createTabCb', {
                     name: this.name,
                     hexColor: this.hexColor,
-                    icon: this.icon,
-                    callback: () => {
+                    icon: this.icon,    
+                    callback: (tab) => {
                         this.$emit('input', false)
+                        this.$router.push({
+                            name: 'tab',
+                            params: { slug: tab.get('slug') }
+                        })
                     }
                 })
             } else if(this.mode === 'edit' && this.tab) {

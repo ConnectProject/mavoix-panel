@@ -71,3 +71,11 @@ export const setError = (state, err) => {
   state.error = err
   state.loading = false
 }
+
+export const openCreateTabDialog = (state) => {
+  state.createTabDialogOpened = true
+}
+
+export const closeCreateTabDialog = (state) => {
+  state.createTabDialogOpened = false
+}
