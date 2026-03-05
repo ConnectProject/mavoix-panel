@@ -35,6 +35,13 @@
       <!-- Toolbar -->
       <q-header style="background:grey">
         <q-toolbar style="height:75px">
+          <q-btn
+            flat
+            round
+            dense
+            icon="menu"
+            @click="drawerOpen = !drawerOpen"
+          />
           <q-toolbar-title>{{ $t('appTitle') }}</q-toolbar-title>
           <q-btn
             onclick="alert('Go to doc')"
