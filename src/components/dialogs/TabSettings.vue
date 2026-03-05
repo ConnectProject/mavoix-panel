@@ -1,47 +1,53 @@
 <template>
     <div>
-    <q-dialog :value="opened" persistent @input="$emit('input', $event)">
+    <q-dialog :value="opened" @input="$emit('input', $event)">
         <q-card>
             <q-card-section>
-            <div>
+            <div class="text-h5 text-bold">
                 {{ mode==="create" ?  $t('tabSettings.createTitle') : $t('tabSettings.editTitle') }}
-                </div>
+            </div>
                 <q-space/>
-                <q-btn icon="close" flat round dense v-close-popup/>
             </q-card-section>
 
             <q-separator/>
             <q-card-section class="q-gutter-md">
-                <q-input v-model="name" :label="$t('tabSettings.tabName')" filled autofocus/>
+                <q-input class="name-input" v-model="name" :label="$t('tabSettings.tabName')" outlined autofocus/>
                 
-                <div class="text-caption q-mb-xs">{{ $t('tabSettings.backgroundColor') }}</div>
-                <div class="row items-center q-gutter-sm">
-                    <q-input v-model="hexColor" label="Background Color" filled>
-                        <template v-slot:append>
-                            <q-icon name="colorize">
-                                <q-popup-proxy>
-                                    <q-color v-model="hexColor" />
-                                </q-popup-proxy>
-                            </q-icon>
-                        </template>
-                    </q-input>
-                    <!-- Color preview styled as selected bg color -->
-                    <div
-                        :style="{
-                            width: '28px',
-                            height: '28px',
-                            borderRadius: '50%',
-                            border: '2px solid #bbb',
-                            backgroundColor: hexColor || '#fff',
-                            marginLeft: '8px',
-                            boxShadow: hexColor ? '0 0 0 2px #7986cb inset' : ''
-                        }"
-                    />
+                <div class="text-subtitle1 q-mb-sm" style="font-size: 1.05rem; font-weight: 500;">
+                  {{ $t('tabSettings.backgroundColor') }}
+                </div>
+                <div class="row items-center" style="gap: 12px;">
+                  <q-input
+                    v-model="hexColor"
+                    outlined
+                    dense
+                    style="min-width:170px;max-width:222px;"
+                  >
+                    <template v-slot:append>
+                      <q-icon name="colorize">
+                        <q-popup-proxy>
+                          <q-color v-model="hexColor" />
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                  <!-- Color preview styled as selected bg color -->
+                  <div
+                    :style="{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      border: '2px solid #bbb',
+                      backgroundColor: hexColor || '#fff',
+                      boxShadow: hexColor ? '0 0 0 2px #7986cb inset' : '',
+                      marginLeft: '0'
+                    }"
+                  />
                 </div>
                 
                 
                 <div>
-                    <div class="text-caption q-mb-xs">{{ $t('tabSettings.icon') }}</div>
+                    <div class="text-subtitle1 q-mb-xs" style="font-size: 1.05rem; font-weight: 500;">{{ $t('tabSettings.icon') }}</div>
                     <div class="icon-grid q-mt-sm">
                         <q-btn
                         v-for="iconName in iconOptions"
@@ -57,14 +63,21 @@
             </q-card-section>
 
             <q-separator/>
-            <q-card-actions align="right">
-                <q-btn :label="$t('generic.cancel')" flat color="primary" v-close-popup />
-                <q-btn :label="$t('generic.save')" color="primary" @click="onSave" />
+            <q-card-actions
+              align="center"
+              class="tab-settings-actions"
+            >
+                <q-btn
+                  :label="$t('generic.save')"
+                  class="tab-settings-btn tab-settings-btn--primary"
+                  unelevated
+                  @click="onSave"
+                />
                 <q-btn
                   v-if="mode === 'edit'"
                   :label="$t('generic.delete')"
-                  color="negative"
-                  flat
+                  class="tab-settings-btn tab-settings-btn--delete"
+                  unelevated
                   @click="onDelete"
                 />
             </q-card-actions>
@@ -79,9 +92,22 @@
                 <div class="text-h6">{{ $t('generic.delete') }}?</div>
                 <div class="text-body2 q-pt-sm">{{ $t('tabSettings.deleteConfirmMessage')}}</div>
             </q-card-section>
-            <q-card-actions align="right">
-                <q-btn flat :label="$t('generic.cancel')" color="primary" @click="confirmDeleteOpen = false" />
-                <q-btn flat :label="$t('generic.delete')" color="negative" @click="confirmAndDelete" />
+            <q-card-actions
+              align="center"
+              class="tab-settings-actions"
+            >
+                <q-btn
+                  :label="$t('generic.cancel')"
+                  class="tab-settings-btn tab-settings-btn--secondary"
+                  unelevated
+                  @click="confirmDeleteOpen = false"
+                />
+                <q-btn
+                  :label="$t('generic.delete')"
+                  class="tab-settings-btn tab-settings-btn--delete"
+                  unelevated
+                  @click="confirmAndDelete"
+                />
             </q-card-actions>
         </q-card>
     </q-dialog>
@@ -97,7 +123,7 @@ export default {
         return {
             confirmDeleteOpen: false,
             name: '',
-            hexColor: '',
+            hexColor: '#ffffff',
             icon: '',
             iconOptions: ['restaurant',
                 'directions_run',
@@ -212,3 +238,30 @@ export default {
 }
 
 </script>
+
+<style lang="stylus" scoped>
+.name-input
+    margin-bottom 16px
+
+.tab-settings-actions
+  padding-top 24px
+
+.tab-settings-btn
+  min-width 180px
+  border-radius 9999px
+  background #424242
+  color #ffffff
+  text-transform none
+  font-weight 500
+  justify-content center
+
+.tab-settings-btn--delete
+  background #c62828
+
+.tab-settings-btn--secondary
+  background #e0e0e0
+  color #424242
+
+.tab-settings-btn--primary
+  background #027BE3
+</style>
