@@ -2,12 +2,15 @@ module.exports = {
   root: true,
 
   parserOptions: {
-    parser: 'babel-eslint',
-    sourceType: 'module'
+    parser: '@babel/eslint-parser',
+    sourceType: 'module',
+    ecmaVersion: 2020
   },
 
   env: {
-    browser: true
+    browser: true,
+    node: true,
+    es6: true
   },
 
   extends: [

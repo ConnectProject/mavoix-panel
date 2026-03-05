@@ -11,13 +11,12 @@
  *   "src-ssr/extension.js"
  */
 
-const
-  compression = require('compression'),
-  express = require('express')
+const compression = require('compression')
+const express = require('express')
 
-const
-  extension = require('./extension'),
-  ssr = require('../ssr')
+const ssr = require('../ssr')
+
+const extension = require('./extension')
 
 const
   app = express(),

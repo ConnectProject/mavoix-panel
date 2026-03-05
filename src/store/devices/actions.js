@@ -1,7 +1,8 @@
 // all the devices module is no longer used
 
-import DeviceUser from '~/models/DeviceUser'
 import Parse from 'parse'
+
+import DeviceUser from '~/models/DeviceUser'
 import getCurrentUserId from '~/utils/getCurrentUserId'
 
 /**
@@ -10,7 +11,6 @@ import getCurrentUserId from '~/utils/getCurrentUserId'
  * @returns {Promise} did the action succeed
  */
 export const loadDevices = ({ commit }) => {
-
   new Parse.Query(DeviceUser).find()
     .then((users) => console.log(users))
 
@@ -53,7 +53,7 @@ export const resetActive = async ({ commit, getters: { active } }) => {
   try {
     const password = DeviceUser.Password()
     const params = { username: active.username, password }
-    await Parse.Cloud.run("resetDevice", params)
+    await Parse.Cloud.run('resetDevice', params)
     commit('updateActivePassword', password)
   } catch (err) {
     commit('setError', err)
@@ -67,7 +67,7 @@ export const resetActive = async ({ commit, getters: { active } }) => {
  */
 export const deleteActive = async ({ commit, getters: { active } }) => {
   try {
-    await Parse.Cloud.run("removeDevice", { username: active.username })
+    await Parse.Cloud.run('removeDevice', { username: active.username })
     commit('removeActive')
   } catch (err) {
     commit('setError', err)

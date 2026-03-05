@@ -1,9 +1,10 @@
+import Parse from 'parse'
+
 import AssetModel from '~/models/Asset'
 import DeviceUserModel from '~/models/DeviceUser'
-import Parse from 'parse'
 import ParseUserModel from '~/models/ParseUser'
-import TabItemModel from '~/models/TabItem'
 import TabModel from '~/models/Tab'
+import TabItemModel from '~/models/TabItem'
 
 /*
 ** Initilize parse client with its models
