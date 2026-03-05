@@ -85,14 +85,13 @@
           @click="showCam = false"
         />
       </div>
-
     </q-card>
   </q-dialog>
 </template>
 
 <script>
-import 'cropperjs/dist/cropper.css';
-import Cropper from 'cropperjs';
+import 'cropperjs/dist/cropper.css'
+import Cropper from 'cropperjs'
 
 export default {
   name: 'Camera',
@@ -119,7 +118,7 @@ export default {
       this.image = true
       this.$nextTick(() => {
         this.$refs.titleImage.focus()
-        this.cropper = new Cropper(this.$refs.canvas, {});
+        this.cropper = new Cropper(this.$refs.canvas, {})
       })
     },
 
@@ -155,15 +154,15 @@ export default {
      * @returns {File} file created
      */
     dataToFile (dataurl, name) {
-      var arr = dataurl.split(','),
+      const arr = dataurl.split(','),
         bstr = atob(arr[1]),
         [, mime] = arr[0].match(/:(.*?);/),
         ext = mime.match(/\/(.*?)/),
         filename = `${name}.${ext}`,
         n = bstr.length,
         u8arr = new Uint8Array(n)
-      while (n--) {
-        u8arr[n] = bstr.charCodeAt(n)
+      for (let i = 0; i < n; i++) {
+        u8arr[i] = bstr.charCodeAt(i)
       }
 
       return new File([u8arr], filename, { type: mime })
@@ -197,7 +196,7 @@ export default {
       this.$refs.video.pause()
       this.$refs.video.src = ''
       this.$refs.video.srcObject.getTracks()[0].stop()
-    },
+    }
   }
 }
 

@@ -1,3 +1,10 @@
+import Parse from 'parse'
+
+import { modelFromAsset } from '../assets-manager/utils'
+
+import { tabToModel } from './utils'
+
+import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
 import TabItemModel, {
   ASSET_KEY as ITEM_ASSET_KEY,
   AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
@@ -7,14 +14,8 @@ import TabItemModel, {
   ORDER_KEY as ITEM_ORDER_KEY,
   TAB_KEY as ITEM_TAB_KEY
 } from '~/models/TabItem'
-import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
-
-import Parse from 'parse'
-
 import getCurrentUserId from '~/utils/getCurrentUserId'
-import { modelFromAsset } from '../assets-manager/utils'
 import slugify from '~/utils/slugify'
-import { tabToModel } from './utils'
 
 /**
  * Load a tab with its slug
@@ -95,12 +96,11 @@ export const saveCb = async ({ commit, dispatch, getters: { tab, items, deletedI
     await Promise.all(items.map(async (item) => {
       const assetModel = await modelFromAsset(item.asset)
       if (!item.key) {
-
-        /* Save item as new item */
+        // Save item as new item
         return TabItemModel.Create(item.name, assetModel, tabModel, item.hidden, item.available, item.order).save()
       }
 
-      /* Update item if existing */
+      // Update item if existing
       const itemModel = await new Parse.Query(TabItemModel)
         .equalTo(ITEM_TAB_KEY, tabModel)
         .equalTo(ITEM_KEY_KEY, item.key)
@@ -112,7 +112,6 @@ export const saveCb = async ({ commit, dispatch, getters: { tab, items, deletedI
       itemModel.set(ITEM_ORDER_KEY, item.order)
 
       return itemModel.save()
-
     }))
     commit('clearState')
 
@@ -122,6 +121,8 @@ export const saveCb = async ({ commit, dispatch, getters: { tab, items, deletedI
     ])
   } catch (err) {
     commit('setError', err)
+
+    return null
   }
 }
 

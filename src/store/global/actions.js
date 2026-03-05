@@ -12,7 +12,7 @@ export const initTTS = ({ commit, rootState }) => {
   }
   let speed = 1
   if (rootState.tabEditor.tab.language) {
-    ({speed} = rootState.tabEditor.tab)
+    ({ speed } = rootState.tabEditor.tab)
   }
   console.log(rootState.tabEditor.tab)
   speech.init({

@@ -1,4 +1,5 @@
 import Parse from 'parse'
+
 import ParseUser from '~/models/ParseUser'
 
 /**
@@ -59,11 +60,12 @@ export const connect = async function ({ commit, dispatch }, [name, password]) {
   }
 }
 
-export const loadConnectUserId = async function({commit}) {
+export const loadConnectUserId = async function ({ commit }) {
   try {
-    const {connectUserId} = await Parse.Cloud.run("getConnectToken")
+    const { connectUserId } = await Parse.Cloud.run('getConnectToken')
     commit('setConnectUserId', connectUserId)
   } catch (err) {
+    commit('setConnectUserId', null)
     commit('setError', err)
   }
 }

@@ -1,9 +1,8 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
-const { CLIEngine } = require("eslint")
-const ESLintPlugin = require('eslint-webpack-plugin')
 const dotenv = require('dotenv')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = function (ctx) {
   return {
@@ -49,12 +48,9 @@ module.exports = function (ctx) {
       // gzip: true,
       // analyze: true,
       // extractCSS: false,
-      extendWebpack (cfg) {
-        cfg.plugins.push(
-          new ESLintPlugin({
-            formatter: CLIEngine.getFormatter('stylish')
-          })
-        )
+      chainWebpack (chain) {
+        chain.plugin('eslint-webpack-plugin')
+          .use(ESLintPlugin, [{ extensions: ['js', 'vue'] }])
       },
       uglifyOptions: {
         compress: { drop_console: !ctx.dev }
@@ -62,6 +58,7 @@ module.exports = function (ctx) {
     },
 
     devServer: {
+      host: '127.0.0.1',
       // https: true,
       port: 9000,
       open: true // opens browser window automatically

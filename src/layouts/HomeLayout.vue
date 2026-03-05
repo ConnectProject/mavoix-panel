@@ -225,13 +225,12 @@
 /* Dialogs */
 // import DialogAssetsManager from '~/components/dialogs/AssetsManager'
 
+import Parse from 'parse'
+
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogTabName from '~/components/dialogs/TabName'
-
 import ListItemLoading from '~/components/ListItemLoading'
-
-import Parse from 'parse'
 
 // import QrcodeVue from 'qrcode.vue'
 
@@ -372,21 +371,20 @@ export default {
      * @returns {string} text color
      **/
     getTextColor (bgColor, lightColor = '#FFFFFF', darkColor = '#000000') {
-
       const getLuminance = function (hexColor) {
-        var color = (hexColor.charAt(0) === '#') ? hexColor.substring(1, 7) : hexColor
-        var r = parseInt(color.substring(0, 2), 16) // hexToR
-        var g = parseInt(color.substring(2, 4), 16) // hexToG
-        var b = parseInt(color.substring(4, 6), 16) // hexToB
-        var uicolors = [r / 255, g / 255, b / 255]
-        var c = uicolors.map(col => (col <= 0.03928 ? col / 12.92 : ((col + 0.055) / 1.055) ** 2.4))
+        const color = (hexColor.charAt(0) === '#') ? hexColor.substring(1, 7) : hexColor
+        const r = parseInt(color.substring(0, 2), 16) // hexToR
+        const g = parseInt(color.substring(2, 4), 16) // hexToG
+        const b = parseInt(color.substring(4, 6), 16) // hexToB
+        const uicolors = [r / 255, g / 255, b / 255]
+        const c = uicolors.map(col => (col <= 0.03928 ? col / 12.92 : ((col + 0.055) / 1.055) ** 2.4))
 
         return (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2])
       }
 
-      var L = getLuminance(bgColor)
-      var L1 = getLuminance(lightColor)
-      var L2 = getLuminance(darkColor)
+      const L = getLuminance(bgColor)
+      const L1 = getLuminance(lightColor)
+      const L2 = getLuminance(darkColor)
 
       return (L > Math.sqrt((L1 + 0.05) * (L2 + 0.05)) - 0.05) ? darkColor : lightColor
     }

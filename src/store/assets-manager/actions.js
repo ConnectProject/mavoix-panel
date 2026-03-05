@@ -1,12 +1,13 @@
-import AssetModel, { NAME_KEY } from '~/models/Asset'
 import Jimp from 'jimp'
-import { Notify } from 'quasar'
 import Parse from 'parse'
+import { Notify } from 'quasar'
 import Unidecode from 'unidecode'
-import getCurrentUserId from '~/utils/getCurrentUserId'
-import { i18n } from '~/boot/i18n.js'
 
 import { modelFromAsset } from './utils'
+
+import { i18n } from '~/boot/i18n.js'
+import AssetModel, { NAME_KEY } from '~/models/Asset'
+import getCurrentUserId from '~/utils/getCurrentUserId'
 
 /**
  * Open the asset manager and load assets
@@ -51,7 +52,7 @@ export const destroyEditingAsset = async ({ commit, state: { assets, editingInde
     await assetModel.destroy()
     commit('removeEditingAsset')
     commit('cancelEdit')
-  } catch(err) {
+  } catch (err) {
     commit('setError', err)
   }
 }
@@ -68,7 +69,6 @@ export const saveEditingAsset = async ({ commit, state: { assets, editingIndex, 
     await assetModel.save()
     commit('updateEditingAsset', assetModel)
     commit('cancelEdit')
-
   } catch (err) {
     commit('setError', err)
   }
@@ -118,14 +118,14 @@ const uploadFile = async ({ commit }, file) => {
     }
   }
   const buf = await image.getBufferAsync(Jimp.AUTO)
-  var blob = new Blob([buf])
+  const blob = new Blob([buf])
 
   const filename = Unidecode(file.name)
     .replace(/^[^a-z0-9]+/i, '')
     .replace(/[^a-z0-9. \-_]/gi, '_')
 
   const newFile = await new Parse.File(filename, blob).save()
-  const asset = await AssetModel.New(filename.replace(/\.[^/.]+$/, ""), newFile, newFile._url, getCurrentUserId()).save()
+  const asset = await AssetModel.New(filename.replace(/\.[^/.]+$/, ''), newFile, newFile._url, getCurrentUserId()).save()
   commit('addAsset', asset)
 }
 

@@ -143,12 +143,12 @@ export default {
      */
     onSubmit () {
       switch (this.mode) {
-        case 'edit':
-          this.$store.commit('tabEditor/updateItem')
-          break
-        case 'new':
-          this.$store.commit('tabEditor/addItem')
-          break
+      case 'edit':
+        this.$store.commit('tabEditor/updateItem')
+        break
+      case 'new':
+        this.$store.commit('tabEditor/addItem')
+        break
       }
       this.onClose()
     },

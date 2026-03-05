@@ -1,5 +1,6 @@
-import AssetModel, { NAME_KEY, PARSE_FILE_KEY, URL_KEY } from '~/models/Asset'
 import Parse from 'parse'
+
+import AssetModel, { NAME_KEY, PARSE_FILE_KEY, URL_KEY } from '~/models/Asset'
 
 /**
  * Return the index of an asset in an array of assets

@@ -3,7 +3,7 @@
     <q-header class="bg-grey text-white">
       <q-toolbar>
         <q-toolbar-title>
-          Ma Voix
+          {{ $t('appTitle') }}
         </q-toolbar-title>
       </q-toolbar>
     </q-header>

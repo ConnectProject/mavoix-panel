@@ -1,3 +1,8 @@
+import Parse from 'parse'
+
+import { assetFromModel } from '../assets-manager/utils'
+
+import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
 import {
   ASSET_KEY as ITEM_ASSET_KEY,
   AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
@@ -6,9 +11,6 @@ import {
   NAME_KEY as ITEM_NAME_KEY,
   ORDER_KEY as ITEM_ORDER_KEY
 } from '~/models/TabItem'
-import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
-import Parse from 'parse'
-import {assetFromModel} from '../assets-manager/utils'
 import getCurrentUserId from '~/utils/getCurrentUserId'
 
 /**

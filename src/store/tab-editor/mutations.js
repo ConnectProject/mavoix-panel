@@ -1,6 +1,6 @@
 import { ActionHexColor, ActionLanguage, ActionName, ActionNewItem, ActionSpeed, ActionUpdateItem } from './stackActions'
-import { itemIndex, itemModelToItem, modelToTab } from './utils'
 import { getDefaultState } from './state'
+import { itemIndex, itemModelToItem, modelToTab } from './utils'
 
 /**
  * Set the tab used by the Tab Editor

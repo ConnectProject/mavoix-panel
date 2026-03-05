@@ -35,11 +35,11 @@
     "vuex": "^3.1.1"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.28.6",
     "@quasar/app": "^2.2.10",
     "@vue/eslint-config-standard": "^4.0.0",
-    "babel-eslint": "^10.0.1",
     "babel-plugin-module-resolver": "^4",
-    "eslint": "^7.28.0",
+    "eslint": "^8.57.1",
     "eslint-config-naat": "git+https://github.com/neuroanatomy/eslint-config-naat.git",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^7.11.0",

@@ -27,8 +27,9 @@
 </template>
 
 <script>
-import ListItemLoading from '~/components/ListItemLoading'
 import Parse from 'parse'
+
+import ListItemLoading from '~/components/ListItemLoading'
 
 export default {
   name: 'PageHome',
@@ -49,10 +50,10 @@ export default {
     }
   },
   computed: {
-    authorizeUri() {
+    authorizeUri () {
       return `${process.env.CONNECT_URL}/authorize?client_id=${process.env.CONNECT_CLIENT_ID}&redirect_uri=${this.redirectUri}&response_type=code`
     },
-    username() {
+    username () {
       return Parse.User.current()?.getUsername()
     },
     connectUserId () {
@@ -62,20 +63,20 @@ export default {
   created () {
     const authorizationCode = this.$router.currentRoute.query.code
     if (authorizationCode) {
-      const params = {authorizationCode, redirectUri: this.redirectUri}
-      Parse.Cloud.run("linkWithConnect", params).then(({connectUserId}) => {
+      const params = { authorizationCode, redirectUri: this.redirectUri }
+      Parse.Cloud.run('linkWithConnect', params).then(({ connectUserId }) => {
         this.$store.commit('users/setConnectUserId', connectUserId)
       })
         .catch((err) => {
           console.error(err)
-          this.$q.notify({ position: 'top-right', message: "Erreur lors de la connexion à connect: " + err.message, color: 'red' })
+          this.$q.notify({ position: 'top-right', message: 'Erreur lors de la connexion à connect: ' + err.message, color: 'red' })
         })
-      this.$router.replace({name:'home'})
+      this.$router.replace({ name: 'home' })
     }
   },
   methods: {
-    unlinkFromConnect() {
-      Parse.Cloud.run("unlinkFromConnect").then(() => {
+    unlinkFromConnect () {
+      Parse.Cloud.run('unlinkFromConnect').then(() => {
         this.$store.commit('users/setConnectUserId', null)
       })
     }

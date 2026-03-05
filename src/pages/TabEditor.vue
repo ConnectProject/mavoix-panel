@@ -224,10 +224,12 @@
 
 <script>
 /* eslint-disable max-lines */
+import { QSelect } from 'quasar'
+
+import { SLUG_KEY } from '../models/Tab'
+
 import DialogItemChoice from '~/components/dialogs/ItemChoice'
 import DialogTabItem from '~/components/dialogs/TabItem'
-import { QSelect } from 'quasar'
-import { SLUG_KEY } from '../models/Tab'
 
 export default {
   name: 'PageTabEditor',
@@ -338,16 +340,16 @@ export default {
      * @returns {void}
      */
     getBase64Image (imgUrl, callback) {
-      var img = new Image()
+      const img = new Image()
       // onload fires when the image is fully loadded, and has width and height
       const that = this
       img.onload = function () {
-        var canvas = document.createElement('canvas')
+        const canvas = document.createElement('canvas')
         canvas.width = img.width
         canvas.height = img.height
-        var ctx = canvas.getContext('2d')
+        const ctx = canvas.getContext('2d')
         ctx.drawImage(img, 0, 0)
-        var dataURL = canvas.toDataURL('image/png')
+        const dataURL = canvas.toDataURL('image/png')
         // dataURL = dataURL.replace(/^data:image\/(png|jpg);base64,/, '')
         that.numberLoaded += 1
         callback(dataURL) // the base64 string
@@ -372,12 +374,15 @@ export default {
      */
     onSave () {
       this.$store.dispatch('tabEditor/saveCb', (tab) => {
+        if (!tab) {
+          return
+        }
 
-        /* When the tab's name is changed the slugs change to, so redirect to the new url */
+        // When the tab's name is changed the slugs change to, so redirect to the new url
         const path = `/tabs/${tab.get(SLUG_KEY)}`
         if (this.$route.path !== path) this.$router.push(path)
 
-        /* Toast message */
+        // Toast message
         this.$q.notify({
           message: `${tab.get('name')} saved`,
           color: 'purple'

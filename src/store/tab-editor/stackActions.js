@@ -12,7 +12,7 @@ class Action {
   }
 
   whoo () {
-    const {from} = this
+    const { from } = this
 
     this.from = this.to
     this.to = from

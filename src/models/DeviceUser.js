@@ -1,13 +1,14 @@
 // does not seem to be used anymore
 
 import Parse from 'parse'
+
 import randomString from '~/utils/randomString'
 
 /*
 ** Represents a device invitation generated to allow an external device to access to data.
 */
 export default class DeviceUser extends Parse.User {
-  constructor() {
+  constructor () {
     super('DeviceUser')
   }
 

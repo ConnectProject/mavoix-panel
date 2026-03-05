@@ -39,6 +39,7 @@ export const createTabCb = ({ commit }, { name, callback }) => {
 
         return callback(tab)
       }
+      throw new Error('Tab not created')
     })
     .catch((err) => {
       commit('setError', err)
