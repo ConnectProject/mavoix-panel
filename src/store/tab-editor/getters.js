@@ -75,3 +75,9 @@ export const tabModel = ({ tabModel }) => tabModel
  * @param {State} state vuex state
  */
 export const loading = ({ loading }) => loading
+
+/**
+ * Return true if tab settings dialog is open
+ * @param {State} state vuex state
+ */
+export const tabSettingsDialogOpened = ({ tabSettingsDialogOpened }) => tabSettingsDialogOpened

@@ -133,7 +133,7 @@
                 :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
               >
                 <q-item-section avatar>
-                  <q-icon name="category" />
+                  <q-icon :name="tab.get('icon') || 'category'" />
                 </q-item-section>
                 <q-item-section>
                   <q-item-label>
@@ -372,6 +372,8 @@ export default {
      * @returns {string} text color
      **/
     getTextColor (bgColor, lightColor = '#FFFFFF', darkColor = '#000000') {
+
+      if(!bgColor) return darkColor
 
       const getLuminance = function (hexColor) {
         var color = (hexColor.charAt(0) === '#') ? hexColor.substring(1, 7) : hexColor

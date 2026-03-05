@@ -138,6 +138,14 @@ export const toggleItemAvailable = (_, item) => {
   item.available = !item.available
 }
 
+export const openTabSettings = (state) => {
+  state.tabSettingsDialogOpened = true
+}
+
+export const closeTabSettings = (state) => {
+  state.tabSettingsDialogOpened = false
+}
+
 /**
  * Toggle visibility for an item
  * @param {State} _  vuex state

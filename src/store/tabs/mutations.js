@@ -20,6 +20,20 @@ export const addTab = (state, tab) => {
 }
 
 /**
+ * Update a tab
+ * @param {State} state vuex state
+ * @param {TabModel} tab tab to update
+ * @returns {void}
+ */
+export const updateTab = (state, tab) => {
+  const index = state.tabs.findIndex(t => t.id === tab.id)
+  if (index !== -1) {
+    // Vue 2 can't detect direct array index mutation, use splice
+    state.tabs.splice(index, 1, tab)
+  }
+}
+
+/**
  * Remove a tab from its id
  * @param {State} state vuex state
  * @param {String} id tab's id to remove

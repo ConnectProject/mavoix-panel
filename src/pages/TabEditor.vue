@@ -79,88 +79,41 @@
       position="top"
     >
       <q-toolbar
-        style="opacity:1; border-bottom: thin solid rgba(255,255,255,0.7)"
+        class="row items-center toolbar-no-border toolbar-with-padding"        
         :style="{ background: tab.hexColor }"
-        class="row"
       >
-        <!-- Name input -->
-        <q-input
-          :label="$t('tabEditor.tabNameLabel')"
-          class="q-ma-md bg-white col"
-          :value="tab.name"
-          filled
-          @input="setName"
-        />
-
-        <!-- HexColor input -->
-        <q-input
-          :label="$t('tabEditor.tabColorLabel')"
-          class="q-ma-md bg-white col"
-          :value="tab.hexColor"
-          filled
-          @input="setHexColor"
-        >
-          <template #append>
-            <q-icon
-              name="colorize"
-              class="cursor-pointer"
-            >
-              <q-popup-proxy
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-color
-                  no-header
-                  no-footer
-                  :value="tab.hexColor"
-                  inline
-                  class="my-picker"
-                  @input="setHexColor"
-                />
-              </q-popup-proxy>
-            </q-icon>
-          </template>
-        </q-input>
-        <q-select
-          :value="speed"
-          :options="speeds"
-          class="q-ma-md bg-white col"
-          filled
-          :label="$t('tabEditor.tabSpeed')"
-          @input="setSpeed"
-        />
-        <q-select
-          :value="language"
-          :options="options"
-          class="q-ma-md bg-white col"
-          filled
-          :label="$t('tabEditor.tabLanguage')"
-          @input="setLanguage"
-        />
+        
         <!-- Add item button -->
         <q-btn
-          class="q-px-md q-py-md q-ma-md bg-white no-shadow col-3"
+          class="q-ml-md add-images-btn"
           no-caps
-          icon-right="photo_library"
+          icon-right="add_to_photos"
+          unelevated
           :label="$t('tabEditor.addItemLabel')"
+          text-color="black"
           @click="onAddItem"
+        />
+        <q-space />
+
+        <!-- RIGHT: Settings (circular, white bg, blue icon) -->
+        <q-btn
+          class="settings-btn"
+          unelevated
+          round
+          icon="settings"
+          text-color="primary"
+          @click="openTabSettings"
         />
         <!-- edit language button -->
       </q-toolbar>
     </q-page-sticky>
-    <!-- Udo, Redo buttons -->
-    <!--     <q-page-sticky position="top-right" :offset="[18, 18]">
-      <q-btn class="q-mx-xs" fab icon="undo" color="accent" @click="onUndo" :disable="$store.getters['tabEditor/isUndoable']">
-        <q-tooltip>
-          {{ $t('generic.undo') }}
-        </q-tooltip>
-      </q-btn>
-      <q-btn class="q-mx-xs" fab icon="redo" color="accent" @click="onRedo" :disable="$store.getters['tabEditor/isRedoable']">
-        <q-tooltip>
-          {{ $t('generic.redo') }}
-        </q-tooltip>
-      </q-btn>
-    </q-page-sticky> -->
+
+    <dialog-tab-settings 
+      :value="$store.getters['tabEditor/tabSettingsDialogOpened']"
+      @input="v => !v && closeTabSettings()"
+      :mode="'edit'"
+      :tab="tab"
+    />
 
     <!-- Delete, Save buttons -->
     <q-page-sticky
@@ -224,25 +177,25 @@
 
 <script>
 /* eslint-disable max-lines */
-import DialogItemChoice from '~/components/dialogs/ItemChoice'
-import DialogTabItem from '~/components/dialogs/TabItem'
-import { QSelect } from 'quasar'
-import { SLUG_KEY } from '../models/Tab'
+import { QSelect } from 'quasar';
+import DialogItemChoice from '~/components/dialogs/ItemChoice';
+import DialogTabItem from '~/components/dialogs/TabItem';
+import { SLUG_KEY } from '../models/Tab';
+import DialogTabSettings from '~/components/dialogs/TabSettings';
 
 export default {
   name: 'PageTabEditor',
   components: {
     DialogTabItem,
     DialogItemChoice,
+    DialogTabSettings,
     QSelect
   },
   data () {
     return {
-      hex: '',
-      loaded: false,
       deletion: false,
-      numberLoaded: 0,
-      itemsLoaded: []
+      tabSettingsDialogOpened: false,
+      mode: 'create'
     }
   },
   computed: {
@@ -319,6 +272,15 @@ export default {
     '$route' () {
       this.load()
       this.$store.dispatch('global/initTTS')
+    },
+    '$store.state.tabEditor.error' (err) {
+      if (err) {
+        this.$q.notify({
+          position: 'top-right',
+          message: err.message || String(err),
+          color: 'red'
+        })
+      }
     }
   },
 
@@ -461,6 +423,14 @@ export default {
      */
     onRedo () {
       this.$store.commit('tabEditor/redo')
+    },
+
+    openTabSettings() {
+      this.$store.commit('tabEditor/openTabSettings')
+    },
+
+    closeTabSettings() {
+      this.$store.commit('tabEditor/closeTabSettings')
     }
   }
 }
@@ -476,6 +446,26 @@ export default {
 
 .item-img:hover
   opacity .7
+
+.toolbar-no-border
+  border-bottom none !important
+
+.toolbar-with-padding
+  padding-top 12px
+  padding-bottom 12px
+
+.add-images-btn
+  background white !important
+  color black
+  border-radius 9999px
+  padding 8px 20px
+
+.add-images-btn .q-icon
+  color var(--q-color-primary)
+
+.settings-btn
+  background white !important
+  color #027BE3
 
 .action-icon-wrapper
   opacity 0

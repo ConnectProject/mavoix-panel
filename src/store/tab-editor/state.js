@@ -51,7 +51,9 @@ export const getDefaultState = () => ({
   languages: ['French', 'English (US)', 'English (UK)', 'German', 'Dutch', 'Spanish', 'Italian', 'Portuguese'],
   languagesCodes: ['fr_FR', 'en_US', 'en_UK', 'de_DE', 'nl_NL', 'es_ES', 'it_IT', 'pt_PT'],
   speeds: ['25%', '50%', '75%', 'Normal', '125%', '150%', '175%', '200%'],
-  speedsCodes: [0.25, 0.5, 0.75, 1.0, 1.25, 1.50, 1.75, 2.0]
+  speedsCodes: [0.25, 0.5, 0.75, 1.0, 1.25, 1.50, 1.75, 2.0],
+
+  tabSettingsDialogOpened: false
 })
 
 export default getDefaultState()

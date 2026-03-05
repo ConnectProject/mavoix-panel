@@ -30,8 +30,8 @@ export const loadTabs = ({ commit }) => {
  * }
  * @returns {Promise} did the action succeed
  */
-export const createTabCb = ({ commit }, { name, callback }) => {
-  TabModel.Create(name, getCurrentUserId())
+export const createTabCb = ({ commit }, { name, hexColor, icon, callback }) => {
+  TabModel.Create(name, getCurrentUserId(), hexColor, icon)
     .save()
     .then((tab) => {
       if (tab) {
