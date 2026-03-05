@@ -153,6 +153,21 @@ export default {
 
     methods: {  
         onSave() {
+            if(!this.name) {
+                this.$q.notify({
+                    message: this.$t('tabSettings.nameRequired'),
+                    color: 'negative'
+                })
+                return
+            }
+            if(!this.hexColor) {
+                this.$q.notify({
+                    message: this.$t('tabSettings.backgroundColorRequired'),
+                    color: 'negative'
+                })
+                return
+            }
+            
             if(this.mode === 'create') {
                 this.$store.dispatch('tabs/createTabCb', {
                     name: this.name,

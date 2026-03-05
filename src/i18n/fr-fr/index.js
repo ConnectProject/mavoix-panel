@@ -60,6 +60,8 @@ export default {
     backgroundColor: 'Couleur de fond',
     selectedColor: 'Couleur choisie',
     icon: 'Icône',
+    nameRequired: 'Le nom est requis',
+    backgroundColorRequired: 'La couleur de fond est requise',
     createButton: 'Créer l\'onglet',
     deleteConfirmMessage: 'Voulez-vous vraiment supprimer cet onglet ?'
   },
