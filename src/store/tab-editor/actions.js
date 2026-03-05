@@ -4,7 +4,7 @@ import { modelFromAsset } from '../assets-manager/utils'
 
 import { tabToModel } from './utils'
 
-import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
+import TabModel, { HEX_COLOR_KEY, ICON_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
 import TabItemModel, {
   ASSET_KEY as ITEM_ASSET_KEY,
   AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
@@ -143,4 +143,29 @@ export const deleteTab = ({ commit, getters: { tab } }) => {
     .catch((err) => {
       commit('setError', err)
     })
+}
+
+export const updateTab = async ({ commit, getters: { tab } }, { name, hexColor, icon, callback }) => {
+  try {
+    const tabModel = await tabToModel(tab)
+
+    tabModel.set(NAME_KEY, name)
+    tabModel.set(HEX_COLOR_KEY, hexColor)
+    tabModel.set(SLUG_KEY, slugify(name))
+    tabModel.set(ICON_KEY, icon)
+
+    await tabModel.save()
+
+    // update the store to reflect new values
+    commit('setTab', tabModel)
+    // update the tabs list state in sidebar too
+    commit('tabs/updateTab', tabModel, { root: true })
+
+    if (callback) {
+      // eslint-disable-next-line callback-return
+      callback(tabModel)
+    }
+  } catch (err) {
+    commit('setError', err)
+  }
 }

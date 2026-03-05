@@ -53,6 +53,18 @@ export default {
   newTabDialog: {
     heading: 'Choisissez un nom pour votre nouvel onglet !'
   },
+  tabSettings: {
+    createTitle: 'Création d\'un nouvel onglet',
+    editTitle: 'Paramètres de l\'onglet',
+    tabName: 'Nom de l\'onglet',
+    backgroundColor: 'Couleur de fond',
+    selectedColor: 'Couleur choisie',
+    icon: 'Icône',
+    nameRequired: 'Le nom est requis',
+    backgroundColorRequired: 'La couleur de fond est requise',
+    createButton: 'Créer l\'onglet',
+    deleteConfirmMessage: 'Voulez-vous vraiment supprimer cet onglet ?'
+  },
   generic: {
     close: 'Fermer',
     validate: 'Valider',
