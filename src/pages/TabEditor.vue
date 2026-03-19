@@ -433,11 +433,11 @@ export default {
       this.$store.commit('tabEditor/redo')
     },
 
-    openTabSettings() {
+    openTabSettings () {
       this.$store.commit('tabEditor/openTabSettings')
     },
 
-    closeTabSettings() {
+    closeTabSettings () {
       this.$store.commit('tabEditor/closeTabSettings')
     }
   }

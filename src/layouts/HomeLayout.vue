@@ -427,11 +427,11 @@ export default {
       return (L > Math.sqrt((L1 + 0.05) * (L2 + 0.05)) - 0.05) ? darkColor : lightColor
     },
 
-    openCreateTabDialog() {
+    openCreateTabDialog () {
       this.$store.commit('tabs/openCreateTabDialog')
     },
 
-    closeCreateTabDialog() {
+    closeCreateTabDialog () {
       this.$store.commit('tabs/closeCreateTabDialog')
     },
 

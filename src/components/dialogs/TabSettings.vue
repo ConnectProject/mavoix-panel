@@ -161,7 +161,7 @@ export default {
     }
   },
 
-  data() {
+  data () {
     return {
       confirmDeleteOpen: false,
       name: '',
@@ -188,13 +188,13 @@ export default {
   },
 
   computed: {
-    opened() {
+    opened () {
       return this.value // tab editor passes :value="$store.getters['tabEditor/tabSettingsDialogOpened']" and Home layout passes :value="$store.getters['tabs/createTabDialogOpened']"
     }
   },
 
   watch: {
-    opened(newVal) {
+    opened (newVal) {
       if (newVal) {
         if (this.mode === 'edit' && this.tab) {
           this.name = this.tab.name
@@ -206,8 +206,8 @@ export default {
   },
 
   methods: {
-    onSave() {
-      if(!this.name) {
+    onSave () {
+      if (!this.name) {
         this.$q.notify({
           message: this.$t('tabSettings.nameRequired'),
           color: 'negative'
@@ -215,7 +215,7 @@ export default {
 
         return
       }
-      if(!this.hexColor) {
+      if (!this.hexColor) {
         this.$q.notify({
           message: this.$t('tabSettings.backgroundColorRequired'),
           color: 'negative'
@@ -224,7 +224,7 @@ export default {
         return
       }
 
-      if(this.mode === 'create') {
+      if (this.mode === 'create') {
         this.$store.dispatch('tabs/createTabCb', {
           name: this.name,
           hexColor: this.hexColor,
@@ -237,7 +237,7 @@ export default {
             })
           }
         })
-      } else if(this.mode === 'edit' && this.tab) {
+      } else if (this.mode === 'edit' && this.tab) {
         this.$store.dispatch('tabEditor/updateTab', {
           name: this.name,
           hexColor: this.hexColor,
@@ -254,11 +254,11 @@ export default {
       }
     },
 
-    onDelete() {
+    onDelete () {
       this.confirmDeleteOpen = true
     },
 
-    confirmAndDelete() {
+    confirmAndDelete () {
       this.confirmDeleteOpen = false
       this.$store.dispatch('tabEditor/deleteTab')
       this.$emit('input', false)
