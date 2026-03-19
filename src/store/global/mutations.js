@@ -34,3 +34,23 @@ export const setImages = (state, obj) => {
     state.imagesSelected = []
   }
 }
+
+export const openGlobalSettingsDialog = (state) => {
+  state.globalSettingsDialogOpened = true
+}
+
+export const closeGlobalSettingsDialog = (state) => {
+  state.globalSettingsDialogOpened = false
+}
+
+export const setImageSize = (state, imageSize) => {
+  state.imageSize = imageSize
+}
+
+export const setTTSSpeed = (state, ttsSpeed) => {
+  state.ttsSpeed = ttsSpeed
+}
+
+export const setTTSLanguage = (state, ttsLanguage) => {
+  state.ttsLanguage = ttsLanguage
+}

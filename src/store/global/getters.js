@@ -11,3 +11,11 @@ export const tts = ({ tts }) => tts
 export const ttsEnabled = ({ ttsEnabled }) => ttsEnabled
 
 export const imagesSelected = ({ imagesSelected }) => imagesSelected
+
+export const globalSettingsDialogOpened = ({ globalSettingsDialogOpened }) => globalSettingsDialogOpened
+
+export const imageSize = ({ imageSize }) => imageSize
+
+export const ttsSpeed = ({ ttsSpeed }) => ttsSpeed
+
+export const ttsLanguage = ({ ttsLanguage }) => ttsLanguage

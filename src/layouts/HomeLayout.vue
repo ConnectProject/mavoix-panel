@@ -73,7 +73,7 @@
       <!-- Navigation drawer -->
       <q-drawer
         v-model="drawerOpen"
-        :width="200"
+        :width="250"
         :breakpoint="500"
         show-if-abovebordered
       >
@@ -113,6 +113,24 @@
                 <q-item-label>{{ $t('navDrawer.assetsManager') }}</q-item-label>
               </q-item-section>
             </q-item>
+            <q-item
+              v-ripple
+              clickable
+              class="text-white"
+              @click="openGlobalSettingsDialog"
+            >
+              <q-item-section avatar>
+                <q-icon name="settings" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ $t('navDrawer.globalSettings') }}</q-item-label>
+              </q-item-section>
+            </q-item>
+
+            <dialog-global-settings
+              :value="$store.getters['global/globalSettingsDialogOpened']"
+              @input="v => !v && closeGlobalSettingsDialog()"
+            />
 
             <!-- Tabs -->
             <q-item-label
@@ -242,9 +260,9 @@ import Parse from 'parse'
 
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 import DialogDeviceName from '~/components/dialogs/DeviceName'
+import DialogGlobalSettings from '~/components/dialogs/GlobalSettings'
 import DialogTabName from '~/components/dialogs/TabName'
 import DialogTabSettings from '~/components/dialogs/TabSettings'
-
 import ListItemLoading from '~/components/ListItemLoading'
 
 // import QrcodeVue from 'qrcode.vue'
@@ -258,7 +276,8 @@ export default {
     DialogTabName,
     DialogDeviceName,
     DialogDeviceInvitation,
-    DialogTabSettings
+    DialogTabSettings,
+    DialogGlobalSettings
   },
   data () {
     return {
@@ -314,8 +333,9 @@ export default {
       this.$store.dispatch('tabs/loadTabs')
       this.$store.dispatch('assetsManager/loadAssets')
       this.$store.dispatch('devices/loadDevices')
-      this.$store.dispatch('global/initTTS')
       this.$store.dispatch('users/loadConnectUserId')
+      this.$store.dispatch('global/loadGlobalSettings')
+      this.$store.dispatch('global/initTTS')
     }
   },
   // watch: {
@@ -387,7 +407,6 @@ export default {
      * @returns {string} text color
      **/
     getTextColor (bgColor, lightColor = '#FFFFFF', darkColor = '#000000') {
-
       if(!bgColor) return darkColor
 
       const getLuminance = function (hexColor) {
@@ -414,6 +433,14 @@ export default {
 
     closeCreateTabDialog() {
       this.$store.commit('tabs/closeCreateTabDialog')
+    },
+
+    openGlobalSettingsDialog() {
+      this.$store.commit('global/openGlobalSettingsDialog')
+    },
+
+    closeGlobalSettingsDialog() {
+      this.$store.commit('global/closeGlobalSettingsDialog')
     }
   }
 }

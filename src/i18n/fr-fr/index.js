@@ -7,7 +7,21 @@ export default {
     tabs: 'Onglets',
     addTab: 'Ajouter un onglet',
     devices: 'Appareils',
-    addDevice: 'Ajouter un appareil'
+    addDevice: 'Ajouter un appareil',
+    globalSettings: 'Paramètres globaux'
+  },
+  globalSettings: {
+    title: 'Paramètres globaux',
+    imageSizeLabel: 'Taille d\'images',
+    sizeSmall: 'Petit',
+    sizeMedium: 'Moyenne',
+    sizeLarge: 'Grande',
+    ttsSpeedLabel: 'Vitesse de synthèse vocale',
+    speedVerySlow: 'Très Lent',
+    speedSlow: 'Lent',
+    speedNormal: 'Normal',
+    speedFast: 'Rapide',
+    ttsLanguageLabel: 'Langage de synthèse vocale'
   },
   dnd: {
     dropFiles: 'Déposez ici vos fichiers',

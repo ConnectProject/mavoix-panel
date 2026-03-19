@@ -24,7 +24,7 @@
         <q-card
           v-for="(item, index) in items"
           :key="index"
-          class="item"
+          :class="['item', imageSizeClass]"
           :v-if="!item.deleted"
         >
           <!-- Item's image -->
@@ -176,13 +176,11 @@
 
 <script>
 /* eslint-disable max-lines */
-import DialogItemChoice from '~/components/dialogs/ItemChoice'
-import DialogTabItem from '~/components/dialogs/TabItem'
-import DialogTabSettings from '~/components/dialogs/TabSettings'
 import { SLUG_KEY } from '../models/Tab'
 
 import DialogItemChoice from '~/components/dialogs/ItemChoice'
 import DialogTabItem from '~/components/dialogs/TabItem'
+import DialogTabSettings from '~/components/dialogs/TabSettings'
 
 export default {
   name: 'PageTabEditor',
@@ -221,6 +219,13 @@ export default {
     },
     options () {
       return this.$store.getters['tabEditor/languages']
+    },
+    imageSizeClass () {
+      const imageSize = this.$store.getters['global/imageSize']
+      if (imageSize === 'small') return 'item-size--small'
+      if (imageSize === 'large') return 'item-size--large'
+
+      return 'item-size--medium'
     },
 
     /**
@@ -446,6 +451,15 @@ export default {
 .item-img
   cursor pointer
   transition .1s linear
+
+.item-size--small
+  width 120px
+
+.item-size--medium
+  width 170px
+
+.item-size--large
+  width 240px
 
 .item-img:hover
   opacity .7
