@@ -7,7 +7,21 @@ export default {
     tabs: 'Onglets',
     addTab: 'Ajouter un onglet',
     devices: 'Appareils',
-    addDevice: 'Ajouter un appareil'
+    addDevice: 'Ajouter un appareil',
+    globalSettings: 'Paramètres globaux'
+  },
+  globalSettings: {
+    title: 'Paramètres globaux',
+    imageSizeLabel: 'Taille d\'images',
+    sizeSmall: 'Petit',
+    sizeMedium: 'Moyenne',
+    sizeLarge: 'Grande',
+    ttsSpeedLabel: 'Vitesse de synthèse vocale',
+    speedVerySlow: 'Très Lent',
+    speedSlow: 'Lent',
+    speedNormal: 'Normal',
+    speedFast: 'Rapide',
+    ttsLanguageLabel: 'Langage de synthèse vocale'
   },
   dnd: {
     dropFiles: 'Déposez ici vos fichiers',
@@ -52,6 +66,18 @@ export default {
   },
   newTabDialog: {
     heading: 'Choisissez un nom pour votre nouvel onglet !'
+  },
+  tabSettings: {
+    createTitle: 'Création d\'un nouvel onglet',
+    editTitle: 'Paramètres de l\'onglet',
+    tabName: 'Nom de l\'onglet',
+    backgroundColor: 'Couleur de fond',
+    selectedColor: 'Couleur choisie',
+    icon: 'Icône',
+    nameRequired: 'Le nom est requis',
+    backgroundColorRequired: 'La couleur de fond est requise',
+    createButton: 'Créer l\'onglet',
+    deleteConfirmMessage: 'Voulez-vous vraiment supprimer cet onglet ?'
   },
   generic: {
     close: 'Fermer',

@@ -73,7 +73,7 @@
       <!-- Navigation drawer -->
       <q-drawer
         v-model="drawerOpen"
-        :width="200"
+        :width="250"
         :breakpoint="500"
         show-if-abovebordered
       >
@@ -113,6 +113,24 @@
                 <q-item-label>{{ $t('navDrawer.assetsManager') }}</q-item-label>
               </q-item-section>
             </q-item>
+            <q-item
+              v-ripple
+              clickable
+              class="text-white"
+              @click="openGlobalSettingsDialog"
+            >
+              <q-item-section avatar>
+                <q-icon name="settings" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ $t('navDrawer.globalSettings') }}</q-item-label>
+              </q-item-section>
+            </q-item>
+
+            <dialog-global-settings
+              :value="$store.getters['global/globalSettingsDialogOpened']"
+              @input="v => !v && closeGlobalSettingsDialog()"
+            />
 
             <!-- Tabs -->
             <q-item-label
@@ -140,7 +158,7 @@
                 :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
               >
                 <q-item-section avatar>
-                  <q-icon name="category" />
+                  <q-icon :name="tab.get('icon') || 'category'" />
                 </q-item-section>
                 <q-item-section>
                   <q-item-label>
@@ -154,13 +172,19 @@
                 v-ripple
                 style="margin-left:150px;border-radius:32px 0 0 32px;background:white"
                 clickable
-                @click="$store.commit('tabs/openDialog')"
+                @click="openCreateTabDialog"
               >
                 <q-item-section avatar>
                   <q-icon name="add" />
                 </q-item-section>
               </q-item>
             </div>
+
+            <dialog-tab-settings
+              :value="$store.getters['tabs/createTabDialogOpened']"
+              :mode="'create'"
+              @input="v => !v && closeCreateTabDialog()"
+            />
 
             <!-- Devices -->
             <q-item-label
@@ -236,7 +260,9 @@ import Parse from 'parse'
 
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 import DialogDeviceName from '~/components/dialogs/DeviceName'
+import DialogGlobalSettings from '~/components/dialogs/GlobalSettings'
 import DialogTabName from '~/components/dialogs/TabName'
+import DialogTabSettings from '~/components/dialogs/TabSettings'
 import ListItemLoading from '~/components/ListItemLoading'
 
 // import QrcodeVue from 'qrcode.vue'
@@ -249,7 +275,9 @@ export default {
     // DialogAssetsManager,
     DialogTabName,
     DialogDeviceName,
-    DialogDeviceInvitation
+    DialogDeviceInvitation,
+    DialogTabSettings,
+    DialogGlobalSettings
   },
   data () {
     return {
@@ -305,8 +333,9 @@ export default {
       this.$store.dispatch('tabs/loadTabs')
       this.$store.dispatch('assetsManager/loadAssets')
       this.$store.dispatch('devices/loadDevices')
-      this.$store.dispatch('global/initTTS')
       this.$store.dispatch('users/loadConnectUserId')
+      this.$store.dispatch('global/loadGlobalSettings')
+      this.$store.dispatch('global/initTTS')
     }
   },
   // watch: {
@@ -378,6 +407,8 @@ export default {
      * @returns {string} text color
      **/
     getTextColor (bgColor, lightColor = '#FFFFFF', darkColor = '#000000') {
+      if(!bgColor) return darkColor
+
       const getLuminance = function (hexColor) {
         const color = (hexColor.charAt(0) === '#') ? hexColor.substring(1, 7) : hexColor
         const r = parseInt(color.substring(0, 2), 16) // hexToR
@@ -394,6 +425,22 @@ export default {
       const L2 = getLuminance(darkColor)
 
       return (L > Math.sqrt((L1 + 0.05) * (L2 + 0.05)) - 0.05) ? darkColor : lightColor
+    },
+
+    openCreateTabDialog () {
+      this.$store.commit('tabs/openCreateTabDialog')
+    },
+
+    closeCreateTabDialog () {
+      this.$store.commit('tabs/closeCreateTabDialog')
+    },
+
+    openGlobalSettingsDialog() {
+      this.$store.commit('global/openGlobalSettingsDialog')
+    },
+
+    closeGlobalSettingsDialog() {
+      this.$store.commit('global/closeGlobalSettingsDialog')
     }
   }
 }

@@ -2,7 +2,7 @@ import Parse from 'parse'
 
 import { assetFromModel } from '../assets-manager/utils'
 
-import TabModel, { HEX_COLOR_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
+import TabModel, { HEX_COLOR_KEY, ICON_KEY, LANGUAGE_KEY, NAME_KEY, SLUG_KEY, SPEED_KEY } from '~/models/Tab'
 import {
   ASSET_KEY as ITEM_ASSET_KEY,
   AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
@@ -52,6 +52,7 @@ export const modelToTab = (tabModel) => ({
   hexColor: tabModel.get(HEX_COLOR_KEY),
   speed: tabModel.get(SPEED_KEY),
   language: tabModel.get(LANGUAGE_KEY),
+  icon: tabModel.get(ICON_KEY),
   user: getCurrentUserId()
 })
 
