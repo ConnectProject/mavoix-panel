@@ -1,3 +1,4 @@
+<!-- eslint-disable max-lines -->
 <template>
   <!-- Print nothing if loading -->
   <div v-if="loading" />
@@ -34,45 +35,143 @@
             :src="item.asset.url"
             contain
           >
-            <div class="absolute-bottom">
-              <!-- Item's name -->
-              <div class="text-center text-subtitle2">
-                {{ item.name }}
-              </div>
+            <div class="absolute-top row justify-between q-pa-sm image-card-actions">
+              <q-btn
+                round
+                dense
+                flat
+                icon="play_arrow"
+                color="primary"
+                class="image-action-btn"
+                :disable="$store.getters['global/ttsEnabled'] === false"
+                @click.stop="$store.getters['global/tts'].speak({ text: item.name })"
+              />
+              <q-btn
+                round
+                dense
+                flat
+                icon="settings"
+                color="primary"
+                class="image-action-btn"
+              >
+                <q-menu
+                  anchor="bottom right"
+                  self="top right"
+                >
+                  <q-list
+                    class="item-settings-menu"
+                    style="min-width: 220px"
+                  >
+                    <q-item
+                      clickable
+                      @click="openRenameDialog(item, index)"
+                    >
+                      <q-item-section
+                        avatar
+                        class="item-settings-menu__avatar"
+                      >
+                        <q-icon name="edit" />
+                      </q-item-section>
+                      <q-item-section>
+                        {{ $t('assetEditor.rename') }}
+                      </q-item-section>
+                    </q-item>
+                    <q-item
+                      v-close-popup
+                      clickable
+                      @click="openDeleteDialog(index)"
+                    >
+                      <q-item-section
+                        avatar
+                        class="item-settings-menu__avatar"
+                      >
+                        <q-icon name="delete" />
+                      </q-item-section>
+                      <q-item-section>
+                        {{ $t('assetEditor.delete') }}
+                      </q-item-section>
+                    </q-item>
+                    <q-item>
+                      <q-item-section
+                        avatar
+                        class="item-settings-menu__avatar"
+                      >
+                        <q-checkbox
+                          dense
+                          :value="!item.available"
+                          @input="() => $store.commit('tabEditor/toggleItemAvailable', item)"
+                        />
+                      </q-item-section>
+                      <q-item-section>
+                        {{ $t('generic.unavailable') }}
+                      </q-item-section>
+                    </q-item>
+                    <q-item>
+                      <q-item-section
+                        avatar
+                        class="item-settings-menu__avatar"
+                      >
+                        <q-checkbox
+                          dense
+                          :value="item.hidden"
+                          @input="() => $store.commit('tabEditor/toggleItemHidden', item)"
+                        />
+                      </q-item-section>
+                      <q-item-section>
+                        {{ $t('generic.invisible') }}
+                      </q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-menu>
+              </q-btn>
             </div>
-            <!-- Edit button -->
             <div
-              class="absolute fit flex justify-center items-center text-center action-icon-wrapper"
-              @click="() => onEditItem(item, index)"
+              v-if="item.hidden"
+              class="absolute-full image-overlay image-overlay--hidden"
             >
               <q-icon
-                name="edit"
-                class="action-icon"
-                size="xl"
+                name="visibility_off"
+                class="overlay-icon"
+              />
+            </div>
+            <div
+              v-else-if="!item.available"
+              class="absolute-full image-overlay image-overlay--unavailable"
+            >
+              <q-icon
+                name="close"
+                class="overlay-icon overlay-icon--cross"
               />
             </div>
           </q-img>
-          <q-card-actions align="right">
-            <!-- Toggle availability -->
-            <q-checkbox
-              left-label
-              :label="$t('generic.unavailable')"
-              :value="!item.available"
-              @input="() => $store.commit('tabEditor/toggleItemAvailable', item)"
+          <div class="item-name-bar">
+            <q-input
+              v-if="inlineRenameIndex === index"
+              v-model="inlineRenameDraft"
+              dense
+              borderless
+              class="item-name-input text-subtitle2"
+              @keyup.enter="saveInlineRename(item)"
+              @blur="saveInlineRename(item)"
             />
-            <!-- Toggle visibility -->
-            <q-checkbox
-              left-label
-              :label="$t('generic.invisible')"
-              :value="item.hidden"
-              @input="() => $store.commit('tabEditor/toggleItemHidden', item)"
-            />
-          </q-card-actions>
+            <div
+              v-else
+              class="text-center text-subtitle2 item-name-text"
+              @click="startInlineRename(item, index)"
+            >
+              {{ item.name }}
+            </div>
+          </div>
         </q-card>
       </draggable>
     </div>
     <dialog-tab-item />
     <dialog-item-choice ref="itemChoice" />
+    <dialog-asset-delete
+      :value="assetDeleteDialogOpen"
+      @input="assetDeleteDialogOpen = $event"
+      @confirm="onConfirmDeleteItem"
+    />
 
     <q-page-sticky
       expand
@@ -171,6 +270,38 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+
+    <q-dialog v-model="renameDialogOpen">
+      <q-card style="min-width: 320px">
+        <q-card-section>
+          <div class="text-h6">
+            Renommer l'image
+          </div>
+        </q-card-section>
+        <q-card-section>
+          <q-input
+            v-model="renameDialogDraft"
+            dense
+            autofocus
+            @keyup.enter="saveDialogRename"
+          />
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn
+            flat
+            :label="$t('generic.cancel')"
+            color="primary"
+            @click="renameDialogOpen = false"
+          />
+          <q-btn
+            flat
+            :label="$t('generic.save')"
+            color="primary"
+            @click="saveDialogRename"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -178,6 +309,7 @@
 /* eslint-disable max-lines */
 import { SLUG_KEY } from '../models/Tab'
 
+import DialogAssetDelete from '~/components/dialogs/AssetDelete'
 import DialogItemChoice from '~/components/dialogs/ItemChoice'
 import DialogTabItem from '~/components/dialogs/TabItem'
 import DialogTabSettings from '~/components/dialogs/TabSettings'
@@ -187,13 +319,22 @@ export default {
   components: {
     DialogTabItem,
     DialogItemChoice,
-    DialogTabSettings
+    DialogTabSettings,
+    DialogAssetDelete
   },
   data () {
     return {
+      assetDeleteDialogOpen: false,
+      assetDeleteTargetIndex: null,
+      skipAssetDeleteConfirm: false,
       deletion: false,
       tabSettingsDialogOpened: false,
-      mode: 'create'
+      mode: 'create',
+      inlineRenameIndex: null,
+      inlineRenameDraft: '',
+      renameDialogOpen: false,
+      renameDialogDraft: '',
+      renameDialogTarget: null
     }
   },
   computed: {
@@ -294,6 +435,7 @@ export default {
    * @returns {void}
    */
   mounted () {
+    this.skipAssetDeleteConfirm = window.localStorage.getItem('tabEditor.skipAssetDeleteConfirm') === '1'
     this.load()
   },
   methods: {
@@ -439,6 +581,62 @@ export default {
 
     closeTabSettings () {
       this.$store.commit('tabEditor/closeTabSettings')
+    },
+
+    startInlineRename (item, index) {
+      this.inlineRenameIndex = index
+      this.inlineRenameDraft = item.name || ''
+    },
+
+    saveInlineRename (item) {
+      const nextName = (this.inlineRenameDraft || '').trim()
+      if (nextName) item.name = nextName
+      this.inlineRenameIndex = null
+      this.inlineRenameDraft = ''
+    },
+
+    openRenameDialog (item, index) {
+      this.renameDialogTarget = { item, index }
+      this.renameDialogDraft = item.name || ''
+      this.renameDialogOpen = true
+    },
+
+    openDeleteDialog (index) {
+      if (this.skipAssetDeleteConfirm) {
+        this.deleteItem(index)
+
+        return
+      }
+
+      this.assetDeleteTargetIndex = index
+      this.assetDeleteDialogOpen = true
+    },
+
+    onConfirmDeleteItem ({ dontAskAgain } = {}) {
+      if (dontAskAgain) {
+        this.skipAssetDeleteConfirm = true
+        window.localStorage.setItem('tabEditor.skipAssetDeleteConfirm', '1')
+      }
+
+      this.deleteItem(this.assetDeleteTargetIndex)
+      this.assetDeleteTargetIndex = null
+    },
+
+    deleteItem (index) {
+      if (index === null || typeof index === 'undefined') {
+        return
+      }
+      this.$store.commit('tabEditor/removeItemAtIndex', index)
+    },
+
+    saveDialogRename () {
+      const nextName = (this.renameDialogDraft || '').trim()
+      if (nextName && this.renameDialogTarget && this.renameDialogTarget.item) {
+        this.renameDialogTarget.item.name = nextName
+      }
+      this.renameDialogOpen = false
+      this.renameDialogDraft = ''
+      this.renameDialogTarget = null
     }
   }
 }
@@ -449,7 +647,6 @@ export default {
   width 100%
 
 .item-img
-  cursor pointer
   transition .1s linear
 
 .item-size--small
@@ -462,7 +659,7 @@ export default {
   width 240px
 
 .item-img:hover
-  opacity .7
+  opacity 1
 
 .toolbar-no-border
   border-bottom none !important
@@ -484,15 +681,57 @@ export default {
   background white !important
   color #027BE3
 
-.action-icon-wrapper
-  opacity 0
-  transition .2s linear
+.image-card-actions
+  background transparent !important
+  pointer-events none
+  z-index 3
 
-.action-icon-wrapper:hover
-  opacity 1
+.image-action-btn
+  background rgba(255, 255, 255, 0.7)
+  pointer-events auto
+  z-index 4
 
-.action-icon
-  font-size 2em
+.image-overlay
+  display flex
+  align-items center
+  justify-content center
+  pointer-events none
+  z-index 2
+
+.image-overlay--hidden
+  background rgba(55, 68, 92, 0.78)
+
+.image-overlay--unavailable
+  background rgba(255, 255, 255, 0.55)
+
+.overlay-icon
+  font-size 72px
+  color #dfe5ee
+
+.overlay-icon--cross
+  color #e53935
+  font-size 96px
+  font-weight 700
+
+.item-settings-menu .q-item
+  min-height 42px
+  padding 0 12px
+
+.item-settings-menu__avatar
+  min-width 28px !important
+  padding-right 10px
+  align-items center
+
+.item-name-bar
+  background rgba(224, 230, 238, 0.92)
+  padding-top 10px
+  padding-bottom 10px
+
+.item-name-text
+  cursor text
+
+.item-name-input
+  padding 0 10px
 
 .items-container
   margin-top 24px

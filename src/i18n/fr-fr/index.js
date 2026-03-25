@@ -91,5 +91,16 @@ export default {
     undo: 'Undo',
     redo: 'Redo',
     loading: 'Chargement'
+  },
+  assetEditor: {
+    rename: 'Renommer l\'image',
+    delete: 'Supprimer l\'image',
+    deleteDialog: {
+      title: 'Supprimer le picto',
+      message: 'Vous etes sur vous voulez supprimer le picto sur cet l\'onglet ?',
+      cancel: 'Non',
+      confirm: 'Oui',
+      dontAskAgain: 'Ne me demander pas la prochaine fois'
+    }
   }
 }
