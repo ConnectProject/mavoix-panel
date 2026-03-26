@@ -39,7 +39,7 @@
             {{ $t('appTitle') }}
           </q-toolbar-title>
 
-          <div class="top-main-nav__center row items-center q-gutter-sm">
+          <div class="top-main-nav__center row items-center no-wrap q-gutter-xs">
             <q-btn
               flat
               no-caps
@@ -351,6 +351,10 @@ export default {
   position absolute
   left 50%
   transform translateX(-50%)
+  max-width calc(100% - 260px)
+  overflow-x auto
+  overflow-y hidden
+  white-space nowrap
 
 .top-link--active
   background #e6ebf7
