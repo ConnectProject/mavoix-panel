@@ -1,6 +1,6 @@
 import Parse from 'parse'
 
-import AssetModel, { NAME_KEY as ASSET_NAME_KEY } from '~/models/Asset'
+import AssetModel from '~/models/Asset'
 import TabModel from '~/models/Tab'
 import TabItemModel from '~/models/TabItem'
 import getCurrentUserId from '~/utils/getCurrentUserId'
@@ -24,14 +24,24 @@ export const loadTabs = ({ commit }) =>
 const DEFAULT_TAB_NAME = 'Activités'
 const DEFAULT_TAB_COLOR = '#8BC34A'
 const DEFAULT_TAB_ICON = 'directions_run'
-const DEFAULT_ITEM_NAME = 'boire'
+const DEFAULT_ITEM_NAME = 'Boire'
+
+/**
+ * First public pictogram whose French label is exactly "boire" (same catalog as Images).
+ * @param {Array} publicImages global.images from state
+ * @returns {{ url: string }|undefined} matching catalog entry or undefined
+ */
+const findBoirePublicEntry = (publicImages) =>
+  publicImages.find((img) =>
+    img.names && Array.isArray(img.names.fr) && img.names.fr.some((n) => n.toLowerCase() === 'boire')
+  )
 
 /**
  * If the user has no tabs, create default "Activités" tab and link "Boire" image when it exists.
  * @param {Context} ctx vuex context
  * @returns {Promise<void>} resolves when tabs are refreshed or nothing to do
  */
-export const ensureDefaultTabIfEmpty = async ({ dispatch, getters }) => {
+export const ensureDefaultTabIfEmpty = async ({ dispatch, getters, rootState, commit }) => {
   if (getters.tabs.length > 0) {
     return
   }
@@ -39,13 +49,11 @@ export const ensureDefaultTabIfEmpty = async ({ dispatch, getters }) => {
   const userId = getCurrentUserId()
   const tab = await TabModel.Create(DEFAULT_TAB_NAME, userId, DEFAULT_TAB_COLOR, DEFAULT_TAB_ICON).save()
 
-  const boire = await new Parse.Query(AssetModel)
-    .equalTo('user', userId)
-    .equalTo(ASSET_NAME_KEY, DEFAULT_ITEM_NAME)
-    .first()
-
-  if (boire) {
-    await TabItemModel.Create(DEFAULT_ITEM_NAME, boire, tab, false, true, 0).save()
+  const entry = findBoirePublicEntry(rootState.global.images)
+  if (entry && entry.url) {
+    const boireAsset = await AssetModel.New(DEFAULT_ITEM_NAME, false, entry.url, userId).save()
+    commit('assetsManager/addAsset', boireAsset, { root: true })
+    await TabItemModel.Create(DEFAULT_ITEM_NAME, boireAsset, tab, false, true, 0).save()
   }
 
   await dispatch('loadTabs')
