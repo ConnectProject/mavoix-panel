@@ -1,6 +1,15 @@
 export default {
   appTitle: 'Ma Voix',
   logoutLabel: 'Déconnexion',
+  welcome: {
+    title: 'Bienvenu à MaVoix',
+    intro: 'Pour bien démarrer, voici trois actions principales :',
+    stepImages: 'Ajoutez des pictos avec le bouton Images (icône galerie) dans la barre du haut.',
+    stepTabs: 'Créez ou ouvrez des onglets via Onglets, ou avec le + à côté des onglets.',
+    stepSettings: 'Ajustez la taille des images, la synthèse vocale et plus encore dans Paramètres globaux (icône engrenage).',
+    dontShowAgain: 'Ne plus montrer la prochaine fois',
+    ok: 'Compris'
+  },
   navDrawer: {
     home: 'Accueil',
     assetsManager: 'Images',

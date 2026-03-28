@@ -43,14 +43,6 @@
             <q-btn
               flat
               no-caps
-              :class="{ 'top-link--active': $route.name === 'home' }"
-              icon="home"
-              :label="$t('navDrawer.home')"
-              :to="{ name: 'home' }"
-            />
-            <q-btn
-              flat
-              no-caps
               :class="{ 'top-link--active': $route.name === 'tab' }"
               icon="tab"
               :label="$t('navDrawer.tabs')"
@@ -119,6 +111,9 @@
         :mode="'create'"
         @input="v => !v && closeCreateTabDialog()"
       />
+      <DialogWelcomeMaVoix
+        v-model="welcomeDialogOpen"
+      />
 
       <q-page-container>
         <router-view />
@@ -144,7 +139,9 @@ import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogGlobalSettings from '~/components/dialogs/GlobalSettings'
 import DialogTabName from '~/components/dialogs/TabName'
 import DialogTabSettings from '~/components/dialogs/TabSettings'
+import DialogWelcomeMaVoix from '~/components/dialogs/WelcomeMaVoix'
 import ListItemLoading from '~/components/ListItemLoading'
+import { getLandingTabSlug, setLastTabSlug, shouldHideWelcome } from '~/utils/mavoixNavigation'
 
 // import QrcodeVue from 'qrcode.vue'
 
@@ -158,11 +155,13 @@ export default {
     DialogDeviceName,
     DialogDeviceInvitation,
     DialogTabSettings,
-    DialogGlobalSettings
+    DialogGlobalSettings,
+    DialogWelcomeMaVoix
   },
   data () {
     return {
-      // dnd: false
+      welcomeDialogOpen: false,
+      welcomeOfferedThisSession: false
     }
   },
   computed: {
@@ -194,6 +193,17 @@ export default {
     }
   },
 
+  watch: {
+    '$route' (to) {
+      if (to.name === 'tab' && to.params.slug) {
+        setLastTabSlug(to.params.slug)
+      }
+      if (to.name === 'home') {
+        this.ensureTabsThenMaybeRedirectFromHome()
+      }
+    }
+  },
+
   beforeCreate () {
     if (!Parse.User.current()) {
       this.$router.replace({
@@ -211,6 +221,10 @@ export default {
   mounted () {
     if (Parse.User.current()) {
       this.$store.dispatch('tabs/loadTabs')
+        .then(() => this.ensureTabsThenMaybeRedirectFromHome())
+        .then(() => {
+          this.maybeOpenWelcomeDialogOnce()
+        })
       this.$store.dispatch('assetsManager/loadAssets')
       this.$store.dispatch('devices/loadDevices')
       this.$store.dispatch('users/loadConnectUserId')
@@ -218,20 +232,6 @@ export default {
       this.$store.dispatch('global/initTTS')
     }
   },
-  // watch: {
-  //   /**
-  //    * When route change, if its host/assets open assets manager
-  //    * Do not seem to be useful anymore
-  //    */
-  //   '$route' (to, from) {
-  //     if (to.params.assets && to.params.assets === 'assets') {
-  //       this.$store.dispatch('assetsManager/openAndLoad', {
-  //         selectMode: false
-  //       })
-  //       this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
-  //     }
-  //   }
-  // },
   methods: {
 
     /**
@@ -313,10 +313,61 @@ export default {
 
     goToTabs () {
       if (this.tabs.length > 0) {
-        this.$router.push({ name: 'tab', params: { slug: this.tabs[0].get('slug') } })
+        const slug = getLandingTabSlug(this.tabs)
+        this.$router.push({ name: 'tab', params: { slug } })
       } else {
         this.openCreateTabDialog()
       }
+    },
+
+    shouldSkipRedirectFromHome () {
+      const q = this.$route.query || {}
+
+      if (q.code) {
+        return true
+      }
+
+      if (q.stay === '1') {
+        return true
+      }
+
+      return false
+    },
+
+    async ensureTabsThenMaybeRedirectFromHome () {
+      if (this.$route.name !== 'home') {
+        return
+      }
+      if (this.shouldSkipRedirectFromHome()) {
+        return
+      }
+      if (this.tabs.length === 0) {
+        await this.$store.dispatch('tabs/ensureDefaultTabIfEmpty')
+      }
+      this.redirectFromHomeToTab()
+    },
+
+    redirectFromHomeToTab () {
+      if (this.$route.name !== 'home') {
+        return
+      }
+      if (this.shouldSkipRedirectFromHome()) {
+        return
+      }
+      const slug = getLandingTabSlug(this.tabs)
+      if (slug) {
+        this.$router.replace({ name: 'tab', params: { slug } })
+      }
+    },
+
+    maybeOpenWelcomeDialogOnce () {
+      if (this.welcomeOfferedThisSession || shouldHideWelcome()) {
+        return
+      }
+      this.welcomeOfferedThisSession = true
+      this.$nextTick(() => {
+        this.welcomeDialogOpen = true
+      })
     },
 
     closeCreateTabDialog () {

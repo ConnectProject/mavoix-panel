@@ -140,6 +140,7 @@
 </template>
 
 <script>
+import { navigateAfterTabDeleted } from '~/utils/mavoixNavigation'
 
 export default {
   name: 'DialogTabSettings',
@@ -258,11 +259,11 @@ export default {
       this.confirmDeleteOpen = true
     },
 
-    confirmAndDelete () {
+    async confirmAndDelete () {
       this.confirmDeleteOpen = false
-      this.$store.dispatch('tabEditor/deleteTab')
       this.$emit('input', false)
-      this.$router.push({ name: 'home' })
+      await this.$store.dispatch('tabEditor/deleteTab')
+      navigateAfterTabDeleted(this.$router, this.$store)
     }
   }
 }

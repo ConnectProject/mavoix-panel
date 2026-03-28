@@ -313,6 +313,7 @@ import DialogAssetDelete from '~/components/dialogs/AssetDelete'
 import DialogItemChoice from '~/components/dialogs/ItemChoice'
 import DialogTabItem from '~/components/dialogs/TabItem'
 import DialogTabSettings from '~/components/dialogs/TabSettings'
+import { navigateAfterTabDeleted } from '~/utils/mavoixNavigation'
 
 export default {
   name: 'PageTabEditor',
@@ -501,14 +502,10 @@ export default {
      * Call to remove tab
      * @returns {void}
      */
-    onDelete () {
-      this.$store.dispatch('tabEditor/deleteTab')
+    async onDelete () {
+      await this.$store.dispatch('tabEditor/deleteTab')
       this.deletion = false
-
-      /* Go to home */
-      this.$router.push({
-        name: 'home'
-      })
+      navigateAfterTabDeleted(this.$router, this.$store)
     },
 
     /**
