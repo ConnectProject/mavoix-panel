@@ -131,18 +131,15 @@ export const saveCb = async ({ commit, dispatch, getters: { tab, items, deletedI
  * @param {Context} ctx context passed vuex
  * @returns {Promise} deleteTab succeeded
  */
-export const deleteTab = ({ commit, getters: { tab } }) => {
-  tabToModel(tab)
-    .then((tabModel) =>
-      tabModel.destroy()
-        .then(() => {
-          commit('tabs/removeTabById', tabModel.id, { root: true })
-          commit('clearState')
-        })
-    )
-    .catch((err) => {
-      commit('setError', err)
-    })
+export const deleteTab = async ({ commit, getters: { tab } }) => {
+  try {
+    const tabModel = await tabToModel(tab)
+    await tabModel.destroy()
+    commit('tabs/removeTabById', tabModel.id, { root: true })
+    commit('clearState')
+  } catch (err) {
+    commit('setError', err)
+  }
 }
 
 export const updateTab = async ({ commit, getters: { tab } }, { name, hexColor, icon, callback }) => {

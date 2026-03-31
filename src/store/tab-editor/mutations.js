@@ -203,6 +203,12 @@ export const removeItemDialog = (state) => {
   state.deletedItems.push(state.items[index])
   state.items.splice(index, 1)
 }
+export const removeItemAtIndex = (state, index) => {
+  if (index < 0 || index >= state.items.length) return
+
+  state.deletedItems.push(state.items[index])
+  state.items.splice(index, 1)
+}
 
 /**
  * Define a new asset for the edited item
