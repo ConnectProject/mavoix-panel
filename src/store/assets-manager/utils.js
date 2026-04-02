@@ -22,12 +22,14 @@ export const assetFromModel = (assetModel) => {
     ? parseFile.url()
     // ? `${Parse.serverURL}/files/${Parse.applicationId}/${parseFile._name}`
     : assetModel.get(URL_KEY)
+  const categories = assetModel.get('categories') || []
 
   return {
     id: assetModel.id,
     name: assetModel.get(NAME_KEY),
     url: url,
-    file: parseFile
+    file: parseFile,
+    categories
   }
 }
 
