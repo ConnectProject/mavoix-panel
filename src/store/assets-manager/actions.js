@@ -102,12 +102,11 @@ export const uploadFiles = async ({ commit }, { files, posNotif = 'top-right' })
 }
 
 /**
- * Upload a file and create the asset
- * @param {Context} ctx context passed vuex
- * @param {File} file the file to upload
+ * Resize image file to max 512px and return a Blob.
+ * @param {File} file source file
+ * @returns {Promise<Blob>} processed blob
  */
-
-const uploadFile = async ({ commit }, file) => {
+const prepareImageBlobFromFile = async (file) => {
   const image = await Jimp.read(await file.arrayBuffer())
   const maxDim = Math.max(image.bitmap.width, image.bitmap.height)
   if (maxDim > 512) {
@@ -118,7 +117,74 @@ const uploadFile = async ({ commit }, file) => {
     }
   }
   const buf = await image.getBufferAsync(Jimp.AUTO)
-  const blob = new Blob([buf])
+
+  return new Blob([buf])
+}
+
+/**
+ * Build upload blob + Parse filename; uses Jimp resize when possible, else original bytes (some JPEGs fail in Jimp).
+ * @param {File} file source file
+ * @param {string} baseFile safe base name without extension
+ * @returns {Promise<{ blob: Blob, filename: string }>} payload for Parse.File
+ */
+const blobForPersonalUpload = async (file, baseFile) => {
+  try {
+    const blob = await prepareImageBlobFromFile(file)
+
+    return { blob, filename: `${baseFile}.png` }
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn('Jimp could not process image, uploading original file:', err.message || err)
+    const buf = await file.arrayBuffer()
+    const extMatch = (file.name || '').match(/(\.jpe?g|\.png)$/i)
+    const ext = extMatch ? extMatch[1].toLowerCase() : '.jpg'
+    let mime = 'image/jpeg'
+    if (file.type && file.type.startsWith('image/')) {
+      mime = file.type
+    } else if (ext === '.png') {
+      mime = 'image/png'
+    }
+
+    return {
+      blob: new Blob([buf], { type: mime }),
+      filename: `${baseFile}${ext}`
+    }
+  }
+}
+
+/**
+ * Upload a camera-cropped photo with display name and optional categories (personal library only).
+ * @param {Object} ctx vuex context
+ * @param {Object} payload file and metadata
+ * @param {File} payload.file image file
+ * @param {string} payload.name display name
+ * @param {string[]} [payload.categories] category tags
+ * @returns {Promise<void>} resolves when the asset is saved
+ */
+export const uploadPersonalPhoto = async ({ commit }, { file, name, categories = [] }) => {
+  const displayName = (name || '').trim() || 'Photo'
+  const baseFile = Unidecode(displayName)
+    .replace(/^[^a-z0-9]+/i, '')
+    .replace(/[^a-z0-9. \-_]/gi, '_') || 'photo'
+  const { blob, filename } = await blobForPersonalUpload(file, baseFile)
+  const newFile = await new Parse.File(filename, blob).save()
+  const asset = await AssetModel.New(displayName, newFile, newFile._url, getCurrentUserId()).save()
+  const cats = Array.from(new Set((categories || []).filter(Boolean)))
+  if (cats.length) {
+    asset.set('categories', cats)
+    await asset.save()
+  }
+  commit('addAsset', asset)
+}
+
+/**
+ * Upload a file and create the asset
+ * @param {Context} ctx context passed vuex
+ * @param {File} file the file to upload
+ */
+
+const uploadFile = async ({ commit }, file) => {
+  const blob = await prepareImageBlobFromFile(file)
 
   const filename = Unidecode(file.name)
     .replace(/^[^a-z0-9]+/i, '')

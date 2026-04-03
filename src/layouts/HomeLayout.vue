@@ -65,7 +65,10 @@
             />
           </div>
         </q-toolbar>
-        <q-toolbar class="top-tabs-nav">
+        <q-toolbar
+          v-if="showTopTabsNav"
+          class="top-tabs-nav"
+        >
           <list-item-loading v-if="$store.state.tabs.loading" />
           <div
             v-else
@@ -186,6 +189,9 @@ export default {
      */
     tabs () {
       return this.$store.getters['tabs/tabs']
+    },
+    showTopTabsNav () {
+      return this.$route.name !== 'tab-arasaac'
     },
     selectedTab () {
       return this.$route.params.slug

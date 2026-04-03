@@ -64,7 +64,7 @@ export const fetchItems = ({ commit, getters: { tab } }) => {
  * @param {Function} callback to call when tab saved
  * @returns {Promise} saveCb succeeded
  */
-export const saveCb = async ({ commit, dispatch, getters: { tab, items, deletedItems } }, callback) => {
+export const saveCb = async ({ commit, getters: { tab, items, deletedItems } }, callback) => {
   try {
     const tabModel = await tabToModel(tab)
     const promises = []
@@ -113,12 +113,9 @@ export const saveCb = async ({ commit, dispatch, getters: { tab, items, deletedI
 
       return itemModel.save()
     }))
-    commit('clearState')
+    commit('clearDeletedItems')
 
-    return Promise.all([
-      dispatch('loadBySlug', tabModel.get(SLUG_KEY)),
-      callback(tabModel)
-    ])
+    return callback(tabModel)
   } catch (err) {
     commit('setError', err)
 

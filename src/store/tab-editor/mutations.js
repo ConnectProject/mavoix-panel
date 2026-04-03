@@ -175,22 +175,9 @@ export const openItemDialog = (state, { mode = 'new', index, data }) => {
   }
 }
 
-// export const openItemChoice = (state, { mode = 'new', index, data }) => {
-//   state.itemChoice.opened = true
-//   state.itemChoice.mode = mode
-//   if (mode === 'edit') {
-//     state.itemChoice.data = data
-//     state.itemChoice.index = index
-//   }
-// }
-
 export const openLanguageChoice = (state) => {
   state.itemLanguage.opened = true
 }
-
-// export const closeItemChoice = (state, { mode = 'new', index, data }) => {
-//   state.itemChoice.opened = false
-// }
 
 /**
  * Remove the item loaded in the dialog for the list of items
@@ -282,6 +269,15 @@ export const redo = (state) => {
  */
 export const clearState = (state) => {
   Object.assign(state, getDefaultState())
+}
+
+/**
+ * Clear only the deleted items queue after a successful save
+ * @param {State} state vuex state
+ * @return {void}
+ */
+export const clearDeletedItems = (state) => {
+  state.deletedItems = []
 }
 
 /**

@@ -42,6 +42,61 @@ export default {
     retake: 'reprendre',
     imageName: 'Nom de l\'image'
   },
+  imageNameHint: {
+    title: 'Conseil pour bien nommer l’image',
+    body: 'Donner sens au nom de l’image, car cela sera utilisé par la synthèse vocale. Veuillez enlever le suffixe .png, .jpg, .bmp, .gif de votre image.'
+  },
+  takePhoto: {
+    capture: 'Prendre la photo',
+    retake: 'Reprendre la photo',
+    nameLabel: 'Nom',
+    categoryLabel: 'Catégorie',
+    save: 'Enregistrer',
+    noCamera: 'Caméra non disponible sur cet appareil.',
+    waitCamera: 'Patientez, la caméra démarre…',
+    defaultName: 'Photo',
+    successTitle: 'Prise de photo réussie',
+    successMessage: 'Veuillez trouver votre image sur l\'onglet et dans votre bibliothèque personnelle.',
+    successOk: 'Compris'
+  },
+  uploadPhoto: {
+    heading: 'Télécharger une photo',
+    successTitle: 'Téléchargement réussi',
+    successMessage: 'Veuillez trouver votre image sur l\'onglet et dans votre bibliothèque personnelle.',
+    successOk: 'Compris'
+  },
+  uploadError: {
+    title: 'Échec d’envoi de l’image',
+    lead: 'L’image n’a pas réussi à s’envoyer.',
+    bulletExtension: 'Vérifiez l’extension de votre image : seuls les formats .jpg, .jpeg et .png sont acceptés.',
+    bulletRetry: 'Veuillez télécharger une nouvelle photo ou essayez de prendre une photo avec la caméra si possible.',
+    ok: 'Compris'
+  },
+  addImagesModal: {
+    title: 'Ajouter les images',
+    libraryArasaac: 'Bibliothèque ARASAAC',
+    libraryPersonal: 'Bibliothèque personnelle',
+    switchToPersonal: 'Bibliothèque personnelle',
+    switchToArasaac: 'Bibliothèque ARASAAC',
+    takePhoto: 'Prendre une photo',
+    uploadPhoto: 'Télécharger une photo',
+    searchArasaac: 'Rechercher un pictogramme ARASAAC',
+    searchPersonal: 'Rechercher un pictogramme',
+    filter: 'Filtre :',
+    addNewCategory: 'Ajouter une nouvelle catégorie',
+    newCategoryPlaceholder: 'Nouvelle catégorie',
+    addButton: 'Ajouter',
+    pictogramCountOne: '{n} pictogramme',
+    pictogramCountOther: '{n} pictogrammes',
+    cancel: 'Annuler',
+    addToTab: 'Ajouter',
+    renameCategoryMenu: 'Renommer…',
+    deleteCategoryMenu: 'Supprimer la catégorie',
+    assignCategoryTitle: 'Ajouter une catégorie',
+    search: 'Rechercher',
+    noCategorySearchResults: 'Aucune catégorie ne correspond à la recherche.',
+    renameCategoryTitle: 'Renommer la catégorie'
+  },
   assetsManager: {
     assetNameLabel: 'Nom de l\'image',
     nameSave: 'Nom enregistré : '

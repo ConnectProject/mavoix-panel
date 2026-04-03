@@ -99,7 +99,7 @@
                         <q-checkbox
                           dense
                           :value="!item.available"
-                          @input="() => $store.commit('tabEditor/toggleItemAvailable', item)"
+                          @input="() => onToggleAvailable(item)"
                         />
                       </q-item-section>
                       <q-item-section>
@@ -114,7 +114,7 @@
                         <q-checkbox
                           dense
                           :value="item.hidden"
-                          @input="() => $store.commit('tabEditor/toggleItemHidden', item)"
+                          @input="() => onToggleHidden(item)"
                         />
                       </q-item-section>
                       <q-item-section>
@@ -166,12 +166,21 @@
       </draggable>
     </div>
     <dialog-tab-item />
-    <dialog-item-choice ref="itemChoice" />
     <dialog-asset-delete
       :value="assetDeleteDialogOpen"
       @input="assetDeleteDialogOpen = $event"
       @confirm="onConfirmDeleteItem"
     />
+    <q-dialog
+      v-model="arasaacDialogOpen"
+    >
+      <q-card class="bg-white arasaac-modal-shell column no-wrap">
+        <arasaac-library
+          in-dialog
+          @close="arasaacDialogOpen = false"
+        />
+      </q-card>
+    </q-dialog>
 
     <q-page-sticky
       expand
@@ -181,9 +190,10 @@
         class="row items-center toolbar-no-border toolbar-with-padding"
         :style="{ background: tab.hexColor }"
       >
-        <!-- Add item button -->
+        <!-- Add item button — left edge aligns with .items-container (see .toolbar-with-padding) -->
         <q-btn
-          class="q-ml-md add-images-btn"
+          class="add-images-btn"
+          dense
           no-caps
           icon-right="add_to_photos"
           unelevated
@@ -212,64 +222,6 @@
       :tab="tab"
       @input="v => !v && closeTabSettings()"
     />
-
-    <!-- Delete, Save buttons -->
-    <q-page-sticky
-      position="bottom-right"
-      :offset="[18, 18]"
-    >
-      <q-btn
-        class="q-mx-xs"
-        fab
-        icon="delete"
-        color="negative"
-        @click="deletion = true"
-      >
-        <q-tooltip>
-          {{ $t('generic.delete') }}
-        </q-tooltip>
-      </q-btn>
-      <q-btn
-        class="q-mx-xs"
-        fab
-        icon="save"
-        size="xl"
-        color="primary"
-        @click="onSave"
-      >
-        <q-tooltip>
-          {{ $t('generic.save') }}
-        </q-tooltip>
-      </q-btn>
-    </q-page-sticky>
-    <q-dialog v-model="deletion">
-      <q-card>
-        <q-card-section>
-          <div class="text-h6">
-            Supprimer l'onglet
-          </div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          êtes-vous sûr de vouloir supprimer l'onglet ?
-        </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn
-            flat
-            label="Oui"
-            color="primary"
-            @click="onDelete"
-          />
-          <q-btn
-            flat
-            label="Non"
-            color="primary"
-            @click="deletion = false"
-          />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
 
     <q-dialog v-model="renameDialogOpen">
       <q-card style="min-width: 320px">
@@ -307,28 +259,25 @@
 
 <script>
 /* eslint-disable max-lines */
-import { SLUG_KEY } from '../models/Tab'
-
 import DialogAssetDelete from '~/components/dialogs/AssetDelete'
-import DialogItemChoice from '~/components/dialogs/ItemChoice'
 import DialogTabItem from '~/components/dialogs/TabItem'
 import DialogTabSettings from '~/components/dialogs/TabSettings'
-import { navigateAfterTabDeleted } from '~/utils/mavoixNavigation'
+import ArasaacLibrary from '~/pages/ArasaacLibrary'
 
 export default {
   name: 'PageTabEditor',
   components: {
     DialogTabItem,
-    DialogItemChoice,
     DialogTabSettings,
-    DialogAssetDelete
+    DialogAssetDelete,
+    ArasaacLibrary
   },
   data () {
     return {
+      arasaacDialogOpen: false,
       assetDeleteDialogOpen: false,
       assetDeleteTargetIndex: null,
       skipAssetDeleteConfirm: false,
-      deletion: false,
       tabSettingsDialogOpened: false,
       mode: 'create',
       inlineRenameIndex: null,
@@ -477,38 +426,6 @@ export default {
     },
 
     /**
-     * Call to save the tab
-     * @returns {void}
-     */
-    onSave () {
-      this.$store.dispatch('tabEditor/saveCb', (tab) => {
-        if (!tab) {
-          return
-        }
-
-        // When the tab's name is changed the slugs change to, so redirect to the new url
-        const path = `/tabs/${tab.get(SLUG_KEY)}`
-        if (this.$route.path !== path) this.$router.push(path)
-
-        // Toast message
-        this.$q.notify({
-          message: `${tab.get('name')} saved`,
-          color: 'purple'
-        })
-      })
-    },
-
-    /**
-     * Call to remove tab
-     * @returns {void}
-     */
-    async onDelete () {
-      await this.$store.dispatch('tabEditor/deleteTab')
-      this.deletion = false
-      navigateAfterTabDeleted(this.$router, this.$store)
-    },
-
-    /**
      * Set the tab's name
      * @param {string} name tab's name
      * @returns {void}
@@ -537,10 +454,7 @@ export default {
      * @returns {void}
      */
     onAddItem () {
-      this.$refs.itemChoice.opened = true
-      // this.$store.commit('tabEditor/openItemDialog', {})
-      // this.$store.commit('tabEditor/openItemChoice', {})
-      // this.$store.dispatch('global/initTTS')
+      this.arasaacDialogOpen = true
     },
 
     // eslint-disable-next-line valid-jsdoc
@@ -624,16 +538,28 @@ export default {
         return
       }
       this.$store.commit('tabEditor/removeItemAtIndex', index)
+      this.$store.dispatch('tabEditor/saveCb', () => { /* auto-save on delete */ })
     },
 
     saveDialogRename () {
       const nextName = (this.renameDialogDraft || '').trim()
       if (nextName && this.renameDialogTarget && this.renameDialogTarget.item) {
         this.renameDialogTarget.item.name = nextName
+        this.$store.dispatch('tabEditor/saveCb', () => { /* auto-save on rename */ })
       }
       this.renameDialogOpen = false
       this.renameDialogDraft = ''
       this.renameDialogTarget = null
+    },
+
+    onToggleAvailable (item) {
+      this.$store.commit('tabEditor/toggleItemAvailable', item)
+      this.$store.dispatch('tabEditor/saveCb', () => { /* auto-save on toggle available */ })
+    },
+
+    onToggleHidden (item) {
+      this.$store.commit('tabEditor/toggleItemHidden', item)
+      this.$store.dispatch('tabEditor/saveCb', () => { /* auto-save on toggle hidden */ })
     }
   }
 }
@@ -662,14 +588,16 @@ export default {
   border-bottom none !important
 
 .toolbar-with-padding
-  padding-top 12px
-  padding-bottom 12px
+  /* Same inset as first image: .items-container margin-left (4px) + q-gutter-x-md on row children (16px) */
+  padding 12px 12px 12px 65px
 
 .add-images-btn
   background white !important
   color black
-  border-radius 9999px
-  padding 8px 20px
+  border-radius 10px
+  padding 2px 12px
+  min-height 30px
+  box-shadow none !important
 
 .add-images-btn .q-icon
   color var(--q-color-primary)
@@ -731,7 +659,7 @@ export default {
   padding 0 10px
 
 .items-container
-  margin-top 24px
+  margin-top -10px
   margin-left 4px
 
 .holder-container
@@ -744,6 +672,22 @@ export default {
 
 .ghost
   opacity 0
+
+.arasaac-modal-shell
+  width calc(100vw - 90px)
+  max-width 1280px
+  height calc(100vh - 70px)
+  max-height 900px
+  border-radius 14px
+  overflow hidden
+  min-height 0
+
+.arasaac-modal-shell :deep(.arasaac-page)
+  flex 1 1 auto
+  min-height 0
+  overflow-y auto
+  overflow-x hidden
+  -webkit-overflow-scrolling touch
 
 /*
   div
