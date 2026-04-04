@@ -18,6 +18,61 @@ import getCurrentUserId from '~/utils/getCurrentUserId'
 import slugify from '~/utils/slugify'
 
 /**
+ * Load tab items from Parse and replace `state.items` (with correct `key` per row).
+ * @param {Object} ctx - parameters
+ * @param {Function} ctx.commit - Vuex commit
+ * @param {TabModel} ctx.tabModel - Parse tab row to load children for
+ * @returns {Promise<void>} resolves when items are committed to the store
+ */
+const commitItemsForTabModel = async ({ commit, tabModel }) => {
+  const itemsModel = await new Parse.Query(TabItemModel)
+    .equalTo(ITEM_TAB_KEY, tabModel)
+    .ascending(ITEM_ORDER_KEY)
+    .find()
+  commit('setItems', itemsModel)
+}
+
+const appendDeletedItemDestroys = (promises, tabModel, deletedItems) => {
+  deletedItems.forEach((item) => {
+    if (item.key) {
+      promises.push(new Parse.Query(TabItemModel)
+        .equalTo(ITEM_TAB_KEY, tabModel)
+        .equalTo(ITEM_KEY_KEY, item.key)
+        .first()
+        .then((itemModel) => itemModel.destroy()))
+    }
+  })
+}
+
+const saveSingleTabItem = async (item, tabModel) => {
+  const assetModel = await modelFromAsset(item.asset)
+  if (!item.key) {
+    return TabItemModel.Create(item.name, assetModel, tabModel, item.hidden, item.available, item.order).save()
+  }
+
+  const itemModel = await new Parse.Query(TabItemModel)
+    .equalTo(ITEM_TAB_KEY, tabModel)
+    .equalTo(ITEM_KEY_KEY, item.key)
+    .first()
+  itemModel.set(ITEM_NAME_KEY, item.name)
+  itemModel.set(ITEM_ASSET_KEY, assetModel)
+  itemModel.set(ITEM_HIDDEN_KEY, item.hidden)
+  itemModel.set(ITEM_AVAILABLE_KEY, item.available)
+  itemModel.set(ITEM_ORDER_KEY, item.order)
+
+  return itemModel.save()
+}
+
+const stageTabModelSave = (tabModel, tab, promises) => {
+  tabModel.set(NAME_KEY, tab.name)
+  tabModel.set(HEX_COLOR_KEY, tab.hexColor)
+  tabModel.set(SLUG_KEY, slugify(tab.name))
+  tabModel.set(SPEED_KEY, tab.speed)
+  tabModel.set(LANGUAGE_KEY, tab.language)
+  promises.push(tabModel.save())
+}
+
+/**
  * Load a tab with its slug
  * @param {Context} ctx context passed by vuex
  * @param {String} slug the tab's slug
@@ -40,22 +95,15 @@ export const loadBySlug = ({ commit, dispatch }, slug) => {
 /**
  * Load every items for the loaded tab
  * @param {Context} ctx context passed by vuex
- * @returns {Promise} fetchItems succeeded
+ * @returns {Promise<void>} resolves when items are loaded or an error is committed
  */
-export const fetchItems = ({ commit, getters: { tab } }) => {
-  tabToModel(tab)
-    .then((tabModel) =>
-      new Parse.Query(TabItemModel)
-        .equalTo(ITEM_TAB_KEY, tabModel)
-        .ascending(ITEM_ORDER_KEY)
-        .find()
-    )
-    .then((itemsModel) => {
-      commit('setItems', itemsModel)
-    })
-    .catch((err) => {
-      commit('setError', err)
-    })
+export const fetchItems = async ({ commit, getters: { tab } }) => {
+  try {
+    const tabModel = await tabToModel(tab)
+    await commitItemsForTabModel({ commit, tabModel })
+  } catch (err) {
+    commit('setError', err)
+  }
 }
 
 /**
@@ -68,52 +116,22 @@ export const saveCb = async ({ commit, getters: { tab, items, deletedItems } }, 
   try {
     const tabModel = await tabToModel(tab)
     const promises = []
+    const hadNewItems = items.some((item) => !item.key)
 
-    /**
-       * Save basic changes
-       */
-    tabModel.set(NAME_KEY, tab.name)
-    tabModel.set(HEX_COLOR_KEY, tab.hexColor)
-    tabModel.set(SLUG_KEY, slugify(tab.name))
-    tabModel.set(SPEED_KEY, tab.speed)
-    tabModel.set(LANGUAGE_KEY, tab.language)
+    stageTabModelSave(tabModel, tab, promises)
 
-    /* Save the tabmodel */
-    promises.push(tabModel.save())
+    appendDeletedItemDestroys(promises, tabModel, deletedItems)
 
-    /* Delete removed items */
-    deletedItems.forEach((item) => {
-      if (item.key) {
-        promises.push(new Parse.Query(TabItemModel)
-          .equalTo(ITEM_TAB_KEY, tabModel)
-          .equalTo(ITEM_KEY_KEY, item.key)
-          .first()
-          .then((itemModel) => itemModel.destroy()))
-      }
-    })
-
-    /* Save items */
-    await Promise.all(items.map(async (item) => {
-      const assetModel = await modelFromAsset(item.asset)
-      if (!item.key) {
-        // Save item as new item
-        return TabItemModel.Create(item.name, assetModel, tabModel, item.hidden, item.available, item.order).save()
-      }
-
-      // Update item if existing
-      const itemModel = await new Parse.Query(TabItemModel)
-        .equalTo(ITEM_TAB_KEY, tabModel)
-        .equalTo(ITEM_KEY_KEY, item.key)
-        .first()
-      itemModel.set(ITEM_NAME_KEY, item.name)
-      itemModel.set(ITEM_ASSET_KEY, assetModel)
-      itemModel.set(ITEM_HIDDEN_KEY, item.hidden)
-      itemModel.set(ITEM_AVAILABLE_KEY, item.available)
-      itemModel.set(ITEM_ORDER_KEY, item.order)
-
-      return itemModel.save()
-    }))
+    await Promise.all(items.map((item) => saveSingleTabItem(item, tabModel)))
     commit('clearDeletedItems')
+
+    /*
+     * New items are saved with a server-side `key` (see TabItemModel.Create) but the in-memory
+     * items still have key null. Any later saveCb would treat them as new and insert duplicates.
+     */
+    if (hadNewItems) {
+      await commitItemsForTabModel({ commit, tabModel })
+    }
 
     return callback(tabModel)
   } catch (err) {

@@ -107,6 +107,7 @@
             >
               <template #selected-item="scope">
                 <q-chip
+                  :key="`filter-sel-${scope.index}-${categoryChipKey(scope.opt)}`"
                   dense
                   square
                   :color="chipColor(scope.opt)"
@@ -125,6 +126,7 @@
                 >
                   <q-item-section>
                     <q-chip
+                      :key="`filter-opt-${scope.index}-${categoryChipKey(scope.opt)}`"
                       dense
                       square
                       :color="chipColor(scope.opt)"
@@ -511,6 +513,7 @@
       v-model="takePhotoDialogOpen"
       :category-options="categoryOptions"
       :chip-color="chipColor"
+      :category-chip-key="categoryChipKey"
       @saved="onTakePhotoSaved"
       @add-category="onTakePhotoAddCategory"
     />
@@ -520,6 +523,7 @@
       :file="pendingUploadFile"
       :category-options="categoryOptions"
       :chip-color="chipColor"
+      :category-chip-key="categoryChipKey"
       @input="onUploadPhotoDialogInput"
       @saved="onUploadPhotoSaved"
       @failed="onUploadPhotoFailed"
@@ -1000,10 +1004,31 @@ export default {
       }))
     },
 
+    // Stable string for color hash and Vue :key (q-select may pass non-string options).
+    categoryChipKey (category) {
+      if (category === null || typeof category === 'undefined' || category === '') {
+        return ''
+      }
+      if (typeof category === 'object') {
+        const hasOwn = Object.prototype.hasOwnProperty
+        const v = hasOwn.call(category, 'value')
+          ? category.value
+          : category.label
+        if (v === null || typeof v === 'undefined' || v === '') {
+          return ''
+        }
+
+        return String(v)
+      }
+
+      return String(category)
+    },
+
     chipColor (category) {
+      const s = this.categoryChipKey(category)
       let hash = 0
-      for (let i = 0; i < category.length; i += 1) {
-        hash = ((hash << 5) - hash) + category.charCodeAt(i)
+      for (let i = 0; i < s.length; i += 1) {
+        hash = ((hash << 5) - hash) + s.charCodeAt(i)
         hash |= 0
       }
 

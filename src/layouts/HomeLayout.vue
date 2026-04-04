@@ -36,7 +36,14 @@
       <q-header class="top-header">
         <q-toolbar class="top-main-nav">
           <q-toolbar-title class="text-weight-bold">
-            {{ $t('appTitle') }}
+            <q-btn
+              flat
+              dense
+              no-caps
+              class="brand-home-link text-weight-bold"
+              :label="$t('appTitle')"
+              to="/"
+            />
           </q-toolbar-title>
 
           <div class="top-main-nav__center row items-center no-wrap q-gutter-xs">
@@ -403,6 +410,10 @@ export default {
   position relative
   min-height 66px
   padding 0 14px
+
+.brand-home-link
+  padding 0 4px
+  color inherit
 
 .top-main-nav__center
   position absolute

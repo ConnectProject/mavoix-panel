@@ -72,6 +72,7 @@
             >
               <template #selected-item="scope">
                 <q-chip
+                  :key="`upload-sel-${scope.index}-${categoryChipKey(scope.opt)}`"
                   dense
                   square
                   removable
@@ -90,6 +91,7 @@
                 >
                   <q-item-section>
                     <q-chip
+                      :key="`upload-opt-${scope.index}-${categoryChipKey(scope.opt)}`"
                       dense
                       square
                       :color="chipColor(scope.opt)"
@@ -145,6 +147,10 @@ export default {
       default: () => []
     },
     chipColor: {
+      type: Function,
+      required: true
+    },
+    categoryChipKey: {
       type: Function,
       required: true
     }
