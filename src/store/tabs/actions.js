@@ -47,7 +47,12 @@ export const ensureDefaultTabIfEmpty = async ({ dispatch, getters, rootState, co
   }
 
   const userId = getCurrentUserId()
-  const tab = await TabModel.Create(DEFAULT_TAB_NAME, userId, DEFAULT_TAB_COLOR, DEFAULT_TAB_ICON).save()
+  const g = rootState.global
+  const tab = await TabModel.Create(DEFAULT_TAB_NAME, userId, DEFAULT_TAB_COLOR, DEFAULT_TAB_ICON, {
+    speed: typeof g.ttsSpeed === 'number' ? g.ttsSpeed : 1,
+    language: (g.ttsLanguage || 'fr-FR').replace(/-/g, '_'),
+    imageSize: g.imageSize === 'small' || g.imageSize === 'large' ? g.imageSize : 'medium'
+  }).save()
 
   const entry = findBoirePublicEntry(rootState.global.images)
   if (entry && entry.url) {
@@ -68,8 +73,13 @@ export const ensureDefaultTabIfEmpty = async ({ dispatch, getters, rootState, co
  * }
  * @returns {Promise} did the action succeed
  */
-export const createTabCb = ({ commit }, { name, hexColor, icon, callback }) => {
-  TabModel.Create(name, getCurrentUserId(), hexColor, icon)
+export const createTabCb = ({ commit, rootState }, { name, hexColor, icon, callback }) => {
+  const g = rootState.global
+  TabModel.Create(name, getCurrentUserId(), hexColor, icon, {
+    speed: typeof g.ttsSpeed === 'number' ? g.ttsSpeed : 1,
+    language: (g.ttsLanguage || 'fr-FR').replace(/-/g, '_'),
+    imageSize: g.imageSize === 'small' || g.imageSize === 'large' ? g.imageSize : 'medium'
+  })
     .save()
     .then((tab) => {
       if (tab) {
