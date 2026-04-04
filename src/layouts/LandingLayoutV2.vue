@@ -76,7 +76,7 @@
           </div>
           <div class="hero-visual">
             <img
-              src="/my_day_tab_v2.png"
+              :src="heroBoardImageSrc"
               alt="MaVoix board screenshot"
               class="landing-placeholder landing-placeholder--hero"
               style="object-fit:cover;max-width:100%;height:auto;"
@@ -362,6 +362,13 @@ export default {
   computed: {
     year () {
       return new Date().getFullYear()
+    },
+    // Public files: use router base so `/file.png` is not requested from domain root on subpath deploys.
+    heroBoardImageSrc () {
+      const base = process.env.VUE_ROUTER_BASE || '/'
+      const prefix = base.endsWith('/') ? base : `${base}/`
+
+      return `${prefix}my_day_tab_v2.png`
     }
   },
   mounted () {
