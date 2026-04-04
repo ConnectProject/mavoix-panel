@@ -34,14 +34,13 @@
         <section class="hero-section">
           <div class="hero-copy">
             <div class="hero-pill">
-              Free &amp; open source · No account needed
+              Free &amp; open source · Works with Connect
             </div>
             <h1 class="hero-title">
               Your child's voice, in pictures
             </h1>
             <p class="hero-subtitle">
-              Picture boards that let your child point, tap, and be heard —
-              works right in your browser, no experience needed.
+              Picture boards that let your child point, tap, and be heard — right in your browser.
             </p>
             <div class="hero-ctas">
               <router-link :to="{ name: 'home' }" class="hero-cta hero-cta--parent">
@@ -81,6 +80,43 @@
               class="landing-placeholder landing-placeholder--hero"
               style="object-fit:cover;max-width:100%;height:auto;"
             >
+          </div>
+
+          <div class="hero-trio">
+            <article class="hero-trio__card">
+              <h3 class="hero-trio__title">
+                MaVoix
+              </h3>
+              <p class="hero-trio__body">
+                MaVoix is an open source application enabling non-verbal persons to communicate using images.
+                Build boards for home, school, or therapy — and let taps speak aloud.
+              </p>
+            </article>
+            <article class="hero-trio__card">
+              <h3 class="hero-trio__title">
+                Sharing is caring
+              </h3>
+              <p class="hero-trio__body">
+                MaVoix is integrated with
+                <a
+                  href="https://github.com/ConnectProject"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hero-trio__link"
+                >Connect</a>
+                — an open database for sharing public, anonymous data among assistive applications.
+                Signing in with Connect when you use the panel is optional and helps improve the tool through privacy-aware telemetry.
+              </p>
+            </article>
+            <article class="hero-trio__card">
+              <h3 class="hero-trio__title">
+                Data for insight
+              </h3>
+              <p class="hero-trio__body">
+                Anonymous, aggregated patterns help researchers and builders see how picture-based communication is used in the real world —
+                so assistive tools can grow from evidence, not guesswork, while protecting individual privacy.
+              </p>
+            </article>
           </div>
         </section>
 
@@ -326,6 +362,16 @@
               class="oss-btn"
             />
 
+            <p class="oss-pecs-foot">
+              Learn about picture exchange:
+              <a
+                href="https://en.wikipedia.org/wiki/Picture_Exchange_Communication_System"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="oss-pecs-foot__link"
+              >PECS on Wikipedia</a>.
+            </p>
+
             <div class="oss-band__closing">
               <span class="oss-closing__copy">© {{ year }} MaVoix Panel</span>
               <span class="oss-closing__sep" aria-hidden="true">·</span>
@@ -368,7 +414,7 @@ export default {
       const base = process.env.VUE_ROUTER_BASE || '/'
       const prefix = base.endsWith('/') ? base : `${base}/`
 
-      return `${prefix}my_day_tab_v2.png`
+      return `${prefix}my_day_tab_kids.png`
     }
   },
   mounted () {
@@ -552,6 +598,48 @@ export default {
   color: rgba(255, 255, 255, 0.78);
   max-width: 480px;
   margin: 0 0 28px;
+}
+
+/* Three themes — original landing structure, below hero grid */
+.hero-trio {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 8px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-trio__title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.hero-trio__body {
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+
+.hero-trio__link {
+  color: rgba(255, 255, 255, 0.96);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  transition: color 0.14s ease, border-color 0.14s ease;
+}
+
+.hero-trio__link:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.65);
 }
 
 /* Hero audience CTAs */
@@ -993,10 +1081,31 @@ export default {
   transform: translateY(-1px);
 }
 
+.oss-pecs-foot {
+  margin: 24px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.oss-pecs-foot__link {
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  padding-bottom: 1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.oss-pecs-foot__link:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.55);
+}
+
 /* Closing strip: copyright + nav links (replaces separate footer — GitHub stays above) */
 .oss-band__closing {
-  margin-top: 44px;
-  padding-top: 28px;
+  margin-top: 20px;
+  padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
   display: flex;
   flex-wrap: wrap;
@@ -1038,6 +1147,14 @@ export default {
 }
 
 /* ─── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero-trio {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding-top: 32px;
+  }
+}
+
 @media (max-width: 960px) {
   .steps-row {
     grid-template-columns: 1fr;
@@ -1061,7 +1178,7 @@ export default {
 
 @media (max-width: 768px) {
   .landing-page {
-    padding: 8px 8px 0;
+    padding: 8px 8px 48px;
   }
 
   .hero-section {
