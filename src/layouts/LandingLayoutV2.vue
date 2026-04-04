@@ -1,14 +1,14 @@
 <!-- eslint-disable max-lines, vue/max-attributes-per-line, vue/singleline-html-element-content-newline -->
 <template>
   <q-layout
-    view="lHh lpr lFf"
+    view="lHh lpr lff"
     class="landing-v2"
   >
     <!-- ─── Header ─────────────────────────────────────────────────────────── -->
     <q-header :class="['landing-header', { 'landing-header--scrolled': navScrolled }]">
       <q-toolbar class="landing-toolbar">
         <div class="landing-brand text-weight-bold">
-          MaVoix Panel
+          MaVoix
         </div>
 
         <q-space />
@@ -17,21 +17,13 @@
         <q-btn flat no-caps class="landing-nav-link" label="Features" @click="scrollTo('features')" />
         <q-btn flat no-caps class="landing-nav-link" label="How it works" @click="scrollTo('how-it-works')" />
 
-        <!-- App switcher -->
-        <div class="app-switcher" role="group" aria-label="Choose app">
-          <router-link :to="{ name: 'home' }" class="app-switcher__btn app-switcher__btn--active">
-            MaVoix Panel
-          </router-link>
-          <a
-            href="https://mavoix.connect-project.io/app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="app-switcher__btn"
-          >
-            MaVoix App
-            <q-icon name="open_in_new" size="11px" class="app-switcher__ext-icon" />
-          </a>
-        </div>
+        <q-btn
+          no-caps
+          unelevated
+          class="landing-cta-nav"
+          label="Get started"
+          :to="{ name: 'home' }"
+        />
       </q-toolbar>
     </q-header>
 
@@ -51,28 +43,40 @@
               Picture boards that let your child point, tap, and be heard —
               works right in your browser, no experience needed.
             </p>
-            <div class="row items-center q-gutter-sm">
-              <q-btn
-                no-caps
-                unelevated
-                class="landing-btn-primary"
-                label="Open the app"
-                :to="{ name: 'home' }"
-              />
-              <q-btn
-                no-caps
-                class="landing-btn-secondary"
-                label="See how it works"
-                @click="scrollTo('how-it-works')"
-              />
+            <div class="hero-ctas">
+              <router-link :to="{ name: 'home' }" class="hero-cta hero-cta--parent">
+                <q-icon name="person" size="20px" class="hero-cta__icon" />
+                <div class="hero-cta__label">
+                  <span class="hero-cta__role">For parents</span>
+                  <span class="hero-cta__action">
+                    Open the panel
+                    <q-icon name="arrow_forward" size="13px" />
+                  </span>
+                </div>
+              </router-link>
+              <a
+                href="https://mavoix.connect-project.io/app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hero-cta hero-cta--child"
+              >
+                <q-icon name="child_care" size="20px" class="hero-cta__icon" />
+                <div class="hero-cta__label">
+                  <span class="hero-cta__role">For children</span>
+                  <span class="hero-cta__action">
+                    Open the app
+                    <q-icon name="open_in_new" size="12px" />
+                  </span>
+                </div>
+              </a>
             </div>
-            <p class="hero-trust">
-              Works in any browser · Free · No sign-up
-            </p>
+            <button class="hero-howto" @click="scrollTo('how-it-works')">
+              See how it works ↓
+            </button>
           </div>
           <div class="hero-visual">
             <img
-              src="/my_day_tab.png"
+              src="/my_day_tab_v2.png"
               alt="MaVoix board screenshot"
               class="landing-placeholder landing-placeholder--hero"
               style="object-fit:cover;max-width:100%;height:auto;"
@@ -83,9 +87,19 @@
         <!-- Who it's for ────────────────────────────────────────────────── -->
         <section id="who" class="section-block">
           <div class="section-header">
-            <h2 class="section-title">
-              Who it's for
-            </h2>
+            <div class="section-header__lead">
+              <div class="section-header__icon section-header__icon--teal" aria-hidden="true">
+                <q-icon name="groups" size="24px" />
+              </div>
+              <div class="section-header__text">
+                <h2 class="section-title">
+                  Who it's for
+                </h2>
+                <!-- <p class="section-subtitle">
+                  Built for everyone who supports a child's communication
+                </p> -->
+              </div>
+            </div>
           </div>
           <div class="row q-col-gutter-md">
             <div class="col-12 col-md-4">
@@ -142,9 +156,19 @@
         <!-- Features ────────────────────────────────────────────────────── -->
         <section id="features" class="section-block section-features">
           <div class="section-header">
-            <h2 class="section-title">
-              What you can do
-            </h2>
+            <div class="section-header__lead">
+              <div class="section-header__icon section-header__icon--mint" aria-hidden="true">
+                <q-icon name="auto_awesome" size="24px" />
+              </div>
+              <div class="section-header__text">
+                <h2 class="section-title">
+                  What you can do
+                </h2>
+                <!-- <p class="section-subtitle">
+                  Picture boards, symbols, and speech — in one simple flow
+                </p> -->
+              </div>
+            </div>
           </div>
           <div class="features-grid">
             <q-card flat class="lv-card">
@@ -209,9 +233,19 @@
         <!-- How it works ─────────────────────────────────────────────────── -->
         <section id="how-it-works" class="section-block section-how">
           <div class="section-header">
-            <h2 class="section-title">
-              How it works
-            </h2>
+            <div class="section-header__lead">
+              <div class="section-header__icon section-header__icon--sky" aria-hidden="true">
+                <q-icon name="route" size="24px" />
+              </div>
+              <div class="section-header__text">
+                <h2 class="section-title">
+                  How it works
+                </h2>
+                <!-- <p class="section-subtitle">
+                  Three quick steps from a blank board to your child speaking with taps
+                </p> -->
+              </div>
+            </div>
           </div>
           <div class="steps-row">
             <div class="step-item">
@@ -251,6 +285,16 @@
                 Your child taps a picture and the app says the word out loud.
                 Simple, immediate, and theirs.
               </p>
+              <a
+                href="https://mavoix.connect-project.io/app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="step-app-link"
+              >
+                <q-icon name="child_care" size="14px" />
+                Open on your child's device
+                <q-icon name="open_in_new" size="11px" />
+              </a>
             </div>
           </div>
         </section>
@@ -281,43 +325,28 @@
               rel="noopener noreferrer"
               class="oss-btn"
             />
+
+            <div class="oss-band__closing">
+              <span class="oss-closing__copy">© {{ year }} MaVoix Panel</span>
+              <span class="oss-closing__sep" aria-hidden="true">·</span>
+              <router-link :to="{ name: 'home' }" class="oss-closing__link">
+                Open the panel
+              </router-link>
+              <span class="oss-closing__sep" aria-hidden="true">·</span>
+              <a
+                href="https://mavoix.connect-project.io/app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="oss-closing__link"
+              >
+                MaVoix app
+                <q-icon name="open_in_new" size="12px" class="oss-closing__ext" />
+              </a>
+            </div>
           </div>
         </section>
       </q-page>
     </q-page-container>
-
-    <!-- ─── Footer ───────────────────────────────────────────────────────── -->
-    <q-footer class="landing-footer">
-      <div class="footer-inner row items-center justify-between q-py-md">
-        <div class="footer-left">
-          <div class="text-weight-bold footer-brand">
-            MaVoix Panel
-          </div>
-          <div class="text-caption text-grey-6 q-mt-xs">
-            © {{ year }} MaVoix Panel
-          </div>
-        </div>
-        <div class="footer-links row items-center q-gutter-md">
-          <a
-            href="https://github.com/ConnectProject"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="footer-link"
-          >
-            GitHub
-          </a>
-          <span class="footer-dot">·</span>
-          <a
-            href="https://mavoix.connect-project.io/app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="footer-link"
-          >
-            MaVoix App
-          </a>
-        </div>
-      </div>
-    </q-footer>
   </q-layout>
 </template>
 
@@ -419,59 +448,28 @@ export default {
   color: var(--lv-text) !important;
 }
 
-/* App switcher */
-.app-switcher {
-  display: inline-flex;
-  align-items: center;
-  background: var(--lv-surface);
-  border: 1px solid var(--lv-border);
+/* Nav CTA */
+.landing-cta-nav {
+  background: var(--lv-teal) !important;
+  color: #fff !important;
   border-radius: 10px;
-  padding: 3px;
-  gap: 2px;
-  margin: 0 12px;
-}
-
-.app-switcher__btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.8125rem;
+  padding: 7px 18px;
+  margin-left: 8px;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: var(--lv-muted);
-  background: transparent;
-  border: none;
-  border-radius: 7px;
-  padding: 5px 12px;
-  cursor: pointer;
-  text-decoration: none;
-  white-space: nowrap;
-  line-height: 1;
-  transition: background 0.14s ease, color 0.14s ease;
+  transition: background 0.15s ease, transform 0.15s ease;
 }
 
-.app-switcher__btn:hover {
-  background: #fff;
-  color: var(--lv-text);
-}
-
-.app-switcher__btn--active {
-  background: #fff;
-  color: var(--lv-teal);
-  font-weight: 600;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-}
-
-.app-switcher__ext-icon {
-  opacity: 0.5;
-  position: relative;
-  top: -1px;
+.landing-cta-nav:hover {
+  background: var(--lv-teal-dark) !important;
+  transform: translateY(-1px);
 }
 
 /* ─── Landing page container ───────────────────────────────────────────────── */
 .landing-page {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 16px 16px 0;
+  padding: 16px 16px 56px;
 }
 
 /* ─── Hero ─────────────────────────────────────────────────────────────────── */
@@ -549,44 +547,96 @@ export default {
   margin: 0 0 28px;
 }
 
-.hero-trust {
-  font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.48);
-  margin: 14px 0 0;
-  letter-spacing: 0.02em;
+/* Hero audience CTAs */
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-/* Hero buttons — styled for dark background */
-.landing-btn-primary {
-  background: #ffffff !important;
-  color: var(--lv-teal-dark) !important;
-  border-radius: 10px;
-  padding: 10px 24px;
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  text-decoration: none;
+  min-width: 190px;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+
+/* Parent CTA — white solid, primary */
+.hero-cta--parent {
+  background: #ffffff;
+  color: var(--lv-teal-dark);
+}
+
+.hero-cta--parent:hover {
+  background: var(--lv-mint);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+/* Child CTA — glass/ghost, secondary */
+.hero-cta--child {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hero-cta--child:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.hero-cta__icon {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.hero-cta__label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hero-cta__role {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  line-height: 1;
+}
+
+.hero-cta__action {
+  font-size: 0.9375rem;
   font-weight: 600;
-  font-size: 0.9375rem;
-  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.landing-btn-primary:hover {
-  background: var(--lv-mint) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  transform: translateY(-1px);
+/* "See how it works" text trigger */
+.hero-howto {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.50);
+  letter-spacing: 0.01em;
+  transition: color 0.14s ease;
 }
 
-.landing-btn-secondary {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.38) !important;
-  color: rgba(255, 255, 255, 0.88) !important;
-  border-radius: 10px;
-  padding: 10px 24px;
-  font-size: 0.9375rem;
-  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
-}
-
-.landing-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.14) !important;
-  border-color: rgba(255, 255, 255, 0.65) !important;
-  transform: translateY(-1px);
+.hero-howto:hover {
+  color: rgba(255, 255, 255, 0.80);
 }
 
 /* Hero visual / placeholders */
@@ -638,7 +688,43 @@ export default {
 }
 
 .section-header {
-  margin-bottom: 36px;
+  margin-bottom: 40px;
+}
+
+.section-header__lead {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.section-header__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.section-header__icon--teal {
+  background: var(--lv-teal-dim);
+  color: var(--lv-teal);
+}
+
+.section-header__icon--mint {
+  background: rgba(200, 235, 224, 0.55);
+  color: var(--lv-teal-dark);
+}
+
+.section-header__icon--sky {
+  background: var(--lv-sky-dim);
+  color: #1a6e8a;
+}
+
+.section-header__text {
+  min-width: 0;
+  padding-top: 2px;
 }
 
 .section-title {
@@ -647,6 +733,14 @@ export default {
   color: var(--lv-text);
   letter-spacing: -0.018em;
   margin: 0;
+}
+
+.section-subtitle {
+  margin: 10px 0 0;
+  font-size: 1rem;
+  line-height: 1.58;
+  color: var(--lv-muted);
+  max-width: 36rem;
 }
 
 /* Features section — white background to contrast with surrounding surface */
@@ -797,13 +891,33 @@ export default {
   );
 }
 
+/* Child app link inside step 3 */
+.step-app-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 14px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--lv-teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(13, 107, 110, 0.28);
+  padding-bottom: 1px;
+  transition: color 0.14s ease, border-color 0.14s ease;
+}
+
+.step-app-link:hover {
+  color: var(--lv-teal-dark);
+  border-bottom-color: var(--lv-teal);
+}
+
 /* ─── OSS band ─────────────────────────────────────────────────────────────── */
 .oss-band {
   background: linear-gradient(135deg, var(--lv-teal-deeper) 0%, var(--lv-teal-dark) 50%, #0a7f83 100%);
   color: #fff;
   border-radius: 20px;
-  margin: 8px 0 0;
-  padding: 72px 48px;
+  margin: 16px 0 0;
+  padding: 72px 48px 48px;
   position: relative;
   overflow: hidden;
 }
@@ -872,40 +986,48 @@ export default {
   transform: translateY(-1px);
 }
 
-/* ─── Footer ───────────────────────────────────────────────────────────────── */
-.landing-footer {
-  background: #fff;
-  border-top: 1px solid var(--lv-border);
-  color: var(--lv-text);
-}
-
-.footer-inner {
-  max-width: 1120px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 24px;
+/* Closing strip: copyright + nav links (replaces separate footer — GitHub stays above) */
+.oss-band__closing {
+  margin-top: 44px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 14px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
 }
 
-.footer-brand {
-  font-size: 0.9375rem;
-  color: var(--lv-text);
+.oss-closing__copy {
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.footer-link {
-  color: var(--lv-muted);
+.oss-closing__sep {
+  color: rgba(255, 255, 255, 0.22);
+  user-select: none;
+}
+
+.oss-closing__link {
+  color: rgba(255, 255, 255, 0.92);
   text-decoration: none;
-  font-size: 0.875rem;
-  transition: color 0.14s ease;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  padding-bottom: 1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.footer-link:hover {
-  color: var(--lv-teal);
+.oss-closing__link:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.65);
 }
 
-.footer-dot {
-  color: var(--lv-border);
+.oss-closing__ext {
+  opacity: 0.75;
 }
 
 /* ─── Responsive ───────────────────────────────────────────────────────────── */
@@ -960,18 +1082,37 @@ export default {
     padding-right: 20px;
   }
 
+  .hero-ctas {
+    flex-direction: column;
+  }
+
+  .hero-cta {
+    min-width: 0;
+    width: 100%;
+  }
+
   .oss-band {
-    padding: 56px 28px;
+    padding: 56px 28px 40px;
     border-radius: 16px;
   }
 
-  .app-switcher {
-    display: none;
+  .section-header__lead {
+    gap: 16px;
   }
 
-  .footer-inner {
+  .section-header__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+
+  .oss-band__closing {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .oss-closing__sep {
+    display: none;
   }
 }
 
