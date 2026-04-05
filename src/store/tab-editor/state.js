@@ -53,7 +53,10 @@ export const getDefaultState = () => ({
   speeds: ['25%', '50%', '75%', 'Normal', '125%', '150%', '175%', '200%'],
   speedsCodes: [0.25, 0.5, 0.75, 1.0, 1.25, 1.50, 1.75, 2.0],
 
-  tabSettingsDialogOpened: false
+  tabSettingsDialogOpened: false,
+
+  /** When true, TabEditor opens the add-images (Arasaac) dialog once the tab is ready */
+  openAddImagesDialogFromNav: false
 })
 
 export default getDefaultState()

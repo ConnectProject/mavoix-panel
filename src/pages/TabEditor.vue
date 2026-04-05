@@ -357,6 +357,10 @@ export default {
      */
     loading () {
       return this.$store.getters['tabEditor/loading']
+    },
+
+    openAddImagesDialogFromNav () {
+      return this.$store.state.tabEditor.openAddImagesDialogFromNav
     }
   },
   watch: {
@@ -368,6 +372,18 @@ export default {
     '$route' () {
       this.load()
       this.$store.dispatch('global/initTTS')
+    },
+
+    openAddImagesDialogFromNav (v) {
+      if (v && !this.loading) {
+        this.consumeOpenAddImagesFromNav()
+      }
+    },
+
+    loading (v) {
+      if (!v && this.openAddImagesDialogFromNav) {
+        this.consumeOpenAddImagesFromNav()
+      }
     },
     '$store.state.tabEditor.error' (err) {
       if (err) {
@@ -455,6 +471,11 @@ export default {
      */
     onAddItem () {
       this.arasaacDialogOpen = true
+    },
+
+    consumeOpenAddImagesFromNav () {
+      this.arasaacDialogOpen = true
+      this.$store.commit('tabEditor/setOpenAddImagesDialogFromNav', false)
     },
 
     // eslint-disable-next-line valid-jsdoc

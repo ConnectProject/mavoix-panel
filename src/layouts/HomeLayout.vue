@@ -58,10 +58,10 @@
             <q-btn
               flat
               no-caps
-              :class="{ 'top-link--active': $route.name === 'assets' }"
+              :class="{ 'top-link--active': $route.name === 'tab' }"
               icon="photo_library"
               :label="$t('navDrawer.assetsManager')"
-              :to="{ name: 'assets' }"
+              @click="onImagesNavClick"
             />
             <q-btn
               flat
@@ -330,6 +330,29 @@ export default {
         this.$router.push({ name: 'tab', params: { slug } })
       } else {
         this.openCreateTabDialog()
+      }
+    },
+
+    /**
+     * Top "Images" / assets nav: open add-images modal for the current (or last) tab — same as TabEditor "Add images".
+     * @returns {void}
+     */
+    onImagesNavClick () {
+      if (!this.tabs || this.tabs.length === 0) {
+        this.openCreateTabDialog()
+
+        return
+      }
+      const slugOnTab = this.$route.name === 'tab' ? this.$route.params.slug : null
+      const slug = slugOnTab || getLandingTabSlug(this.tabs)
+      if (!slug) {
+        this.openCreateTabDialog()
+
+        return
+      }
+      this.$store.commit('tabEditor/setOpenAddImagesDialogFromNav', true)
+      if (this.$route.name !== 'tab' || this.$route.params.slug !== slug) {
+        this.$router.push({ name: 'tab', params: { slug } })
       }
     },
 

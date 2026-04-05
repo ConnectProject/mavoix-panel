@@ -280,6 +280,10 @@ export const clearDeletedItems = (state) => {
   state.deletedItems = []
 }
 
+export const setOpenAddImagesDialogFromNav = (state, value) => {
+  state.openAddImagesDialogFromNav = Boolean(value)
+}
+
 /**
  * Used to throw an error
  * @param {State} state vuex state
