@@ -173,13 +173,11 @@
     />
     <q-dialog
       v-model="arasaacDialogOpen"
-      @hide="onArasaacLibraryClose"
     >
       <q-card class="bg-white arasaac-modal-shell column no-wrap">
         <arasaac-library
           in-dialog
-          :browse-only="arasaacDialogBrowseOnly"
-          @close="onArasaacLibraryClose"
+          @close="arasaacDialogOpen = false"
         />
       </q-card>
     </q-dialog>
@@ -277,7 +275,6 @@ export default {
   data () {
     return {
       arasaacDialogOpen: false,
-      arasaacDialogBrowseOnly: false,
       assetDeleteDialogOpen: false,
       assetDeleteTargetIndex: null,
       skipAssetDeleteConfirm: false,
@@ -360,10 +357,6 @@ export default {
      */
     loading () {
       return this.$store.getters['tabEditor/loading']
-    },
-
-    openLibraryFromNavMode () {
-      return this.$store.state.tabEditor.openLibraryFromNavMode
     }
   },
   watch: {
@@ -377,17 +370,6 @@ export default {
       this.$store.dispatch('global/initTTS')
     },
 
-    openLibraryFromNavMode (v) {
-      if (v === 'browse' && !this.loading) {
-        this.consumeOpenLibraryFromNav()
-      }
-    },
-
-    loading (v) {
-      if (!v && this.openLibraryFromNavMode === 'browse') {
-        this.consumeOpenLibraryFromNav()
-      }
-    },
     '$store.state.tabEditor.error' (err) {
       if (err) {
         this.$q.notify({
@@ -473,19 +455,7 @@ export default {
      * @returns {void}
      */
     onAddItem () {
-      this.arasaacDialogBrowseOnly = false
       this.arasaacDialogOpen = true
-    },
-
-    consumeOpenLibraryFromNav () {
-      this.$store.commit('tabEditor/setOpenLibraryFromNavMode', null)
-      this.arasaacDialogBrowseOnly = true
-      this.arasaacDialogOpen = true
-    },
-
-    onArasaacLibraryClose () {
-      this.arasaacDialogOpen = false
-      this.arasaacDialogBrowseOnly = false
     },
 
     // eslint-disable-next-line valid-jsdoc

@@ -58,13 +58,6 @@
             <q-btn
               flat
               no-caps
-              icon="photo_library"
-              :label="$t('navDrawer.assetsManager')"
-              @click="onImagesNavClick"
-            />
-            <q-btn
-              flat
-              no-caps
               icon="settings"
               :label="$t('navDrawer.globalSettings')"
               @click="openGlobalSettingsDialog"
@@ -329,29 +322,6 @@ export default {
         this.$router.push({ name: 'tab', params: { slug } })
       } else {
         this.openCreateTabDialog()
-      }
-    },
-
-    /**
-     * Top "Images" / assets nav: open add-images modal for the current (or last) tab — same as TabEditor "Add images".
-     * @returns {void}
-     */
-    onImagesNavClick () {
-      if (!this.tabs || this.tabs.length === 0) {
-        this.openCreateTabDialog()
-
-        return
-      }
-      const slugOnTab = this.$route.name === 'tab' ? this.$route.params.slug : null
-      const slug = slugOnTab || getLandingTabSlug(this.tabs)
-      if (!slug) {
-        this.openCreateTabDialog()
-
-        return
-      }
-      this.$store.commit('tabEditor/setOpenLibraryFromNavMode', 'browse')
-      if (this.$route.name !== 'tab' || this.$route.params.slug !== slug) {
-        this.$router.push({ name: 'tab', params: { slug } })
       }
     },
 

@@ -280,10 +280,6 @@ export const clearDeletedItems = (state) => {
   state.deletedItems = []
 }
 
-export const setOpenLibraryFromNavMode = (state, mode) => {
-  state.openLibraryFromNavMode = mode === 'browse' ? 'browse' : null
-}
-
 /**
  * Used to throw an error
  * @param {State} state vuex state
