@@ -280,8 +280,8 @@ export const clearDeletedItems = (state) => {
   state.deletedItems = []
 }
 
-export const setOpenAddImagesDialogFromNav = (state, value) => {
-  state.openAddImagesDialogFromNav = Boolean(value)
+export const setOpenLibraryFromNavMode = (state, mode) => {
+  state.openLibraryFromNavMode = mode === 'browse' ? 'browse' : null
 }
 
 /**

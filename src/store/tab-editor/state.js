@@ -55,8 +55,8 @@ export const getDefaultState = () => ({
 
   tabSettingsDialogOpened: false,
 
-  /** When true, TabEditor opens the add-images (Arasaac) dialog once the tab is ready */
-  openAddImagesDialogFromNav: false
+  /** When `'browse'`, TabEditor opens the library dialog in browse-only mode (nav Images). */
+  openLibraryFromNavMode: null
 })
 
 export default getDefaultState()

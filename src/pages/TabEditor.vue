@@ -173,11 +173,13 @@
     />
     <q-dialog
       v-model="arasaacDialogOpen"
+      @hide="onArasaacLibraryClose"
     >
       <q-card class="bg-white arasaac-modal-shell column no-wrap">
         <arasaac-library
           in-dialog
-          @close="arasaacDialogOpen = false"
+          :browse-only="arasaacDialogBrowseOnly"
+          @close="onArasaacLibraryClose"
         />
       </q-card>
     </q-dialog>
@@ -275,6 +277,7 @@ export default {
   data () {
     return {
       arasaacDialogOpen: false,
+      arasaacDialogBrowseOnly: false,
       assetDeleteDialogOpen: false,
       assetDeleteTargetIndex: null,
       skipAssetDeleteConfirm: false,
@@ -359,8 +362,8 @@ export default {
       return this.$store.getters['tabEditor/loading']
     },
 
-    openAddImagesDialogFromNav () {
-      return this.$store.state.tabEditor.openAddImagesDialogFromNav
+    openLibraryFromNavMode () {
+      return this.$store.state.tabEditor.openLibraryFromNavMode
     }
   },
   watch: {
@@ -374,15 +377,15 @@ export default {
       this.$store.dispatch('global/initTTS')
     },
 
-    openAddImagesDialogFromNav (v) {
-      if (v && !this.loading) {
-        this.consumeOpenAddImagesFromNav()
+    openLibraryFromNavMode (v) {
+      if (v === 'browse' && !this.loading) {
+        this.consumeOpenLibraryFromNav()
       }
     },
 
     loading (v) {
-      if (!v && this.openAddImagesDialogFromNav) {
-        this.consumeOpenAddImagesFromNav()
+      if (!v && this.openLibraryFromNavMode === 'browse') {
+        this.consumeOpenLibraryFromNav()
       }
     },
     '$store.state.tabEditor.error' (err) {
@@ -470,12 +473,19 @@ export default {
      * @returns {void}
      */
     onAddItem () {
+      this.arasaacDialogBrowseOnly = false
       this.arasaacDialogOpen = true
     },
 
-    consumeOpenAddImagesFromNav () {
+    consumeOpenLibraryFromNav () {
+      this.$store.commit('tabEditor/setOpenLibraryFromNavMode', null)
+      this.arasaacDialogBrowseOnly = true
       this.arasaacDialogOpen = true
-      this.$store.commit('tabEditor/setOpenAddImagesDialogFromNav', false)
+    },
+
+    onArasaacLibraryClose () {
+      this.arasaacDialogOpen = false
+      this.arasaacDialogBrowseOnly = false
     },
 
     // eslint-disable-next-line valid-jsdoc

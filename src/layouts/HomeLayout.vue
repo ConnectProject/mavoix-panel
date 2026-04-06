@@ -58,7 +58,6 @@
             <q-btn
               flat
               no-caps
-              :class="{ 'top-link--active': $route.name === 'tab' }"
               icon="photo_library"
               :label="$t('navDrawer.assetsManager')"
               @click="onImagesNavClick"
@@ -350,7 +349,7 @@ export default {
 
         return
       }
-      this.$store.commit('tabEditor/setOpenAddImagesDialogFromNav', true)
+      this.$store.commit('tabEditor/setOpenLibraryFromNavMode', 'browse')
       if (this.$route.name !== 'tab' || this.$route.params.slug !== slug) {
         this.$router.push({ name: 'tab', params: { slug } })
       }

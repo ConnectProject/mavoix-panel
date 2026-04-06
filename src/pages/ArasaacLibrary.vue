@@ -5,7 +5,14 @@
       <div class="row items-start justify-between q-mb-md library-top-bar">
         <div>
           <div class="text-h4 text-weight-bold text-grey-8">
-            {{ $t('addImagesModal.title') }}
+            {{ browseOnly ? $t('addImagesModal.browseTitle') : $t('addImagesModal.title') }}
+          </div>
+          <div
+            v-if="browseOnly"
+            class="text-body2 text-grey-7 q-mt-xs"
+            style="max-width: 36rem;"
+          >
+            {{ $t('addImagesModal.browseSubtitle') }}
           </div>
           <div class="row items-center q-mt-sm">
             <q-icon
@@ -34,39 +41,41 @@
               {{ activeLibrary === 'arasaac' ? $t('addImagesModal.switchToPersonal') : $t('addImagesModal.switchToArasaac') }}
             </div>
           </div>
-          <div
-            class="library-action library-action--clickable"
-            @click="takePhotoDialogOpen = true"
-          >
-            <q-icon
-              name="add_a_photo"
-              color="primary"
-              size="36px"
-            />
-            <div class="library-action__label">
-              {{ $t('addImagesModal.takePhoto') }}
+          <template v-if="!browseOnly">
+            <div
+              class="library-action library-action--clickable"
+              @click="takePhotoDialogOpen = true"
+            >
+              <q-icon
+                name="add_a_photo"
+                color="primary"
+                size="36px"
+              />
+              <div class="library-action__label">
+                {{ $t('addImagesModal.takePhoto') }}
+              </div>
             </div>
-          </div>
-          <input
-            ref="uploadPhotoInput"
-            type="file"
-            class="arasaac-hidden-file-input"
-            accept=".jpg,.jpeg,.png,image/jpeg,image/png"
-            @change="onUploadFileChosen"
-          >
-          <div
-            class="library-action library-action--clickable"
-            @click="onUploadPhotoClick"
-          >
-            <q-icon
-              name="upload"
-              color="primary"
-              size="36px"
-            />
-            <div class="library-action__label">
-              {{ $t('addImagesModal.uploadPhoto') }}
+            <input
+              ref="uploadPhotoInput"
+              type="file"
+              class="arasaac-hidden-file-input"
+              accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+              @change="onUploadFileChosen"
+            >
+            <div
+              class="library-action library-action--clickable"
+              @click="onUploadPhotoClick"
+            >
+              <q-icon
+                name="upload"
+                color="primary"
+                size="36px"
+              />
+              <div class="library-action__label">
+                {{ $t('addImagesModal.uploadPhoto') }}
+              </div>
             </div>
-          </div>
+          </template>
         </div>
       </div>
 
@@ -142,7 +151,10 @@
         </div>
       </div>
 
-      <div class="q-mb-md">
+      <div
+        v-if="!browseOnly"
+        class="q-mb-md"
+      >
         <div class="row items-center q-col-gutter-xs">
           <div
             v-for="cat in categoryOptions"
@@ -158,6 +170,7 @@
             >
               <span>{{ cat }}</span>
               <q-btn
+                v-if="!browseOnly"
                 flat
                 dense
                 round
@@ -168,7 +181,10 @@
               />
             </q-chip>
           </div>
-          <div class="col-auto">
+          <div
+            v-if="!browseOnly"
+            class="col-auto"
+          >
             <q-btn
               flat
               dense
@@ -213,7 +229,24 @@
         <div class="text-grey-8 text-weight-medium">
           {{ pictogramCountLabel }}
         </div>
-        <div class="row q-gutter-sm">
+        <div
+          v-if="browseOnly"
+          class="row q-gutter-sm"
+        >
+          <q-btn
+            class="library-footer-btn"
+            unelevated
+            dense
+            no-caps
+            color="dark"
+            :label="$t('addImagesModal.browseClose')"
+            @click="goBack"
+          />
+        </div>
+        <div
+          v-else
+          class="row q-gutter-sm"
+        >
           <q-btn
             class="library-footer-btn"
             outline
@@ -252,7 +285,10 @@
               contain
               class="library-card__image"
             >
-              <div class="absolute-top row justify-between q-pa-xs library-card__actions">
+              <div
+                class="absolute-top row items-center q-pa-xs library-card__actions"
+                :class="browseOnly ? 'justify-end' : 'justify-between'"
+              >
                 <q-btn
                   round
                   dense
@@ -264,6 +300,7 @@
                   @click.stop="$store.getters['global/tts'].speak({ text: image.name })"
                 />
                 <q-checkbox
+                  v-if="!browseOnly"
                   v-model="selectedUrls"
                   :val="image.url"
                   dense
@@ -307,6 +344,7 @@
                 {{ cat }}
               </q-chip>
               <q-btn
+                v-if="!browseOnly"
                 flat
                 dense
                 round
@@ -619,6 +657,12 @@ export default {
   },
   props: {
     inDialog: {
+      type: Boolean,
+      default: false
+    },
+
+    /** Browse / explore only: search, filters, TTS, library switch — no add-to-tab, uploads, or category editing */
+    browseOnly: {
       type: Boolean,
       default: false
     }
@@ -1048,6 +1092,9 @@ export default {
     },
 
     async onAddSelected () {
+      if (this.browseOnly) {
+        return
+      }
       try {
         const uid = getCurrentUserId()
 
