@@ -46,23 +46,14 @@
             />
           </q-toolbar-title>
 
-          <div class="top-main-nav__center row items-center no-wrap q-gutter-xs">
-            <q-btn
-              flat
-              no-caps
-              :class="{ 'top-link--active': $route.name === 'tab' }"
-              icon="tab"
-              :label="$t('navDrawer.tabs')"
-              @click="goToTabs"
-            />
-            <q-btn
-              flat
-              no-caps
-              icon="settings"
-              :label="$t('navDrawer.globalSettings')"
-              @click="openGlobalSettingsDialog"
-            />
-          </div>
+          <q-space />
+          <q-btn
+            flat
+            no-caps
+            icon="settings"
+            :label="$t('navDrawer.globalSettings')"
+            @click="openGlobalSettingsDialog"
+          />
         </q-toolbar>
         <q-toolbar
           v-if="showTopTabsNav"
@@ -406,15 +397,6 @@ export default {
 .brand-home-link
   padding 0 4px
   color inherit
-
-.top-main-nav__center
-  position absolute
-  left 50%
-  transform translateX(-50%)
-  max-width calc(100% - 260px)
-  overflow-x auto
-  overflow-y hidden
-  white-space nowrap
 
 .top-link--active
   background #e6ebf7
