@@ -237,6 +237,7 @@
       </div>
 
       <q-infinite-scroll
+        scroll-target=".arasaac-page"
         :disable="!hasMoreImages"
         :offset="140"
         @load="onInfiniteLoad"
@@ -258,16 +259,32 @@
                 class="library-card__image"
               >
                 <div class="absolute-top row justify-between q-pa-xs library-card__actions">
-                  <q-btn
-                    round
-                    dense
-                    flat
-                    icon="play_arrow"
-                    color="primary"
-                    class="library-card__action-btn"
-                    :disable="$store.getters['global/ttsEnabled'] === false"
-                    @click.stop="$store.getters['global/tts'].speak({ text: image.name })"
-                  />
+                  <div class="library-card__left-actions">
+                    <q-btn
+                      round
+                      dense
+                      flat
+                      icon="play_arrow"
+                      color="primary"
+                      class="library-card__action-btn"
+                      :disable="$store.getters['global/ttsEnabled'] === false"
+                      @click.stop="$store.getters['global/tts'].speak({ text: image.name })"
+                    />
+                    <q-btn
+                      v-if="activeLibrary === 'personal'"
+                      round
+                      dense
+                      flat
+                      icon="delete"
+                      color="negative"
+                      class="library-card__action-btn"
+                      @click.stop="deletePersonalImage(image)"
+                    >
+                      <q-tooltip>
+                        {{ $t('assetEditor.delete') }}
+                      </q-tooltip>
+                    </q-btn>
+                  </div>
                   <q-checkbox
                     v-model="selectedUrls"
                     :val="image.url"
@@ -784,6 +801,32 @@ export default {
       done()
     },
 
+    async deletePersonalImage (image) {
+      try {
+        const assets = this.personalAssetsByUrl[image.url] || []
+        if (!assets.length) {
+          return
+        }
+
+        await Promise.all(assets.map(async (asset) => {
+          const model = await new Parse.Query(AssetModel).get(asset.id)
+
+          return model.destroy()
+        }))
+
+        this.selectedUrls = this.selectedUrls.filter((url) => url !== image.url)
+        await this.$store.dispatch('assetsManager/loadAssets')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e)
+        this.$q.notify({
+          position: 'top-right',
+          message: e.message || String(e),
+          color: 'negative'
+        })
+      }
+    },
+
     toggleLibrary () {
       this.activeLibrary = this.activeLibrary === 'arasaac' ? 'personal' : 'arasaac'
     },
@@ -1215,6 +1258,12 @@ export default {
 .library-card__checkbox
   pointer-events auto
 
+.library-card__left-actions
+  display flex
+  flex-direction column
+  align-items flex-start
+  gap 4px
+
 .image-overlay
   display flex
   align-items center
@@ -1237,7 +1286,7 @@ export default {
   font-weight 700
 
 .library-card__action-btn
-  background rgba(255, 255, 255, 0.75)
+  background transparent
 
 .library-card__checkbox
   background rgba(255, 255, 255, 0.75)
