@@ -17,7 +17,8 @@ export default {
     addTab: 'Ajouter un onglet',
     devices: 'Appareils',
     addDevice: 'Ajouter un appareil',
-    globalSettings: 'Paramètres globaux'
+    globalSettings: 'Paramètres globaux',
+    deviceQr: 'Lier un appareil'
   },
   globalSettings: {
     title: 'Paramètres globaux',

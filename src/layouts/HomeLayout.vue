@@ -48,6 +48,33 @@
 
           <q-space />
           <q-btn
+            v-if="devices.length <= 1"
+            flat
+            no-caps
+            icon="qr_code"
+            :label="$t('navDrawer.deviceQr')"
+            @click="onDeviceQrToolbarClick"
+          />
+          <q-btn-dropdown
+            v-else
+            flat
+            no-caps
+            icon="qr_code"
+            :label="$t('navDrawer.deviceQr')"
+          >
+            <q-list>
+              <q-item
+                v-for="(d, i) in devices"
+                :key="i"
+                v-close-popup
+                clickable
+                @click="openDeviceInvitationAt(i)"
+              >
+                <q-item-section>{{ d.deviceName || d.username }}</q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+          <q-btn
             flat
             no-caps
             icon="settings"
@@ -305,6 +332,28 @@ export default {
 
     openCreateTabDialog () {
       this.$store.commit('tabs/openCreateTabDialog')
+    },
+
+    /**
+     * Open QR / pairing for the first device, or name dialog if none.
+     * @returns {void}
+     */
+    onDeviceQrToolbarClick () {
+      if (!this.devices.length) {
+        this.$store.commit('devices/openNameDialog')
+
+        return
+      }
+      this.openDeviceInvitationAt(0)
+    },
+
+    /**
+     * Open device invitation dialog for device at index.
+     * @param {number} index device index in store
+     * @returns {void}
+     */
+    openDeviceInvitationAt (index) {
+      this.$store.commit('devices/openDialog', index)
     },
 
     goToTabs () {
