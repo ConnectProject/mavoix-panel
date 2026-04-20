@@ -4,7 +4,7 @@ export default {
   welcome: {
     title: 'Bienvenu à MaVoix',
     intro: 'Pour bien démarrer, voici trois actions principales :',
-    stepImages: 'Ajoutez des pictos avec le bouton Images (icône galerie) dans la barre du haut.',
+    stepDevice: 'Liez un appareil avec le bouton Lier un appareil (icône QR) dans la barre du haut.',
     stepTabs: 'Créez ou ouvrez des onglets via Onglets, ou avec le + à côté des onglets.',
     stepSettings: 'Ajustez la taille des images, la synthèse vocale et plus encore dans Paramètres globaux (icône engrenage).',
     dontShowAgain: 'Ne plus montrer la prochaine fois',
@@ -17,6 +17,7 @@ export default {
     addTab: 'Ajouter un onglet',
     devices: 'Appareils',
     addDevice: 'Ajouter un appareil',
+    noDeviceYet: 'Aucun appareil pour le moment',
     globalSettings: 'Paramètres globaux',
     deviceQr: 'Lier un appareil'
   },

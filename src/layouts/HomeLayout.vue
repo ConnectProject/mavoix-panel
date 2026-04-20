@@ -47,16 +47,7 @@
           </q-toolbar-title>
 
           <q-space />
-          <q-btn
-            v-if="devices.length <= 1"
-            flat
-            no-caps
-            icon="qr_code"
-            :label="$t('navDrawer.deviceQr')"
-            @click="onDeviceQrToolbarClick"
-          />
           <q-btn-dropdown
-            v-else
             flat
             no-caps
             icon="qr_code"
@@ -64,12 +55,33 @@
           >
             <q-list>
               <q-item
+                v-close-popup
+                clickable
+                @click="openCreateDeviceDialog"
+              >
+                <q-item-section avatar>
+                  <q-icon name="add" />
+                </q-item-section>
+                <q-item-section>{{ $t('navDrawer.addDevice') }}</q-item-section>
+              </q-item>
+              <q-separator />
+              <q-item
+                v-if="devices.length === 0"
+                dense
+                disable
+              >
+                <q-item-section>{{ $t('navDrawer.noDeviceYet') }}</q-item-section>
+              </q-item>
+              <q-item
                 v-for="(d, i) in devices"
                 :key="i"
                 v-close-popup
                 clickable
                 @click="openDeviceInvitationAt(i)"
               >
+                <q-item-section avatar>
+                  <q-icon name="qr_code" />
+                </q-item-section>
                 <q-item-section>{{ d.deviceName || d.username }}</q-item-section>
               </q-item>
             </q-list>
@@ -334,17 +346,8 @@ export default {
       this.$store.commit('tabs/openCreateTabDialog')
     },
 
-    /**
-     * Open QR / pairing for the first device, or name dialog if none.
-     * @returns {void}
-     */
-    onDeviceQrToolbarClick () {
-      if (!this.devices.length) {
-        this.$store.commit('devices/openNameDialog')
-
-        return
-      }
-      this.openDeviceInvitationAt(0)
+    openCreateDeviceDialog () {
+      this.$store.commit('devices/openNameDialog')
     },
 
     /**

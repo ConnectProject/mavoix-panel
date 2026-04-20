@@ -190,28 +190,28 @@
         class="row items-center toolbar-no-border toolbar-with-padding"
         :style="{ background: tab.hexColor }"
       >
-        <!-- Add item button — left edge aligns with .items-container (see .toolbar-with-padding) -->
-        <q-btn
-          class="add-images-btn"
-          dense
-          no-caps
-          icon-right="add_to_photos"
-          unelevated
-          :label="$t('tabEditor.addItemLabel')"
-          text-color="black"
-          @click="onAddItem"
-        />
+        <!-- Adjacent left: add images + tab settings; subtle translucent pill behind each -->
+        <div class="row items-center no-wrap tab-toolbar-actions">
+          <q-btn
+            class="tab-toolbar-btn"
+            flat
+            no-caps
+            icon="add_to_photos"
+            :label="$t('tabEditor.addItemLabel')"
+            :style="tabToolbarBtnStyle"
+            @click="onAddItem"
+          />
+          <q-btn
+            class="tab-toolbar-btn"
+            flat
+            no-caps
+            icon="settings"
+            :label="$t('tabSettings.editTitle')"
+            :style="tabToolbarBtnStyle"
+            @click="openTabSettings"
+          />
+        </div>
         <q-space />
-
-        <!-- RIGHT: Settings (circular, white bg, blue icon) -->
-        <q-btn
-          class="settings-btn"
-          unelevated
-          round
-          icon="settings"
-          text-color="primary"
-          @click="openTabSettings"
-        />
         <!-- edit language button -->
       </q-toolbar>
     </q-page-sticky>
@@ -357,6 +357,27 @@ export default {
      */
     loading () {
       return this.$store.getters['tabEditor/loading']
+    },
+
+    /**
+     * Text/icon color for toolbar actions on the tab background (readable contrast).
+     * @returns {string} #FFFFFF or #000000 (or passed light/dark) for legibility on tab.hexColor
+     */
+    tabToolbarActionColor () {
+      return this.getContrastTextColor(this.tab.hexColor)
+    },
+
+    /**
+     * Foreground plus a lightly translucent background so buttons are not fully flat on the tab color.
+     * @returns {{ color: string, backgroundColor: string }} inline styles for both toolbar actions
+     */
+    tabToolbarBtnStyle () {
+      const color = this.tabToolbarActionColor
+      const backgroundColor = color === '#FFFFFF'
+        ? 'rgba(255, 255, 255, 0.22)'
+        : 'rgba(0, 0, 0, 0.08)'
+
+      return { color, backgroundColor }
     }
   },
   watch: {
@@ -442,6 +463,34 @@ export default {
      */
     setHexColor (hexColor) {
       this.$store.commit('tabEditor/setHexColor', hexColor)
+    },
+
+    /**
+     * Pick light or dark foreground for a hex background (same idea as HomeLayout tabs).
+     * @param {string} bgColor background hex (with or without #)
+     * @param {string} lightColor text color to use on dark backgrounds
+     * @param {string} darkColor text color to use on light backgrounds
+     * @returns {string} chosen foreground hex for readable contrast
+     */
+    getContrastTextColor (bgColor, lightColor = '#FFFFFF', darkColor = '#000000') {
+      if (!bgColor) return darkColor
+
+      const getLuminance = function (hexColor) {
+        const color = (hexColor.charAt(0) === '#') ? hexColor.substring(1, 7) : hexColor
+        const r = parseInt(color.substring(0, 2), 16)
+        const g = parseInt(color.substring(2, 4), 16)
+        const b = parseInt(color.substring(4, 6), 16)
+        const uicolors = [r / 255, g / 255, b / 255]
+        const c = uicolors.map(col => (col <= 0.03928 ? col / 12.92 : ((col + 0.055) / 1.055) ** 2.4))
+
+        return (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2])
+      }
+
+      const L = getLuminance(bgColor)
+      const L1 = getLuminance(lightColor)
+      const L2 = getLuminance(darkColor)
+
+      return (L > Math.sqrt((L1 + 0.05) * (L2 + 0.05)) - 0.05) ? darkColor : lightColor
     },
     setLanguage (language) {
       this.$store.commit('tabEditor/setLanguage', this.options.indexOf(language))
@@ -592,20 +641,21 @@ export default {
   /* Same inset as first image: .items-container margin-left (4px) + q-gutter-x-md on row children (16px) */
   padding 12px 12px 12px 65px
 
-.add-images-btn
-  background white !important
-  color black
+.tab-toolbar-actions
+  gap 8px
+
+.tab-toolbar-btn
   border-radius 10px
-  padding 2px 12px
-  min-height 30px
   box-shadow none !important
 
-.add-images-btn .q-icon
-  color var(--q-color-primary)
+/*
+ * Icon is inside .q-btn__content (not direct child of .q-btn__wrapper), so the old rule had no effect.
+ */
+.tab-toolbar-btn :deep(.q-icon.on-left)
+  margin-right 0 !important
 
-.settings-btn
-  background white !important
-  color #027BE3
+.tab-toolbar-btn :deep(.q-icon.on-left + .block)
+  margin-left 4px
 
 .image-card-actions
   background transparent !important
