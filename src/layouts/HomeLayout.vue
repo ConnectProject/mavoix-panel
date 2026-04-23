@@ -93,6 +93,20 @@
             :label="$t('navDrawer.globalSettings')"
             @click="openGlobalSettingsDialog"
           />
+          <q-btn
+            flat
+            no-caps
+            icon="help_outline"
+            :label="$t('navDrawer.help')"
+            @click="openHelpDialog"
+          />
+          <q-btn
+            flat
+            no-caps
+            icon="logout"
+            :label="$t('logoutLabel')"
+            @click="onLogout"
+          />
         </q-toolbar>
         <q-toolbar
           v-if="showTopTabsNav"
@@ -428,6 +442,10 @@ export default {
 
     closeGlobalSettingsDialog () {
       this.$store.commit('global/closeGlobalSettingsDialog')
+    },
+
+    openHelpDialog () {
+      this.welcomeDialogOpen = true
     }
   }
 }

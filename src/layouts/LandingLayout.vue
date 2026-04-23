@@ -15,7 +15,7 @@
             label="MaVoix Panel"
           />
           <a
-            href="https://mavoix.connect-project.io/app/"
+            :href="mavoixAppUrl"
             style="color: inherit; text-decoration: none"
           >
             <q-tab
@@ -228,7 +228,12 @@
 
 <script>
 export default {
-  name: 'LayoutLanding'
+  name: 'LayoutLanding',
+  computed: {
+    mavoixAppUrl () {
+      return process.env.MAVOIX_APP_URL || 'https://mavoix.connect-project.io/app/'
+    }
+  }
 }
 </script>
 

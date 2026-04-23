@@ -19,6 +19,7 @@ export default {
     addDevice: 'Ajouter un appareil',
     noDeviceYet: 'Aucun appareil pour le moment',
     globalSettings: 'Paramètres globaux',
+    help: 'Aide',
     deviceQr: 'Lier un appareil'
   },
   globalSettings: {
