@@ -2,7 +2,7 @@ import Parse from 'parse'
 import Speak from 'speak-tts'
 
 import ParseUser from '~/models/ParseUser'
-import TabModel, { SPEED_KEY, LANGUAGE_KEY, IMAGE_SIZE_KEY } from '~/models/Tab'
+import TabModel, { IMAGE_SIZE_KEY, LANGUAGE_KEY, SPEED_KEY } from '~/models/Tab'
 import getCurrentUserId from '~/utils/getCurrentUserId'
 
 /**

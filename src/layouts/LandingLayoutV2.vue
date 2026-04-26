@@ -54,7 +54,7 @@
                 </div>
               </router-link>
               <a
-                href="https://mavoix.connect-project.io/app/"
+                :href="mavoixAppUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hero-cta hero-cta--child"
@@ -322,7 +322,7 @@
                 Simple, immediate, and theirs.
               </p>
               <a
-                href="https://mavoix.connect-project.io/app/"
+                :href="mavoixAppUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="step-app-link"
@@ -380,7 +380,7 @@
               </router-link>
               <span class="oss-closing__sep" aria-hidden="true">·</span>
               <a
-                href="https://mavoix.connect-project.io/app/"
+                :href="mavoixAppUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="oss-closing__link"
@@ -406,6 +406,9 @@ export default {
     }
   },
   computed: {
+    mavoixAppUrl () {
+      return process.env.MAVOIX_APP_URL || 'https://mavoix.connect-project.io/app/'
+    },
     year () {
       return new Date().getFullYear()
     },

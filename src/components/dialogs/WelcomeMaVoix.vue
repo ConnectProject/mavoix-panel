@@ -15,13 +15,13 @@
         <div class="column q-gutter-md welcome-dialog__steps">
           <div class="row items-start welcome-dialog__step">
             <q-icon
-              name="photo_library"
+              name="qr_code"
               color="primary"
               size="md"
               class="welcome-dialog__step-icon"
             />
             <div class="welcome-dialog__step-text text-body1">
-              {{ $t('welcome.stepImages') }}
+              {{ $t('welcome.stepDevice') }}
             </div>
           </div>
           <div class="row items-start welcome-dialog__step">

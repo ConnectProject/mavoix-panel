@@ -19,7 +19,10 @@
           <h6 class="text-subtitle2 text-center">
             {{ $t('deviceDialogs.qrcodeHeading') }}
           </h6>
-          <qrcode-vue :value="code" />
+          <qrcode-vue
+            :value="code"
+            :size="240"
+          />
         </q-card-section>
 
         <q-card-section class="column items-center justify-center">

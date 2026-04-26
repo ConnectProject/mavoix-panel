@@ -236,107 +236,121 @@
         </div>
       </div>
 
-      <div class="row q-col-gutter-xs library-grid">
-        <div
-          v-for="(image, index) in paginatedImages"
-          :key="`img-${page}-${index}`"
-          class="col-4 col-sm-3 col-md-2"
-        >
-          <q-card
-            flat
-            class="library-card"
+      <q-infinite-scroll
+        scroll-target=".arasaac-page"
+        :disable="!hasMoreImages"
+        :offset="140"
+        @load="onInfiniteLoad"
+      >
+        <div class="row q-col-gutter-xs library-grid">
+          <div
+            v-for="(image, index) in visibleImages"
+            :key="`img-${image.url}-${index}`"
+            class="col-4 col-sm-3 col-md-2"
           >
-            <q-img
-              :src="image.url"
-              ratio="1"
-              contain
-              class="library-card__image"
+            <q-card
+              flat
+              class="library-card"
             >
-              <div class="absolute-top row justify-between q-pa-xs library-card__actions">
+              <q-img
+                :src="image.url"
+                ratio="1"
+                contain
+                class="library-card__image"
+              >
+                <div class="absolute-top row justify-between q-pa-xs library-card__actions">
+                  <div class="library-card__left-actions">
+                    <q-btn
+                      round
+                      dense
+                      flat
+                      icon="play_arrow"
+                      color="primary"
+                      class="library-card__action-btn"
+                      :disable="$store.getters['global/ttsEnabled'] === false"
+                      @click.stop="$store.getters['global/tts'].speak({ text: image.name })"
+                    />
+                    <q-btn
+                      v-if="activeLibrary === 'personal'"
+                      round
+                      dense
+                      flat
+                      icon="delete"
+                      color="negative"
+                      class="library-card__action-btn"
+                      @click.stop="deletePersonalImage(image)"
+                    >
+                      <q-tooltip>
+                        {{ $t('assetEditor.delete') }}
+                      </q-tooltip>
+                    </q-btn>
+                  </div>
+                  <q-checkbox
+                    v-model="selectedUrls"
+                    :val="image.url"
+                    dense
+                    color="primary"
+                    class="library-card__checkbox"
+                  />
+                </div>
+
+                <div
+                  v-if="isHidden(image.url)"
+                  class="absolute-full image-overlay image-overlay--hidden"
+                >
+                  <q-icon
+                    name="visibility_off"
+                    class="overlay-icon"
+                  />
+                </div>
+                <div
+                  v-else-if="isUnavailable(image.url)"
+                  class="absolute-full image-overlay image-overlay--unavailable"
+                >
+                  <q-icon
+                    name="close"
+                    class="overlay-icon overlay-icon--cross"
+                  />
+                </div>
+              </q-img>
+              <div class="library-card__name">
+                {{ image.name }}
+              </div>
+              <div class="library-card__categories">
+                <q-chip
+                  v-for="cat in image.categories || []"
+                  :key="`${image.id}-${cat}`"
+                  dense
+                  square
+                  :color="chipColor(cat)"
+                  text-color="white"
+                  class="image-category-chip"
+                >
+                  {{ cat }}
+                </q-chip>
                 <q-btn
-                  round
-                  dense
                   flat
-                  icon="play_arrow"
-                  color="primary"
-                  class="library-card__action-btn"
-                  :disable="$store.getters['global/ttsEnabled'] === false"
-                  @click.stop="$store.getters['global/tts'].speak({ text: image.name })"
-                />
-                <q-checkbox
-                  v-model="selectedUrls"
-                  :val="image.url"
                   dense
+                  round
+                  size="10px"
+                  icon="add"
                   color="primary"
-                  class="library-card__checkbox"
+                  class="library-card__add-cat"
+                  @click.stop="openImageCategoryDialog(image)"
                 />
               </div>
-
-              <div
-                v-if="isHidden(image.url)"
-                class="absolute-full image-overlay image-overlay--hidden"
-              >
-                <q-icon
-                  name="visibility_off"
-                  class="overlay-icon"
-                />
-              </div>
-              <div
-                v-else-if="isUnavailable(image.url)"
-                class="absolute-full image-overlay image-overlay--unavailable"
-              >
-                <q-icon
-                  name="close"
-                  class="overlay-icon overlay-icon--cross"
-                />
-              </div>
-            </q-img>
-            <div class="library-card__name">
-              {{ image.name }}
-            </div>
-            <div class="library-card__categories">
-              <q-chip
-                v-for="cat in image.categories || []"
-                :key="`${image.id}-${cat}`"
-                dense
-                square
-                :color="chipColor(cat)"
-                text-color="white"
-                class="image-category-chip"
-              >
-                {{ cat }}
-              </q-chip>
-              <q-btn
-                flat
-                dense
-                round
-                size="10px"
-                icon="add"
-                color="primary"
-                class="library-card__add-cat"
-                @click.stop="openImageCategoryDialog(image)"
-              />
-            </div>
-          </q-card>
+            </q-card>
+          </div>
         </div>
-      </div>
-
-      <div class="row justify-center q-mt-sm q-pt-sm q-pb-md library-pagination">
-        <q-pagination
-          v-model="page"
-          :max="pageCount"
-          :max-pages="10"
-          class="library-pagination__q"
-          direction-links
-          boundary-links
-          flat
-          rounded
-          color="black"
-          text-color="black"
-          active-color="grey-4"
-          active-text-color="black"
-        />
-      </div>
+        <template #loading>
+          <div class="row justify-center q-mt-sm q-pb-md library-infinite-loading">
+            <q-spinner-dots
+              color="grey-7"
+              size="24px"
+            />
+          </div>
+        </template>
+      </q-infinite-scroll>
     </div>
 
     <q-menu
@@ -608,6 +622,7 @@ import { assetFromModel } from '~/store/assets-manager/utils'
 import getCurrentUserId from '~/utils/getCurrentUserId'
 
 const PAGE_SIZE = 12
+const INITIAL_VISIBLE_COUNT = 48
 const CHIP_COLORS = ['primary', 'deep-purple-6', 'teal-7', 'indigo-6', 'brown-7', 'orange-6', 'blue-5']
 const CATEGORY_CATALOG_KEY_PREFIX = 'mavoix.personalCategoryCatalog.'
 
@@ -635,7 +650,7 @@ export default {
       search: '',
       selectedCategoryFilters: [],
       personalCategoryCatalog: [],
-      page: 1,
+      visibleCount: INITIAL_VISIBLE_COUNT,
       selectedUrls: [],
       categoryMenuOpen: false,
       categoryMenuTarget: null,
@@ -658,9 +673,22 @@ export default {
     personalUploadAssets () {
       return this.personalAssets.filter((a) => Boolean(a.file))
     },
-    personalAssetByUrl () {
+    personalAssetsByUrl () {
       return this.personalAssets.reduce((acc, asset) => {
-        if (asset.url) acc[asset.url] = asset
+        if (asset.url) {
+          if (!acc[asset.url]) acc[asset.url] = []
+          acc[asset.url].push(asset)
+        }
+
+        return acc
+      }, {})
+    },
+    personalCategoriesByUrl () {
+      return Object.keys(this.personalAssetsByUrl).reduce((acc, url) => {
+        const categories = this.personalAssetsByUrl[url]
+          .flatMap((asset) => asset.categories || [])
+          .filter(Boolean)
+        acc[url] = Array.from(new Set(categories))
 
         return acc
       }, {})
@@ -671,7 +699,7 @@ export default {
           id: img.id,
           url: img.url,
           name: img.name || 'Picto Name',
-          categories: img.categories || []
+          categories: this.personalCategoriesByUrl[img.url] || []
         }))
       }
 
@@ -681,7 +709,7 @@ export default {
         id: img.url,
         url: img.url,
         name: (img.names && img.names.fr && img.names.fr[0]) || 'Picto Name',
-        categories: (this.personalAssetByUrl[img.url] && this.personalAssetByUrl[img.url].categories) || []
+        categories: this.personalCategoriesByUrl[img.url] || []
       }))
     },
     categoryOptions () {
@@ -713,13 +741,11 @@ export default {
         return matchesText && matchesCategories
       })
     },
-    pageCount () {
-      return Math.max(1, Math.ceil(this.filteredImages.length / PAGE_SIZE))
+    hasMoreImages () {
+      return this.visibleCount < this.filteredImages.length
     },
-    paginatedImages () {
-      const start = (this.page - 1) * PAGE_SIZE
-
-      return this.filteredImages.slice(start, start + PAGE_SIZE)
+    visibleImages () {
+      return this.filteredImages.slice(0, this.visibleCount)
     },
 
     tabItems () {
@@ -754,22 +780,53 @@ export default {
   },
   watch: {
     activeLibrary () {
-      this.page = 1
+      this.visibleCount = INITIAL_VISIBLE_COUNT
       this.search = ''
       this.selectedUrls = []
       this.selectedCategoryFilters = []
     },
     search () {
-      this.page = 1
+      this.visibleCount = INITIAL_VISIBLE_COUNT
     },
-    pageCount (count) {
-      if (this.page > count) this.page = count
+    selectedCategoryFilters () {
+      this.visibleCount = INITIAL_VISIBLE_COUNT
     }
   },
   mounted () {
     this.loadCategoryCatalog()
   },
   methods: {
+    onInfiniteLoad (_, done) {
+      this.visibleCount += PAGE_SIZE
+      done()
+    },
+
+    async deletePersonalImage (image) {
+      try {
+        const assets = this.personalAssetsByUrl[image.url] || []
+        if (!assets.length) {
+          return
+        }
+
+        await Promise.all(assets.map(async (asset) => {
+          const model = await new Parse.Query(AssetModel).get(asset.id)
+
+          return model.destroy()
+        }))
+
+        this.selectedUrls = this.selectedUrls.filter((url) => url !== image.url)
+        await this.$store.dispatch('assetsManager/loadAssets')
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e)
+        this.$q.notify({
+          position: 'top-right',
+          message: e.message || String(e),
+          color: 'negative'
+        })
+      }
+    },
+
     toggleLibrary () {
       this.activeLibrary = this.activeLibrary === 'arasaac' ? 'personal' : 'arasaac'
     },
@@ -977,13 +1034,21 @@ export default {
 
     async addCategoryToAsset (image, category) {
       const userId = getCurrentUserId()
-      const existing = this.personalAssetByUrl[image.url]
-      let model
-      if (existing && existing.id) {
-        model = await new Parse.Query(AssetModel).get(existing.id)
-      } else {
-        model = await AssetModel.New(image.name || 'Picto Name', false, image.url, userId).save()
+      const existingAssets = this.personalAssetsByUrl[image.url] || []
+
+      if (existingAssets.length > 0) {
+        await Promise.all(existingAssets.map(async (asset) => {
+          const model = await new Parse.Query(AssetModel).get(asset.id)
+          const categories = Array.from(new Set([...(model.get('categories') || []), category]))
+          model.set('categories', categories)
+
+          return model.save()
+        }))
+
+        return
       }
+
+      const model = await AssetModel.New(image.name || 'Picto Name', false, image.url, userId).save()
       const categories = Array.from(new Set([...(model.get('categories') || []), category]))
       model.set('categories', categories)
       await model.save()
@@ -1193,6 +1258,12 @@ export default {
 .library-card__checkbox
   pointer-events auto
 
+.library-card__left-actions
+  display flex
+  flex-direction column
+  align-items flex-start
+  gap 4px
+
 .image-overlay
   display flex
   align-items center
@@ -1215,7 +1286,7 @@ export default {
   font-weight 700
 
 .library-card__action-btn
-  background rgba(255, 255, 255, 0.75)
+  background transparent
 
 .library-card__checkbox
   background rgba(255, 255, 255, 0.75)

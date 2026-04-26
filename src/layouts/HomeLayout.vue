@@ -46,31 +46,67 @@
             />
           </q-toolbar-title>
 
-          <div class="top-main-nav__center row items-center no-wrap q-gutter-xs">
-            <q-btn
-              flat
-              no-caps
-              :class="{ 'top-link--active': $route.name === 'tab' }"
-              icon="tab"
-              :label="$t('navDrawer.tabs')"
-              @click="goToTabs"
-            />
-            <q-btn
-              flat
-              no-caps
-              :class="{ 'top-link--active': $route.name === 'assets' }"
-              icon="photo_library"
-              :label="$t('navDrawer.assetsManager')"
-              :to="{ name: 'assets' }"
-            />
-            <q-btn
-              flat
-              no-caps
-              icon="settings"
-              :label="$t('navDrawer.globalSettings')"
-              @click="openGlobalSettingsDialog"
-            />
-          </div>
+          <q-space />
+          <q-btn-dropdown
+            flat
+            no-caps
+            icon="qr_code"
+            :label="$t('navDrawer.deviceQr')"
+          >
+            <q-list>
+              <q-item
+                v-close-popup
+                clickable
+                @click="openCreateDeviceDialog"
+              >
+                <q-item-section avatar>
+                  <q-icon name="add" />
+                </q-item-section>
+                <q-item-section>{{ $t('navDrawer.addDevice') }}</q-item-section>
+              </q-item>
+              <q-separator />
+              <q-item
+                v-if="devices.length === 0"
+                dense
+                disable
+              >
+                <q-item-section>{{ $t('navDrawer.noDeviceYet') }}</q-item-section>
+              </q-item>
+              <q-item
+                v-for="(d, i) in devices"
+                :key="i"
+                v-close-popup
+                clickable
+                @click="openDeviceInvitationAt(i)"
+              >
+                <q-item-section avatar>
+                  <q-icon name="qr_code" />
+                </q-item-section>
+                <q-item-section>{{ d.deviceName || d.username }}</q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+          <q-btn
+            flat
+            no-caps
+            icon="settings"
+            :label="$t('navDrawer.globalSettings')"
+            @click="openGlobalSettingsDialog"
+          />
+          <q-btn
+            flat
+            no-caps
+            icon="help_outline"
+            :label="$t('navDrawer.help')"
+            @click="openHelpDialog"
+          />
+          <q-btn
+            flat
+            no-caps
+            icon="logout"
+            :label="$t('logoutLabel')"
+            @click="onLogout"
+          />
         </q-toolbar>
         <q-toolbar
           v-if="showTopTabsNav"
@@ -324,6 +360,19 @@ export default {
       this.$store.commit('tabs/openCreateTabDialog')
     },
 
+    openCreateDeviceDialog () {
+      this.$store.commit('devices/openNameDialog')
+    },
+
+    /**
+     * Open device invitation dialog for device at index.
+     * @param {number} index device index in store
+     * @returns {void}
+     */
+    openDeviceInvitationAt (index) {
+      this.$store.commit('devices/openDialog', index)
+    },
+
     goToTabs () {
       if (this.tabs.length > 0) {
         const slug = getLandingTabSlug(this.tabs)
@@ -393,6 +442,10 @@ export default {
 
     closeGlobalSettingsDialog () {
       this.$store.commit('global/closeGlobalSettingsDialog')
+    },
+
+    openHelpDialog () {
+      this.welcomeDialogOpen = true
     }
   }
 }
@@ -414,15 +467,6 @@ export default {
 .brand-home-link
   padding 0 4px
   color inherit
-
-.top-main-nav__center
-  position absolute
-  left 50%
-  transform translateX(-50%)
-  max-width calc(100% - 260px)
-  overflow-x auto
-  overflow-y hidden
-  white-space nowrap
 
 .top-link--active
   background #e6ebf7
