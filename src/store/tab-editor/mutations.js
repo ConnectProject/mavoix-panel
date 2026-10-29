@@ -35,6 +35,11 @@ export const setHexColor = (state, hexColor) => {
   undoStackPushDo(state, new ActionHexColor(state.tab.hexColor, hexColor))
 }
 
+// Show a colour on the edited tab without saving it
+export const previewHexColor = (state, hexColor) => {
+  state.tab.hexColor = hexColor
+}
+
 export const setLanguage = (state, indexLanguage) => {
   console.log(indexLanguage)
   state.language = state.languages[indexLanguage]

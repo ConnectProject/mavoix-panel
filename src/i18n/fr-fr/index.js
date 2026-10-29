@@ -146,6 +146,7 @@ export default {
     tabName: 'Nom de l\'onglet',
     backgroundColor: 'Couleur de fond',
     selectedColor: 'Couleur choisie',
+    currentColor: 'Couleur actuelle',
     icon: 'Icône',
     nameRequired: 'Le nom est requis',
     backgroundColorRequired: 'La couleur de fond est requise',

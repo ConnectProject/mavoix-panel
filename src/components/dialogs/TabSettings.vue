@@ -2,10 +2,10 @@
   <div>
     <q-dialog
       :value="opened"
-      @input="$emit('input', $event)"
+      @input="onDialogInput"
     >
       <q-card>
-        <q-card-section>
+        <q-card-section :style="{ background: hexColor, color: '#000000' }">
           <div class="text-h5 text-bold">
             {{ mode==="create" ? $t('tabSettings.createTitle') : $t('tabSettings.editTitle') }}
           </div>
@@ -28,37 +28,12 @@
           >
             {{ $t('tabSettings.backgroundColor') }}
           </div>
-          <div
-            class="row items-center"
-            style="gap: 12px;"
-          >
-            <q-input
-              v-model="hexColor"
-              outlined
-              dense
-              style="min-width:170px;max-width:222px;"
-            >
-              <template #append>
-                <q-icon name="colorize">
-                  <q-popup-proxy>
-                    <q-color v-model="hexColor" />
-                  </q-popup-proxy>
-                </q-icon>
-              </template>
-            </q-input>
-            <!-- Color preview styled as selected bg color -->
-            <div
-              :style="{
-                width: '32px',
-                height: '32px',
-                borderRadius: '50%',
-                border: '2px solid #bbb',
-                backgroundColor: hexColor || '#fff',
-                boxShadow: hexColor ? '0 0 0 2px #7986cb inset' : '',
-                marginLeft: '0'
-              }"
-            />
-          </div>
+          <color-palette
+            :value="hexColor"
+            :label="$t('tabSettings.backgroundColor')"
+            :current-label="$t('tabSettings.currentColor')"
+            @input="onColorPicked"
+          />
 
           <div>
             <div
@@ -82,22 +57,26 @@
         </q-card-section>
 
         <q-separator />
-        <q-card-actions
-          align="center"
-          class="tab-settings-actions"
-        >
-          <q-btn
-            :label="$t('generic.save')"
-            class="tab-settings-btn tab-settings-btn--primary"
-            unelevated
-            @click="onSave"
-          />
+        <q-card-actions class="tab-settings-actions q-gutter-sm">
           <q-btn
             v-if="mode === 'edit'"
             :label="$t('generic.delete')"
             class="tab-settings-btn tab-settings-btn--delete"
             unelevated
             @click="onDelete"
+          />
+          <q-space />
+          <q-btn
+            :label="$t('generic.cancel')"
+            class="tab-settings-btn tab-settings-btn--secondary"
+            unelevated
+            @click="onDialogInput(false)"
+          />
+          <q-btn
+            :label="$t('generic.save')"
+            class="tab-settings-btn tab-settings-btn--primary"
+            unelevated
+            @click="onSave"
           />
         </q-card-actions>
       </q-card>
@@ -140,10 +119,13 @@
 </template>
 
 <script>
+import ColorPalette from '~/components/ColorPalette.vue'
 import { navigateAfterTabDeleted } from '~/utils/mavoixNavigation'
 
 export default {
   name: 'DialogTabSettings',
+
+  components: { ColorPalette },
 
   props: {
     value: {
@@ -165,6 +147,7 @@ export default {
   data () {
     return {
       confirmDeleteOpen: false,
+      savedHexColor: null, // colour of the tab when the dialog opened, restored if the dialog is dismissed
       name: '',
       hexColor: '#ffffff',
       icon: '',
@@ -200,6 +183,7 @@ export default {
         if (this.mode === 'edit' && this.tab) {
           this.name = this.tab.name
           this.hexColor = this.tab.hexColor
+          this.savedHexColor = this.tab.hexColor
           this.icon = this.tab.icon
         }
       }
@@ -207,6 +191,20 @@ export default {
   },
 
   methods: {
+    onColorPicked (hexColor) {
+      this.hexColor = hexColor
+      if (this.mode === 'edit') {
+        this.$store.commit('tabEditor/previewHexColor', hexColor)
+      }
+    },
+
+    onDialogInput (opened) {
+      if (!opened && this.mode === 'edit' && this.savedHexColor) {
+        this.$store.commit('tabEditor/previewHexColor', this.savedHexColor)
+      }
+      this.$emit('input', opened)
+    },
+
     onSave () {
       if (!this.name) {
         this.$q.notify({
@@ -278,7 +276,7 @@ export default {
   padding-top 24px
 
 .tab-settings-btn
-  min-width 180px
+  min-width 130px
   border-radius 9999px
   background #424242
   color #ffffff
