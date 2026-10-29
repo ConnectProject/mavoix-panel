@@ -19,7 +19,7 @@
         tag="div"
         draggable=".item"
         ghost-class="ghost"
-        class="full-height full-width row items-start q-gutter-x-md q-gutter-y-md items-container"
+        class="full-height full-width row items-start content-start q-gutter-x-md q-gutter-y-md items-container"
       >
         <!-- Items -->
         <q-card
