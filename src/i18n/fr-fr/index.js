@@ -33,7 +33,13 @@ export default {
     speedSlow: 'Lent',
     speedNormal: 'Normal',
     speedFast: 'Rapide',
-    ttsLanguageLabel: 'Langage de synthèse vocale'
+    ttsLanguageLabel: 'Langage de synthèse vocale',
+    configLabel: 'Configuration de l\'application',
+    exportConfig: 'Exporter',
+    importConfig: 'Importer',
+    exportError: 'Erreur lors de l\'export : ',
+    importError: 'Erreur lors de l\'import : ',
+    importDone: ' onglet(s) importé(s)'
   },
   dnd: {
     dropFiles: 'Déposez ici vos fichiers',

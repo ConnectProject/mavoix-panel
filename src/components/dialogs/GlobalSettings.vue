@@ -59,6 +59,39 @@
               :options="languageOptions"
             />
           </div>
+
+          <div>
+            <div class="text-subtitle1 q-mb-sm">
+              {{ $t('globalSettings.configLabel') }}
+            </div>
+            <div class="row q-gutter-sm">
+              <q-btn
+                outline
+                color="primary"
+                icon="upload"
+                :loading="importing"
+                :disable="exporting"
+                :label="$t('globalSettings.importConfig')"
+                @click="$refs.configInput.click()"
+              />
+              <q-btn
+                outline
+                color="primary"
+                icon="download"
+                :loading="exporting"
+                :disable="importing"
+                :label="$t('globalSettings.exportConfig')"
+                @click="onExport"
+              />
+              <input
+                ref="configInput"
+                type="file"
+                accept=".zip,application/zip"
+                class="hidden"
+                @change="onImport"
+              >
+            </div>
+          </div>
         </q-card-section>
 
         <q-card-actions align="center">
@@ -81,6 +114,10 @@
 </template>
 
 <script>
+import { Notify } from 'quasar'
+
+import { exportAppConfig, importAppConfig } from '~/utils/appConfig'
+
 export default {
   name: 'DialogGlobalSettings',
 
@@ -96,6 +133,8 @@ export default {
       localImageSize: 'medium',
       localTTSSpeedIndex: 2,
       localTTSLanguage: 'fr-FR',
+      exporting: false,
+      importing: false,
       speedCodes: [0.5, 0.75, 1.0, 1.25],
       imageSizeOptions: [
         { label: this.$t('globalSettings.sizeSmall'), value: 'small' },
@@ -128,6 +167,50 @@ export default {
   },
 
   methods: {
+    async onExport () {
+      this.exporting = true
+      try {
+        const blob = await exportAppConfig(this.$store.state.global)
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = 'mavoix-config.zip'
+        link.click()
+        URL.revokeObjectURL(link.href)
+      } catch (err) {
+        Notify.create({ message: this.$t('globalSettings.exportError') + err.message, color: 'red' })
+      } finally {
+        this.exporting = false
+      }
+    },
+
+    applyGlobal (global) {
+      if (global.imageSize) this.$store.commit('global/setImageSize', global.imageSize)
+      if (global.ttsSpeed) this.$store.commit('global/setTTSSpeed', global.ttsSpeed)
+      if (global.ttsLanguage) this.$store.commit('global/setTTSLanguage', global.ttsLanguage)
+
+      return this.$store.dispatch('global/saveGlobalSettings')
+    },
+
+    async onImport (event) {
+      const [file] = event.target.files
+      event.target.value = ''
+      if (!file) {
+        return
+      }
+      this.importing = true
+      try {
+        const { global, tabs } = await importAppConfig(file)
+        await this.applyGlobal(global)
+        this.$store.dispatch('assetsManager/loadAssets')
+        Notify.create({ message: tabs + this.$t('globalSettings.importDone'), color: 'blue' })
+        this.$emit('input', false)
+      } catch (err) {
+        Notify.create({ message: this.$t('globalSettings.importError') + err.message, color: 'red' })
+      } finally {
+        this.importing = false
+      }
+    },
+
     onValidate () {
       this.$store.commit('global/setImageSize', this.localImageSize)
       this.$store.commit('global/setTTSSpeed', this.speedCodes[this.localTTSSpeedIndex])
