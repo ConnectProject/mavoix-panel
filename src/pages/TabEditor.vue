@@ -1,7 +1,10 @@
 <!-- eslint-disable max-lines -->
 <template>
-  <!-- Print nothing if loading -->
-  <div v-if="loading" />
+  <!-- While loading, only the background: the colour of the last tab shown -->
+  <q-page
+    v-if="loading"
+    :style="{ background: lastTabColor }"
+  />
 
   <q-page
     v-else
@@ -263,6 +266,7 @@ import DialogAssetDelete from '~/components/dialogs/AssetDelete'
 import DialogTabItem from '~/components/dialogs/TabItem'
 import DialogTabSettings from '~/components/dialogs/TabSettings'
 import ArasaacLibrary from '~/pages/ArasaacLibrary'
+import { getLastTabColor, setLastTabColor } from '~/utils/mavoixNavigation'
 
 export default {
   name: 'PageTabEditor',
@@ -274,6 +278,7 @@ export default {
   },
   data () {
     return {
+      lastTabColor: getLastTabColor(),
       arasaacDialogOpen: false,
       assetDeleteDialogOpen: false,
       assetDeleteTargetIndex: null,
@@ -381,6 +386,9 @@ export default {
     }
   },
   watch: {
+    'tab.hexColor' (hexColor) {
+      setLastTabColor(hexColor)
+    },
 
     /**
      * When route change load eveyrhing

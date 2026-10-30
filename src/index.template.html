@@ -14,6 +14,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
     <link rel="icon" type="image/ico" href="favicon.ico">
+    <script>
+      // Reloading a tab (or coming back to /home): paint the colour of the last tab at once instead of white.
+      // HomeLayout removes this style when the app is up and the pages paint their own background.
+      try {
+        var lastTabColor = window.localStorage.getItem('mavoix.lastTabColor')
+        if (lastTabColor && /^#[0-9a-f]{3,8}$/i.test(lastTabColor) && /^\/(tabs\/|home)/.test(window.location.pathname)) {
+          document.write('<style id="boot-background">html, body { background: ' + lastTabColor + ' !important }</style>')
+        }
+      } catch (e) { /* no storage: keep the default background */ }
+    </script>
   </head>
   <body>
     <!-- DO NOT touch the following DIV -->

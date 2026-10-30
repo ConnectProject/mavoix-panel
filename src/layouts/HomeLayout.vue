@@ -160,6 +160,10 @@
       <DialogWelcomeMaVoix
         v-model="welcomeDialogOpen"
       />
+      <dialog-connect-linked
+        v-model="connectLinkedOpen"
+        :error="connectLinkError"
+      />
 
       <q-page-container>
         <router-view />
@@ -180,6 +184,7 @@
 
 import Parse from 'parse'
 
+import DialogConnectLinked from '~/components/dialogs/ConnectLinked'
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 import DialogDeviceName from '~/components/dialogs/DeviceName'
 import DialogGlobalSettings from '~/components/dialogs/GlobalSettings'
@@ -202,11 +207,14 @@ export default {
     DialogDeviceInvitation,
     DialogTabSettings,
     DialogGlobalSettings,
-    DialogWelcomeMaVoix
+    DialogWelcomeMaVoix,
+    DialogConnectLinked
   },
   data () {
     return {
       welcomeDialogOpen: false,
+      connectLinkedOpen: false,
+      connectLinkError: '',
       welcomeOfferedThisSession: false
     }
   },
@@ -268,8 +276,15 @@ export default {
    * @returns {void}
    */
   mounted () {
+    // the pages paint their own background now (see index.template.html)
+    const bootBackground = document.getElementById('boot-background')
+    if (bootBackground) {
+      bootBackground.remove()
+    }
     if (Parse.User.current()) {
-      this.$store.dispatch('tabs/loadTabs')
+      const tabsLoaded = this.$store.dispatch('tabs/loadTabs')
+      this.linkConnectFromRedirect(tabsLoaded)
+      tabsLoaded
         .then(() => this.ensureTabsThenMaybeRedirectFromHome())
         .then(() => {
           this.maybeOpenWelcomeDialogOnce()
@@ -422,8 +437,30 @@ export default {
       }
     },
 
+    /**
+     * Connect sends the user back to /home?code=... after authorizing MaVoix.
+     * Link the account, then go to the tab the usual redirect would pick and report the result in a dialog over it.
+     * Home stays blank while the code is in the url.
+     * @param {Promise} tabsLoaded resolves when the tabs are in the store
+     * @returns {Promise<void>} resolves when the dialog is open
+     */
+    async linkConnectFromRedirect (tabsLoaded) {
+      const authorizationCode = this.$route.query.code
+      if (!authorizationCode) {
+        return
+      }
+      const linked = this.$store.dispatch('users/linkWithConnect', authorizationCode)
+      await tabsLoaded
+      const slug = getLandingTabSlug(this.tabs)
+      // leaving /home?code=... for a tab (or plain /home), the code is spent
+      await this.$router.replace(slug ? { name: 'tab', params: { slug } } : { name: 'home' }).catch(() => null)
+      this.connectLinkError = (await linked) || ''
+      this.connectLinkedOpen = true
+    },
+
     maybeOpenWelcomeDialogOnce () {
-      if (this.welcomeOfferedThisSession || shouldHideWelcome()) {
+      // not while coming back from Connect: that has its own dialog
+      if (this.welcomeOfferedThisSession || shouldHideWelcome() || this.$route.query.code) {
         return
       }
       this.welcomeOfferedThisSession = true

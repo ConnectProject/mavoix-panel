@@ -1,6 +1,10 @@
 <template>
-  <q-page class="flex flex-center">
-    <div>
+  <q-page
+    class="flex flex-center"
+    :style="{ background: $route.query.code ? lastTabColor : '' }"
+  >
+    <!-- coming back from Connect: the layout links the account and moves on to a tab -->
+    <div v-if="!$route.query.code">
       <h3> Bienvenue sur Ma Voix {{ username }}</h3>
 
       <!-- If the query is loading -->
@@ -30,6 +34,8 @@
 import Parse from 'parse'
 
 import ListItemLoading from '~/components/ListItemLoading'
+import { connectAuthorizeUri, connectRedirectUri } from '~/utils/connect'
+import { getLastTabColor } from '~/utils/mavoixNavigation'
 
 export default {
   name: 'PageHome',
@@ -46,32 +52,19 @@ export default {
   },
   data () {
     return {
-      redirectUri: `${window.location.origin}/home`
+      lastTabColor: getLastTabColor(),
+      redirectUri: connectRedirectUri()
     }
   },
   computed: {
     authorizeUri () {
-      return `${process.env.CONNECT_URL}/authorize?client_id=${process.env.CONNECT_CLIENT_ID}&redirect_uri=${this.redirectUri}&response_type=code`
+      return connectAuthorizeUri()
     },
     username () {
       return Parse.User.current()?.getUsername()
     },
     connectUserId () {
       return this.$store.state.users.connectUserId
-    }
-  },
-  created () {
-    const authorizationCode = this.$router.currentRoute.query.code
-    if (authorizationCode) {
-      const params = { authorizationCode, redirectUri: this.redirectUri }
-      Parse.Cloud.run('linkWithConnect', params).then(({ connectUserId }) => {
-        this.$store.commit('users/setConnectUserId', connectUserId)
-      })
-        .catch((err) => {
-          console.error(err)
-          this.$q.notify({ position: 'top-right', message: 'Erreur lors de la connexion à connect: ' + err.message, color: 'red' })
-        })
-      this.$router.replace({ name: 'home' })
     }
   },
   methods: {

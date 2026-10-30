@@ -46,6 +46,17 @@
               {{ $t('welcome.stepSettings') }}
             </div>
           </div>
+          <div class="row items-start welcome-dialog__step">
+            <q-icon
+              name="share"
+              color="primary"
+              size="md"
+              class="welcome-dialog__step-icon"
+            />
+            <div class="welcome-dialog__step-text text-body1">
+              {{ $t('welcome.stepConnect') }}
+            </div>
+          </div>
         </div>
 
         <q-separator class="q-my-md" />

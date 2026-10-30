@@ -3,12 +3,18 @@ export default {
   logoutLabel: 'Déconnexion',
   welcome: {
     title: 'Bienvenu à MaVoix',
-    intro: 'Pour bien démarrer, voici trois actions principales :',
+    intro: 'Pour bien démarrer, voici quatre actions principales :',
     stepDevice: 'Liez un appareil avec le bouton Lier un appareil (icône QR) dans la barre du haut.',
     stepTabs: 'Créez ou ouvrez des onglets via Onglets, ou avec le + à côté des onglets.',
     stepSettings: 'Ajustez la taille des images, la synthèse vocale et plus encore dans Paramètres globaux (icône engrenage).',
+    stepConnect: 'Vous pouvez aussi partager des données d\'usage (heures d\'utilisation et phrases construites) avec Connect, une plateforme ouverte de partage de données. Ce partage est facultatif : activez-le ou désactivez-le dans Paramètres globaux.',
     dontShowAgain: 'Ne plus montrer la prochaine fois',
     ok: 'Compris'
+  },
+  connectLinked: {
+    title: 'Partage de données avec Connect',
+    success: 'Le partage de données avec Connect est activé. Vous pouvez le modifier à tout moment dans Paramètres globaux.',
+    failure: 'Le partage de données avec Connect n\'a pas pu être activé.'
   },
   navDrawer: {
     home: 'Accueil',
@@ -34,6 +40,10 @@ export default {
     speedNormal: 'Normal',
     speedFast: 'Rapide',
     ttsLanguageLabel: 'Langage de synthèse vocale',
+    connectLabel: 'Partage de données avec Connect',
+    connectOn: 'Partage activé',
+    connectOff: 'Partage désactivé',
+    connectDescription: 'Connect est une plateforme ouverte de partage de données entre applications d\'aide à la communication. Si vous activez le partage, l\'application MaVoix y envoie les heures de début et de fin d\'utilisation, ainsi que les phrases construites (adresse des images utilisées et mots prononcés). Ces données sont rendues publiques. Vous serez redirigé vers Connect pour vous identifier.',
     configLabel: 'Configuration de l\'application',
     exportConfig: 'Exporter',
     importConfig: 'Importer',

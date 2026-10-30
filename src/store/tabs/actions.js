@@ -41,8 +41,9 @@ const findBoirePublicEntry = (publicImages) =>
  * @param {Context} ctx vuex context
  * @returns {Promise<void>} resolves when tabs are refreshed or nothing to do
  */
-export const ensureDefaultTabIfEmpty = async ({ dispatch, getters, rootState, commit }) => {
-  if (getters.tabs.length > 0) {
+export const ensureDefaultTabIfEmpty = async ({ dispatch, state, getters, rootState, commit }) => {
+  // while the tabs are still loading the list is empty even if the user has tabs
+  if (state.loading || getters.tabs.length > 0) {
     return
   }
 

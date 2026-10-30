@@ -1,5 +1,25 @@
 export const LAST_TAB_SLUG_KEY = 'mavoix.lastTabSlug'
 export const HIDE_WELCOME_KEY = 'mavoix.hideWelcomeDialog'
+export const LAST_TAB_COLOR_KEY = 'mavoix.lastTabColor'
+
+/**
+ * Remember the background colour of the tab being shown, to paint it before the next load is done.
+ * index.template.html reads the same key to colour the page before the app starts.
+ * @param {string} hexColor tab colour
+ * @returns {void}
+ */
+export const setLastTabColor = function (hexColor) {
+  if (hexColor) {
+    window.localStorage.setItem(LAST_TAB_COLOR_KEY, hexColor)
+  }
+}
+
+/**
+ * @returns {string} colour of the last tab shown, empty when unknown
+ */
+export const getLastTabColor = function () {
+  return window.localStorage.getItem(LAST_TAB_COLOR_KEY) || ''
+}
 
 /**
  * @param {string} slug tab slug

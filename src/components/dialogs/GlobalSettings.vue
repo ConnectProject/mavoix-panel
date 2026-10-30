@@ -62,6 +62,20 @@
 
           <div>
             <div class="text-subtitle1 q-mb-sm">
+              {{ $t('globalSettings.connectLabel') }}
+            </div>
+            <q-toggle
+              :value="Boolean(connectUserId)"
+              :label="connectUserId ? $t('globalSettings.connectOn') : $t('globalSettings.connectOff')"
+              @input="onConnectToggle"
+            />
+            <div class="text-body2 text-grey-8 q-mt-xs connect-description">
+              {{ $t('globalSettings.connectDescription') }}
+            </div>
+          </div>
+
+          <div>
+            <div class="text-subtitle1 q-mb-sm">
               {{ $t('globalSettings.configLabel') }}
             </div>
             <div class="row q-gutter-sm">
@@ -117,6 +131,7 @@
 import { Notify } from 'quasar'
 
 import { exportAppConfig, importAppConfig } from '~/utils/appConfig'
+import { connectAuthorizeUri } from '~/utils/connect'
 
 export default {
   name: 'DialogGlobalSettings',
@@ -154,6 +169,12 @@ export default {
     }
   },
 
+  computed: {
+    connectUserId () {
+      return this.$store.state.users.connectUserId
+    }
+  },
+
   watch: {
     value (opened) {
       if (opened) {
@@ -167,6 +188,15 @@ export default {
   },
 
   methods: {
+    // enabling goes through Connect's authorization page, which sends the user back to the Home page
+    onConnectToggle (enabled) {
+      if (enabled) {
+        window.location.href = connectAuthorizeUri()
+      } else {
+        this.$store.dispatch('users/unlinkFromConnect')
+      }
+    },
+
     async onExport () {
       this.exporting = true
       try {
@@ -230,6 +260,9 @@ export default {
 .global-language-select .q-field__control
   border 2px solid #9aa0ac !important
   border-radius 12px
+
+.connect-description
+  max-width 440px
 
 .speed-labels
   font-size 0.95rem
