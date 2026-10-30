@@ -25,6 +25,9 @@ const routes = [
       /* Tab editor */
       { name: 'tab', path: '/tabs/:slug', component: () => import('~/pages/TabEditor.vue') },
 
+      /* Usage statistics */
+      { name: 'stats', path: '/stats', component: () => import('~/pages/Stats.vue') },
+
       /* Asset editor */
       { name: 'assets', path: '/assets', component: () => import('~/pages/AssetsManager.vue') }
     ]

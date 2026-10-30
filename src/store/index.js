@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import assetsManager from './assets-manager'
 import devices from './devices'
 import global from './global'
+import stats from './stats'
 import tabEditor from './tab-editor'
 import tabs from './tabs'
 import users from './users'
@@ -14,7 +15,8 @@ const modules = {
   tabs,
   tabEditor,
   assetsManager,
-  global
+  global,
+  stats
 }
 
 // initial state
@@ -34,7 +36,8 @@ export default function (/* { ssrContext } */) {
       tabs,
       tabEditor,
       assetsManager,
-      global
+      global,
+      stats
     },
     mutations: {
       reset (state) {

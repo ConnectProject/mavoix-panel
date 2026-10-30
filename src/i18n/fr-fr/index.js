@@ -16,6 +16,66 @@ export default {
     success: 'Le partage de données avec Connect est activé. Vous pouvez le modifier à tout moment dans Paramètres globaux.',
     failure: 'Le partage de données avec Connect n\'a pas pu être activé.'
   },
+  stats: {
+    title: 'Statistiques d\'utilisation',
+    period: 'Période',
+    lastDays: 'Les {n} derniers jours',
+    sinceStart: 'Depuis le début',
+    loadError: 'Impossible de charger les données.',
+    empty: 'Aucune donnée d\'utilisation sur cette période. Les statistiques apparaissent dès que l\'application a été utilisée avec un appareil lié à ce compte.',
+    weekdays: { 0: 'Lundi', 1: 'Mardi', 2: 'Mercredi', 3: 'Jeudi', 4: 'Vendredi', 5: 'Samedi', 6: 'Dimanche' },
+    overview: {
+      title: 'Vue d\'ensemble',
+      sessions: 'Sessions',
+      activeDays: 'Jours d\'utilisation',
+      time: 'Temps d\'utilisation',
+      phrases: 'Phrases',
+      avgPhrase: 'Cartes par phrase',
+      avgSession: 'Durée moyenne d\'une session',
+      night: 'Sessions de nuit',
+      nightHint: 'Avant 5 h 30',
+      of: 'sur {n} jour | sur {n} jours'
+    },
+    when: {
+      title: 'Quand',
+      perDay: 'Phrases par jour (les week-ends sont en plus clair)',
+      perWeek: 'Phrases par semaine',
+      perMonth: 'Phrases par mois',
+      heatmap: 'Phrases par jour de la semaine et par heure',
+      day: '{label} : {phrases} phrases, {sessions} sessions',
+      week: 'Semaine du {label} : {phrases} phrases, {sessions} sessions, {days} jours d\'utilisation',
+      month: '{label} : {phrases} phrases, {sessions} sessions, {days} jours d\'utilisation'
+    },
+    tabs: {
+      title: 'Onglets',
+      hint: 'Nombre de cartes touchées dans chaque onglet. Les onglets jamais utilisés sont à 0.',
+      taps: '{n} cartes, {phrases} phrases'
+    },
+    cards: {
+      title: 'Cartes',
+      mostUsed: 'Les plus utilisées',
+      leastUsed: 'Les moins utilisées',
+      leastUsedHint: 'Cartes utilisées au moins une fois, de la plus rare à la plus fréquente.',
+      neverUsed: 'Jamais utilisées ({n})',
+      neverUsedHint: 'Ces cartes sont dans les onglets mais n\'ont pas été utilisées sur la période.',
+      detail: '{n} fois, sur {days} jours, dernière fois le {last} ; onglets : {tabs}'
+    },
+    phrases: {
+      title: 'Phrases',
+      frequent: 'Phrases les plus fréquentes',
+      frequentHint: 'Phrases d\'au moins 2 cartes construites plusieurs fois.',
+      pairs: 'Enchaînements de 2 cartes',
+      triples: 'Enchaînements de 3 cartes',
+      times: '{n} fois',
+      none: 'Aucune phrase ne revient assez souvent.'
+    },
+    progress: {
+      title: 'Progression',
+      distinctCards: 'Cartes différentes utilisées par semaine',
+      avgLength: 'Cartes par phrase, par semaine (moyenne)',
+      week: 'Semaine du {day}'
+    }
+  },
   navDrawer: {
     home: 'Accueil',
     assetsManager: 'Images',
@@ -26,7 +86,8 @@ export default {
     noDeviceYet: 'Aucun appareil pour le moment',
     globalSettings: 'Paramètres globaux',
     help: 'Aide',
-    deviceQr: 'Lier un appareil'
+    deviceQr: 'Lier un appareil',
+    stats: 'Statistiques'
   },
   globalSettings: {
     title: 'Paramètres globaux',

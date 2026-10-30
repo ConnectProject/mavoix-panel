@@ -89,6 +89,13 @@
           <q-btn
             flat
             no-caps
+            icon="insights"
+            :label="$t('navDrawer.stats')"
+            to="/stats"
+          />
+          <q-btn
+            flat
+            no-caps
             icon="settings"
             :label="$t('navDrawer.globalSettings')"
             @click="openGlobalSettingsDialog"
