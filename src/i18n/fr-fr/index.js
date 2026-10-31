@@ -100,6 +100,7 @@ export default {
     speedSlow: 'Lent',
     speedNormal: 'Normal',
     speedFast: 'Rapide',
+    noVoice: 'Aucune voix installée pour la langue {lang} : la synthèse vocale utilise la voix par défaut.',
     ttsLanguageLabel: 'Langage de synthèse vocale',
     connectLabel: 'Partage de données avec Connect',
     connectOn: 'Partage activé',

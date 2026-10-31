@@ -100,6 +100,7 @@ export default {
     speedSlow: 'Slow',
     speedNormal: 'Normal',
     speedFast: 'Fast',
+    noVoice: 'No voice installed for {lang}: speech uses the default voice.',
     ttsLanguageLabel: 'Language (interface and speech)',
     connectLabel: 'Data sharing with Connect',
     connectOn: 'Sharing on',

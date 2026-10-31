@@ -40,10 +40,11 @@
               flat
               dense
               no-caps
-              class="brand-home-link text-weight-bold"
-              :label="$t('appTitle')"
+              class="brand-home-link"
               to="/"
-            />
+            >
+              <span class="brand-ma">ma</span><span class="brand-voix">voix</span>
+            </q-btn>
           </q-toolbar-title>
 
           <q-space />
@@ -500,8 +501,8 @@ export default {
   opacity 0
 
 .top-header
-  background #f4f5f8
-  color #1f2a44
+  background dimgray
+  color white
 
 .top-main-nav
   position relative
@@ -511,6 +512,15 @@ export default {
 .brand-home-link
   padding 0 4px
   color inherit
+  font-family 'Quicksand', sans-serif
+  font-weight 700
+  font-size 32px
+
+.brand-ma
+  color thistle
+
+.brand-voix
+  color white
 
 .top-link--active
   background #e6ebf7

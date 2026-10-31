@@ -1,11 +1,14 @@
 import Parse from 'parse'
+import { Notify } from 'quasar'
 import Speak from 'speak-tts'
 
+import { i18n } from '~/boot/i18n.js'
 import ParseUser from '~/models/ParseUser'
 import TabModel, { IMAGE_SIZE_KEY, LANGUAGE_KEY, SPEED_KEY } from '~/models/Tab'
 import getCurrentUserId from '~/utils/getCurrentUserId'
 import { loadPublicImages as importPublicImages } from '~/utils/publicImages'
 import { syncPictogramNames as syncNames } from '~/utils/syncPictogramNames'
+import { pickVoice } from '~/utils/ttsVoice'
 
 /**
  * Push global TTS + image size onto every Tab owned by the current account
@@ -57,7 +60,21 @@ export const initTTS = ({ commit, rootState }) => {
     'lang': lang,
     'rate': speed,
     'pitch': 1
-  }).then(() => {
+  }).then(({ voices }) => {
+    // choose the voice ourselves: the lang tag alone does not make every browser switch voice
+    // (speak-tts only accepts a voice by name: its object check rejects SpeechSynthesisVoice)
+    const voice = pickVoice(voices, lang)
+    console.info(`[tts] language ${lang}: ${voice ? `voice "${voice.name}" (${voice.lang})` : 'no matching voice'} among ${voices.length} voices`)
+    if (!voice) {
+      Notify.create({ message: i18n.t('globalSettings.noVoice', { lang }), color: 'orange' })
+    }
+    try {
+      if (voice) {
+        speech.setVoice(voice.name)
+      }
+    } catch (err) {
+      console.warn(err) // keep the default voice, speech must stay available
+    }
     commit('setTTS', speech)
   })
     .catch((err) => {
