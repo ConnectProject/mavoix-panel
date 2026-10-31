@@ -3,17 +3,20 @@ import enUs from './en-us'
 import esEs from './es-es'
 import frFr from './fr-fr'
 import itIt from './it-it'
+import landing from './landing'
 import nlNl from './nl-nl'
 import ptPt from './pt-pt'
 
+const withLanding = (locale, messages) => ({ ...messages, landing: landing[locale] })
+
 export default {
-  'fr-fr': frFr,
-  'en-us': enUs,
-  'es-es': esEs,
-  'pt-pt': ptPt,
-  'de-de': deDe,
-  'it-it': itIt,
-  'nl-nl': nlNl
+  'fr-fr': withLanding('fr-fr', frFr),
+  'en-us': withLanding('en-us', enUs),
+  'es-es': withLanding('es-es', esEs),
+  'pt-pt': withLanding('pt-pt', ptPt),
+  'de-de': withLanding('de-de', deDe),
+  'it-it': withLanding('it-it', itIt),
+  'nl-nl': withLanding('nl-nl', nlNl)
 }
 
 const LOCALES = { fr: 'fr-fr', es: 'es-es', pt: 'pt-pt', de: 'de-de', it: 'it-it', nl: 'nl-nl' }

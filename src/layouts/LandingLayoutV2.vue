@@ -13,15 +13,41 @@
 
         <q-space />
 
-        <q-btn flat no-caps class="landing-nav-link" label="Who it's for" @click="scrollTo('who')" />
-        <q-btn flat no-caps class="landing-nav-link" label="Features" @click="scrollTo('features')" />
-        <q-btn flat no-caps class="landing-nav-link" label="How it works" @click="scrollTo('how-it-works')" />
+        <q-btn flat no-caps class="landing-nav-link" :label="t('nav.who')" @click="scrollTo('who')" />
+        <q-btn flat no-caps class="landing-nav-link" :label="t('nav.features')" @click="scrollTo('features')" />
+        <q-btn flat no-caps class="landing-nav-link" :label="t('nav.how')" @click="scrollTo('how-it-works')" />
+
+        <q-btn-dropdown
+          flat
+          no-caps
+          dense
+          icon="language"
+          class="landing-nav-link landing-lang"
+          :label="currentLanguage[1]"
+          :aria-label="t('langLabel')"
+        >
+          <q-list>
+            <q-item
+              v-for="lang in languages"
+              :key="lang[0]"
+              v-close-popup
+              clickable
+              :active="lang[0] === locale"
+              @click="setLocale(lang[0])"
+            >
+              <q-item-section avatar class="landing-lang__code">
+                {{ lang[1] }}
+              </q-item-section>
+              <q-item-section>{{ lang[2] }}</q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
 
         <q-btn
           no-caps
           unelevated
           class="landing-cta-nav"
-          label="Get started"
+          :label="t('nav.start')"
           :to="{ name: 'home' }"
         />
       </q-toolbar>
@@ -34,21 +60,24 @@
         <section class="hero-section">
           <div class="hero-copy">
             <div class="hero-pill">
-              Free &amp; open source · Works with Connect
+              {{ t('pill') }}
             </div>
             <h1 class="hero-title">
-              Your child's voice, in pictures
+              {{ t('title') }}
             </h1>
             <p class="hero-subtitle">
-              Picture boards that let your child point, tap, and be heard — right in your browser.
+              {{ t('subtitle') }}
+            </p>
+            <p class="hero-roles">
+              {{ t('heroRoles') }}
             </p>
             <div class="hero-ctas">
               <router-link :to="{ name: 'home' }" class="hero-cta hero-cta--parent">
                 <q-icon name="person" size="20px" class="hero-cta__icon" />
                 <div class="hero-cta__label">
-                  <span class="hero-cta__role">For parents</span>
+                  <span class="hero-cta__role">{{ t('forParents') }}</span>
                   <span class="hero-cta__action">
-                    Open the panel
+                    {{ t('openPanel') }}
                     <q-icon name="arrow_forward" size="13px" />
                   </span>
                 </div>
@@ -61,22 +90,22 @@
               >
                 <q-icon name="child_care" size="20px" class="hero-cta__icon" />
                 <div class="hero-cta__label">
-                  <span class="hero-cta__role">For children</span>
+                  <span class="hero-cta__role">{{ t('forChildren') }}</span>
                   <span class="hero-cta__action">
-                    Open the app
+                    {{ t('openApp') }}
                     <q-icon name="open_in_new" size="12px" />
                   </span>
                 </div>
               </a>
             </div>
             <button class="hero-howto" @click="scrollTo('how-it-works')">
-              See how it works ↓
+              {{ t('seeHow') }}
             </button>
           </div>
           <div class="hero-visual">
             <img
               :src="heroBoardImageSrc"
-              alt="A mavoix board with picture cards"
+              :alt="t('heroAlt')"
               class="landing-placeholder landing-placeholder--hero"
             >
           </div>
@@ -87,33 +116,35 @@
                 <span class="brand-ma">ma</span><span class="brand-voix">voix</span>
               </h3>
               <p class="hero-trio__body">
-                mavoix is an open source application enabling non-verbal persons to communicate using images.
-                Build boards for home, school, or therapy — and let taps speak aloud.
+                {{ t('aboutPre') }}<a
+                  href="https://en.wikipedia.org/wiki/Picture_Exchange_Communication_System"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hero-trio__link"
+                >{{ t('aboutLink') }}</a>{{ t('aboutPost') }}
               </p>
             </article>
             <article class="hero-trio__card">
               <h3 class="hero-trio__title">
-                Sharing is caring
+                {{ t('sharingTitle') }}
               </h3>
               <p class="hero-trio__body">
-                mavoix is integrated with
+                {{ t('sharingPre') }}
                 <a
                   href="https://github.com/ConnectProject"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="hero-trio__link"
                 >Connect</a>
-                — an open database for sharing public, anonymous data among assistive applications.
-                Signing in with Connect when you use the panel is optional and helps improve the tool through privacy-aware telemetry.
+                {{ t('sharingPost') }}
               </p>
             </article>
             <article class="hero-trio__card">
               <h3 class="hero-trio__title">
-                Data for insight
+                {{ t('dataTitle') }}
               </h3>
               <p class="hero-trio__body">
-                Anonymous, aggregated patterns help researchers and builders see how picture-based communication is used in the real world —
-                so assistive tools can grow from evidence, not guesswork, while protecting individual privacy.
+                {{ t('dataBody') }}
               </p>
             </article>
           </div>
@@ -128,7 +159,7 @@
               </div>
               <div class="section-header__text">
                 <h2 class="section-title">
-                  Who it's for
+                  {{ t('who.title') }}
                 </h2>
                 <!-- <p class="section-subtitle">
                   Built for everyone who supports a child's communication
@@ -144,11 +175,10 @@
                     <q-icon name="favorite" size="20px" />
                   </div>
                   <div class="lv-card__title">
-                    Parents
+                    {{ t('who.parentsTitle') }}
                   </div>
                   <div class="lv-card__body">
-                    Give your child a way to tell you what they want, how they feel,
-                    and what they need — even before words come.
+                    {{ t('who.parentsBody') }}
                   </div>
                 </q-card-section>
               </q-card>
@@ -160,11 +190,10 @@
                     <q-icon name="support_agent" size="20px" />
                   </div>
                   <div class="lv-card__title">
-                    Caregivers
+                    {{ t('who.caregiversTitle') }}
                   </div>
                   <div class="lv-card__body">
-                    Set up boards tailored to daily routines and familiar things,
-                    ready whenever you need them.
+                    {{ t('who.caregiversBody') }}
                   </div>
                 </q-card-section>
               </q-card>
@@ -176,11 +205,10 @@
                     <q-icon name="school" size="20px" />
                   </div>
                   <div class="lv-card__title">
-                    Educators
+                    {{ t('who.educatorsTitle') }}
                   </div>
                   <div class="lv-card__body">
-                    A flexible tool that supports communication goals in the classroom
-                    or therapy room, at whatever pace works best.
+                    {{ t('who.educatorsBody') }}
                   </div>
                 </q-card-section>
               </q-card>
@@ -197,7 +225,7 @@
               </div>
               <div class="section-header__text">
                 <h2 class="section-title">
-                  What you can do
+                  {{ t('features.title') }}
                 </h2>
                 <!-- <p class="section-subtitle">
                   Picture boards, symbols, and speech — in one simple flow
@@ -212,11 +240,10 @@
                   <q-icon name="dashboard" size="20px" />
                 </div>
                 <div class="lv-card__title">
-                  Build boards for any moment
+                  {{ t('features.boardsTitle') }}
                 </div>
                 <div class="lv-card__body">
-                  Create a board for home, school, feelings, or any routine.
-                  Boards stay organised as your child's needs grow.
+                  {{ t('features.boardsBody') }}
                 </div>
               </q-card-section>
             </q-card>
@@ -226,11 +253,10 @@
                   <q-icon name="add_photo_alternate" size="20px" />
                 </div>
                 <div class="lv-card__title">
-                  Add pictures
+                  {{ t('features.picturesTitle') }}
                 </div>
                 <div class="lv-card__body">
-                  Upload photos from your camera roll, search a symbol library,
-                  or snap something new right in the app.
+                  {{ t('features.picturesBody') }}
                 </div>
               </q-card-section>
             </q-card>
@@ -240,11 +266,10 @@
                   <q-icon name="record_voice_over" size="20px" />
                 </div>
                 <div class="lv-card__title">
-                  Speaks for them
+                  {{ t('features.speaksTitle') }}
                 </div>
                 <div class="lv-card__body">
-                  Tap a picture and the app reads the word aloud — giving
-                  your child an instant, clear voice.
+                  {{ t('features.speaksBody') }}
                 </div>
               </q-card-section>
             </q-card>
@@ -254,11 +279,10 @@
                   <q-icon name="edit" size="20px" />
                 </div>
                 <div class="lv-card__title">
-                  Stays organised as they grow
+                  {{ t('features.organisedTitle') }}
                 </div>
                 <div class="lv-card__body">
-                  Rename, reorder, and reorganise boards at any time —
-                  search, filters, and categories keep things clear.
+                  {{ t('features.organisedBody') }}
                 </div>
               </q-card-section>
             </q-card>
@@ -274,7 +298,7 @@
               </div>
               <div class="section-header__text">
                 <h2 class="section-title">
-                  How it works
+                  {{ t('how.title') }}
                 </h2>
                 <!-- <p class="section-subtitle">
                   Three quick steps from a blank board to your child speaking with taps
@@ -288,11 +312,10 @@
                 1
               </div>
               <h3 class="step-heading">
-                Make a board
+                {{ t('how.step1Title') }}
               </h3>
               <p class="step-text">
-                Name it anything — Morning Routine, School, Feelings.
-                Takes about ten seconds.
+                {{ t('how.step1Body') }}
               </p>
             </div>
             <div class="step-connector" aria-hidden="true" />
@@ -301,11 +324,10 @@
                 2
               </div>
               <h3 class="step-heading">
-                Add pictures
+                {{ t('how.step2Title') }}
               </h3>
               <p class="step-text">
-                Upload photos from your camera roll, search a symbol library,
-                or snap something new right in the app.
+                {{ t('how.step2Body') }}
               </p>
             </div>
             <div class="step-connector" aria-hidden="true" />
@@ -314,11 +336,22 @@
                 3
               </div>
               <h3 class="step-heading">
-                Let them speak
+                {{ t('how.step3Title') }}
               </h3>
               <p class="step-text">
-                Your child taps a picture and the app says the word out loud.
-                Simple, immediate, and theirs.
+                {{ t('how.step3Body') }}
+              </p>
+            </div>
+            <div class="step-connector" aria-hidden="true" />
+            <div class="step-item">
+              <div class="step-number">
+                4
+              </div>
+              <h3 class="step-heading">
+                {{ t('how.step4Title') }}
+              </h3>
+              <p class="step-text">
+                {{ t('how.step4Body') }}
               </p>
               <a
                 :href="mavoixAppUrl"
@@ -327,7 +360,7 @@
                 class="step-app-link"
               >
                 <q-icon name="child_care" size="14px" />
-                Open on your child's device
+                {{ t('how.deviceLink') }}
                 <q-icon name="open_in_new" size="11px" />
               </a>
             </div>
@@ -338,14 +371,13 @@
         <section class="oss-band">
           <div class="oss-band__inner text-center">
             <h2 class="oss-title q-mb-md">
-              Free and open source, always
+              {{ t('oss.title') }}
             </h2>
             <p class="oss-lead q-mb-sm">
-              mavoix is free to use and open source. We believe every child
-              deserves a voice — no subscription, no barriers, no hidden costs.
+              {{ t('oss.lead') }}
             </p>
             <p class="oss-contribute q-mb-lg">
-              Want to help? Code, translations, and feedback are always welcome.
+              {{ t('oss.contribute') }}
             </p>
             <q-btn
               no-caps
@@ -353,7 +385,7 @@
               color="white"
               text-color="white"
               icon="fab fa-github"
-              label="View on GitHub"
+              :label="t('oss.github')"
               type="a"
               href="https://github.com/ConnectProject"
               target="_blank"
@@ -361,21 +393,11 @@
               class="oss-btn"
             />
 
-            <p class="oss-pecs-foot">
-              Learn about picture exchange:
-              <a
-                href="https://en.wikipedia.org/wiki/Picture_Exchange_Communication_System"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="oss-pecs-foot__link"
-              >PECS on Wikipedia</a>.
-            </p>
-
             <div class="oss-band__closing">
               <span class="oss-closing__copy">© {{ year }} mavoix</span>
               <span class="oss-closing__sep" aria-hidden="true">·</span>
               <router-link :to="{ name: 'home' }" class="oss-closing__link">
-                Open the panel
+                {{ t('openPanel') }}
               </router-link>
               <span class="oss-closing__sep" aria-hidden="true">·</span>
               <a
@@ -384,7 +406,7 @@
                 rel="noopener noreferrer"
                 class="oss-closing__link"
               >
-                mavoix app
+                {{ t('oss.app') }}
                 <q-icon name="open_in_new" size="12px" class="oss-closing__ext" />
               </a>
             </div>
@@ -397,14 +419,52 @@
 
 <script>
 /* eslint-disable max-lines */
+import { LANDING_LANGUAGES } from '~/i18n/landing'
+
+const STORAGE_KEY = 'mavoix.landingLocale'
+
+/**
+ * Locale to show: saved choice, otherwise the browser/system language, otherwise English.
+ * @returns {string} locale key
+ */
+const detectLocale = () => {
+  const known = LANDING_LANGUAGES.map(([locale]) => locale)
+  let saved = null
+
+  try {
+    saved = window.localStorage.getItem(STORAGE_KEY)
+  } catch (error) {
+    saved = null
+  }
+  if (known.includes(saved)) {
+    return saved
+  }
+  const candidates = navigator.languages || [navigator.language]
+  for (const language of candidates) {
+    const code = String(language).slice(0, 2)
+      .toLowerCase()
+    const match = known.find((locale) => locale.startsWith(`${code}-`))
+    if (match) {
+      return match
+    }
+  }
+
+  return 'en-us'
+}
+
 export default {
   name: 'LayoutLandingV2',
   data () {
     return {
-      navScrolled: false
+      navScrolled: false,
+      locale: detectLocale(),
+      languages: LANDING_LANGUAGES
     }
   },
   computed: {
+    currentLanguage () {
+      return this.languages.find(([locale]) => locale === this.locale) || this.languages[0]
+    },
     mavoixAppUrl () {
       return process.env.MAVOIX_APP_URL || 'https://mavoix.connect-project.io/app/'
     },
@@ -419,6 +479,14 @@ export default {
       return `${prefix}my_day_tab_kids.png`
     }
   },
+  watch: {
+    locale: {
+      immediate: true,
+      handler (locale) {
+        document.documentElement.lang = locale.slice(0, 2)
+      }
+    }
+  },
   mounted () {
     this._onScroll = () => {
       this.navScrolled = window.scrollY > 10
@@ -429,6 +497,17 @@ export default {
     window.removeEventListener('scroll', this._onScroll)
   },
   methods: {
+    t (key) {
+      return this.$t(`landing.${key}`, this.locale)
+    },
+    setLocale (locale) {
+      this.locale = locale
+      try {
+        window.localStorage.setItem(STORAGE_KEY, locale)
+      } catch (error) {
+        // storage unavailable: the choice just is not remembered
+      }
+    },
     scrollTo (id) {
       const el = document.getElementById(id)
       if (el) {
@@ -519,6 +598,15 @@ export default {
   background: rgba(255, 255, 255, 0.12);
 }
 
+.landing-lang :deep(.q-icon) {
+  font-size: 1.15rem;
+}
+
+.landing-lang__code {
+  font-weight: 700;
+  min-width: 36px;
+}
+
 .landing-cta-nav {
   background: var(--lv-thistle) !important;
   color: var(--lv-gray-deeper) !important;
@@ -593,6 +681,15 @@ export default {
   font-weight: 700;
   margin: 0 0 18px;
   text-wrap: balance;
+}
+
+.hero-roles {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--lv-thistle);
+  max-width: 480px;
+  margin: -12px 0 28px;
 }
 
 .hero-subtitle {
@@ -856,12 +953,14 @@ export default {
 
 /* Features section — sits directly on the gray page, like "Who it's for" */
 .section-features {
-  margin: 8px 0;
+  margin: 0;
+  padding-top: 0; /* the previous section's bottom padding already spaces it: half the old gap */
 }
 
 /* How it works — mint wash */
 .section-how {
-  margin: 8px 0;
+  margin: 0;
+  padding-top: 0;
 }
 
 /* Section sits on the gray page; each step is a white card like the feature cards */
@@ -954,7 +1053,7 @@ export default {
 /* ─── Steps ────────────────────────────────────────────────────────────────── */
 .steps-row {
   display: grid;
-  grid-template-columns: 1fr 48px 1fr 48px 1fr;
+  grid-template-columns: 1fr 32px 1fr 32px 1fr 32px 1fr;
   align-items: stretch;
 }
 
@@ -1112,27 +1211,6 @@ export default {
   transform: translateY(-1px);
 }
 
-.oss-pecs-foot {
-  margin: 24px 0 0;
-  font-size: 0.8125rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.52);
-}
-
-.oss-pecs-foot__link {
-  color: rgba(255, 255, 255, 0.88);
-  font-weight: 500;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
-  padding-bottom: 1px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.oss-pecs-foot__link:hover {
-  color: #fff;
-  border-bottom-color: rgba(255, 255, 255, 0.55);
-}
-
 /* Closing strip: copyright + nav links (replaces separate footer — GitHub stays above) */
 .oss-band__closing {
   margin-top: 20px;
@@ -1228,6 +1306,11 @@ export default {
 
   .section-block {
     padding: 56px 4px;
+  }
+
+  .section-features,
+  .section-how {
+    padding-top: 0;
   }
 
   .hero-ctas {
