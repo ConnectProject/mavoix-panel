@@ -74,15 +74,16 @@ const loadRows = async (userId) => {
  */
 const buildNameOf = async (images, ids, lang) => {
   const catalog = new Map(images.map((entry) => [arasaacIdFromUrl(entry.url), entry]))
-  const catalogName = (id) => {
+  const catalogName = (id, code) => {
     const entry = catalog.get(id)
 
-    return entry && entry.names && entry.names[lang] && entry.names[lang][0]
+    return entry && entry.names && entry.names[code] && entry.names[code][0]
   }
-  const unknown = [...new Set(ids.filter((id) => id && !catalogName(id)))]
+  const unknown = [...new Set(ids.filter((id) => id && !catalogName(id, lang)))]
   const remote = new Map(await Promise.all(unknown.map(async (id) => [id, await fetchRemoteName(id, lang)])))
 
-  return (id) => catalogName(id) || remote.get(id)
+  // pictograms without a name in the language fall back to English
+  return (id) => catalogName(id, lang) || remote.get(id) || catalogName(id, 'en')
 }
 
 /**

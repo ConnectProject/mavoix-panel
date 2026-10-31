@@ -7,7 +7,7 @@ export const pictogramLang = (language) => String(language || 'fr').slice(0, 2)
   .toLowerCase()
 
 /**
- * Names of a pictogram in the given language, falling back to French, then English, then any language.
+ * Names of a pictogram in the given language, falling back to English, then French, then any language.
  * @param {object} entry catalog entry
  * @param {string} language speech language code
  * @returns {string[]} names, possibly empty
@@ -20,8 +20,8 @@ export const pictogramNames = (entry, language) => {
     return own
   }
 
-  // pictograms added after the French snapshot may lack a French name
-  return names.fr || names.en || Object.values(names)[0] || []
+  // pictograms without a name in the language fall back to English
+  return names.en || names.fr || Object.values(names)[0] || []
 }
 
 /**
