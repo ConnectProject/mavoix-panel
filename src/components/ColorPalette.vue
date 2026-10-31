@@ -128,9 +128,12 @@ export default {
 <style lang="stylus" scoped>
 .color-palette
   display grid
-  grid-template-columns repeat(8, 35px)
-  justify-content center
-  gap 10px
+  // 12 columns x 4 rows (48 colours) over the full width; 8 x 6 on narrow screens
+  grid-template-columns repeat(12, minmax(0, 1fr))
+  gap 8px
+
+  @media (max-width 640px)
+    grid-template-columns repeat(8, minmax(0, 1fr))
 
 .color-custom
   display flex
@@ -139,8 +142,10 @@ export default {
   margin-bottom 12px
 
 .color-swatch
-  width 35px
-  height 35px
+  width 100%
+  max-width 35px
+  aspect-ratio 1
+  justify-self center
   padding 0
   border 2px solid rgba(0, 0, 0, 0.15)
   border-radius 50%

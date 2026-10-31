@@ -1,6 +1,6 @@
 /*
  * Pure aggregation functions of the stats panel. They take the "UsageData" format
- * (see data-simulation/export_panel_data.py) and know nothing about Vue, Vuex or Parse, so they
+ * (see mavoix-data-simulation/export_panel_data.py) and know nothing about Vue, Vuex or Parse, so they
  * work the same on simulated and real data.
  *
  * Shapes used below:

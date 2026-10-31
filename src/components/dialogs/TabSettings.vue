@@ -4,7 +4,7 @@
       :value="opened"
       @input="onDialogInput"
     >
-      <q-card>
+      <q-card class="tab-settings-card">
         <q-card-section :style="{ background: hexColor, color: '#000000' }">
           <div class="text-h5 text-bold">
             {{ mode==="create" ? $t('tabSettings.createTitle') : $t('tabSettings.editTitle') }}
@@ -48,10 +48,14 @@
                 :key="iconName"
                 flat
                 round
+                dense
+                size="md"
                 :color="icon === iconName ? 'primary' : 'grey'"
                 :icon="iconName"
                 @click="icon = iconName"
-              />
+              >
+                <q-tooltip>{{ iconLabel(iconName) }}</q-tooltip>
+              </q-btn>
             </div>
           </div>
         </q-card-section>
@@ -119,8 +123,11 @@
 </template>
 
 <script>
+/* eslint-disable max-lines */
 import ColorPalette from '~/components/ColorPalette.vue'
+import arasaacThemes from '~/utils/arasaacThemes'
 import { navigateAfterTabDeleted } from '~/utils/mavoixNavigation'
+import tabIcons from '~/utils/tabIcons'
 
 export default {
   name: 'DialogTabSettings',
@@ -151,23 +158,7 @@ export default {
       name: '',
       hexColor: '#ffffff',
       icon: '',
-      iconOptions: [
-        'restaurant',
-        'directions_run',
-        'soup_kitchen',
-        'check_circle',
-        'home',
-        'settings',
-        'local_cafe',
-        'build',
-        'sports_bar',
-        'wine_bar',
-        'calculate',
-        'flag',
-        'category',
-        'favorite',
-        'star'
-      ]
+      iconOptions: tabIcons
     }
   },
 
@@ -191,6 +182,14 @@ export default {
   },
 
   methods: {
+    iconLabel (iconName) {
+      const theme = arasaacThemes.find((candidate) => candidate.icon === iconName)
+
+      return theme
+        ? this.$t(`addImagesModal.themes.${theme.key}`)
+        : this.$t(`tabSettings.otherIcons.${iconName}`)
+    },
+
     onColorPicked (hexColor) {
       this.hexColor = hexColor
       if (this.mode === 'edit') {
@@ -269,6 +268,19 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.tab-settings-card
+  width 560px
+  max-width 92vw
+
+.icon-grid
+  display grid
+  // 13 columns: the 26 icons fit in two rows; 9 columns on narrow screens
+  grid-template-columns repeat(13, minmax(0, 1fr))
+  justify-items center
+
+  @media (max-width 640px)
+    grid-template-columns repeat(9, minmax(0, 1fr))
+
 .name-input
     margin-bottom 16px
 
