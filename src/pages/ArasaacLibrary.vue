@@ -167,7 +167,7 @@
                   </div>
                   <q-icon
                     name="play_arrow"
-                    size="18px"
+                    size="24px"
                     color="primary"
                     role="button"
                     tabindex="0"
@@ -183,7 +183,7 @@
                   <q-icon
                     v-if="activeLibrary === 'personal'"
                     name="delete"
-                    size="18px"
+                    size="24px"
                     color="negative"
                     role="button"
                     tabindex="0"
@@ -906,8 +906,8 @@ export default {
   /* q-img wraps slot content in an absolutely positioned, full-size, padded box: shrink it to the button column */
   display flex
   flex-direction column
-  align-items flex-end
-  gap 2px
+  align-items center
+  gap 4px
   width auto !important
   height auto !important
   left auto !important
@@ -954,22 +954,23 @@ export default {
   padding 0
 
 .library-card__action
-  /* 20x20 circle, same as the checkbox hover circle */
-  box-sizing border-box
+  /* Same geometry as the tab editor buttons: 24px glyph, 2px of space, thin dim outline (30px in total). */
+  box-sizing content-box
   display flex
   align-items center
   justify-content center
-  width 20px
-  height 20px
+  width 28px
+  height 28px
   padding 0
+  border 1px solid rgba(0, 0, 0, 0.25)
   border-radius 50%
   cursor pointer
   transition box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.5, 1)
 
-/* Same hover as q-checkbox (measured): a 28px circle (20px + 4px ring) at ~6.5% black over the tile. */
+/* Hover darkens the circle (~6.5% black, as q-checkbox does); nothing spills over the neighbours. */
 .library-card__action:hover,
 .library-card__action:focus-visible
-  box-shadow 0 0 0 4px rgba(0, 0, 0, 0.065), inset 0 0 0 10px rgba(0, 0, 0, 0.065)
+  box-shadow inset 0 0 0 14px rgba(0, 0, 0, 0.065)
   outline none
 
 .library-card__action--disabled

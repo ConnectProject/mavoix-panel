@@ -666,12 +666,23 @@ export default {
   margin-left 4px
 
 .image-card-actions
+  /* q-img gives its slot box `padding: 16px` (it beats q-pa-sm); keep the buttons close to the corners */
+  padding 4px !important
+  height auto !important
+  bottom auto !important
   background transparent !important
   pointer-events none
   z-index 3
 
 .image-action-btn
   background rgba(255, 255, 255, 0.7)
+  /* thin dim outline so the buttons stay visible on white pictures */
+  border 1px solid rgba(0, 0, 0, 0.25)
+
+/* 24px glyph + 2px space on each side (Quasar's round dense minimum is 2.4em, i.e. 4.8px of space) */
+.image-action-btn :deep(.q-btn__wrapper)
+  min-width 28px !important
+  min-height 28px !important
   pointer-events auto
   z-index 4
 
