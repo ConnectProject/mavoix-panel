@@ -72,7 +72,7 @@
             <q-btn
               color="blue"
               icon-right="save"
-              label="save"
+              :label="$t('generic.save')"
               @click="saveImage"
             />
           </template>

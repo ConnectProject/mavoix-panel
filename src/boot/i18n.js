@@ -12,7 +12,7 @@ export default ({ app, Vue }) => {
 
   app.i18n = new VueI18n({
     locale: 'fr-fr',
-    fallbackLocale: 'fr-fr',
+    fallbackLocale: 'en-us',
     messages
   });
 

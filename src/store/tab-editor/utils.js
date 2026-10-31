@@ -8,6 +8,7 @@ import {
   AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
   HIDDEN_KEY as ITEM_HIDDEN_KEY,
   KEY_KEY as ITEM_KEY_KEY,
+  NAME_EDITED_KEY as ITEM_NAME_EDITED_KEY,
   NAME_KEY as ITEM_NAME_KEY,
   ORDER_KEY as ITEM_ORDER_KEY
 } from '~/models/TabItem'
@@ -32,6 +33,15 @@ export const changeByKey = (state, key, newValue) => {
     break
   }
 }
+
+/**
+ * Is the item's name text typed by the user? It is when it differs from the picture's own name,
+ * or when that name was typed by the user itself.
+ * @param {string} name item name
+ * @param {Asset} asset item picture
+ * @returns {boolean} true if the name must be kept when the language changes
+ */
+export const isItemNameEdited = (name, asset) => Boolean(asset && (asset.nameEdited || name !== asset.name))
 
 /**
  * Find an item's index in the list of items
@@ -76,6 +86,7 @@ export const itemModelToItem = (itemModel) => {
 
   return {
     name: itemModel.get(ITEM_NAME_KEY),
+    nameEdited: Boolean(itemModel.get(ITEM_NAME_EDITED_KEY)),
     asset,
     key: itemModel.get(ITEM_KEY_KEY),
     available: itemModel.get(ITEM_AVAILABLE_KEY),

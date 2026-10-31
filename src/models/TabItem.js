@@ -9,6 +9,7 @@ export const KEY_KEY = 'key'
 export const AVAILABLE_KEY = 'available'
 export const HIDDEN_KEY = 'hidden'
 export const ORDER_KEY = 'order'
+export const NAME_EDITED_KEY = 'nameEdited' // true once the user typed the name
 
 /*
 ** Represents an item of any tab
@@ -18,7 +19,7 @@ export default class TabItemModel extends Parse.Object {
     super('TabItem')
   }
 
-  static New (name, asset, tab, available, hidden, key, order) {
+  static New (name, asset, tab, available, hidden, key, order, nameEdited = false) {
     const newTabItem = new TabItemModel()
 
     newTabItem
@@ -29,11 +30,12 @@ export default class TabItemModel extends Parse.Object {
       .set(AVAILABLE_KEY, available) // Is item available
       .set(HIDDEN_KEY, hidden) // Should item be printed
       .set(ORDER_KEY, order) // Priority order of the item
+      .set(NAME_EDITED_KEY, Boolean(nameEdited)) // Was the name typed by the user
 
     return newTabItem
   }
 
-  static Create (name, asset, tab, hidden, available, order) {
-    return TabItemModel.New(name, asset, tab, available, hidden, randomString(8), order)
+  static Create (name, asset, tab, hidden, available, order, nameEdited = false) {
+    return TabItemModel.New(name, asset, tab, available, hidden, randomString(8), order, nameEdited)
   }
 }

@@ -1,3 +1,7 @@
+import { i18n } from '~/boot/i18n.js'
+import { localeFor } from '~/i18n'
+import { pictogramNames } from '~/utils/pictogramLanguage'
+
 /**
  * Set and enable tts
  * @param {State} state vuex state
@@ -22,14 +26,11 @@ export const setError = (state, err) => {
 
 export const setImages = (state, obj) => {
   if (obj.text.length > 1) {
-    let lang = 'fr'
-    if (obj.language) {
-      lang = obj.language
-    }
-    console.log(lang)
-    console.log(obj.text)
-    state.imagesSelected = state.images.filter(image => image.names[lang]?.filter(name => name.includes(obj.text)).length).slice(0, 20)
-      .map(image => Object.assign(image, { name: image.names[lang].filter(name => name.includes(obj.text))[0] }))
+    // search in the interface/speech language, as the picture names are in that language
+    const text = obj.text.toLowerCase()
+    const matching = (image) => pictogramNames(image, state.ttsLanguage).filter(name => name.toLowerCase().includes(text))
+    state.imagesSelected = state.images.filter(image => matching(image).length).slice(0, 20)
+      .map(image => Object.assign(image, { name: matching(image)[0] }))
   } else {
     state.imagesSelected = []
   }
@@ -53,4 +54,8 @@ export const setTTSSpeed = (state, ttsSpeed) => {
 
 export const setTTSLanguage = (state, ttsLanguage) => {
   state.ttsLanguage = ttsLanguage
+  // the interface follows the speech language
+  if (i18n) {
+    i18n.locale = localeFor(ttsLanguage)
+  }
 }

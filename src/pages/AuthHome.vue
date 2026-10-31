@@ -3,18 +3,18 @@
     <q-card>
       <q-form @submit="createUser">
         <h5 class="q-ma-md">
-          {{ isConnexion ? 'Connexion' : 'Inscription' }} :
+          {{ isConnexion ? $t('auth.login') : $t('auth.signup') }} :
         </h5>
         <q-input
           v-model="email"
           outlined
-          label="Email"
+          :label="$t('auth.email')"
           class="q-ma-md"
         />
         <q-input
           v-model="password"
           outlined
-          label="Password"
+          :label="$t('auth.password')"
           type="password"
           class="q-ma-md"
         />
@@ -22,14 +22,14 @@
           type="submit"
           class="q-ma-md"
         >
-          {{ isConnexion ? 'Connexion' : 'Inscription' }}
+          {{ isConnexion ? $t('auth.login') : $t('auth.signup') }}
         </q-btn>
         <br>
         <div
           class="q-ma-md cursor-pointer"
           @click="isConnexion = !isConnexion"
         >
-          <small>{{ isConnexion ? 'incription' : 'connexion' }}</small>
+          <small>{{ isConnexion ? $t('auth.signup') : $t('auth.login') }}</small>
         </div>
       </q-form>
     </q-card>

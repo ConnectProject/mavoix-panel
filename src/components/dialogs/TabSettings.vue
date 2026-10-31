@@ -246,7 +246,7 @@ export default {
         })
       } else {
         this.$q.notify({
-          message: 'Error updating tab',
+          message: this.$t('tabSettings.updateError'),
           color: 'negative'
         })
       }

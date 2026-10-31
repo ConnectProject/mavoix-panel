@@ -3,6 +3,8 @@ import JSZip from 'jszip'
 import Parse from 'parse'
 
 import AssetModel, {
+  ARASAAC_ID_KEY,
+  NAME_EDITED_KEY as ASSET_NAME_EDITED_KEY,
   NAME_KEY as ASSET_NAME_KEY,
   PARSE_FILE_KEY,
   URL_KEY
@@ -18,6 +20,7 @@ import TabModel, {
 import TabItemModel, {
   AVAILABLE_KEY,
   HIDDEN_KEY,
+  NAME_EDITED_KEY as ITEM_NAME_EDITED_KEY,
   NAME_KEY as ITEM_NAME_KEY,
   ORDER_KEY
 } from '~/models/TabItem'
@@ -82,10 +85,13 @@ export const exportAppConfig = async (globalSettings) => {
       id: asset.id,
       name: asset.get(ASSET_NAME_KEY),
       categories: asset.get('categories') || [],
+      arasaacId: asset.get(ARASAAC_ID_KEY) || null,
+      nameEdited: Boolean(asset.get(ASSET_NAME_EDITED_KEY)),
       url,
       file: null
     }
-    const blob = url ? await fetchImage(url) : null
+    // an ARASAAC picture is referenced by its id: no need to carry (and re-upload) the image
+    const blob = url && !entry.arasaacId ? await fetchImage(url) : null
     if (blob) {
       entry.file = `images/${index}.${EXTENSIONS[blob.type] || 'png'}`
       zip.file(entry.file, blob)
@@ -114,6 +120,7 @@ export const exportAppConfig = async (globalSettings) => {
         .map((item) => ({
           name: item.get(ITEM_NAME_KEY),
           assetId: item.get('asset') ? item.get('asset').id : null,
+          nameEdited: Boolean(item.get(ITEM_NAME_EDITED_KEY)),
           hidden: Boolean(item.get(HIDDEN_KEY)),
           available: item.get(AVAILABLE_KEY) !== false,
           order: item.get(ORDER_KEY)
@@ -144,7 +151,9 @@ const importAssets = async (zip, assets, userId) => {
       parseFile = await new Parse.File(`import-${Date.now()}-${index}.${ext}`, blob).save()
       url = parseFile.url()
     }
-    const asset = AssetModel.New(entry.name, parseFile, url, userId)
+    const asset = AssetModel.New(entry.name, parseFile, url, userId, {
+      arasaacId: entry.arasaacId, nameEdited: entry.nameEdited
+    })
     if (entry.categories && entry.categories.length) {
       asset.set('categories', entry.categories)
     }
@@ -181,7 +190,7 @@ export const importAppConfig = async (file) => {
     const itemModels = tabData.items
       .filter((item) => assetsById[item.assetId])
       .map((item) => TabItemModel.Create(
-        item.name, assetsById[item.assetId], tab, item.hidden, item.available, item.order
+        item.name, assetsById[item.assetId], tab, item.hidden, item.available, item.order, item.nameEdited
       ))
     await Parse.Object.saveAll(itemModels)
   }

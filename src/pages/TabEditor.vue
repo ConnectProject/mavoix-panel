@@ -559,7 +559,10 @@ export default {
 
     saveInlineRename (item) {
       const nextName = (this.inlineRenameDraft || '').trim()
-      if (nextName) item.name = nextName
+      if (nextName && nextName !== item.name) {
+        item.name = nextName
+        item.nameEdited = true
+      }
       this.inlineRenameIndex = null
       this.inlineRenameDraft = ''
     },
@@ -603,6 +606,7 @@ export default {
       const nextName = (this.renameDialogDraft || '').trim()
       if (nextName && this.renameDialogTarget && this.renameDialogTarget.item) {
         this.renameDialogTarget.item.name = nextName
+        this.renameDialogTarget.item.nameEdited = true
         this.$store.dispatch('tabEditor/saveCb', () => { /* auto-save on rename */ })
       }
       this.renameDialogOpen = false

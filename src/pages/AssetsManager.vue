@@ -15,7 +15,7 @@
         <q-input
           v-model="search"
           outlined
-          label="Rechercher"
+          :label="$t('assetsManager.search')"
         >
           <template #append>
             <q-icon name="search" />
@@ -68,7 +68,7 @@
         <q-input
           v-model="asset.name"
           class="absolute-bottom"
-          label="Name"
+          :label="$t('assetsManager.nameField')"
           style="background-color:rgba(255,255,255,0.7)"
           filled
           @click="editAsset(asset)"
@@ -105,7 +105,7 @@
         <q-input
           v-model="asset.name"
           class="absolute-bottom"
-          label="Name"
+          :label="$t('assetsManager.nameField')"
           style="background-color:rgba(255,255,255,0.7)"
           filled
           @keyup.enter="addAsset(asset.name,asset.url)"

@@ -10,6 +10,7 @@ import TabItemModel, {
   AVAILABLE_KEY as ITEM_AVAILABLE_KEY,
   HIDDEN_KEY as ITEM_HIDDEN_KEY,
   KEY_KEY as ITEM_KEY_KEY,
+  NAME_EDITED_KEY as ITEM_NAME_EDITED_KEY,
   NAME_KEY as ITEM_NAME_KEY,
   ORDER_KEY as ITEM_ORDER_KEY,
   TAB_KEY as ITEM_TAB_KEY
@@ -47,7 +48,7 @@ const appendDeletedItemDestroys = (promises, tabModel, deletedItems) => {
 const saveSingleTabItem = async (item, tabModel) => {
   const assetModel = await modelFromAsset(item.asset)
   if (!item.key) {
-    return TabItemModel.Create(item.name, assetModel, tabModel, item.hidden, item.available, item.order).save()
+    return TabItemModel.Create(item.name, assetModel, tabModel, item.hidden, item.available, item.order, item.nameEdited).save()
   }
 
   const itemModel = await new Parse.Query(TabItemModel)
@@ -55,6 +56,7 @@ const saveSingleTabItem = async (item, tabModel) => {
     .equalTo(ITEM_KEY_KEY, item.key)
     .first()
   itemModel.set(ITEM_NAME_KEY, item.name)
+  itemModel.set(ITEM_NAME_EDITED_KEY, Boolean(item.nameEdited))
   itemModel.set(ITEM_ASSET_KEY, assetModel)
   itemModel.set(ITEM_HIDDEN_KEY, item.hidden)
   itemModel.set(ITEM_AVAILABLE_KEY, item.available)

@@ -1,9 +1,12 @@
 import Parse from 'parse'
 
+import { i18n } from '~/boot/i18n.js'
 import AssetModel from '~/models/Asset'
 import TabModel from '~/models/Tab'
 import TabItemModel from '~/models/TabItem'
+import arasaacIdFromUrl from '~/utils/arasaacId'
 import getCurrentUserId from '~/utils/getCurrentUserId'
+import { pictogramLang } from '~/utils/pictogramLanguage'
 
 /**
  * Load tabs
@@ -21,23 +24,23 @@ export const loadTabs = ({ commit }) =>
       commit('setError', err)
     })
 
-const DEFAULT_TAB_NAME = 'Activités'
 const DEFAULT_TAB_COLOR = '#8BC34A'
 const DEFAULT_TAB_ICON = 'directions_run'
-const DEFAULT_ITEM_NAME = 'Boire'
 
 /**
- * First public pictogram whose French label is exactly "boire" (same catalog as Images).
+ * First public pictogram whose label, in the given language, is exactly `word` (same catalog as Images).
  * @param {Array} publicImages global.images from state
+ * @param {string} word label to look for
+ * @param {string} lang two-letter language code
  * @returns {{ url: string }|undefined} matching catalog entry or undefined
  */
-const findBoirePublicEntry = (publicImages) =>
+const findPublicEntry = (publicImages, word, lang) =>
   publicImages.find((img) =>
-    img.names && Array.isArray(img.names.fr) && img.names.fr.some((n) => n.toLowerCase() === 'boire')
+    img.names && Array.isArray(img.names[lang]) && img.names[lang].some((n) => n.toLowerCase() === word.toLowerCase())
   )
 
 /**
- * If the user has no tabs, create default "Activités" tab and link "Boire" image when it exists.
+ * If the user has no tabs, create the default tab and link its drink image when it exists.
  * @param {Context} ctx vuex context
  * @returns {Promise<void>} resolves when tabs are refreshed or nothing to do
  */
@@ -49,17 +52,18 @@ export const ensureDefaultTabIfEmpty = async ({ dispatch, state, getters, rootSt
 
   const userId = getCurrentUserId()
   const g = rootState.global
-  const tab = await TabModel.Create(DEFAULT_TAB_NAME, userId, DEFAULT_TAB_COLOR, DEFAULT_TAB_ICON, {
+  const tab = await TabModel.Create(i18n.t('tabSettings.defaultTabName'), userId, DEFAULT_TAB_COLOR, DEFAULT_TAB_ICON, {
     speed: typeof g.ttsSpeed === 'number' ? g.ttsSpeed : 1,
     language: (g.ttsLanguage || 'fr-FR').replace(/-/g, '_'),
     imageSize: g.imageSize === 'small' || g.imageSize === 'large' ? g.imageSize : 'medium'
   }).save()
 
-  const entry = findBoirePublicEntry(rootState.global.images)
+  const itemName = i18n.t('tabSettings.defaultItemName')
+  const entry = findPublicEntry(rootState.global.images, itemName, pictogramLang(g.ttsLanguage))
   if (entry && entry.url) {
-    const boireAsset = await AssetModel.New(DEFAULT_ITEM_NAME, false, entry.url, userId).save()
-    commit('assetsManager/addAsset', boireAsset, { root: true })
-    await TabItemModel.Create(DEFAULT_ITEM_NAME, boireAsset, tab, false, true, 0).save()
+    const drinkAsset = await AssetModel.New(itemName, false, entry.url, userId, { arasaacId: arasaacIdFromUrl(entry.url) }).save()
+    commit('assetsManager/addAsset', drinkAsset, { root: true })
+    await TabItemModel.Create(itemName, drinkAsset, tab, false, true, 0).save()
   }
 
   await dispatch('loadTabs')

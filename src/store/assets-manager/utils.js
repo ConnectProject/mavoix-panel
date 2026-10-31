@@ -1,6 +1,6 @@
 import Parse from 'parse'
 
-import AssetModel, { NAME_KEY, PARSE_FILE_KEY, URL_KEY } from '~/models/Asset'
+import AssetModel, { ARASAAC_ID_KEY, NAME_EDITED_KEY, NAME_KEY, PARSE_FILE_KEY, URL_KEY } from '~/models/Asset'
 
 /**
  * Return the index of an asset in an array of assets
@@ -29,7 +29,9 @@ export const assetFromModel = (assetModel) => {
     name: assetModel.get(NAME_KEY),
     url: url,
     file: parseFile,
-    categories
+    categories,
+    arasaacId: assetModel.get(ARASAAC_ID_KEY) || null,
+    nameEdited: Boolean(assetModel.get(NAME_EDITED_KEY))
   }
 }
 

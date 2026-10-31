@@ -6,7 +6,7 @@ import Unidecode from 'unidecode'
 import { modelFromAsset } from './utils'
 
 import { i18n } from '~/boot/i18n.js'
-import AssetModel, { NAME_KEY } from '~/models/Asset'
+import AssetModel, { NAME_EDITED_KEY, NAME_KEY } from '~/models/Asset'
 import getCurrentUserId from '~/utils/getCurrentUserId'
 
 /**
@@ -65,7 +65,10 @@ export const destroyEditingAsset = async ({ commit, state: { assets, editingInde
 export const saveEditingAsset = async ({ commit, state: { assets, editingIndex, editingAsset } }) => {
   try {
     const assetModel = await modelFromAsset(assets[editingIndex])
-    assetModel.set(NAME_KEY, editingAsset.name)
+    if (assetModel.get(NAME_KEY) !== editingAsset.name) {
+      assetModel.set(NAME_KEY, editingAsset.name)
+      assetModel.set(NAME_EDITED_KEY, true)
+    }
     await assetModel.save()
     commit('updateEditingAsset', assetModel)
     commit('cancelEdit')
@@ -96,7 +99,7 @@ export const uploadFiles = async ({ commit }, { files, posNotif = 'top-right' })
       }
     } catch (error) {
       console.error(error)
-      Notify.create({ position: posNotif, message: 'Error uploading image: ' + error.message, color: 'red' })
+      Notify.create({ position: posNotif, message: i18n.t('assetsManager.uploadError') + error.message, color: 'red' })
     }
   }
 }

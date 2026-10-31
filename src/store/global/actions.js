@@ -4,6 +4,7 @@ import Speak from 'speak-tts'
 import ParseUser from '~/models/ParseUser'
 import TabModel, { IMAGE_SIZE_KEY, LANGUAGE_KEY, SPEED_KEY } from '~/models/Tab'
 import getCurrentUserId from '~/utils/getCurrentUserId'
+import { syncPictogramNames as syncNames } from '~/utils/syncPictogramNames'
 
 /**
  * Push global TTS + image size onto every Tab owned by the current account
@@ -63,6 +64,25 @@ export const initTTS = ({ commit, rootState }) => {
     })
 }
 
+/**
+ * Rename the unedited ARASAAC pictures of the account to the current language, then refresh what shows them.
+ * @param {Context} ctx vuex context
+ * @returns {Promise<void>} resolves when done (errors are only logged: names are a convenience)
+ */
+export const syncPictogramNames = async ({ state, dispatch, rootGetters }) => {
+  try {
+    const renamed = await syncNames(getCurrentUserId(), state.ttsLanguage, state.images)
+    if (renamed > 0) {
+      dispatch('assetsManager/loadAssets', null, { root: true })
+      if (rootGetters['tabEditor/tab']) {
+        dispatch('tabEditor/fetchItems', null, { root: true })
+      }
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const loadGlobalSettings = async ({ commit, dispatch }) => {
   try {
     const user = ParseUser.current()
@@ -76,6 +96,7 @@ export const loadGlobalSettings = async ({ commit, dispatch }) => {
       if (ttsLanguage) commit('setTTSLanguage', ttsLanguage)
     }
     await dispatch('initTTS')
+    dispatch('syncPictogramNames')
   } catch (err) {
     commit('setError', err)
   }
@@ -90,6 +111,7 @@ export const saveGlobalSettings = async ({ state, commit, dispatch }) => {
       user.set('ttsLanguage', state.ttsLanguage)
       await user.save()
       await syncAllTabsTts(state)
+      await dispatch('syncPictogramNames')
       await dispatch('tabs/loadTabs', null, { root: true })
     }
     await dispatch('initTTS')

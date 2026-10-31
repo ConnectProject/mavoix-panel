@@ -190,7 +190,10 @@ export default {
   },
   assetsManager: {
     assetNameLabel: 'Nom de l\'image',
-    nameSave: 'Nom enregistré : '
+    nameSave: 'Nom enregistré : ',
+    search: 'Rechercher',
+    nameField: 'Nom',
+    uploadError: 'Erreur lors de l\'envoi de l\'image : '
   },
   assets: {
     select: 'Sélectionnez les images à ajouter :',
@@ -247,7 +250,10 @@ export default {
     nameRequired: 'Le nom est requis',
     backgroundColorRequired: 'La couleur de fond est requise',
     createButton: 'Créer l\'onglet',
-    deleteConfirmMessage: 'Voulez-vous vraiment supprimer cet onglet ?'
+    deleteConfirmMessage: 'Voulez-vous vraiment supprimer cet onglet ?',
+    updateError: 'Erreur lors de la mise à jour de l\'onglet',
+    defaultTabName: 'Activités',
+    defaultItemName: 'Boire'
   },
   generic: {
     close: 'Fermer',
@@ -272,5 +278,11 @@ export default {
       confirm: 'Oui',
       dontAskAgain: 'Ne me demander pas la prochaine fois'
     }
+  },
+  auth: {
+    login: 'Connexion',
+    signup: 'Inscription',
+    email: 'Email',
+    password: 'Mot de passe'
   }
 }

@@ -1,6 +1,6 @@
 import { ActionHexColor, ActionLanguage, ActionName, ActionNewItem, ActionSpeed, ActionUpdateItem } from './stackActions'
 import { getDefaultState } from './state'
-import { itemIndex, itemModelToItem, modelToTab } from './utils'
+import { isItemNameEdited, itemIndex, itemModelToItem, modelToTab } from './utils'
 
 /**
  * Set the tab used by the Tab Editor
@@ -108,6 +108,7 @@ export const addItem = (state) => {
 
   undoStackPushDo(state, new ActionNewItem(null, {
     name,
+    nameEdited: isItemNameEdited(name, asset),
     asset,
     key: null,
     available: true,
@@ -127,6 +128,7 @@ export const updateItem = (state) => {
   const from = state.items[index]
   const to = Object.assign({}, from, {
     name,
+    nameEdited: from.nameEdited || isItemNameEdited(name, asset),
     asset
   })
 

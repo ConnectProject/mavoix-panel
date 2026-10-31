@@ -423,8 +423,10 @@ import TakePhotoDialog from '~/components/dialogs/TakePhotoDialog.vue'
 import UploadPhotoDialog from '~/components/dialogs/UploadPhotoDialog.vue'
 import AssetModel from '~/models/Asset'
 import { assetFromModel } from '~/store/assets-manager/utils'
+import arasaacIdFromUrl from '~/utils/arasaacId'
 import arasaacThemes from '~/utils/arasaacThemes'
 import getCurrentUserId from '~/utils/getCurrentUserId'
+import { pictogramName } from '~/utils/pictogramLanguage'
 
 const PAGE_SIZE = 12
 const INITIAL_VISIBLE_COUNT = 48
@@ -503,7 +505,7 @@ export default {
       return source.map((img) => ({
         id: img.url,
         url: img.url,
-        name: (img.names && img.names.fr && img.names.fr[0]) || 'Picto Name',
+        name: pictogramName(img, this.$store.state.global.ttsLanguage) || 'Picto Name',
         themes: img.themes || [],
         categories: this.personalCategoriesByUrl[img.url] || []
       }))
@@ -751,14 +753,21 @@ export default {
       return String(category)
     },
 
+    // a picture is the same when it has the same url, or the same ARASAAC id (the url format may differ)
+    isSameImage (asset, url) {
+      const id = arasaacIdFromUrl(url)
+
+      return Boolean(asset && (asset.url === url || (id && asset.arasaacId === id)))
+    },
+
     isHidden (url) {
-      const item = this.tabItems.find((it) => it.asset && it.asset.url === url)
+      const item = this.tabItems.find((it) => this.isSameImage(it.asset, url))
 
       return Boolean(item && item.hidden)
     },
 
     isUnavailable (url) {
-      const item = this.tabItems.find((it) => it.asset && it.asset.url === url)
+      const item = this.tabItems.find((it) => this.isSameImage(it.asset, url))
 
       return Boolean(item && !item.available)
     },
@@ -775,7 +784,7 @@ export default {
         }
 
         const assetsToAdd = await Promise.all(uniqueUrls.map(async (url) => {
-          const existing = this.tabItems.find((it) => it.asset && it.asset.url === url)
+          const existing = this.tabItems.find((it) => this.isSameImage(it.asset, url))
           if (existing) {
             return null
           }
@@ -785,7 +794,7 @@ export default {
             return null
           }
 
-          const assetModel = await AssetModel.New(entry.name, false, entry.url, uid).save()
+          const assetModel = await AssetModel.New(entry.name, false, entry.url, uid, { arasaacId: arasaacIdFromUrl(entry.url) }).save()
           const assetObj = assetFromModel(assetModel)
 
           return { assetObj, name: entry.name }
