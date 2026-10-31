@@ -83,130 +83,24 @@
             </template>
           </q-input>
         </div>
-        <div class="col-12 col-md-4">
-          <div class="row items-center q-gutter-sm">
-            <q-icon
-              name="filter_alt"
-              color="grey-7"
-            />
-            <span class="text-grey-8">{{ $t('addImagesModal.filter') }}</span>
-            <q-select
-              v-model="selectedCategoryFilters"
-              outlined
-              dense
-              behavior="menu"
-              options-dense
-              class="category-select"
-              :options="categoryOptions"
-              multiple
-              use-chips
-              use-input
-              new-value-mode="add-unique"
-              input-debounce="0"
-              popup-content-class="category-filter-popup"
-            >
-              <template #selected-item="scope">
-                <q-chip
-                  :key="`filter-sel-${scope.index}-${categoryChipKey(scope.opt)}`"
-                  dense
-                  square
-                  :color="chipColor(scope.opt)"
-                  text-color="white"
-                  removable
-                  class="q-ma-xs"
-                  @remove="scope.removeAtIndex(scope.index)"
-                >
-                  {{ scope.opt }}
-                </q-chip>
-              </template>
-              <template #option="scope">
-                <q-item
-                  v-bind="scope.itemProps"
-                  v-on="scope.itemEvents"
-                >
-                  <q-item-section>
-                    <q-chip
-                      :key="`filter-opt-${scope.index}-${categoryChipKey(scope.opt)}`"
-                      dense
-                      square
-                      :color="chipColor(scope.opt)"
-                      text-color="white"
-                    >
-                      {{ scope.opt }}
-                    </q-chip>
-                  </q-item-section>
-                </q-item>
-              </template>
-            </q-select>
-          </div>
-        </div>
       </div>
 
-      <div class="q-mb-md">
-        <div class="row items-center q-col-gutter-xs">
-          <div
-            v-for="cat in categoryOptions"
-            :key="`cat-${cat}`"
-            class="col-auto"
-          >
-            <q-chip
-              dense
-              square
-              :color="chipColor(cat)"
-              text-color="white"
-              class="category-chip"
-            >
-              <span>{{ cat }}</span>
-              <q-btn
-                flat
-                dense
-                round
-                size="9px"
-                icon="edit"
-                class="q-ml-xs text-white"
-                @click.stop="openCategoryMenu(cat, $event)"
-              />
-            </q-chip>
-          </div>
-          <div class="col-auto">
-            <q-btn
-              flat
-              dense
-              icon="add_circle"
-              color="primary"
-              no-caps
-              :label="$t('addImagesModal.addNewCategory')"
-            >
-              <q-menu
-                ref="addCategoryMenu"
-                anchor="bottom left"
-                self="top left"
-                @before-show="newCategoryName = ''"
-              >
-                <div
-                  class="q-pa-sm row items-center q-gutter-sm add-category-menu__inner"
-                >
-                  <q-input
-                    v-model="newCategoryName"
-                    outlined
-                    dense
-                    autofocus
-                    class="col"
-                    :placeholder="$t('addImagesModal.newCategoryPlaceholder')"
-                    @keyup.enter="confirmAddCategory"
-                  />
-                  <q-btn
-                    flat
-                    dense
-                    color="primary"
-                    :label="$t('addImagesModal.addButton')"
-                    @click="confirmAddCategory"
-                  />
-                </div>
-              </q-menu>
-            </q-btn>
-          </div>
-        </div>
+      <div
+        class="row items-center arasaac-theme-row q-mb-md"
+      >
+        <span class="text-grey-8 q-mr-xs">{{ $t('addImagesModal.themeLabel') }}</span>
+        <q-chip
+          v-for="theme in themes"
+          :key="`theme-${theme.key}`"
+          clickable
+          dense
+          :icon="theme.icon"
+          :color="selectedTheme === theme.key ? 'primary' : 'grey-3'"
+          :text-color="selectedTheme === theme.key ? 'white' : 'grey-9'"
+          @click="selectedTheme = selectedTheme === theme.key ? null : theme.key"
+        >
+          {{ $t(`addImagesModal.themes.${theme.key}`) }}
+        </q-chip>
       </div>
 
       <div class="row items-center justify-between q-mb-md">
@@ -258,40 +152,49 @@
                 contain
                 class="library-card__image"
               >
-                <div class="absolute-top row justify-between q-pa-xs library-card__actions">
-                  <div class="library-card__left-actions">
-                    <q-btn
-                      round
+                <div class="absolute-top-right q-pa-xs library-card__actions">
+                  <div class="library-card__checkbox-wrap">
+                    <q-checkbox
+                      v-model="selectedUrls"
+                      :val="image.url"
                       dense
-                      flat
-                      icon="play_arrow"
                       color="primary"
-                      class="library-card__action-btn"
-                      :disable="$store.getters['global/ttsEnabled'] === false"
-                      @click.stop="$store.getters['global/tts'].speak({ text: image.name })"
+                      class="library-card__checkbox"
                     />
-                    <q-btn
-                      v-if="activeLibrary === 'personal'"
-                      round
-                      dense
-                      flat
-                      icon="delete"
-                      color="negative"
-                      class="library-card__action-btn"
-                      @click.stop="deletePersonalImage(image)"
-                    >
-                      <q-tooltip>
-                        {{ $t('assetEditor.delete') }}
-                      </q-tooltip>
-                    </q-btn>
+                    <q-tooltip>
+                      {{ $t('addImagesModal.selectImage') }}
+                    </q-tooltip>
                   </div>
-                  <q-checkbox
-                    v-model="selectedUrls"
-                    :val="image.url"
-                    dense
+                  <q-icon
+                    name="play_arrow"
+                    size="18px"
                     color="primary"
-                    class="library-card__checkbox"
-                  />
+                    role="button"
+                    tabindex="0"
+                    class="library-card__action"
+                    :class="{ 'library-card__action--disabled': $store.getters['global/ttsEnabled'] === false }"
+                    @click.stop="speak(image)"
+                    @keyup.enter.stop="speak(image)"
+                  >
+                    <q-tooltip>
+                      {{ $t('addImagesModal.playImage') }}
+                    </q-tooltip>
+                  </q-icon>
+                  <q-icon
+                    v-if="activeLibrary === 'personal'"
+                    name="delete"
+                    size="18px"
+                    color="negative"
+                    role="button"
+                    tabindex="0"
+                    class="library-card__action"
+                    @click.stop="deletePersonalImage(image)"
+                    @keyup.enter.stop="deletePersonalImage(image)"
+                  >
+                    <q-tooltip>
+                      {{ $t('assetEditor.delete') }}
+                    </q-tooltip>
+                  </q-icon>
                 </div>
 
                 <div
@@ -316,28 +219,37 @@
               <div class="library-card__name">
                 {{ image.name }}
               </div>
-              <div class="library-card__categories">
+              <div
+                v-if="activeLibrary === 'personal'"
+                class="library-card__categories"
+              >
                 <q-chip
                   v-for="cat in image.categories || []"
                   :key="`${image.id}-${cat}`"
+                  clickable
                   dense
                   square
-                  :color="chipColor(cat)"
-                  text-color="white"
+                  :icon="themeIconsByLabel[cat]"
+                  color="grey-3"
+                  text-color="grey-9"
                   class="image-category-chip"
+                  @click.stop="openImageCategoryDialog(image)"
                 >
                   {{ cat }}
                 </q-chip>
-                <q-btn
-                  flat
+                <q-chip
+                  v-if="!(image.categories || []).length"
+                  clickable
                   dense
-                  round
-                  size="10px"
-                  icon="add"
-                  color="primary"
-                  class="library-card__add-cat"
+                  square
+                  outline
+                  icon="sell"
+                  color="grey-7"
+                  class="image-category-chip"
                   @click.stop="openImageCategoryDialog(image)"
-                />
+                >
+                  {{ $t('addImagesModal.addTheme') }}
+                </q-chip>
               </div>
             </q-card>
           </div>
@@ -352,42 +264,6 @@
         </template>
       </q-infinite-scroll>
     </div>
-
-    <q-menu
-      v-model="categoryMenuOpen"
-      :target="categoryMenuTarget"
-      self="top left"
-      anchor="bottom left"
-    >
-      <q-list
-        dense
-        style="min-width: 180px"
-      >
-        <q-item
-          clickable
-          @click="startRenameCategory"
-        >
-          <q-item-section avatar>
-            <q-icon name="edit" />
-          </q-item-section>
-          <q-item-section>{{ $t('addImagesModal.renameCategoryMenu') }}</q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          @click="deleteCategoryFromAll"
-        >
-          <q-item-section avatar>
-            <q-icon
-              name="delete"
-              color="negative"
-            />
-          </q-item-section>
-          <q-item-section class="text-negative">
-            {{ $t('addImagesModal.deleteCategoryMenu') }}
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-menu>
 
     <q-dialog
       v-model="imageCategoryDialogOpen"
@@ -412,57 +288,25 @@
         <q-separator />
 
         <q-card-section class="q-pt-md">
-          <q-input
-            v-model="newCategoryNameForImage"
-            outlined
-            dense
-            autofocus
-            class="q-mb-md image-category-dialog__new-input"
-            :placeholder="$t('addImagesModal.newCategoryPlaceholder')"
-            @keyup.enter="submitNewCategoryFromImageDialog"
-          />
-
-          <q-input
-            v-model="imageCategorySearch"
-            outlined
-            dense
-            clearable
-            class="q-mb-md"
-            :placeholder="$t('addImagesModal.search')"
-          >
-            <template #prepend>
-              <q-icon
-                name="search"
-                color="grey-7"
-              />
-            </template>
-          </q-input>
-
           <q-scroll-area
             class="image-category-dialog__scroll"
             :thumb-style="{ borderRadius: '4px', width: '6px' }"
             :bar-style="{ borderRadius: '4px', width: '6px' }"
           >
             <div
-              v-if="!filteredCategoriesForImageDialog.length"
-              class="text-grey-7 text-caption q-py-sm"
-            >
-              {{ $t('addImagesModal.noCategorySearchResults') }}
-            </div>
-            <div
-              v-else
               class="column q-gutter-sm"
             >
               <q-chip
-                v-for="cat in filteredCategoriesForImageDialog"
+                v-for="cat in categoryOptions"
                 :key="`pick-${cat}`"
                 clickable
                 dense
                 square
-                :color="chipColor(cat)"
-                text-color="white"
+                :icon="themeIconsByLabel[cat]"
+                :color="targetCategories.includes(cat) ? 'primary' : 'grey-3'"
+                :text-color="targetCategories.includes(cat) ? 'white' : 'grey-9'"
                 class="image-category-dialog__chip"
-                @click="pickCategoryForImage(cat)"
+                @click="toggleCategoryForImage(cat)"
               >
                 {{ cat }}
               </q-chip>
@@ -481,44 +325,6 @@
             :label="$t('generic.close')"
             color="grey-8"
           />
-          <q-btn
-            unelevated
-            no-caps
-            color="primary"
-            :label="$t('addImagesModal.addButton')"
-            :disable="!(newCategoryNameForImage || '').trim()"
-            @click="submitNewCategoryFromImageDialog"
-          />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
-
-    <q-dialog v-model="renameCategoryDialogOpen">
-      <q-card style="min-width: 320px">
-        <q-card-section class="text-h6">
-          {{ $t('addImagesModal.renameCategoryTitle') }}
-        </q-card-section>
-        <q-card-section>
-          <q-input
-            v-model="renameCategoryName"
-            outlined
-            dense
-            autofocus
-            @keyup.enter="confirmRenameCategory"
-          />
-        </q-card-section>
-        <q-card-actions align="right">
-          <q-btn
-            flat
-            :label="$t('generic.cancel')"
-            @click="renameCategoryDialogOpen = false"
-          />
-          <q-btn
-            flat
-            color="primary"
-            :label="$t('generic.validate')"
-            @click="confirmRenameCategory"
-          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -526,22 +332,20 @@
     <take-photo-dialog
       v-model="takePhotoDialogOpen"
       :category-options="categoryOptions"
-      :chip-color="chipColor"
+      :category-icons="themeIconsByLabel"
       :category-chip-key="categoryChipKey"
       @saved="onTakePhotoSaved"
-      @add-category="onTakePhotoAddCategory"
     />
 
     <upload-photo-dialog
       :value="uploadPhotoDialogOpen"
       :file="pendingUploadFile"
       :category-options="categoryOptions"
-      :chip-color="chipColor"
+      :category-icons="themeIconsByLabel"
       :category-chip-key="categoryChipKey"
       @input="onUploadPhotoDialogInput"
       @saved="onUploadPhotoSaved"
       @failed="onUploadPhotoFailed"
-      @add-category="onTakePhotoAddCategory"
     />
 
     <q-dialog
@@ -619,12 +423,11 @@ import TakePhotoDialog from '~/components/dialogs/TakePhotoDialog.vue'
 import UploadPhotoDialog from '~/components/dialogs/UploadPhotoDialog.vue'
 import AssetModel from '~/models/Asset'
 import { assetFromModel } from '~/store/assets-manager/utils'
+import arasaacThemes from '~/utils/arasaacThemes'
 import getCurrentUserId from '~/utils/getCurrentUserId'
 
 const PAGE_SIZE = 12
 const INITIAL_VISIBLE_COUNT = 48
-const CHIP_COLORS = ['primary', 'deep-purple-6', 'teal-7', 'indigo-6', 'brown-7', 'orange-6', 'blue-5']
-const CATEGORY_CATALOG_KEY_PREFIX = 'mavoix.personalCategoryCatalog.'
 
 export default {
   name: 'PageArasaacLibrary',
@@ -648,20 +451,12 @@ export default {
       uploadErrorDialogOpen: false,
       activeLibrary: 'arasaac',
       search: '',
-      selectedCategoryFilters: [],
-      personalCategoryCatalog: [],
+      selectedTheme: null,
+      themes: arasaacThemes,
       visibleCount: INITIAL_VISIBLE_COUNT,
       selectedUrls: [],
-      categoryMenuOpen: false,
-      categoryMenuTarget: null,
-      categoryMenuCategory: '',
       imageCategoryDialogOpen: false,
-      imageCategoryTarget: null,
-      imageCategorySearch: '',
-      newCategoryNameForImage: '',
-      newCategoryName: '',
-      renameCategoryDialogOpen: false,
-      renameCategoryName: ''
+      imageCategoryTarget: null
     }
   },
   computed: {
@@ -709,36 +504,37 @@ export default {
         id: img.url,
         url: img.url,
         name: (img.names && img.names.fr && img.names.fr[0]) || 'Picto Name',
+        themes: img.themes || [],
         categories: this.personalCategoriesByUrl[img.url] || []
       }))
     },
-    categoryOptions () {
-      const fromAssets = this.allImages
-        .flatMap((img) => img.categories || [])
-        .filter(Boolean)
+    // Categories are restricted to the ARASAAC themes (no free-form categories).
+    targetCategories () {
+      const target = this.imageCategoryTarget
 
-      return Array.from(new Set([...this.personalCategoryCatalog, ...fromAssets]))
+      return (target && this.personalCategoriesByUrl[target.url]) || []
     },
-    filteredCategoriesForImageDialog () {
-      const q = (this.imageCategorySearch || '').trim().toLowerCase()
-      const sorted = [...this.categoryOptions].sort((a, b) =>
-        a.localeCompare(b, 'fr', { sensitivity: 'base' })
-      )
-      if (!q) {
-        return sorted
-      }
+    categoryOptions () {
+      return this.themes.map((theme) => this.$t(`addImagesModal.themes.${theme.key}`))
+    },
+    themeIconsByLabel () {
+      return this.themes.reduce((acc, theme) => {
+        acc[this.$t(`addImagesModal.themes.${theme.key}`)] = theme.icon
 
-      return sorted.filter((c) => c.toLowerCase().includes(q))
+        return acc
+      }, {})
     },
     filteredImages () {
       const q = (this.search || '').trim().toLowerCase()
+      const themeLabel = this.selectedTheme ? this.$t(`addImagesModal.themes.${this.selectedTheme}`) : null
 
       return this.allImages.filter((img) => {
         const matchesText = !q || (img.name || '').toLowerCase().includes(q)
-        const matchesCategories = this.selectedCategoryFilters.length === 0 ||
-          this.selectedCategoryFilters.some((cat) => (img.categories || []).includes(cat))
+        const matchesTheme = !this.selectedTheme ||
+          (img.themes || []).includes(this.selectedTheme) ||
+          (img.categories || []).includes(themeLabel)
 
-        return matchesText && matchesCategories
+        return matchesText && matchesTheme
       })
     },
     hasMoreImages () {
@@ -783,17 +579,14 @@ export default {
       this.visibleCount = INITIAL_VISIBLE_COUNT
       this.search = ''
       this.selectedUrls = []
-      this.selectedCategoryFilters = []
+      this.selectedTheme = null
+    },
+    selectedTheme () {
+      this.visibleCount = INITIAL_VISIBLE_COUNT
     },
     search () {
       this.visibleCount = INITIAL_VISIBLE_COUNT
-    },
-    selectedCategoryFilters () {
-      this.visibleCount = INITIAL_VISIBLE_COUNT
     }
-  },
-  mounted () {
-    this.loadCategoryCatalog()
   },
   methods: {
     onInfiniteLoad (_, done) {
@@ -829,21 +622,6 @@ export default {
 
     toggleLibrary () {
       this.activeLibrary = this.activeLibrary === 'arasaac' ? 'personal' : 'arasaac'
-    },
-
-    getCategoryCatalogStorageKey () {
-      return `${CATEGORY_CATALOG_KEY_PREFIX}${getCurrentUserId()}`
-    },
-
-    loadCategoryCatalog () {
-      const raw = window.localStorage.getItem(this.getCategoryCatalogStorageKey())
-      this.personalCategoryCatalog = raw ? JSON.parse(raw) : []
-    },
-
-    saveCategoryCatalog () {
-      const deduped = Array.from(new Set(this.personalCategoryCatalog.filter(Boolean)))
-      this.personalCategoryCatalog = deduped
-      window.localStorage.setItem(this.getCategoryCatalogStorageKey(), JSON.stringify(deduped))
     },
 
     goBack () {
@@ -910,116 +688,37 @@ export default {
       this.uploadErrorDialogOpen = true
     },
 
-    onTakePhotoAddCategory (name) {
-      const n = (name || '').trim()
-      if (!n || this.personalCategoryCatalog.includes(n)) {
-        return
-      }
-      this.personalCategoryCatalog.push(n)
-      this.saveCategoryCatalog()
-    },
-
-    confirmAddCategory () {
-      const name = (this.newCategoryName || '').trim()
-      if (!name) {
-        return
-      }
-      if (!this.personalCategoryCatalog.includes(name)) {
-        this.personalCategoryCatalog.push(name)
-        this.saveCategoryCatalog()
-      }
-      this.newCategoryName = ''
-      this.$refs.addCategoryMenu?.hide()
-    },
-
-    openCategoryMenu (category, evt) {
-      this.categoryMenuCategory = category
-      this.categoryMenuTarget = evt.currentTarget
-      this.categoryMenuOpen = true
-    },
-
-    startRenameCategory () {
-      this.renameCategoryName = this.categoryMenuCategory
-      this.renameCategoryDialogOpen = true
-      this.categoryMenuOpen = false
-    },
-
-    async confirmRenameCategory () {
-      const from = this.categoryMenuCategory
-      const to = (this.renameCategoryName || '').trim()
-      if (!from || !to || from === to) {
-        this.renameCategoryDialogOpen = false
-
-        return
-      }
-
-      await this.updateCategoryForAllAssets(from, to)
-      const catIdx = this.personalCategoryCatalog.indexOf(from)
-      if (catIdx !== -1) {
-        this.personalCategoryCatalog.splice(catIdx, 1)
-        if (!this.personalCategoryCatalog.includes(to)) {
-          this.personalCategoryCatalog.push(to)
-        }
-        this.saveCategoryCatalog()
-      }
-      this.selectedCategoryFilters = Array.from(new Set(
-        this.selectedCategoryFilters.map((c) => (c === from ? to : c))
-      ))
-      this.renameCategoryDialogOpen = false
-      this.$store.dispatch('assetsManager/loadAssets')
-    },
-
-    async deleteCategoryFromAll () {
-      const category = this.categoryMenuCategory
-      if (!category) {
-        return
-      }
-      await this.updateCategoryForAllAssets(category, null)
-      this.selectedCategoryFilters = this.selectedCategoryFilters.filter((c) => c !== category)
-      this.personalCategoryCatalog = this.personalCategoryCatalog.filter((c) => c !== category)
-      this.saveCategoryCatalog()
-      this.categoryMenuOpen = false
-      this.$store.dispatch('assetsManager/loadAssets')
-    },
-
     openImageCategoryDialog (image) {
       this.imageCategoryTarget = image
-      this.imageCategorySearch = ''
-      this.newCategoryNameForImage = ''
       this.imageCategoryDialogOpen = true
     },
 
     onImageCategoryDialogHide () {
       this.imageCategoryTarget = null
-      this.imageCategorySearch = ''
-      this.newCategoryNameForImage = ''
     },
 
-    async pickCategoryForImage (cat) {
-      await this.assignCategoryToImage(cat)
-    },
-
-    async submitNewCategoryFromImageDialog () {
-      const name = (this.newCategoryNameForImage || '').trim()
-      if (!name) {
-        return
+    speak (image) {
+      const tts = this.$store.getters['global/tts']
+      if (this.$store.getters['global/ttsEnabled'] !== false && tts) {
+        tts.speak({ text: image.name })
       }
-      await this.assignCategoryToImage(name)
-      this.newCategoryNameForImage = ''
     },
 
-    async assignCategoryToImage (category) {
-      const name = (category || '').trim()
-      if (!name || !this.imageCategoryTarget) {
+    async toggleCategoryForImage (category) {
+      const target = this.imageCategoryTarget
+      if (!category || !target) {
         return
       }
       try {
-        await this.addCategoryToAsset(this.imageCategoryTarget, name)
-        if (!this.personalCategoryCatalog.includes(name)) {
-          this.personalCategoryCatalog.push(name)
-          this.saveCategoryCatalog()
-        }
-        this.imageCategoryDialogOpen = false
+        await Promise.all((this.personalAssetsByUrl[target.url] || []).map(async (asset) => {
+          const model = await new Parse.Query(AssetModel).get(asset.id)
+          const current = model.get('categories') || []
+          model.set('categories', current.includes(category)
+            ? current.filter((c) => c !== category)
+            : [...current, category])
+
+          return model.save()
+        }))
         await this.$store.dispatch('assetsManager/loadAssets')
       } catch (e) {
         // eslint-disable-next-line no-console
@@ -1030,43 +729,6 @@ export default {
           color: 'negative'
         })
       }
-    },
-
-    async addCategoryToAsset (image, category) {
-      const userId = getCurrentUserId()
-      const existingAssets = this.personalAssetsByUrl[image.url] || []
-
-      if (existingAssets.length > 0) {
-        await Promise.all(existingAssets.map(async (asset) => {
-          const model = await new Parse.Query(AssetModel).get(asset.id)
-          const categories = Array.from(new Set([...(model.get('categories') || []), category]))
-          model.set('categories', categories)
-
-          return model.save()
-        }))
-
-        return
-      }
-
-      const model = await AssetModel.New(image.name || 'Picto Name', false, image.url, userId).save()
-      const categories = Array.from(new Set([...(model.get('categories') || []), category]))
-      model.set('categories', categories)
-      await model.save()
-    },
-
-    async updateCategoryForAllAssets (from, to) {
-      await Promise.all(this.personalAssets.map(async (asset) => {
-        const categories = asset.categories || []
-        if (!categories.includes(from)) {
-          return
-        }
-        const model = await new Parse.Query(AssetModel).get(asset.id)
-        const next = to
-          ? Array.from(new Set(categories.map((c) => (c === from ? to : c))))
-          : categories.filter((c) => c !== from)
-        model.set('categories', next)
-        await model.save()
-      }))
     },
 
     // Stable string for color hash and Vue :key (q-select may pass non-string options).
@@ -1087,17 +749,6 @@ export default {
       }
 
       return String(category)
-    },
-
-    chipColor (category) {
-      const s = this.categoryChipKey(category)
-      let hash = 0
-      for (let i = 0; i < s.length; i += 1) {
-        hash = ((hash << 5) - hash) + s.charCodeAt(i)
-        hash |= 0
-      }
-
-      return CHIP_COLORS[Math.abs(hash) % CHIP_COLORS.length]
     },
 
     isHidden (url) {
@@ -1174,6 +825,12 @@ export default {
   opacity 0
   pointer-events none
 
+.arasaac-theme-row
+  gap 4px
+
+.arasaac-theme-row .q-chip
+  margin 0
+
 .arasaac-page
   background #f5f5f8
   min-height 100%
@@ -1229,9 +886,6 @@ export default {
   color #111827
   text-align center
 
-.category-select
-  min-width 190px
-
 .library-grid
   /* 6 cols on md+, 4 on sm, 3 on xs — 12 images = even rows */
   align-items stretch
@@ -1249,20 +903,27 @@ export default {
   max-height 108px
 
 .library-card__actions
+  /* q-img wraps slot content in an absolutely positioned, full-size, padded box: shrink it to the button column */
+  display flex
+  flex-direction column
+  align-items flex-end
+  gap 2px
+  width auto !important
+  height auto !important
+  left auto !important
+  bottom auto !important
+  padding 4px !important
   background transparent !important
 
   pointer-events none
   z-index 3
 
-.library-card__action-btn,
-.library-card__checkbox
+.library-card__action,
+.library-card__checkbox-wrap
   pointer-events auto
 
-.library-card__left-actions
+.library-card__checkbox-wrap
   display flex
-  flex-direction column
-  align-items flex-start
-  gap 4px
 
 .image-overlay
   display flex
@@ -1285,13 +946,35 @@ export default {
   color #e53935
   font-weight 700
 
-.library-card__action-btn
-  background transparent
-
+.library-card__action,
 .library-card__checkbox
+  /* same 20px translucent circle for checkbox, play and delete */
   background rgba(255, 255, 255, 0.75)
-  border-radius 4px
-  padding 0 2px
+  border-radius 50%
+  padding 0
+
+.library-card__action
+  /* 20x20 circle, same as the checkbox hover circle */
+  box-sizing border-box
+  display flex
+  align-items center
+  justify-content center
+  width 20px
+  height 20px
+  padding 0
+  border-radius 50%
+  cursor pointer
+  transition box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.5, 1)
+
+/* Same hover as q-checkbox (measured): a 28px circle (20px + 4px ring) at ~6.5% black over the tile. */
+.library-card__action:hover,
+.library-card__action:focus-visible
+  box-shadow 0 0 0 4px rgba(0, 0, 0, 0.065), inset 0 0 0 10px rgba(0, 0, 0, 0.065)
+  outline none
+
+.library-card__action--disabled
+  opacity 0.4
+  pointer-events none !important
 
 .library-card__name
   text-align center
@@ -1320,15 +1003,10 @@ export default {
   font-size 11px
   min-height 24px
 
-.add-category-menu__inner
-  min-width 280px
 </style>
 
 <style lang="stylus">
 /* Teleported popups/dialogs: classes must be unscoped */
-.category-filter-popup
-  min-width 280px
-
 .image-category-dialog-card
   width 100%
   max-width 360px

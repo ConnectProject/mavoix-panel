@@ -62,22 +62,19 @@
               dark
               multiple
               use-chips
-              use-input
-              new-value-mode="add-unique"
-              input-debounce="0"
               :options="categoryOptions"
               popup-content-class="take-photo-cat-popup"
               class="upload-photo-select"
-              @new-value="onNewCategoryValue"
             >
               <template #selected-item="scope">
                 <q-chip
                   :key="`upload-sel-${scope.index}-${categoryChipKey(scope.opt)}`"
+                  :icon="categoryIcons[scope.opt]"
                   dense
                   square
                   removable
-                  :color="chipColor(scope.opt)"
-                  text-color="white"
+                  color="grey-3"
+                  text-color="grey-9"
                   class="q-ma-xs"
                   @remove="scope.removeAtIndex(scope.index)"
                 >
@@ -92,10 +89,11 @@
                   <q-item-section>
                     <q-chip
                       :key="`upload-opt-${scope.index}-${categoryChipKey(scope.opt)}`"
+                      :icon="categoryIcons[scope.opt]"
                       dense
                       square
-                      :color="chipColor(scope.opt)"
-                      text-color="white"
+                      color="grey-3"
+                      text-color="grey-9"
                     >
                       {{ scope.opt }}
                     </q-chip>
@@ -146,9 +144,9 @@ export default {
       type: Array,
       default: () => []
     },
-    chipColor: {
-      type: Function,
-      required: true
+    categoryIcons: {
+      type: Object,
+      default: () => ({})
     },
     categoryChipKey: {
       type: Function,
@@ -196,17 +194,6 @@ export default {
 
     close () {
       this.$emit('input', false)
-    },
-
-    onNewCategoryValue (val, done) {
-      const name = (val || '').trim()
-      if (!name) {
-        done('')
-
-        return
-      }
-      this.$emit('add-category', name)
-      done(name, 'add-unique')
     },
 
     async save () {

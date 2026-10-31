@@ -98,22 +98,19 @@
               dark
               multiple
               use-chips
-              use-input
-              new-value-mode="add-unique"
-              input-debounce="0"
               :options="categoryOptions"
               popup-content-class="take-photo-cat-popup"
               class="take-photo-select"
-              @new-value="onNewCategoryValue"
             >
               <template #selected-item="scope">
                 <q-chip
                   :key="`takephoto-sel-${scope.index}-${categoryChipKey(scope.opt)}`"
+                  :icon="categoryIcons[scope.opt]"
                   dense
                   square
                   removable
-                  :color="chipColor(scope.opt)"
-                  text-color="white"
+                  color="grey-3"
+                  text-color="grey-9"
                   class="q-ma-xs"
                   @remove="scope.removeAtIndex(scope.index)"
                 >
@@ -128,10 +125,11 @@
                   <q-item-section>
                     <q-chip
                       :key="`takephoto-opt-${scope.index}-${categoryChipKey(scope.opt)}`"
+                      :icon="categoryIcons[scope.opt]"
                       dense
                       square
-                      :color="chipColor(scope.opt)"
-                      text-color="white"
+                      color="grey-3"
+                      text-color="grey-9"
                     >
                       {{ scope.opt }}
                     </q-chip>
@@ -178,9 +176,9 @@ export default {
       type: Array,
       default: () => []
     },
-    chipColor: {
-      type: Function,
-      required: true
+    categoryIcons: {
+      type: Object,
+      default: () => ({})
     },
     categoryChipKey: {
       type: Function,
@@ -309,17 +307,6 @@ export default {
       this.startCamera()
     },
 
-    onNewCategoryValue (val, done) {
-      const name = (val || '').trim()
-      if (!name) {
-        done('')
-
-        return
-      }
-      this.$emit('add-category', name)
-      done(name, 'add-unique')
-    },
-
     save () {
       if (!this.cropper || this.saving) {
         return
@@ -410,4 +397,12 @@ export default {
 <style lang="stylus">
 .take-photo-cat-popup
   min-width 260px
+
+// Compact option list: chips stacked with a small gap (also used by UploadPhotoDialog)
+.take-photo-cat-popup .q-item
+  min-height 0
+  padding 2px 16px
+
+.take-photo-cat-popup .q-chip
+  margin 0
 </style>
