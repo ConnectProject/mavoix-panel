@@ -7,8 +7,8 @@
     <!-- ─── Header ─────────────────────────────────────────────────────────── -->
     <q-header :class="['landing-header', { 'landing-header--scrolled': navScrolled }]">
       <q-toolbar class="landing-toolbar">
-        <div class="landing-brand text-weight-bold">
-          MaVoix
+        <div class="landing-brand">
+          <span class="brand-ma">ma</span><span class="brand-voix">voix</span>
         </div>
 
         <q-space />
@@ -76,19 +76,18 @@
           <div class="hero-visual">
             <img
               :src="heroBoardImageSrc"
-              alt="MaVoix board screenshot"
+              alt="A mavoix board with picture cards"
               class="landing-placeholder landing-placeholder--hero"
-              style="object-fit:cover;max-width:100%;height:auto;"
             >
           </div>
 
           <div class="hero-trio">
             <article class="hero-trio__card">
-              <h3 class="hero-trio__title">
-                MaVoix
+              <h3 class="hero-trio__title hero-trio__title--brand">
+                <span class="brand-ma">ma</span><span class="brand-voix">voix</span>
               </h3>
               <p class="hero-trio__body">
-                MaVoix is an open source application enabling non-verbal persons to communicate using images.
+                mavoix is an open source application enabling non-verbal persons to communicate using images.
                 Build boards for home, school, or therapy — and let taps speak aloud.
               </p>
             </article>
@@ -97,7 +96,7 @@
                 Sharing is caring
               </h3>
               <p class="hero-trio__body">
-                MaVoix is integrated with
+                mavoix is integrated with
                 <a
                   href="https://github.com/ConnectProject"
                   target="_blank"
@@ -157,7 +156,7 @@
             <div class="col-12 col-md-4">
               <q-card flat class="lv-card">
                 <q-card-section class="lv-card__inner">
-                  <div class="lv-card__icon-bubble lv-card__icon-bubble--mint">
+                  <div class="lv-card__icon-bubble lv-card__icon-bubble--teal">
                     <q-icon name="support_agent" size="20px" />
                   </div>
                   <div class="lv-card__title">
@@ -173,11 +172,11 @@
             <div class="col-12 col-md-4">
               <q-card flat class="lv-card">
                 <q-card-section class="lv-card__inner">
-                  <div class="lv-card__icon-bubble lv-card__icon-bubble--sky">
+                  <div class="lv-card__icon-bubble lv-card__icon-bubble--teal">
                     <q-icon name="school" size="20px" />
                   </div>
                   <div class="lv-card__title">
-                    Educators &amp; therapists
+                    Educators
                   </div>
                   <div class="lv-card__body">
                     A flexible tool that supports communication goals in the classroom
@@ -223,7 +222,7 @@
             </q-card>
             <q-card flat class="lv-card">
               <q-card-section class="lv-card__inner">
-                <div class="lv-card__icon-bubble lv-card__icon-bubble--mint">
+                <div class="lv-card__icon-bubble lv-card__icon-bubble--teal">
                   <q-icon name="add_photo_alternate" size="20px" />
                 </div>
                 <div class="lv-card__title">
@@ -237,7 +236,7 @@
             </q-card>
             <q-card flat class="lv-card">
               <q-card-section class="lv-card__inner">
-                <div class="lv-card__icon-bubble lv-card__icon-bubble--sky">
+                <div class="lv-card__icon-bubble lv-card__icon-bubble--teal">
                   <q-icon name="record_voice_over" size="20px" />
                 </div>
                 <div class="lv-card__title">
@@ -342,7 +341,7 @@
               Free and open source, always
             </h2>
             <p class="oss-lead q-mb-sm">
-              MaVoix Panel is free to use and open source. We believe every child
+              mavoix is free to use and open source. We believe every child
               deserves a voice — no subscription, no barriers, no hidden costs.
             </p>
             <p class="oss-contribute q-mb-lg">
@@ -373,7 +372,7 @@
             </p>
 
             <div class="oss-band__closing">
-              <span class="oss-closing__copy">© {{ year }} MaVoix Panel</span>
+              <span class="oss-closing__copy">© {{ year }} mavoix</span>
               <span class="oss-closing__sep" aria-hidden="true">·</span>
               <router-link :to="{ name: 'home' }" class="oss-closing__link">
                 Open the panel
@@ -385,7 +384,7 @@
                 rel="noopener noreferrer"
                 class="oss-closing__link"
               >
-                MaVoix app
+                mavoix app
                 <q-icon name="open_in_new" size="12px" class="oss-closing__ext" />
               </a>
             </div>
@@ -443,81 +442,96 @@ export default {
 <style scoped>
 /* ─── Design tokens ────────────────────────────────────────────────────────── */
 .landing-v2 {
-  --lv-teal:        #0d6b6e;
-  --lv-teal-dark:   #095a5d;
-  --lv-teal-deeper: #074748;
-  --lv-teal-dim:    rgba(13, 107, 110, 0.09);
+  font-family: 'Quicksand', 'Nunito', system-ui, sans-serif;
+  --lv-gray:          #696969; /* dimgray, same as the panel header */
+  --lv-gray-dark:     #555555;
+  --lv-gray-deeper:   #3f3f3f;
+  --lv-gray-dim:      rgba(105, 105, 105, 0.09);
 
-  --lv-mint:        #c8ebe0;
-  --lv-mint-strong: #9dd9c8;
-  --lv-mint-dim:    rgba(200, 235, 224, 0.38);
+  --lv-thistle:        #d8bfd8; /* "ma" in the logo */
+  --lv-thistle-strong: #c4a2c4;
+  --lv-thistle-dim:    rgba(216, 191, 216, 0.22);
+  --lv-plum:           #6f4a7c; /* thistle dark enough for text on light backgrounds */
 
-  --lv-sky:         #d4e8f2;
-  --lv-sky-dim:     rgba(212, 232, 242, 0.55);
+  --lv-sky:         #c3e7f8;
+  --lv-sky-dim:     rgba(195, 231, 248, 0.6);
 
-  --lv-surface:     #f7f9fb;
-  --lv-text:        #2c3544;
-  --lv-muted:       #5c6474;
-  --lv-border:      #e4e9f0;
-  --lv-border-soft: #edf1f7;
+  --lv-surface:     #696969; /* same as the header: one continuous region */
+  --lv-text:        #3a3a3a;
+  --lv-muted:       #5f5f5f;
+  --lv-border:      #e3e6ea;
+  --lv-border-soft: #eceef1;
 
   background: var(--lv-surface);
 }
 
-/* ─── Header ───────────────────────────────────────────────────────────────── */
+/* ─── Header (same dimgray bar as the panel) ───────────────────────────────── */
 .landing-header {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: var(--lv-gray);
+  color: #fff;
+  transition: box-shadow 0.2s ease;
 }
 
 .landing-header--scrolled {
-  border-bottom-color: var(--lv-border);
-  box-shadow: 0 2px 16px rgba(44, 53, 68, 0.07);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
 }
 
 .landing-toolbar {
   max-width: 1120px;
   margin: 0 auto;
   width: 100%;
-  min-height: 64px;
+  min-height: 66px;
   padding: 0 24px;
 }
 
-.landing-brand {
-  font-size: 1.125rem;
-  color: var(--lv-teal);
-  letter-spacing: -0.03em;
+/* Wordmark: Quicksand 700, "ma" thistle + "voix" white, as in the panel */
+.landing-brand,
+.hero-trio__title--brand {
+  font-family: 'Quicksand', sans-serif;
   font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.landing-brand {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.brand-ma {
+  color: var(--lv-thistle);
+}
+
+.brand-voix {
+  color: #fff;
 }
 
 .landing-nav-link {
-  color: var(--lv-muted) !important;
-  font-size: 0.875rem;
-  padding: 6px 10px;
-  transition: color 0.15s ease;
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: color 0.15s ease, background 0.15s ease;
 }
 
 .landing-nav-link:hover {
-  color: var(--lv-text) !important;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.12);
 }
 
-/* Nav CTA */
 .landing-cta-nav {
-  background: var(--lv-teal) !important;
-  color: #fff !important;
-  border-radius: 10px;
-  padding: 7px 18px;
+  background: var(--lv-thistle) !important;
+  color: var(--lv-gray-deeper) !important;
+  border-radius: 999px;
+  padding: 7px 20px;
   margin-left: 8px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.9375rem;
+  font-weight: 700;
   transition: background 0.15s ease, transform 0.15s ease;
 }
 
 .landing-cta-nav:hover {
-  background: var(--lv-teal-dark) !important;
+  background: #fff !important;
   transform: translateY(-1px);
 }
 
@@ -534,115 +548,101 @@ export default {
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: center;
-  padding: 72px 48px 80px;
-  border-radius: 20px;
+  padding: 64px 48px 56px;
+  border-radius: 28px;
   position: relative;
   overflow: hidden;
   background: linear-gradient(
     140deg,
-    var(--lv-teal-deeper) 0%,
-    var(--lv-teal-dark)   45%,
-    var(--lv-teal)        100%
+    var(--lv-gray-deeper) 0%,
+    var(--lv-gray-dark)   45%,
+    var(--lv-gray)        100%
   );
+  color: #fff;
 }
 
-/* Decorative glow in top-right */
 .hero-section::before {
   content: '';
   position: absolute;
-  top: -100px;
-  right: -80px;
-  width: 480px;
-  height: 480px;
+  top: -110px;
+  right: -90px;
+  width: 440px;
+  height: 440px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(200, 235, 224, 0.16) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-/* Decorative ring bottom-left */
-.hero-section::after {
-  content: '';
-  position: absolute;
-  bottom: -60px;
-  left: -60px;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  border: 36px solid rgba(200, 235, 224, 0.07);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.10) 0%, transparent 65%);
   pointer-events: none;
 }
 
 .hero-pill {
   display: inline-flex;
   align-items: center;
-  background: rgba(200, 235, 224, 0.15);
-  border: 1px solid rgba(200, 235, 224, 0.35);
-  color: var(--lv-mint);
-  font-size: 0.78125rem;
-  font-weight: 500;
-  letter-spacing: 0.025em;
+  background: rgba(216, 191, 216, 0.14);
+  border: 1px solid rgba(216, 191, 216, 0.4);
+  color: var(--lv-thistle);
+  font-size: 0.8125rem;
+  font-weight: 700;
   border-radius: 999px;
-  padding: 5px 14px;
+  padding: 6px 16px;
   margin-bottom: 20px;
 }
 
 .hero-title {
-  font-size: clamp(2rem, 4.5vw, 2.875rem);
-  line-height: 1.17;
-  color: #ffffff;
+  font-size: clamp(2.1rem, 4.6vw, 3.1rem);
+  line-height: 1.12;
+  color: #fff;
   font-weight: 700;
-  letter-spacing: -0.025em;
   margin: 0 0 18px;
+  text-wrap: balance;
 }
 
 .hero-subtitle {
-  font-size: 1.0625rem;
-  line-height: 1.72;
-  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.8);
   max-width: 480px;
   margin: 0 0 28px;
 }
 
-/* Three themes — original landing structure, below hero grid */
+/* Three themes below the hero grid */
 .hero-trio {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
   margin-top: 8px;
-  padding-top: 40px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-top: 36px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
   position: relative;
   z-index: 1;
 }
 
 .hero-trio__title {
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #fff;
-  margin: 0 0 12px;
-  letter-spacing: -0.02em;
+  margin: 0 0 10px;
   line-height: 1.25;
 }
 
 .hero-trio__body {
-  font-size: 0.8125rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.76);
   margin: 0;
 }
 
 .hero-trio__link {
-  color: rgba(255, 255, 255, 0.96);
-  font-weight: 600;
+  color: #fff;
+  font-weight: 700;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  transition: color 0.14s ease, border-color 0.14s ease;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  transition: border-color 0.14s ease;
 }
 
 .hero-trio__link:hover {
-  color: #fff;
-  border-bottom-color: rgba(255, 255, 255, 0.65);
+  border-bottom-color: #fff;
 }
 
 /* Hero audience CTAs */
@@ -656,88 +656,85 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 20px;
-  border-radius: 14px;
+  padding: 14px 24px;
+  border-radius: 999px;
   text-decoration: none;
   min-width: 190px;
-  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
 }
 
-/* Parent CTA — white solid, primary */
+/* Parent CTA: solid dimgray, like the panel header */
 .hero-cta--parent {
-  background: #ffffff;
-  color: var(--lv-teal-dark);
+  background: #fff;
+  color: var(--lv-gray-dark);
 }
 
 .hero-cta--parent:hover {
-  background: var(--lv-mint);
+  background: #eeeeee;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
-/* Child CTA — glass/ghost, secondary */
+/* Child CTA: white, secondary */
 .hero-cta--child {
   background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(255, 255, 255, 0.28);
-  color: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
 }
 
 .hero-cta--child:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.16);
   transform: translateY(-2px);
 }
 
 .hero-cta__icon {
   flex-shrink: 0;
-  opacity: 0.8;
 }
 
 .hero-cta__label {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 
 .hero-cta__role {
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.75;
   line-height: 1;
 }
 
 .hero-cta__action {
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   line-height: 1;
   display: inline-flex;
   align-items: center;
   gap: 4px;
 }
 
-/* "See how it works" text trigger */
 .hero-howto {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
   margin-top: 18px;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.50);
-  letter-spacing: 0.01em;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
   transition: color 0.14s ease;
 }
 
 .hero-howto:hover {
-  color: rgba(255, 255, 255, 0.80);
+  color: #fff;
 }
 
-/* Hero visual / placeholders */
+/* Hero image: straight, no tilt */
 .hero-visual {
   display: flex;
   justify-content: center;
@@ -746,37 +743,16 @@ export default {
   z-index: 1;
 }
 
-.landing-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 16px;
-  color: rgba(200, 235, 224, 0.7);
-}
-
-.landing-placeholder__icon {
-  opacity: 0.5;
-  color: var(--lv-mint);
-}
-
-.landing-placeholder__label {
-  font-size: 0.8125rem;
-  line-height: 1.4;
-  max-width: 220px;
-  margin-top: 12px;
-}
-
 .landing-placeholder--hero {
-  min-height: 300px;
+  display: block;
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
+  height: auto;
   margin-left: auto;
-  transform: rotate(-2deg);
-  border: 2px dashed rgba(200, 235, 224, 0.30);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.22);
+  object-fit: cover;
+  border-radius: 20px;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.28);
 }
 
 /* ─── Section foundations ──────────────────────────────────────────────────── */
@@ -806,18 +782,18 @@ export default {
 }
 
 .section-header__icon--teal {
-  background: var(--lv-teal-dim);
-  color: var(--lv-teal);
+  background: var(--lv-gray-dim);
+  color: var(--lv-gray);
 }
 
 .section-header__icon--mint {
-  background: rgba(200, 235, 224, 0.55);
-  color: var(--lv-teal-dark);
+  background: rgba(105, 105, 105, 0.14);
+  color: var(--lv-gray-dark);
 }
 
 .section-header__icon--sky {
   background: var(--lv-sky-dim);
-  color: #1a6e8a;
+  color: #3d6f8a;
 }
 
 .section-header__text {
@@ -841,29 +817,78 @@ export default {
   max-width: 36rem;
 }
 
-/* Features section — white background to contrast with surrounding surface */
+/* "Who it's for" sits directly on the gray page */
+#who .section-title,
+#features .section-title {
+  color: #fff;
+}
+
+#who .section-header__icon--teal,
+#features .section-header__icon--mint {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+/* Icon and label on one line in the "Who it's for" and "What you can do" cards */
+#who .lv-card__inner,
+#features .lv-card__inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 14px;
+  row-gap: 14px;
+}
+
+#who .lv-card__icon-bubble,
+#features .lv-card__icon-bubble {
+  margin-bottom: 0;
+}
+
+#who .lv-card__title,
+#features .lv-card__title {
+  margin-bottom: 0;
+}
+
+#who .lv-card__body,
+#features .lv-card__body {
+  grid-column: 1 / -1;
+}
+
+/* Features section — sits directly on the gray page, like "Who it's for" */
 .section-features {
-  background: #fff;
-  border-radius: 20px;
-  padding-left: 40px;
-  padding-right: 40px;
   margin: 8px 0;
 }
 
 /* How it works — mint wash */
 .section-how {
-  background: var(--lv-mint-dim);
-  border-radius: 20px;
-  padding-left: 40px;
-  padding-right: 40px;
   margin: 8px 0;
+}
+
+/* Section sits on the gray page; each step is a white card like the feature cards */
+.section-how .section-title {
+  color: #fff;
+}
+
+.section-how .section-header__icon--sky {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.section-how .step-connector::after {
+  background: repeating-linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.4) 0,
+    rgba(255, 255, 255, 0.4) 5px,
+    transparent 5px,
+    transparent 10px
+  );
 }
 
 /* ─── Card system ──────────────────────────────────────────────────────────── */
 .lv-card {
   background: #fff;
   border: 1px solid var(--lv-border-soft);
-  border-radius: 16px;
+  border-radius: 22px;
   height: 100%;
   transition: transform 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               box-shadow 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -871,8 +896,8 @@ export default {
 
 .lv-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 32px rgba(13, 107, 110, 0.1),
-              0 2px 8px  rgba(13, 107, 110, 0.05);
+  box-shadow: 0 10px 32px rgba(105, 105, 105, 0.1),
+              0 2px 8px  rgba(105, 105, 105, 0.05);
 }
 
 .lv-card__inner {
@@ -890,18 +915,18 @@ export default {
 }
 
 .lv-card__icon-bubble--teal {
-  background: var(--lv-teal-dim);
-  color: var(--lv-teal);
+  background: var(--lv-gray-dim);
+  color: var(--lv-gray);
 }
 
 .lv-card__icon-bubble--mint {
-  background: rgba(200, 235, 224, 0.55);
-  color: var(--lv-teal-dark);
+  background: rgba(105, 105, 105, 0.14);
+  color: var(--lv-gray-dark);
 }
 
 .lv-card__icon-bubble--sky {
   background: var(--lv-sky-dim);
-  color: #1a6e8a;
+  color: #3d6f8a;
 }
 
 .lv-card__title {
@@ -930,11 +955,15 @@ export default {
 .steps-row {
   display: grid;
   grid-template-columns: 1fr 48px 1fr 48px 1fr;
-  align-items: start;
+  align-items: stretch;
 }
 
 .step-item {
   text-align: center;
+  background: #fff;
+  border: 1px solid var(--lv-border-soft);
+  border-radius: 22px;
+  padding: 28px 24px;
 }
 
 .step-number {
@@ -942,15 +971,15 @@ export default {
   height: 48px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid var(--lv-teal);
-  color: var(--lv-teal);
+  border: 2px solid var(--lv-gray);
+  color: var(--lv-gray);
   font-size: 1.125rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 18px;
-  box-shadow: 0 2px 10px rgba(13, 107, 110, 0.13);
+  box-shadow: 0 2px 10px rgba(105, 105, 105, 0.13);
 }
 
 .step-heading {
@@ -965,14 +994,13 @@ export default {
   line-height: 1.58;
   color: var(--lv-muted);
   margin: 0 auto;
-  max-width: 26ch;
+  max-width: 30ch;
 }
 
 .step-connector {
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* dashed line centered between the cards' top and bottom */
   justify-content: center;
-  padding-top: 22px; /* aligns with center of the 48px step circle */
 }
 
 .step-connector::after {
@@ -982,8 +1010,8 @@ export default {
   height: 2px;
   background: repeating-linear-gradient(
     to right,
-    rgba(13, 107, 110, 0.30) 0,
-    rgba(13, 107, 110, 0.30) 5px,
+    rgba(105, 105, 105, 0.30) 0,
+    rgba(105, 105, 105, 0.30) 5px,
     transparent 5px,
     transparent 10px
   );
@@ -997,21 +1025,21 @@ export default {
   margin-top: 14px;
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--lv-teal);
+  color: var(--lv-gray);
   text-decoration: none;
-  border-bottom: 1px solid rgba(13, 107, 110, 0.28);
+  border-bottom: 1px solid rgba(105, 105, 105, 0.28);
   padding-bottom: 1px;
   transition: color 0.14s ease, border-color 0.14s ease;
 }
 
 .step-app-link:hover {
-  color: var(--lv-teal-dark);
-  border-bottom-color: var(--lv-teal);
+  color: var(--lv-gray-dark);
+  border-bottom-color: var(--lv-gray);
 }
 
 /* ─── OSS band ─────────────────────────────────────────────────────────────── */
 .oss-band {
-  background: linear-gradient(135deg, var(--lv-teal-deeper) 0%, var(--lv-teal-dark) 50%, #0a7f83 100%);
+  background: linear-gradient(135deg, var(--lv-gray-deeper) 0%, var(--lv-gray-dark) 50%, #7a7a7a 100%);
   color: #fff;
   border-radius: 20px;
   margin: 16px 0 0;
@@ -1029,7 +1057,7 @@ export default {
   width: 240px;
   height: 240px;
   border-radius: 50%;
-  border: 40px solid rgba(200, 235, 224, 0.08);
+  border: 40px solid rgba(216, 191, 216, 0.08);
   pointer-events: none;
 }
 
@@ -1041,7 +1069,7 @@ export default {
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  border: 28px solid rgba(200, 235, 224, 0.06);
+  border: 28px solid rgba(216, 191, 216, 0.06);
   pointer-events: none;
 }
 
@@ -1195,18 +1223,11 @@ export default {
   }
 
   .landing-placeholder--hero {
-    transform: none;
     margin: 0 auto;
   }
 
   .section-block {
     padding: 56px 4px;
-  }
-
-  .section-features,
-  .section-how {
-    padding-left: 20px;
-    padding-right: 20px;
   }
 
   .hero-ctas {
@@ -1224,7 +1245,8 @@ export default {
   }
 
   .section-header__lead {
-    gap: 16px;
+    gap: 26px;
+    padding-top: 32px;
   }
 
   .section-header__icon {
