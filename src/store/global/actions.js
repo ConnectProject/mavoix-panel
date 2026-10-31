@@ -4,6 +4,7 @@ import Speak from 'speak-tts'
 import ParseUser from '~/models/ParseUser'
 import TabModel, { IMAGE_SIZE_KEY, LANGUAGE_KEY, SPEED_KEY } from '~/models/Tab'
 import getCurrentUserId from '~/utils/getCurrentUserId'
+import { loadPublicImages as importPublicImages } from '~/utils/publicImages'
 import { syncPictogramNames as syncNames } from '~/utils/syncPictogramNames'
 
 /**
@@ -71,6 +72,7 @@ export const initTTS = ({ commit, rootState }) => {
  */
 export const syncPictogramNames = async ({ state, dispatch, rootGetters }) => {
   try {
+    await dispatch('loadPublicImages')
     const renamed = await syncNames(getCurrentUserId(), state.ttsLanguage, state.images)
     if (renamed > 0) {
       dispatch('assetsManager/loadAssets', null, { root: true })
@@ -80,6 +82,17 @@ export const syncPictogramNames = async ({ state, dispatch, rootGetters }) => {
     }
   } catch (err) {
     console.error(err)
+  }
+}
+
+/**
+ * Make sure the ARASAAC catalogue is in `state.images` (it is a separate chunk, fetched on first use).
+ * @param {Context} ctx vuex context
+ * @returns {Promise<void>} resolves when the catalogue is available
+ */
+export const loadPublicImages = async ({ state, commit }) => {
+  if (!state.images.length) {
+    commit('setPublicImages', await importPublicImages())
   }
 }
 

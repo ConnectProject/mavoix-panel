@@ -255,6 +255,7 @@ export default {
     }
   },
   mounted () {
+    this.$store.dispatch('global/loadPublicImages')
     // this.$store.dispatch('tabs/loadTabs', this.$store.state.users.user.id)
     // this.search = ''
     let lang = 'fr'

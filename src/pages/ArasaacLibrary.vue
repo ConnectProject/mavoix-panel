@@ -590,6 +590,9 @@ export default {
       this.visibleCount = INITIAL_VISIBLE_COUNT
     }
   },
+  created () {
+    this.$store.dispatch('global/loadPublicImages')
+  },
   methods: {
     onInfiniteLoad (_, done) {
       this.visibleCount += PAGE_SIZE

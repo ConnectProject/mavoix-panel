@@ -47,9 +47,9 @@ export default function (/* { ssrContext } */) {
       }
     },
 
-    // enable strict mode (adds overhead!)
-    // for dev mode only
-    strict: process.env.DEV
+    // strict mode deep-walks the whole state on every mutation, including the 7.6 MB
+    // pictogram catalogue: it made a dev load take ~8 s. Keep it off.
+    strict: false
   })
 
   return Store

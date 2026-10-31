@@ -1,4 +1,3 @@
-import Jimp from 'jimp'
 import Parse from 'parse'
 import { Notify } from 'quasar'
 import Unidecode from 'unidecode'
@@ -110,6 +109,8 @@ export const uploadFiles = async ({ commit }, { files, posNotif = 'top-right' })
  * @returns {Promise<Blob>} processed blob
  */
 const prepareImageBlobFromFile = async (file) => {
+  // jimp is large: fetched only when a picture is actually uploaded
+  const { default: Jimp } = await import(/* webpackChunkName: "jimp" */ 'jimp')
   const image = await Jimp.read(await file.arrayBuffer())
   const maxDim = Math.max(image.bitmap.width, image.bitmap.height)
   if (maxDim > 512) {

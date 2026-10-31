@@ -49,6 +49,9 @@ module.exports = function (ctx) {
       // analyze: true,
       // extractCSS: false,
       chainWebpack (chain) {
+        // Quasar puts every node_modules import in vendor.js, even those only reached through a dynamic
+        // import() (jimp, ...). 'initial' keeps those in their own lazy chunks.
+        chain.optimization.get('splitChunks').cacheGroups.vendors.chunks = 'initial'
         chain.plugin('eslint-webpack-plugin')
           .use(ESLintPlugin, [{ extensions: ['js', 'vue'] }])
       },

@@ -59,6 +59,7 @@ export const ensureDefaultTabIfEmpty = async ({ dispatch, state, getters, rootSt
   }).save()
 
   const itemName = i18n.t('tabSettings.defaultItemName')
+  await dispatch('global/loadPublicImages', null, { root: true })
   const entry = findPublicEntry(rootState.global.images, itemName, pictogramLang(g.ttsLanguage))
   if (entry && entry.url) {
     const drinkAsset = await AssetModel.New(itemName, false, entry.url, userId, { arasaacId: arasaacIdFromUrl(entry.url) }).save()

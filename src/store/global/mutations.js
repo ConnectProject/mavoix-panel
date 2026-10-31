@@ -24,6 +24,10 @@ export const setError = (state, err) => {
   console.error(err)
 }
 
+export const setPublicImages = (state, images) => {
+  state.images = images
+}
+
 export const setImages = (state, obj) => {
   if (obj.text.length > 1) {
     // search in the interface/speech language, as the picture names are in that language
