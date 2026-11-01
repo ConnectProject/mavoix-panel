@@ -35,7 +35,7 @@
       <!-- Toolbar -->
       <q-header class="top-header">
         <q-toolbar class="top-main-nav">
-          <q-toolbar-title class="text-weight-bold">
+          <q-toolbar-title class="text-weight-bold brand-title">
             <q-btn
               flat
               dense
@@ -43,7 +43,7 @@
               class="brand-home-link"
               to="/"
             >
-              <span class="brand-ma">ma</span><span class="brand-voix">voix</span>
+              <span class="brand-word"><span class="brand-ma">ma</span><span class="brand-voix">voix</span></span>
             </q-btn>
           </q-toolbar-title>
 
@@ -52,8 +52,12 @@
             flat
             no-caps
             icon="qr_code"
-            :label="$t('navDrawer.deviceQr')"
+            :label="compactNav ? void 0 : $t('navDrawer.deviceQr')"
+            :aria-label="$t('navDrawer.deviceQr')"
           >
+            <q-tooltip v-if="compactNav">
+              {{ $t('navDrawer.deviceQr') }}
+            </q-tooltip>
             <q-list>
               <q-item
                 v-close-popup
@@ -91,23 +95,38 @@
             flat
             no-caps
             icon="insights"
-            :label="$t('navDrawer.stats')"
+            :label="compactNav ? void 0 : $t('navDrawer.stats')"
+            :aria-label="$t('navDrawer.stats')"
             to="/stats"
-          />
+          >
+            <q-tooltip v-if="compactNav">
+              {{ $t('navDrawer.stats') }}
+            </q-tooltip>
+          </q-btn>
           <q-btn
             flat
             no-caps
             icon="settings"
-            :label="$t('navDrawer.globalSettings')"
+            :label="compactNav ? void 0 : $t('navDrawer.globalSettings')"
+            :aria-label="$t('navDrawer.globalSettings')"
             @click="openGlobalSettingsDialog"
-          />
+          >
+            <q-tooltip v-if="compactNav">
+              {{ $t('navDrawer.globalSettings') }}
+            </q-tooltip>
+          </q-btn>
           <q-btn
             flat
             no-caps
             icon="help_outline"
-            :label="$t('navDrawer.help')"
+            :label="compactNav ? void 0 : $t('navDrawer.help')"
+            :aria-label="$t('navDrawer.help')"
             @click="openHelpDialog"
-          />
+          >
+            <q-tooltip v-if="compactNav">
+              {{ $t('navDrawer.help') }}
+            </q-tooltip>
+          </q-btn>
           <account-menu />
         </q-toolbar>
         <q-toolbar
@@ -223,6 +242,10 @@ export default {
     }
   },
   computed: {
+    compactNav () {
+      return this.$q.screen.lt.md
+    },
+
     // code () {
     //   return localStorage.getItem('username') + ':' +
     //     localStorage.getItem('password')
@@ -492,12 +515,26 @@ export default {
   min-height 66px
   padding 0 14px
 
+.top-main-nav >>> .q-btn .q-icon.on-left
+  margin-right 4px
+
 .brand-home-link
   padding 0 4px
   color inherit
   font-family 'Quicksand', sans-serif
   font-weight 700
   font-size 32px
+
+.brand-title
+  flex 0 0 auto
+  overflow visible
+  padding-right 12px
+
+.brand-word
+  white-space nowrap
+
+.brand-home-link >>> .q-btn__content
+  flex-wrap nowrap
 
 .brand-ma
   color thistle

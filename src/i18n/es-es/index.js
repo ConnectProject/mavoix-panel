@@ -101,7 +101,7 @@ export default {
     speedSlow: 'Lenta',
     speedNormal: 'Normal',
     speedFast: 'Rápida',
-    ttsLanguageLabel: 'Idioma de la síntesis de voz',
+    ttsLanguageLabel: 'Idioma (interfaz y voz)',
     connectLabel: 'Compartir datos con Connect',
     connectOn: 'Compartir activado',
     connectOff: 'Compartir desactivado',

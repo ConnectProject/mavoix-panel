@@ -101,7 +101,7 @@ export default {
     speedSlow: 'Langzaam',
     speedNormal: 'Normaal',
     speedFast: 'Snel',
-    ttsLanguageLabel: 'Taal van de spraaksynthese',
+    ttsLanguageLabel: 'Taal (interface en spraak)',
     connectLabel: 'Gegevens delen met Connect',
     connectOn: 'Delen ingeschakeld',
     connectOff: 'Delen uitgeschakeld',

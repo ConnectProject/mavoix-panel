@@ -101,7 +101,7 @@ export default {
     speedSlow: 'Langsam',
     speedNormal: 'Normal',
     speedFast: 'Schnell',
-    ttsLanguageLabel: 'Sprache der Sprachausgabe',
+    ttsLanguageLabel: 'Sprache (Oberfläche und Sprachausgabe)',
     connectLabel: 'Datenaustausch mit Connect',
     connectOn: 'Teilen aktiviert',
     connectOff: 'Teilen deaktiviert',
