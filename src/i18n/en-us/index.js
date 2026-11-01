@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 export default {
   appTitle: 'Ma Voix',
   logoutLabel: 'Log out',
@@ -285,5 +286,24 @@ export default {
     signup: 'Sign up',
     email: 'Email',
     password: 'Password'
+  },
+  account: {
+    title: 'My account',
+    currentPassword: 'Current password (required for any change)',
+    updateEmail: 'Update email',
+    newPassword: 'New password',
+    changePassword: 'Change password',
+    deleteHeading: 'Delete account',
+    deleteWarning: 'This permanently deletes your account, your tabs, pictures, linked devices and usage statistics. This cannot be undone.',
+    deleteButton: 'Delete my account',
+    close: 'Close',
+    emailUpdated: 'Email updated',
+    passwordUpdated: 'Password updated',
+    accountDeleted: 'Account deleted',
+    errWrongPassword: 'Wrong password',
+    errInvalidEmail: 'Invalid email',
+    errEmailUsed: 'Email already used',
+    errShortPassword: 'New password too short (6 characters minimum)',
+    errGeneric: 'Something went wrong'
   }
 }

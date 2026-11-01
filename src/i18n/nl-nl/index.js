@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 export default {
   appTitle: 'Ma Voix',
   logoutLabel: 'Uitloggen',
@@ -284,5 +285,24 @@ export default {
     signup: 'Registreren',
     email: 'E-mail',
     password: 'Wachtwoord'
+  },
+  account: {
+    title: 'Mijn account',
+    currentPassword: 'Huidig wachtwoord (vereist voor elke wijziging)',
+    updateEmail: 'E-mail bijwerken',
+    newPassword: 'Nieuw wachtwoord',
+    changePassword: 'Wachtwoord wijzigen',
+    deleteHeading: 'Account verwijderen',
+    deleteWarning: 'Dit verwijdert je account, tabbladen, afbeeldingen, gekoppelde apparaten en gebruiksstatistieken definitief. Dit kan niet ongedaan worden gemaakt.',
+    deleteButton: 'Mijn account verwijderen',
+    close: 'Sluiten',
+    emailUpdated: 'E-mail bijgewerkt',
+    passwordUpdated: 'Wachtwoord bijgewerkt',
+    accountDeleted: 'Account verwijderd',
+    errWrongPassword: 'Onjuist wachtwoord',
+    errInvalidEmail: 'Ongeldig e-mailadres',
+    errEmailUsed: 'E-mailadres al in gebruik',
+    errShortPassword: 'Nieuw wachtwoord te kort (minimaal 6 tekens)',
+    errGeneric: 'Er is iets misgegaan'
   }
 }

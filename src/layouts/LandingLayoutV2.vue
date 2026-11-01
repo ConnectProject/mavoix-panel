@@ -50,6 +50,7 @@
           :label="t('nav.start')"
           :to="{ name: 'home' }"
         />
+        <account-menu class="landing-account" />
       </q-toolbar>
     </q-header>
 
@@ -419,6 +420,7 @@
 
 <script>
 /* eslint-disable max-lines */
+import AccountMenu from '~/components/AccountMenu'
 import { LANDING_LANGUAGES } from '~/i18n/landing'
 
 const STORAGE_KEY = 'mavoix.landingLocale'
@@ -454,6 +456,7 @@ const detectLocale = () => {
 
 export default {
   name: 'LayoutLandingV2',
+  components: { AccountMenu },
   data () {
     return {
       navScrolled: false,

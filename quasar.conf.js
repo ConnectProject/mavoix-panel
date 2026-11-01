@@ -35,7 +35,7 @@ module.exports = function (ctx) {
       importStrategy: 'auto',
 
       // Quasar plugins
-      plugins: ['Notify']
+      plugins: ['Notify', 'Dialog']
     },
 
     build: {

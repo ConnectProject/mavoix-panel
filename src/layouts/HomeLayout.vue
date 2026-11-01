@@ -108,13 +108,7 @@
             :label="$t('navDrawer.help')"
             @click="openHelpDialog"
           />
-          <q-btn
-            flat
-            no-caps
-            icon="logout"
-            :label="$t('logoutLabel')"
-            @click="onLogout"
-          />
+          <account-menu />
         </q-toolbar>
         <q-toolbar
           v-if="showTopTabsNav"
@@ -192,6 +186,7 @@
 
 import Parse from 'parse'
 
+import AccountMenu from '~/components/AccountMenu'
 import DialogConnectLinked from '~/components/dialogs/ConnectLinked'
 import DialogDeviceInvitation from '~/components/dialogs/DeviceInvitation'
 import DialogDeviceName from '~/components/dialogs/DeviceName'
@@ -207,6 +202,7 @@ import { getLandingTabSlug, setLastTabSlug, shouldHideWelcome } from '~/utils/ma
 export default {
   name: 'LayoutHome',
   components: {
+    AccountMenu,
     // QrcodeVue,
     ListItemLoading,
     // DialogAssetsManager,
@@ -335,19 +331,6 @@ export default {
     uploadFiles ({ target: { files } }) {
       this.$store.dispatch('assetsManager/uploadFiles', { files })
       this.onDragLeave()
-    },
-
-    /**
-     * Go to auth page
-     * @returns {void}
-     **/
-    onLogout () {
-      // reset vuex store
-      this.$store.commit('reset')
-      Parse.User.logOut()
-      this.$router.push({
-        path: '/'
-      })
     },
 
     /**

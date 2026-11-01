@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 export default {
   appTitle: 'Ma Voix',
   logoutLabel: 'Déconnexion',
@@ -285,5 +286,24 @@ export default {
     signup: 'Inscription',
     email: 'Email',
     password: 'Mot de passe'
+  },
+  account: {
+    title: 'Mon compte',
+    currentPassword: 'Mot de passe actuel (requis pour toute modification)',
+    updateEmail: 'Modifier l\'email',
+    newPassword: 'Nouveau mot de passe',
+    changePassword: 'Changer le mot de passe',
+    deleteHeading: 'Supprimer le compte',
+    deleteWarning: 'Cela supprime définitivement votre compte, vos onglets, images, appareils liés et statistiques d\'usage. Action irréversible.',
+    deleteButton: 'Supprimer mon compte',
+    close: 'Fermer',
+    emailUpdated: 'Email mis à jour',
+    passwordUpdated: 'Mot de passe mis à jour',
+    accountDeleted: 'Compte supprimé',
+    errWrongPassword: 'Mot de passe incorrect',
+    errInvalidEmail: 'Email invalide',
+    errEmailUsed: 'Email déjà utilisé',
+    errShortPassword: 'Nouveau mot de passe trop court (6 caractères minimum)',
+    errGeneric: 'Une erreur est survenue'
   }
 }

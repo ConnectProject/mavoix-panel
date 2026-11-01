@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 export default {
   appTitle: 'Ma Voix',
   logoutLabel: 'Esci',
@@ -284,5 +285,24 @@ export default {
     signup: 'Registrati',
     email: 'Email',
     password: 'Password'
+  },
+  account: {
+    title: 'Il mio account',
+    currentPassword: 'Password attuale (richiesta per ogni modifica)',
+    updateEmail: 'Aggiorna email',
+    newPassword: 'Nuova password',
+    changePassword: 'Cambia password',
+    deleteHeading: 'Elimina account',
+    deleteWarning: 'Questo elimina definitivamente il tuo account, le schede, le immagini, i dispositivi collegati e le statistiche d\'uso. Non può essere annullato.',
+    deleteButton: 'Elimina il mio account',
+    close: 'Chiudi',
+    emailUpdated: 'Email aggiornata',
+    passwordUpdated: 'Password aggiornata',
+    accountDeleted: 'Account eliminato',
+    errWrongPassword: 'Password errata',
+    errInvalidEmail: 'Email non valida',
+    errEmailUsed: 'Email già in uso',
+    errShortPassword: 'Nuova password troppo corta (minimo 6 caratteri)',
+    errGeneric: 'Qualcosa è andato storto'
   }
 }
