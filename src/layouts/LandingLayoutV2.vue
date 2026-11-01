@@ -104,11 +104,31 @@
             </button>
           </div>
           <div class="hero-visual">
-            <img
-              :src="heroBoardImageSrc"
-              :alt="t('heroAlt')"
-              class="landing-placeholder landing-placeholder--hero"
+            <div
+              class="hero-carousel"
+              @mouseenter="pauseSlides"
+              @mouseleave="startSlides"
             >
+              <img
+                v-for="(src, index) in heroSlides"
+                :key="src"
+                :src="src"
+                :alt="t('heroAlt')"
+                class="landing-placeholder landing-placeholder--hero hero-carousel__slide"
+                :class="{ 'hero-carousel__slide--active': index === slideIndex }"
+              >
+              <div class="hero-carousel__dots">
+                <button
+                  v-for="(src, index) in heroSlides"
+                  :key="src"
+                  type="button"
+                  class="hero-carousel__dot"
+                  :class="{ 'hero-carousel__dot--active': index === slideIndex }"
+                  :aria-label="`${index + 1} / ${heroSlides.length}`"
+                  @click="goToSlide(index)"
+                />
+              </div>
+            </div>
           </div>
 
           <div class="hero-trio">
@@ -460,6 +480,7 @@ export default {
   data () {
     return {
       navScrolled: false,
+      slideIndex: 0,
       locale: detectLocale(),
       languages: LANDING_LANGUAGES
     }
@@ -475,11 +496,12 @@ export default {
       return new Date().getFullYear()
     },
     // Public files: use router base so `/file.png` is not requested from domain root on subpath deploys.
-    heroBoardImageSrc () {
+    heroSlides () {
       const base = process.env.VUE_ROUTER_BASE || '/'
       const prefix = base.endsWith('/') ? base : `${base}/`
 
-      return `${prefix}my_day_tab_kids.png`
+      return ['mavoix-app', 'mavoix-panel-1', 'mavoix-panel-2', 'mavoix-panel-3']
+        .map((name) => `${prefix}landing/${name}.png`)
     }
   },
   watch: {
@@ -495,11 +517,26 @@ export default {
       this.navScrolled = window.scrollY > 10
     }
     window.addEventListener('scroll', this._onScroll, { passive: true })
+    this.startSlides()
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this._onScroll)
+    this.pauseSlides()
   },
   methods: {
+    startSlides () {
+      this.pauseSlides()
+      this._slideTimer = setInterval(() => {
+        this.slideIndex = (this.slideIndex + 1) % this.heroSlides.length
+      }, 5000)
+    },
+    pauseSlides () {
+      clearInterval(this._slideTimer)
+    },
+    goToSlide (index) {
+      this.slideIndex = index
+      this.startSlides()
+    },
     t (key) {
       return this.$t(`landing.${key}`, this.locale)
     },
@@ -843,16 +880,59 @@ export default {
   z-index: 1;
 }
 
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin-left: auto;
+  aspect-ratio: 2316 / 1914;
+}
+
 .landing-placeholder--hero {
   display: block;
   width: 100%;
-  max-width: 440px;
-  height: auto;
-  margin-left: auto;
+  height: 100%;
   object-fit: cover;
   border-radius: 20px;
-  border: 4px solid rgba(255, 255, 255, 0.9);
   box-shadow: 0 24px 56px rgba(0, 0, 0, 0.28);
+}
+
+.hero-carousel__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.hero-carousel__slide--active {
+  opacity: 1;
+}
+
+.hero-carousel__dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -28px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hero-carousel__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-carousel__dot--active {
+  background: #fff;
+  transform: scale(1.25);
 }
 
 /* ─── Section foundations ──────────────────────────────────────────────────── */
