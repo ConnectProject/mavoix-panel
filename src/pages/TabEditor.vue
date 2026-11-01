@@ -562,6 +562,7 @@ export default {
       if (nextName && nextName !== item.name) {
         item.name = nextName
         item.nameEdited = true
+        this.$store.dispatch('tabEditor/saveCb', () => { /* auto-save on rename */ })
       }
       this.inlineRenameIndex = null
       this.inlineRenameDraft = ''
