@@ -101,6 +101,22 @@ export const createTabCb = ({ commit, rootState }, { name, hexColor, icon, callb
 }
 
 /**
+ * Save a new tab order (each tab gets its index in the list as `order`).
+ * @param {Context} ctx context passed vuex
+ * @param {TabModel[]} orderedTabs all tabs in their new order
+ * @returns {Promise} did the action succeed
+ */
+export const reorderTabs = ({ commit }, orderedTabs) => {
+  orderedTabs.forEach((tab, index) => tab.set('order', index))
+  commit('setTabs', orderedTabs)
+
+  return Parse.Object.saveAll(orderedTabs.filter((tab) => tab.dirty()))
+    .catch((err) => {
+      commit('setError', err)
+    })
+}
+
+/**
  * Delete a tab
  * @param {Context} ctx context passed vuex
  * @param {{ Tab, Function }} {

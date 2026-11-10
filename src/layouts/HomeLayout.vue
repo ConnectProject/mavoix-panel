@@ -144,21 +144,32 @@
               dense
               class="top-tabs"
             >
-              <q-route-tab
-                v-for="(tab, index) in tabs"
-                :key="index"
-                :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
-                :data-tab-slug="tab.get('slug')"
-                :class="{ 'top-tab-pill--drop': cardDrag.active && cardDrag.hoverSlug === tab.get('slug') }"
-                :style="{
-                  color: getTextColor(tab.get('hexColor')),
-                  background: tab.get('hexColor')
-                }"
-                class="top-tab-pill"
-                active-class="top-tab-pill--active"
-                :icon="tab.get('icon') || 'category'"
-                :label="tab.get('name')"
-              />
+              <draggable
+                v-model="orderedTabs"
+                tag="div"
+                draggable=".top-tab-pill"
+                :force-fallback="true"
+                :fallback-on-body="true"
+                :fallback-tolerance="5"
+                class="row no-wrap items-end"
+                @dragstart.native.prevent
+              >
+                <q-route-tab
+                  v-for="tab in tabs"
+                  :key="tab.id"
+                  :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
+                  :data-tab-slug="tab.get('slug')"
+                  :class="{ 'top-tab-pill--drop': cardDrag.active && cardDrag.hoverSlug === tab.get('slug') }"
+                  :style="{
+                    color: getTextColor(tab.get('hexColor')),
+                    background: tab.get('hexColor')
+                  }"
+                  class="top-tab-pill"
+                  active-class="top-tab-pill--active"
+                  :icon="tab.get('icon') || 'category'"
+                  :label="tab.get('name')"
+                />
+              </draggable>
             </q-tabs>
             <q-btn
               class="top-tabs__add"
@@ -271,6 +282,15 @@ export default {
      */
     tabs () {
       return this.$store.getters['tabs/tabs']
+    },
+    // v-model for the draggable tab header: setting it saves the new order
+    orderedTabs: {
+      get () {
+        return this.tabs
+      },
+      set (list) {
+        this.$store.dispatch('tabs/reorderTabs', list)
+      }
     },
     showTopTabsNav () {
       return this.$route.name !== 'tab-arasaac'

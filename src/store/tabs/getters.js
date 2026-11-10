@@ -1,10 +1,12 @@
+import sortTabs from '~/utils/sortTabs'
+
 /* eslint-disable no-shadow */
 /* eslint-disable valid-jsdoc */
 /**
  * Return the list of all tabs
  * @param {State} state vuex state
  */
-export const tabs = ({ tabs }) => tabs
+export const tabs = ({ tabs }) => sortTabs(tabs)
 
 /**
  * Return true if dialog is open
