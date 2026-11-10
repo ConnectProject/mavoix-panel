@@ -130,153 +130,155 @@
         </div>
       </div>
 
-      <q-infinite-scroll
-        scroll-target=".arasaac-page"
-        :disable="!hasMoreImages"
-        :offset="140"
-        @load="onInfiniteLoad"
-      >
-        <div class="row q-col-gutter-xs library-grid">
-          <div
-            v-for="(image, index) in visibleImages"
-            :key="`img-${image.url}-${index}`"
-            class="col-4 col-sm-3 col-md-2"
-          >
-            <q-card
-              flat
-              class="library-card"
+      <div class="library-scroll">
+        <q-infinite-scroll
+          scroll-target=".library-scroll"
+          :disable="!hasMoreImages"
+          :offset="140"
+          @load="onInfiniteLoad"
+        >
+          <div class="row q-col-gutter-xs library-grid">
+            <div
+              v-for="(image, index) in visibleImages"
+              :key="`img-${image.url}-${index}`"
+              class="col-4 col-sm-3 col-md-2"
             >
-              <q-img
-                :src="image.url"
-                ratio="1"
-                contain
-                class="library-card__image"
+              <q-card
+                flat
+                class="library-card"
               >
-                <div
-                  v-if="activeLibrary === 'personal' && usageCount(image)"
-                  class="absolute-top-left library-card__usage"
+                <q-img
+                  :src="image.url"
+                  ratio="1"
+                  contain
+                  class="library-card__image"
                 >
-                  <q-badge
-                    rounded
-                    color="primary"
-                    :label="usageCount(image)"
+                  <div
+                    v-if="activeLibrary === 'personal' && usageCount(image)"
+                    class="absolute-top-left library-card__usage"
                   >
-                    <q-tooltip>
-                      {{ $t('addImagesModal.usedCount', { count: usageCount(image) }) }}
-                    </q-tooltip>
-                  </q-badge>
-                </div>
-                <div class="absolute-top-right q-pa-xs library-card__actions">
-                  <div class="library-card__checkbox-wrap">
-                    <q-checkbox
-                      v-model="selectedUrls"
-                      :val="image.url"
-                      dense
+                    <q-badge
+                      rounded
                       color="primary"
-                      class="library-card__checkbox"
-                    />
-                    <q-tooltip>
-                      {{ $t('addImagesModal.selectImage') }}
-                    </q-tooltip>
+                      :label="usageCount(image)"
+                    >
+                      <q-tooltip>
+                        {{ $t('addImagesModal.usedCount', { count: usageCount(image) }) }}
+                      </q-tooltip>
+                    </q-badge>
                   </div>
-                  <q-icon
-                    name="play_arrow"
-                    size="24px"
-                    color="primary"
-                    role="button"
-                    tabindex="0"
-                    class="library-card__action"
-                    :class="{ 'library-card__action--disabled': $store.getters['global/ttsEnabled'] === false }"
-                    @click.stop="speak(image)"
-                    @keyup.enter.stop="speak(image)"
-                  >
-                    <q-tooltip>
-                      {{ $t('addImagesModal.playImage') }}
-                    </q-tooltip>
-                  </q-icon>
-                  <q-icon
-                    v-if="activeLibrary === 'personal'"
-                    name="delete"
-                    size="24px"
-                    color="negative"
-                    role="button"
-                    tabindex="0"
-                    class="library-card__action"
-                    @click.stop="deletePersonalImage(image)"
-                    @keyup.enter.stop="deletePersonalImage(image)"
-                  >
-                    <q-tooltip>
-                      {{ $t('assetEditor.delete') }}
-                    </q-tooltip>
-                  </q-icon>
-                </div>
+                  <div class="absolute-top-right q-pa-xs library-card__actions">
+                    <div class="library-card__checkbox-wrap">
+                      <q-checkbox
+                        v-model="selectedUrls"
+                        :val="image.url"
+                        dense
+                        color="primary"
+                        class="library-card__checkbox"
+                      />
+                      <q-tooltip>
+                        {{ $t('addImagesModal.selectImage') }}
+                      </q-tooltip>
+                    </div>
+                    <q-icon
+                      name="play_arrow"
+                      size="24px"
+                      color="primary"
+                      role="button"
+                      tabindex="0"
+                      class="library-card__action"
+                      :class="{ 'library-card__action--disabled': $store.getters['global/ttsEnabled'] === false }"
+                      @click.stop="speak(image)"
+                      @keyup.enter.stop="speak(image)"
+                    >
+                      <q-tooltip>
+                        {{ $t('addImagesModal.playImage') }}
+                      </q-tooltip>
+                    </q-icon>
+                    <q-icon
+                      v-if="activeLibrary === 'personal'"
+                      name="delete"
+                      size="24px"
+                      color="negative"
+                      role="button"
+                      tabindex="0"
+                      class="library-card__action"
+                      @click.stop="deletePersonalImage(image)"
+                      @keyup.enter.stop="deletePersonalImage(image)"
+                    >
+                      <q-tooltip>
+                        {{ $t('assetEditor.delete') }}
+                      </q-tooltip>
+                    </q-icon>
+                  </div>
 
-                <div
-                  v-if="isHidden(image.url)"
-                  class="absolute-full image-overlay image-overlay--hidden"
-                >
-                  <q-icon
-                    name="visibility_off"
-                    class="overlay-icon"
-                  />
+                  <div
+                    v-if="isHidden(image.url)"
+                    class="absolute-full image-overlay image-overlay--hidden"
+                  >
+                    <q-icon
+                      name="visibility_off"
+                      class="overlay-icon"
+                    />
+                  </div>
+                  <div
+                    v-else-if="isUnavailable(image.url)"
+                    class="absolute-full image-overlay image-overlay--unavailable"
+                  >
+                    <q-icon
+                      name="close"
+                      class="overlay-icon overlay-icon--cross"
+                    />
+                  </div>
+                </q-img>
+                <div class="library-card__name">
+                  {{ image.name }}
                 </div>
                 <div
-                  v-else-if="isUnavailable(image.url)"
-                  class="absolute-full image-overlay image-overlay--unavailable"
+                  v-if="activeLibrary === 'personal'"
+                  class="library-card__categories"
                 >
-                  <q-icon
-                    name="close"
-                    class="overlay-icon overlay-icon--cross"
-                  />
+                  <q-chip
+                    v-for="cat in image.categories || []"
+                    :key="`${image.id}-${cat}`"
+                    clickable
+                    dense
+                    square
+                    :icon="themeIconsByLabel[cat]"
+                    color="grey-3"
+                    text-color="grey-9"
+                    class="image-category-chip"
+                    @click.stop="openImageCategoryDialog(image)"
+                  >
+                    {{ cat }}
+                  </q-chip>
+                  <q-chip
+                    v-if="!(image.categories || []).length"
+                    clickable
+                    dense
+                    square
+                    outline
+                    icon="sell"
+                    color="grey-7"
+                    class="image-category-chip"
+                    @click.stop="openImageCategoryDialog(image)"
+                  >
+                    {{ $t('addImagesModal.addTheme') }}
+                  </q-chip>
                 </div>
-              </q-img>
-              <div class="library-card__name">
-                {{ image.name }}
-              </div>
-              <div
-                v-if="activeLibrary === 'personal'"
-                class="library-card__categories"
-              >
-                <q-chip
-                  v-for="cat in image.categories || []"
-                  :key="`${image.id}-${cat}`"
-                  clickable
-                  dense
-                  square
-                  :icon="themeIconsByLabel[cat]"
-                  color="grey-3"
-                  text-color="grey-9"
-                  class="image-category-chip"
-                  @click.stop="openImageCategoryDialog(image)"
-                >
-                  {{ cat }}
-                </q-chip>
-                <q-chip
-                  v-if="!(image.categories || []).length"
-                  clickable
-                  dense
-                  square
-                  outline
-                  icon="sell"
-                  color="grey-7"
-                  class="image-category-chip"
-                  @click.stop="openImageCategoryDialog(image)"
-                >
-                  {{ $t('addImagesModal.addTheme') }}
-                </q-chip>
-              </div>
-            </q-card>
+              </q-card>
+            </div>
           </div>
-        </div>
-        <template #loading>
-          <div class="row justify-center q-mt-sm q-pb-md library-infinite-loading">
-            <q-spinner-dots
-              color="grey-7"
-              size="24px"
-            />
-          </div>
-        </template>
-      </q-infinite-scroll>
+          <template #loading>
+            <div class="row justify-center q-mt-sm q-pb-md library-infinite-loading">
+              <q-spinner-dots
+                color="grey-7"
+                size="24px"
+              />
+            </div>
+          </template>
+        </q-infinite-scroll>
+      </div>
     </div>
 
     <q-dialog
@@ -910,12 +912,29 @@ export default {
 
 .arasaac-page
   background #f5f5f8
-  min-height 100%
+  height 100%
+  min-height 0
+  display flex
+  flex-direction column
+  overflow hidden
 
+/* header (title, search, themes, Annuler/Ajouter) stays fixed; only .library-scroll scrolls */
 .arasaac-shell
   margin 8px 10px 0
-  padding 12px 10px 8px
+  padding 12px 10px 0
   border-radius 6px
+  flex 1 1 auto
+  min-height 0
+  display flex
+  flex-direction column
+
+.library-scroll
+  flex 1 1 auto
+  min-height 0
+  overflow-y auto
+  overflow-x hidden
+  -webkit-overflow-scrolling touch
+  padding-bottom 8px
 
 .library-top-bar
   flex-wrap wrap
