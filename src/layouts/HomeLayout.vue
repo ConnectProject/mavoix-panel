@@ -148,6 +148,8 @@
                 v-for="(tab, index) in tabs"
                 :key="index"
                 :to="{ name: 'tab', params: { slug: tab.get('slug') }}"
+                :data-tab-slug="tab.get('slug')"
+                :class="{ 'top-tab-pill--drop': cardDrag.active && cardDrag.hoverSlug === tab.get('slug') }"
                 :style="{
                   color: getTextColor(tab.get('hexColor')),
                   background: tab.get('hexColor')
@@ -214,6 +216,7 @@ import DialogTabName from '~/components/dialogs/TabName'
 import DialogTabSettings from '~/components/dialogs/TabSettings'
 import DialogWelcomeMaVoix from '~/components/dialogs/WelcomeMaVoix'
 import ListItemLoading from '~/components/ListItemLoading'
+import { cardDrag } from '~/utils/cardDrag'
 import { getLandingTabSlug, setLastTabSlug, shouldHideWelcome } from '~/utils/mavoixNavigation'
 
 // import QrcodeVue from 'qrcode.vue'
@@ -235,6 +238,7 @@ export default {
   },
   data () {
     return {
+      cardDrag,
       welcomeDialogOpen: false,
       connectLinkedOpen: false,
       connectLinkError: '',
@@ -561,6 +565,10 @@ export default {
   min-height 40px
   padding 0 10px
   margin-top 10px
+
+.top-tab-pill--drop
+  outline 3px dashed rgba(0, 0, 0, .55)
+  outline-offset -3px
 
 .top-tab-pill--active
   min-height 40px

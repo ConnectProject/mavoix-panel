@@ -211,6 +211,7 @@ export default {
     tabSpeed: 'Vitesse',
     tabLanguage: 'Langue',
     addItemLabel: 'Ajouter des images',
+    movedToTab: 'Image déplacée vers « {tab} »',
     editLanguage: 'Modifier Voix',
     itemDialog: {
       headingNew: 'Ajout d\'une image',

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { ActionHexColor, ActionLanguage, ActionName, ActionNewItem, ActionSpeed, ActionUpdateItem } from './stackActions'
 import { getDefaultState } from './state'
 import { isItemNameEdited, itemIndex, itemModelToItem, modelToTab } from './utils'
@@ -202,6 +203,16 @@ export const removeItemAtIndex = (state, index) => {
 
   state.deletedItems.push(state.items[index])
   state.items.splice(index, 1)
+}
+
+/**
+ * Take an item out of the list without queuing it for deletion (it now lives in another tab)
+ * @param {State} state vuex state
+ * @param {String} key key of the item
+ * @return {void}
+ */
+export const forgetItem = (state, key) => {
+  state.items = state.items.filter((item) => item.key !== key)
 }
 
 /**

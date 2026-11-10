@@ -186,3 +186,46 @@ export const updateTab = async ({ commit, getters: { tab } }, { name, hexColor, 
     return null
   }
 }
+
+/**
+ * Move a card from one tab to another (the same row changes its tab, it is not copied).
+ * @param {Context} ctx context passed vuex
+ * @param {Object} param parameter
+ * @param {string} param.key key of the item to move
+ * @param {string} param.sourceSlug slug of the tab it comes from
+ * @param {string} param.targetSlug slug of the tab it goes to
+ * @returns {Promise<string|null>} name of the target tab, or null if it failed
+ */
+export const moveItemToTab = async ({ commit, dispatch, getters: { tab } }, { key, sourceSlug, targetSlug }) => {
+  try {
+    const findTab = (slug) => new Parse.Query(TabModel)
+      .equalTo(SLUG_KEY, slug)
+      .equalTo('user', getCurrentUserId())
+      .first()
+    const [sourceModel, targetModel] = await Promise.all([findTab(sourceSlug), findTab(targetSlug)])
+    const itemModel = await new Parse.Query(TabItemModel)
+      .equalTo(ITEM_TAB_KEY, sourceModel)
+      .equalTo(ITEM_KEY_KEY, key)
+      .first()
+    const last = await new Parse.Query(TabItemModel)
+      .equalTo(ITEM_TAB_KEY, targetModel)
+      .descending(ITEM_ORDER_KEY)
+      .first()
+
+    itemModel.set(ITEM_TAB_KEY, targetModel)
+    itemModel.set(ITEM_ORDER_KEY, last ? (last.get(ITEM_ORDER_KEY) || 0) + 1 : 0)
+    await itemModel.save()
+
+    if (tab.slug === sourceSlug) {
+      commit('forgetItem', key)
+    } else if (tab.slug === targetSlug) {
+      await dispatch('fetchItems')
+    }
+
+    return targetModel.get(NAME_KEY)
+  } catch (err) {
+    commit('setError', err)
+
+    return null
+  }
+}

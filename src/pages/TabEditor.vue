@@ -22,7 +22,11 @@
         tag="div"
         draggable=".item"
         ghost-class="ghost"
+        :force-fallback="true"
+        :fallback-on-body="true"
         class="full-height full-width row items-start content-start q-gutter-x-md q-gutter-y-md items-container"
+        @start="onCardDragStart"
+        @end="sortableDragEnded"
       >
         <!-- Items -->
         <q-card
@@ -266,6 +270,7 @@ import DialogAssetDelete from '~/components/dialogs/AssetDelete'
 import DialogTabItem from '~/components/dialogs/TabItem'
 import DialogTabSettings from '~/components/dialogs/TabSettings'
 import ArasaacLibrary from '~/pages/ArasaacLibrary'
+import { sortableDragEnded, startCardDrag } from '~/utils/cardDrag'
 import { getLastTabColor, setLastTabColor } from '~/utils/mavoixNavigation'
 
 export default {
@@ -419,6 +424,32 @@ export default {
     this.load()
   },
   methods: {
+    sortableDragEnded,
+
+    /**
+     * A card is being dragged: let it be dropped on another tab's header
+     * @param {Object} evt Sortable event
+     * @returns {void}
+     */
+    onCardDragStart (evt) {
+      const item = this.items[evt.oldIndex]
+      if (!item || !item.key) return
+
+      const sourceSlug = this.tab.slug
+      startCardDrag({
+        element: evt.item,
+        sourceSlug,
+        onSwitch: (slug) => this.$router.push({ name: 'tab', params: { slug } }),
+        onDrop: (targetSlug) => this.moveCard(item.key, sourceSlug, targetSlug)
+      })
+    },
+
+    async moveCard (key, sourceSlug, targetSlug) {
+      const tabName = await this.$store.dispatch('tabEditor/moveItemToTab', { key, sourceSlug, targetSlug })
+      if (tabName) {
+        this.$q.notify({ position: 'top-right', color: 'positive', message: this.$t('tabEditor.movedToTab', { tab: tabName }) })
+      }
+    },
 
     // eslint-disable-next-line valid-jsdoc
     /**
