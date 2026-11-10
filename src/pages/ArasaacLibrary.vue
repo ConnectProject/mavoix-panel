@@ -297,6 +297,18 @@
               class="column q-gutter-sm"
             >
               <q-chip
+                clickable
+                dense
+                square
+                icon="block"
+                :color="!targetCategories.length ? 'primary' : 'grey-3'"
+                :text-color="!targetCategories.length ? 'white' : 'grey-9'"
+                class="image-category-dialog__chip"
+                @click="toggleCategoryForImage(null)"
+              >
+                {{ $t('generic.none') }}
+              </q-chip>
+              <q-chip
                 v-for="cat in categoryOptions"
                 :key="`pick-${cat}`"
                 clickable
@@ -711,20 +723,19 @@ export default {
 
     async toggleCategoryForImage (category) {
       const target = this.imageCategoryTarget
-      if (!category || !target) {
+      if (!target) {
         return
       }
       try {
         await Promise.all((this.personalAssetsByUrl[target.url] || []).map(async (asset) => {
           const model = await new Parse.Query(AssetModel).get(asset.id)
-          const current = model.get('categories') || []
-          model.set('categories', current.includes(category)
-            ? current.filter((c) => c !== category)
-            : [...current, category])
+          // single choice: the picked theme replaces any previous one (null clears it)
+          model.set('categories', category ? [category] : [])
 
           return model.save()
         }))
         await this.$store.dispatch('assetsManager/loadAssets')
+        this.imageCategoryDialogOpen = false
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e)

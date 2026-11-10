@@ -56,15 +56,15 @@
               <span class="text-caption text-grey-5">{{ $t('takePhoto.categoryLabel') }}</span>
             </div>
             <q-select
-              v-model="selectedCategories"
               outlined
               dense
               dark
-              multiple
-              use-chips
+              clearable
+              :value="selectedCategories[0] || null"
               :options="categoryOptions"
               popup-content-class="take-photo-cat-popup"
               class="upload-photo-select"
+              @input="(v) => selectedCategories = v ? [v] : []"
             >
               <template #selected-item="scope">
                 <q-chip
@@ -72,11 +72,9 @@
                   :icon="categoryIcons[scope.opt]"
                   dense
                   square
-                  removable
                   color="grey-3"
                   text-color="grey-9"
                   class="q-ma-xs"
-                  @remove="scope.removeAtIndex(scope.index)"
                 >
                   {{ scope.opt }}
                 </q-chip>

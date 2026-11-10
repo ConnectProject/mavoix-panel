@@ -257,6 +257,7 @@ export default {
     defaultItemName: 'Beber'
   },
   generic: {
+    none: 'Ninguno',
     close: 'Cerrar',
     validate: 'Validar',
     delete: 'Eliminar',

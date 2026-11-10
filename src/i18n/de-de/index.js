@@ -257,6 +257,7 @@ export default {
     defaultItemName: 'Trinken'
   },
   generic: {
+    none: 'Keine',
     close: 'Schließen',
     validate: 'Bestätigen',
     delete: 'Löschen',

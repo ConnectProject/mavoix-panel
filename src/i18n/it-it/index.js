@@ -257,6 +257,7 @@ export default {
     defaultItemName: 'Bere'
   },
   generic: {
+    none: 'Nessuno',
     close: 'Chiudi',
     validate: 'Convalida',
     delete: 'Elimina',

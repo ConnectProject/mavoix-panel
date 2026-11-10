@@ -258,6 +258,7 @@ export default {
     defaultItemName: 'Boire'
   },
   generic: {
+    none: 'Aucun',
     close: 'Fermer',
     validate: 'Valider',
     delete: 'Supprimer',
