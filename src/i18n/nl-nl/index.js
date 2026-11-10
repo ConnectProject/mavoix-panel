@@ -154,6 +154,7 @@ export default {
     ok: 'Begrepen'
   },
   addImagesModal: {
+    usedCount: '{count} keer gebruikt',
     title: 'Afbeeldingen toevoegen',
     libraryArasaac: 'ARASAAC-bibliotheek',
     libraryPersonal: 'Persoonlijke bibliotheek',

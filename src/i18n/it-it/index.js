@@ -154,6 +154,7 @@ export default {
     ok: 'Ho capito'
   },
   addImagesModal: {
+    usedCount: 'Usata {count} volte',
     title: 'Aggiungi immagini',
     libraryArasaac: 'Libreria ARASAAC',
     libraryPersonal: 'Libreria personale',

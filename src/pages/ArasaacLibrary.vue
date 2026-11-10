@@ -152,6 +152,20 @@
                 contain
                 class="library-card__image"
               >
+                <div
+                  v-if="activeLibrary === 'personal' && usageCount(image)"
+                  class="absolute-top-left library-card__usage"
+                >
+                  <q-badge
+                    rounded
+                    color="primary"
+                    :label="usageCount(image)"
+                  >
+                    <q-tooltip>
+                      {{ $t('addImagesModal.usedCount', { count: usageCount(image) }) }}
+                    </q-tooltip>
+                  </q-badge>
+                </div>
                 <div class="absolute-top-right q-pa-xs library-card__actions">
                   <div class="library-card__checkbox-wrap">
                     <q-checkbox
@@ -470,7 +484,8 @@ export default {
       visibleCount: INITIAL_VISIBLE_COUNT,
       selectedUrls: [],
       imageCategoryDialogOpen: false,
-      imageCategoryTarget: null
+      imageCategoryTarget: null,
+      usageByUrl: {}
     }
   },
   computed: {
@@ -604,8 +619,36 @@ export default {
   },
   created () {
     this.$store.dispatch('global/loadPublicImages')
+    this.loadUsage()
   },
   methods: {
+    // number of cards (TabItem rows) placed in tabs, per picture url.
+    // Adding a library picture to a tab creates a new url-only Asset, so cards cannot be matched by asset id.
+    async loadUsage () {
+      try {
+        const usage = {}
+        await new Parse.Query('TabItem')
+          .equalTo('user', getCurrentUserId())
+          .include('asset')
+          .each((item) => {
+            const asset = item.get('asset')
+            const file = asset && asset.get('parseFile')
+            const url = file ? file.url() : asset && asset.get('url')
+            if (url) {
+              usage[url] = (usage[url] || 0) + 1
+            }
+          })
+        this.usageByUrl = usage
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e)
+      }
+    },
+
+    usageCount (image) {
+      return this.usageByUrl[image.url] || 0
+    },
+
     onInfiniteLoad (_, done) {
       this.visibleCount += PAGE_SIZE
       done()
@@ -636,6 +679,7 @@ export default {
 
         this.selectedUrls = this.selectedUrls.filter((url) => url !== image.url)
         await this.$store.dispatch('assetsManager/loadAssets')
+        this.loadUsage()
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e)
@@ -934,6 +978,17 @@ export default {
   background #ffffff
   border-radius 6px 6px 0 0
   max-height 108px
+
+.library-card__usage
+  /* same q-img wrapper override as the actions column: only the badge, no grey backdrop */
+  width auto !important
+  height auto !important
+  right auto !important
+  bottom auto !important
+  padding 4px !important
+  background transparent !important
+  pointer-events none
+  z-index 3
 
 .library-card__actions
   /* q-img wraps slot content in an absolutely positioned, full-size, padded box: shrink it to the button column */
