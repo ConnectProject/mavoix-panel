@@ -92,6 +92,9 @@ export default {
   },
   globalSettings: {
     title: 'Algemene instellingen',
+    tabImages: 'Afbeeldingen',
+    tabVoice: 'Stem',
+    tabConfig: 'Configuratie',
     imageSizeLabel: 'Afbeeldingsgrootte',
     sizeSmall: 'Klein',
     sizeMedium: 'Gemiddeld',

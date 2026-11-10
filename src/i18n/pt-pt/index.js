@@ -92,6 +92,9 @@ export default {
   },
   globalSettings: {
     title: 'Definições globais',
+    tabImages: 'Imagens',
+    tabVoice: 'Voz',
+    tabConfig: 'Configuração',
     imageSizeLabel: 'Tamanho das imagens',
     sizeSmall: 'Pequeno',
     sizeMedium: 'Médio',

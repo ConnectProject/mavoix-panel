@@ -4,17 +4,49 @@
       :value="value"
       @input="$emit('input', $event)"
     >
-      <q-card style="min-width: 520px;">
-        <q-card-section>
-          <div class="text-h5">
+      <q-card class="global-settings-card">
+        <q-card-section class="row items-center no-wrap q-pb-none">
+          <div class="text-h5 col">
             {{ $t('globalSettings.title') }}
           </div>
         </q-card-section>
 
+        <q-tabs
+          v-model="tab"
+          dense
+          no-caps
+          align="left"
+          active-color="primary"
+          indicator-color="primary"
+          class="q-mt-sm"
+        >
+          <q-tab
+            name="images"
+            :label="$t('globalSettings.tabImages')"
+          />
+          <q-tab
+            name="voice"
+            :label="$t('globalSettings.tabVoice')"
+          />
+          <q-tab
+            name="connect"
+            label="Connect"
+          />
+          <q-tab
+            name="config"
+            :label="$t('globalSettings.tabConfig')"
+          />
+        </q-tabs>
         <q-separator />
 
-        <q-card-section class="q-gutter-xl q-px-xl">
-          <div>
+        <q-tab-panels
+          v-model="tab"
+          animated
+        >
+          <q-tab-panel
+            name="images"
+            class="q-pa-lg"
+          >
             <div class="text-subtitle1 q-mb-sm">
               {{ $t('globalSettings.imageSizeLabel') }}
             </div>
@@ -24,9 +56,12 @@
               type="radio"
               :options="imageSizeOptions"
             />
-          </div>
+          </q-tab-panel>
 
-          <div>
+          <q-tab-panel
+            name="voice"
+            class="q-pa-lg"
+          >
             <div class="text-subtitle1 q-mb-sm">
               {{ $t('globalSettings.ttsSpeedLabel') }}
             </div>
@@ -44,10 +79,8 @@
               <span>{{ $t('globalSettings.speedNormal') }}</span>
               <span>{{ $t('globalSettings.speedFast') }}</span>
             </div>
-          </div>
 
-          <div>
-            <div class="text-subtitle1 q-mb-sm">
+            <div class="text-subtitle1 q-mt-lg q-mb-sm">
               {{ $t('globalSettings.ttsLanguageLabel') }}
             </div>
             <q-select
@@ -58,9 +91,12 @@
               map-options
               :options="languageOptions"
             />
-          </div>
+          </q-tab-panel>
 
-          <div>
+          <q-tab-panel
+            name="connect"
+            class="q-pa-lg"
+          >
             <div class="text-subtitle1 q-mb-sm">
               {{ $t('globalSettings.connectLabel') }}
             </div>
@@ -72,9 +108,12 @@
             <div class="text-body2 text-grey-8 q-mt-xs connect-description">
               {{ $t('globalSettings.connectDescription') }}
             </div>
-          </div>
+          </q-tab-panel>
 
-          <div>
+          <q-tab-panel
+            name="config"
+            class="q-pa-lg"
+          >
             <div class="text-subtitle1 q-mb-sm">
               {{ $t('globalSettings.configLabel') }}
             </div>
@@ -105,10 +144,15 @@
                 @change="onImport"
               >
             </div>
-          </div>
-        </q-card-section>
+          </q-tab-panel>
+        </q-tab-panels>
 
-        <q-card-actions align="center">
+        <q-separator />
+
+        <q-card-actions
+          align="center"
+          class="q-py-md"
+        >
           <q-btn
             unelevated
             color="primary"
@@ -128,6 +172,7 @@
 </template>
 
 <script>
+/* eslint-disable max-lines */
 import { Notify } from 'quasar'
 
 import { exportAppConfig, importAppConfig } from '~/utils/appConfig'
@@ -145,6 +190,7 @@ export default {
 
   data () {
     return {
+      tab: 'images',
       localImageSize: 'medium',
       localTTSSpeedIndex: 2,
       localTTSLanguage: 'fr-FR',
@@ -178,6 +224,7 @@ export default {
   watch: {
     value (opened) {
       if (opened) {
+        this.tab = 'images'
         this.localImageSize = this.$store.getters['global/imageSize']
         const savedSpeed = this.$store.getters['global/ttsSpeed']
         const idx = this.speedCodes.indexOf(savedSpeed)
@@ -254,6 +301,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.global-settings-card
+  width 540px
+  max-width 92vw
+
 .global-language-select
   max-width 320px
 
