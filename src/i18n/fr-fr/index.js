@@ -272,6 +272,10 @@ export default {
     loading: 'Chargement'
   },
   assetEditor: {
+    deletePersonal: {
+      title: 'Supprimer l\'image de la bibliothèque',
+      message: 'Supprimer « {name} » de votre bibliothèque personnelle ? Cette action est définitive.'
+    },
     rename: 'Renommer l\'image',
     delete: 'Supprimer l\'image',
     deleteDialog: {

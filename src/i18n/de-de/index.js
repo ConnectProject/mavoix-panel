@@ -271,6 +271,10 @@ export default {
     loading: 'Wird geladen'
   },
   assetEditor: {
+    deletePersonal: {
+      title: 'Bild aus der Bibliothek löschen',
+      message: '„{name}“ aus Ihrer persönlichen Bibliothek löschen? Dies kann nicht rückgängig gemacht werden.'
+    },
     rename: 'Bild umbenennen',
     delete: 'Bild löschen',
     deleteDialog: {

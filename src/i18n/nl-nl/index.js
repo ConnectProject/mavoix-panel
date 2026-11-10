@@ -271,6 +271,10 @@ export default {
     loading: 'Laden'
   },
   assetEditor: {
+    deletePersonal: {
+      title: 'Afbeelding uit bibliotheek verwijderen',
+      message: '“{name}” uit uw persoonlijke bibliotheek verwijderen? Dit kan niet ongedaan worden gemaakt.'
+    },
     rename: 'Afbeelding hernoemen',
     delete: 'Afbeelding verwijderen',
     deleteDialog: {

@@ -271,6 +271,10 @@ export default {
     loading: 'A carregar'
   },
   assetEditor: {
+    deletePersonal: {
+      title: 'Eliminar imagem da biblioteca',
+      message: 'Eliminar «{name}» da sua biblioteca pessoal? Esta ação não pode ser anulada.'
+    },
     rename: 'Mudar o nome da imagem',
     delete: 'Eliminar a imagem',
     deleteDialog: {

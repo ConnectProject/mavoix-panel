@@ -611,7 +611,17 @@ export default {
       done()
     },
 
-    async deletePersonalImage (image) {
+    deletePersonalImage (image) {
+      this.$q.dialog({
+        title: this.$t('assetEditor.deletePersonal.title'),
+        message: this.$t('assetEditor.deletePersonal.message', { name: image.name }),
+        cancel: { flat: true, noCaps: true, label: this.$t('generic.cancel') },
+        ok: { color: 'negative', noCaps: true, label: this.$t('generic.delete') },
+        persistent: true
+      }).onOk(() => this.destroyPersonalImage(image))
+    },
+
+    async destroyPersonalImage (image) {
       try {
         const assets = this.personalAssetsByUrl[image.url] || []
         if (!assets.length) {

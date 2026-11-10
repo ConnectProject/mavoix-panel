@@ -272,6 +272,10 @@ export default {
     loading: 'Loading'
   },
   assetEditor: {
+    deletePersonal: {
+      title: 'Delete image from library',
+      message: 'Delete “{name}” from your personal library? This cannot be undone.'
+    },
     rename: 'Rename the image',
     delete: 'Delete the image',
     deleteDialog: {

@@ -271,6 +271,10 @@ export default {
     loading: 'Caricamento'
   },
   assetEditor: {
+    deletePersonal: {
+      title: 'Elimina immagine dalla libreria',
+      message: 'Eliminare «{name}» dalla tua libreria personale? L\'azione non può essere annullata.'
+    },
     rename: 'Rinomina l\'immagine',
     delete: 'Elimina l\'immagine',
     deleteDialog: {
