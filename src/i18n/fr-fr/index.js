@@ -96,6 +96,7 @@ export default {
     tabVoice: 'Voix',
     tabConfig: 'Configuration',
     imageSizeLabel: 'Taille d\'images',
+    imageSizeNote: 'Ce réglage ne concerne que la tablette (l\'application Ma Voix) ; la taille des images dans ce panneau ne change pas.',
     sizeSmall: 'Petit',
     sizeMedium: 'Moyenne',
     sizeLarge: 'Grande',

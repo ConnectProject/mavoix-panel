@@ -50,6 +50,9 @@
             <div class="text-subtitle1 q-mb-sm">
               {{ $t('globalSettings.imageSizeLabel') }}
             </div>
+            <div class="text-body2 text-grey-8 q-mb-sm">
+              {{ $t('globalSettings.imageSizeNote') }}
+            </div>
             <q-option-group
               v-model="localImageSize"
               inline

@@ -96,6 +96,7 @@ export default {
     tabVoice: 'Stimme',
     tabConfig: 'Konfiguration',
     imageSizeLabel: 'Bildgröße',
+    imageSizeNote: 'Diese Einstellung betrifft nur das Tablet (die Ma-Voix-App); die Bildgröße in diesem Panel ändert sich nicht.',
     sizeSmall: 'Klein',
     sizeMedium: 'Mittel',
     sizeLarge: 'Groß',

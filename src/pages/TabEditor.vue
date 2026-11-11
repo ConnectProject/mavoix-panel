@@ -32,7 +32,7 @@
         <q-card
           v-for="(item, index) in items"
           :key="index"
-          :class="['item', imageSizeClass]"
+          class="item item-size"
           :v-if="!item.deleted"
         >
           <!-- Item's image -->
@@ -320,13 +320,6 @@ export default {
     },
     options () {
       return this.$store.getters['tabEditor/languages']
-    },
-    imageSizeClass () {
-      const imageSize = this.$store.getters['global/imageSize']
-      if (imageSize === 'small') return 'item-size--small'
-      if (imageSize === 'large') return 'item-size--large'
-
-      return 'item-size--medium'
     },
 
     /**
@@ -666,14 +659,13 @@ export default {
 .item-img
   transition .1s linear
 
-.item-size--small
-  width 120px
-
-.item-size--medium
+/* The tablet's image size setting does not apply here: medium on large screens, small on phones */
+.item-size
   width 170px
 
-.item-size--large
-  width 240px
+@media (max-width: 599px)
+  .item-size
+    width 120px
 
 .item-img:hover
   opacity 1

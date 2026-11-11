@@ -96,6 +96,7 @@ export default {
     tabVoice: 'Stem',
     tabConfig: 'Configuratie',
     imageSizeLabel: 'Afbeeldingsgrootte',
+    imageSizeNote: 'Deze instelling geldt alleen voor de tablet (de Ma Voix-app); de afbeeldingsgrootte in dit paneel verandert niet.',
     sizeSmall: 'Klein',
     sizeMedium: 'Gemiddeld',
     sizeLarge: 'Groot',
