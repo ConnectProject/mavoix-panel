@@ -73,3 +73,22 @@ export const deleteActive = async ({ commit, getters: { active } }) => {
     commit('setError', err)
   }
 }
+
+/**
+ * Load the last status (battery, last seen) reported by the devices of the account
+ * @param {Context} ctx context passed vuex
+ * @returns {Promise} resolves when loaded; errors are ignored (the next refresh will retry)
+ */
+export const loadStatuses = async ({ commit }) => {
+  try {
+    const rows = await new Parse.Query('DeviceStatus').equalTo('user', getCurrentUserId())
+      .find()
+    const statuses = {}
+    rows.forEach((row) => {
+      statuses[row.get('device')] = { level: row.get('level'), charging: row.get('charging'), seenAt: row.get('seenAt') }
+    })
+    commit('setStatuses', statuses)
+  } catch (err) {
+    console.error('device status not loaded:', err)
+  }
+}

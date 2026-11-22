@@ -5,7 +5,7 @@ export default {
   welcome: {
     title: 'Bienvenu à MaVoix',
     intro: 'Pour bien démarrer, voici quatre actions principales :',
-    stepDevice: 'Liez un appareil avec le bouton Lier un appareil (icône QR) dans la barre du haut.',
+    stepDevice: 'Liez un appareil avec le bouton Appareils connectés (icône QR) dans la barre du haut.',
     stepTabs: 'Créez ou ouvrez des onglets via Onglets, ou avec le + à côté des onglets.',
     stepSettings: 'Ajustez la taille des images, la synthèse vocale et plus encore dans Paramètres globaux (icône engrenage).',
     stepConnect: 'Vous pouvez aussi partager des données d\'usage (heures d\'utilisation et phrases construites) avec Connect, une plateforme ouverte de partage de données. Ce partage est facultatif : activez-le ou désactivez-le dans Paramètres globaux.',
@@ -87,7 +87,7 @@ export default {
     noDeviceYet: 'Aucun appareil pour le moment',
     globalSettings: 'Paramètres globaux',
     help: 'Aide',
-    deviceQr: 'Lier un appareil',
+    deviceQr: 'Appareils connectés',
     stats: 'Statistiques'
   },
   globalSettings: {

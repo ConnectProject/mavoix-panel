@@ -20,5 +20,6 @@ export default {
     index: -1 // index of the device
   },
 
+  statuses: {}, // last status of each device by id: { level (0-100 or null), charging, seenAt (Date) }
   devices: [] // list of all devices
 }

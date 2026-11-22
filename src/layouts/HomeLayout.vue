@@ -88,6 +88,19 @@
                   <q-icon name="qr_code" />
                 </q-item-section>
                 <q-item-section>{{ d.deviceName || d.username }}</q-item-section>
+                <q-item-section
+                  v-if="batteryOf(d)"
+                  side
+                >
+                  <span class="row items-center no-wrap text-grey-8">
+                    <q-icon
+                      :name="batteryOf(d).icon"
+                      :color="batteryOf(d).color"
+                      size="sm"
+                    />
+                    <span class="q-ml-xs">{{ batteryOf(d).level }}%</span>
+                  </span>
+                </q-item-section>
               </q-item>
             </q-list>
           </q-btn-dropdown>
@@ -232,6 +245,9 @@ import { getLandingTabSlug, setLastTabSlug, shouldHideWelcome } from '~/utils/ma
 
 // import QrcodeVue from 'qrcode.vue'
 
+const DEVICE_REFRESH_MS = 20 * 1000 // how often the battery readings are reloaded
+const DEVICE_CONNECTED_MS = 2.5 * 60 * 1000 // a device reports every minute: silent for longer means not connected
+
 export default {
   name: 'LayoutHome',
   components: {
@@ -320,6 +336,10 @@ export default {
     }
   },
 
+  beforeDestroy () {
+    clearInterval(this.statusTimer)
+  },
+
   /**
    * Load tabs
    * Load devices
@@ -342,6 +362,8 @@ export default {
         })
       this.$store.dispatch('assetsManager/loadAssets')
       this.$store.dispatch('devices/loadDevices')
+      this.refreshDeviceStatuses()
+      this.statusTimer = setInterval(this.refreshDeviceStatuses, DEVICE_REFRESH_MS)
       this.$store.dispatch('users/loadConnectUserId')
       this.$store.dispatch('global/loadGlobalSettings')
       this.$store.dispatch('global/initTTS')
@@ -411,6 +433,28 @@ export default {
 
     openCreateTabDialog () {
       this.$store.commit('tabs/openCreateTabDialog')
+    },
+
+    refreshDeviceStatuses () {
+      this.$store.dispatch('devices/loadStatuses')
+    },
+
+    /**
+     * @param {Object} device a device of the store
+     * @returns {Object|null} battery { level, icon, color } when the device is connected and reports a battery
+     */
+    batteryOf (device) {
+      const status = this.$store.getters['devices/statuses'][device.id]
+      if (!status || typeof status.level !== 'number' || !status.seenAt ||
+        Date.now() - status.seenAt.getTime() > DEVICE_CONNECTED_MS) {
+        return null
+      }
+      const { level, charging } = status
+      const steps = ['battery_alert', 'battery_1_bar', 'battery_2_bar', 'battery_3_bar', 'battery_4_bar', 'battery_5_bar', 'battery_6_bar', 'battery_full']
+      const icon = charging ? 'battery_charging_full' : steps[Math.min(steps.length - 1, Math.floor(level / 12.5))]
+      const color = !charging && level <= 20 ? 'negative' : ''
+
+      return { level, icon, color }
     },
 
     openCreateDeviceDialog () {

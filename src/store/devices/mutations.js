@@ -8,6 +8,7 @@
  */
 export const setDevices = (state, deviceModels) => {
   state.devices = deviceModels.map((model) => ({
+    id: model.id,
     deviceName: model.get('deviceName'),
     username: model.getUsername(),
     password: ''
@@ -115,4 +116,14 @@ export const setError = (state, err) => {
   console.error(err)
   state.error = err
   state.loading = false
+}
+
+/**
+ * Set the last status reported by each device
+ * @param {State} state vuex state
+ * @param {Object} statuses { [deviceId]: { level, charging, seenAt } }
+ * @returns {void}
+ */
+export const setStatuses = (state, statuses) => {
+  state.statuses = statuses
 }

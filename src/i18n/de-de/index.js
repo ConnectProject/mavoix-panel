@@ -5,7 +5,7 @@ export default {
   welcome: {
     title: 'Willkommen bei MaVoix',
     intro: 'Zum Einstieg hier die vier wichtigsten Aktionen:',
-    stepDevice: 'Verbinden Sie ein Gerät mit der Schaltfläche Gerät verbinden (QR-Symbol) in der oberen Leiste.',
+    stepDevice: 'Verbinden Sie ein Gerät mit der Schaltfläche Verbundene Geräte (QR-Symbol) in der oberen Leiste.',
     stepTabs: 'Erstellen oder öffnen Sie Tabs unter Tabs oder mit dem + neben den Tabs.',
     stepSettings: 'Passen Sie Bildgröße, Sprachausgabe und mehr in den Globalen Einstellungen an (Zahnrad-Symbol).',
     stepConnect: 'Sie können auch Nutzungsdaten (Nutzungszeiten und gebildete Sätze) mit Connect teilen, einer offenen Plattform für den Datenaustausch. Das Teilen ist freiwillig: Aktivieren oder deaktivieren Sie es in den Globalen Einstellungen.',
@@ -87,7 +87,7 @@ export default {
     noDeviceYet: 'Noch kein Gerät',
     globalSettings: 'Globale Einstellungen',
     help: 'Hilfe',
-    deviceQr: 'Gerät verbinden',
+    deviceQr: 'Verbundene Geräte',
     stats: 'Statistik'
   },
   globalSettings: {

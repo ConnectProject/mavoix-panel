@@ -25,3 +25,9 @@ export const nameDialog = ({ nameDialog }) => nameDialog
  * @param {State} state vuex state
  */
 export const dialog = ({ dialog }) => dialog
+
+/**
+ * Return the last reported status of each device, by device id
+ * @param {State} state vuex state
+ */
+export const statuses = ({ statuses }) => statuses

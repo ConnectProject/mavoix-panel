@@ -5,7 +5,7 @@ export default {
   welcome: {
     title: 'Welkom bij MaVoix',
     intro: 'Om te beginnen, hier zijn de vier belangrijkste acties:',
-    stepDevice: 'Koppel een apparaat met de knop Apparaat koppelen (QR-pictogram) in de bovenbalk.',
+    stepDevice: 'Koppel een apparaat met de knop Gekoppelde apparaten (QR-pictogram) in de bovenbalk.',
     stepTabs: 'Maak of open tabbladen via Tabbladen, of met de + naast de tabbladen.',
     stepSettings: 'Pas de afbeeldingsgrootte, de spraaksynthese en meer aan in Algemene instellingen (tandwielpictogram).',
     stepConnect: 'U kunt ook gebruiksgegevens (gebruikstijden en gemaakte zinnen) delen met Connect, een open platform voor het delen van gegevens. Delen is optioneel: schakel het in of uit in Algemene instellingen.',
@@ -87,7 +87,7 @@ export default {
     noDeviceYet: 'Nog geen apparaat',
     globalSettings: 'Algemene instellingen',
     help: 'Help',
-    deviceQr: 'Apparaat koppelen',
+    deviceQr: 'Gekoppelde apparaten',
     stats: 'Statistieken'
   },
   globalSettings: {

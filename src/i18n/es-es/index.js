@@ -5,7 +5,7 @@ export default {
   welcome: {
     title: 'Bienvenido a MaVoix',
     intro: 'Para empezar, estas son las cuatro acciones principales:',
-    stepDevice: 'Vincule un dispositivo con el botón Vincular un dispositivo (icono QR) de la barra superior.',
+    stepDevice: 'Vincule un dispositivo con el botón Dispositivos vinculados (icono QR) de la barra superior.',
     stepTabs: 'Cree o abra pestañas desde Pestañas, o con el + junto a las pestañas.',
     stepSettings: 'Ajuste el tamaño de las imágenes, la síntesis de voz y más en Ajustes globales (icono de engranaje).',
     stepConnect: 'También puede compartir datos de uso (horas de uso y frases construidas) con Connect, una plataforma abierta de intercambio de datos. Compartir es opcional: actívelo o desactívelo en Ajustes globales.',
@@ -87,7 +87,7 @@ export default {
     noDeviceYet: 'Aún no hay ningún dispositivo',
     globalSettings: 'Ajustes globales',
     help: 'Ayuda',
-    deviceQr: 'Vincular un dispositivo',
+    deviceQr: 'Dispositivos vinculados',
     stats: 'Estadísticas'
   },
   globalSettings: {

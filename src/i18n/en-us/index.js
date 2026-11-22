@@ -5,7 +5,7 @@ export default {
   welcome: {
     title: 'Welcome to MaVoix',
     intro: 'To get started, here are the four main actions:',
-    stepDevice: 'Link a device with the Link a device button (QR icon) in the top bar.',
+    stepDevice: 'Link a device with the Linked devices button (QR icon) in the top bar.',
     stepTabs: 'Create or open tabs via Tabs, or with the + next to the tabs.',
     stepSettings: 'Adjust the image size, text to speech and more in Global settings (gear icon).',
     stepConnect: 'You can also share usage data (usage times and sentences built) with Connect, an open data sharing platform. Sharing is optional: turn it on or off in Global settings.',
@@ -87,7 +87,7 @@ export default {
     noDeviceYet: 'No device yet',
     globalSettings: 'Global settings',
     help: 'Help',
-    deviceQr: 'Link a device',
+    deviceQr: 'Linked devices',
     stats: 'Statistics'
   },
   globalSettings: {
