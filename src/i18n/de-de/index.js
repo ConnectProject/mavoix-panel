@@ -220,6 +220,10 @@ export default {
     }
   },
   deviceDialogs: {
+    tabQr: 'QR-Code',
+    tabImage: 'Bildgröße',
+    imageOverride: 'Eigene Bildgröße für dieses Gerät verwenden',
+    imageOverrideNote: 'Wenn aktiviert, ignoriert dieses Gerät die Bildgröße der globalen Einstellungen. Die Änderung erscheint auf dem Gerät, sobald Sie den Regler loslassen.',
     new: {
       heading: 'Wählen Sie einen Namen für Ihr neues Gerät'
     },

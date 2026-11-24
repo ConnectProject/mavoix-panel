@@ -222,6 +222,10 @@ export default {
     }
   },
   deviceDialogs: {
+    tabQr: 'QR code',
+    tabImage: 'Taille d\'images',
+    imageOverride: 'Utiliser une taille d\'images propre à cet appareil',
+    imageOverrideNote: 'Si activé, cet appareil ignore la taille d\'images des Paramètres globaux. Le changement apparaît sur l\'appareil dès que vous relâchez le curseur.',
     new: {
       heading: 'Choisissez un nom pour votre nouvelle appareil'
     },

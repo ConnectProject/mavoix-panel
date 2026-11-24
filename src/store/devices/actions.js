@@ -92,3 +92,37 @@ export const loadStatuses = async ({ commit }) => {
     console.error('device status not loaded:', err)
   }
 }
+
+/**
+ * Load the settings chosen for each device of the account
+ * @param {Context} ctx context passed vuex
+ * @returns {Promise} resolves when loaded; errors are ignored
+ */
+export const loadSettings = async ({ commit }) => {
+  try {
+    const rows = await new Parse.Query('DeviceSettings').equalTo('user', getCurrentUserId())
+      .find()
+    const settings = {}
+    rows.forEach((row) => {
+      settings[row.get('device')] = { imageScale: row.get('imageScale') }
+    })
+    commit('setSettings', settings)
+  } catch (err) {
+    console.error('device settings not loaded:', err)
+  }
+}
+
+/**
+ * Set the image size of a device (the device follows it live and ignores the global image size)
+ * @param {Context} ctx context passed vuex
+ * @param {{ deviceId: string, imageScale: (number|null) }} payload 0 (smallest) to 100 (largest), null to follow the global setting
+ * @returns {Promise} resolves when saved
+ */
+export const setImageScale = async ({ commit }, payload) => {
+  commit('setImageScale', payload)
+  try {
+    await Parse.Cloud.run('setDeviceSettings', payload)
+  } catch (err) {
+    commit('setError', err)
+  }
+}

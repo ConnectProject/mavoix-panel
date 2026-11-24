@@ -220,6 +220,10 @@ export default {
     }
   },
   deviceDialogs: {
+    tabQr: 'QR-code',
+    tabImage: 'Afbeeldingsgrootte',
+    imageOverride: 'Een eigen afbeeldingsgrootte gebruiken voor dit apparaat',
+    imageOverrideNote: 'Indien ingeschakeld negeert dit apparaat de afbeeldingsgrootte van de algemene instellingen. De wijziging verschijnt op het apparaat zodra u de schuifregelaar loslaat.',
     new: {
       heading: 'Kies een naam voor uw nieuwe apparaat'
     },

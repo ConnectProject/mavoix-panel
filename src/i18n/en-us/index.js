@@ -221,6 +221,10 @@ export default {
     }
   },
   deviceDialogs: {
+    tabQr: 'QR code',
+    tabImage: 'Image size',
+    imageOverride: 'Use a specific image size for this device',
+    imageOverrideNote: 'When enabled, this device ignores the Image size of the Global settings. The change appears on the device as soon as you release the slider.',
     new: {
       heading: 'Choose a name for your new device'
     },

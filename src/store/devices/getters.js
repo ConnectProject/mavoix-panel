@@ -31,3 +31,9 @@ export const dialog = ({ dialog }) => dialog
  * @param {State} state vuex state
  */
 export const statuses = ({ statuses }) => statuses
+
+/**
+ * Return the settings chosen for each device, by device id
+ * @param {State} state vuex state
+ */
+export const settings = ({ settings }) => settings

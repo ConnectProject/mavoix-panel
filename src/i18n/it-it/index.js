@@ -220,6 +220,10 @@ export default {
     }
   },
   deviceDialogs: {
+    tabQr: 'Codice QR',
+    tabImage: 'Dimensione delle immagini',
+    imageOverride: 'Usa una dimensione delle immagini specifica per questo dispositivo',
+    imageOverrideNote: 'Se attivato, questo dispositivo ignora la dimensione delle immagini delle Impostazioni globali. La modifica appare sul dispositivo appena rilasci il cursore.',
     new: {
       heading: 'Scegli un nome per il tuo nuovo dispositivo'
     },

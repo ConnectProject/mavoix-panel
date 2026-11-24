@@ -27,6 +27,7 @@ export const setDevices = (state, deviceModels) => {
  */
 export const addAndOpenDevice = (state, { deviceUser, password }) => {
   state.devices.push({
+    id: deviceUser.id,
     deviceName: deviceUser.get('deviceName'),
     username: deviceUser.getUsername(),
     password: password
@@ -126,4 +127,24 @@ export const setError = (state, err) => {
  */
 export const setStatuses = (state, statuses) => {
   state.statuses = statuses
+}
+
+/**
+ * Set the settings of every device
+ * @param {State} state vuex state
+ * @param {Object} settings { [deviceId]: { imageScale } }
+ * @returns {void}
+ */
+export const setSettings = (state, settings) => {
+  state.settings = settings
+}
+
+/**
+ * Set the image scale of one device
+ * @param {State} state vuex state
+ * @param {{ deviceId: string, imageScale: (number|null) }} payload new value (null = follow the global setting)
+ * @returns {void}
+ */
+export const setImageScale = (state, { deviceId, imageScale }) => {
+  state.settings = { ...state.settings, [deviceId]: { imageScale } }
 }

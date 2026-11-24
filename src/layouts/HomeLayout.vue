@@ -362,6 +362,7 @@ export default {
         })
       this.$store.dispatch('assetsManager/loadAssets')
       this.$store.dispatch('devices/loadDevices')
+      this.$store.dispatch('devices/loadSettings')
       this.refreshDeviceStatuses()
       this.statusTimer = setInterval(this.refreshDeviceStatuses, DEVICE_REFRESH_MS)
       this.$store.dispatch('users/loadConnectUserId')

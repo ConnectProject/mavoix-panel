@@ -20,6 +20,7 @@ export default {
     index: -1 // index of the device
   },
 
+  settings: {}, // settings chosen for each device by id: { imageScale (0-100, null = follow the global setting) }
   statuses: {}, // last status of each device by id: { level (0-100 or null), charging, seenAt (Date) }
   devices: [] // list of all devices
 }
